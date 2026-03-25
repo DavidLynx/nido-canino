@@ -1,0 +1,895 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nido Canino | Blog</title>
+
+    <!-- Fuente -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet" />
+
+    <!-- CSS base -->
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+
+    <!-- Estilos específicos -->
+    <style>
+        .blog-hero {
+            position: relative;
+            overflow: hidden;
+            padding-top: var(--space-11);
+            padding-bottom: var(--space-10);
+        }
+
+            .blog-hero::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.13), transparent 26%), radial-gradient(circle at bottom right, rgba(200, 164, 123, 0.08), transparent 30%);
+                pointer-events: none;
+            }
+
+            .blog-hero .container {
+                position: relative;
+                z-index: 1;
+            }
+
+        .blog-hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: var(--space-8);
+            align-items: center;
+        }
+
+        .blog-hero-copy h1 {
+            max-width: 10ch;
+            margin-top: var(--space-3);
+            margin-bottom: var(--space-4);
+            letter-spacing: -0.04em;
+        }
+
+        .blog-hero-copy p {
+            max-width: 60ch;
+            color: var(--text-soft);
+            font-size: var(--text-md);
+        }
+
+        .blog-hero-visual {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: var(--space-4);
+        }
+
+        .blog-hero-card {
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.14), transparent 40%), var(--bg-card);
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-md);
+        }
+
+            .blog-hero-card p {
+                color: var(--text-soft);
+                line-height: var(--line-relaxed);
+            }
+
+        .blog-hero-icons {
+            display: flex;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+            .blog-hero-icons .mini-icon-card {
+                display: flex;
+                align-items: center;
+                gap: var(--space-3);
+                padding: 0.9rem 1rem;
+                border-radius: var(--radius-lg);
+                background: var(--bg-card);
+                border: 1px solid var(--border-soft);
+                min-width: 180px;
+            }
+
+            .blog-hero-icons img {
+                width: 46px;
+                height: 46px;
+                object-fit: cover;
+                border-radius: 14px;
+                background: var(--accent-soft);
+                border: 1px solid var(--border-soft);
+                flex-shrink: 0;
+            }
+
+        .blog-subnav {
+            display: flex;
+            gap: var(--space-3);
+            flex-wrap: wrap;
+            margin-top: var(--space-5);
+        }
+
+            .blog-subnav a {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0.75rem 1rem;
+                border-radius: var(--radius-pill);
+                border: 1px solid var(--border-soft);
+                color: var(--text-soft);
+                transition: all var(--transition-base);
+                background: color-mix(in srgb, var(--bg-soft) 70%, transparent);
+                font-size: var(--text-sm);
+                font-weight: 600;
+            }
+
+                .blog-subnav a.active,
+                .blog-subnav a:hover {
+                    border-color: var(--accent);
+                    color: var(--text-main);
+                }
+
+        .blog-categories {
+            display: flex;
+            gap: var(--space-3);
+            flex-wrap: wrap;
+            margin-top: var(--space-5);
+        }
+
+        .library-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: var(--space-5);
+            margin-top: var(--space-6);
+        }
+
+        .article-card {
+            position: relative;
+            overflow: hidden;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+
+            .article-card::before {
+                content: "";
+                position: absolute;
+                inset: 0 auto auto 0;
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(90deg, var(--accent), transparent 70%);
+                opacity: 0.55;
+            }
+
+        .article-meta {
+            display: flex;
+            gap: var(--space-3);
+            flex-wrap: wrap;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: var(--text-xs);
+            font-weight: 600;
+        }
+
+            .article-meta span {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.35rem;
+            }
+
+        .article-visual {
+            width: 100%;
+            min-height: 220px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-soft);
+            background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.16), transparent 35%), linear-gradient(180deg, var(--bg-card-2), var(--bg-card));
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+        }
+
+            .article-visual img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .article-intro {
+            color: var(--text-soft);
+            line-height: var(--line-relaxed);
+            font-size: var(--text-sm);
+        }
+
+        details.article-expand {
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            background: color-mix(in srgb, var(--bg-soft) 76%, transparent);
+            overflow: hidden;
+            margin-top: auto;
+        }
+
+            details.article-expand summary {
+                cursor: pointer;
+                list-style: none;
+                padding: 0.95rem 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-weight: 700;
+                color: var(--text-main);
+                font-size: var(--text-sm);
+            }
+
+                details.article-expand summary::marker {
+                    content: "";
+                }
+
+                details.article-expand summary::after {
+                    content: "+";
+                    font-size: 1rem;
+                    color: var(--accent);
+                    transition: transform 0.2s ease;
+                }
+
+        details[open].article-expand summary::after {
+            content: "−";
+        }
+
+        .article-body {
+            padding: 0 1rem 1rem;
+            display: grid;
+            gap: var(--space-3);
+        }
+
+            .article-body p {
+                color: var(--text-soft);
+                line-height: var(--line-relaxed);
+                font-size: var(--text-sm);
+            }
+
+            .article-body h4 {
+                font-size: var(--text-base);
+                margin-top: var(--space-2);
+                color: var(--text-main);
+            }
+
+        details.source-box {
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            background: color-mix(in srgb, var(--bg-card) 80%, transparent);
+            overflow: hidden;
+            margin-top: var(--space-2);
+        }
+
+            details.source-box summary {
+                cursor: pointer;
+                list-style: none;
+                padding: 0.85rem 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-weight: 700;
+                font-size: var(--text-sm);
+                color: var(--text-main);
+            }
+
+                details.source-box summary::marker {
+                    content: "";
+                }
+
+                details.source-box summary::after {
+                    content: "+";
+                    font-size: 1rem;
+                    color: var(--accent);
+                }
+
+        details[open].source-box summary::after {
+            content: "−";
+        }
+
+        .source-content {
+            padding: 0 1rem 1rem;
+            color: var(--text-soft);
+            font-size: var(--text-sm);
+            line-height: var(--line-relaxed);
+        }
+
+            .source-content ul {
+                list-style: disc;
+                padding-left: 1rem;
+                display: grid;
+                gap: 0.45rem;
+            }
+
+        .editorial-note {
+            margin-top: var(--space-6);
+        }
+
+        .cta-band {
+            padding: var(--space-10) var(--space-6);
+            border-radius: var(--radius-xl);
+            background: radial-gradient(circle at top center, rgba(200, 164, 123, 0.14), transparent 35%), var(--bg-card);
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+
+            .cta-band p {
+                max-width: 60ch;
+                margin: 0 auto;
+                color: var(--text-soft);
+            }
+
+        @media (max-width: 1100px) {
+            .blog-hero-grid,
+            .library-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .blog-hero {
+                padding-top: var(--space-9);
+                padding-bottom: var(--space-8);
+            }
+
+            .blog-hero-copy h1 {
+                max-width: 100%;
+            }
+
+            .article-visual {
+                min-height: 180px;
+            }
+        }
+    </style>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- JS -->
+    <script src="js/config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/guards.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/pets.js"></script>
+    <script src="js/requests.js"></script>
+    <script src="data/resources-data.js"></script>
+    <script src="js/resources-page.js"></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html">
+                <img src="assets/logo/logo-icon.png" alt="Nido Canino" onerror="this.style.display='none';" />
+                <span>Nido Canino</span>
+            </a>
+
+            <nav class="nav-links">
+                <a data-nav href="index.html">Inicio</a>
+                <a data-nav href="services.html">Servicios</a>
+                <a data-nav href="blog.html">Blog</a>
+                <a data-nav href="resources.html">Recursos</a>
+                <a data-nav href="request.html">Solicitar servicio</a>
+                <span id="authSlot"></span>
+                <button class="btn btn-secondary" id="themeToggle" type="button">Modo claro</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="blog-hero">
+            <div class="container blog-hero-grid">
+                <div class="blog-hero-copy">
+                    <span class="badge">Guías breves · información útil</span>
+                    <div class="page-title-with-icon">
+                        <img src="assets/icons/icon-blog.png" alt="Blog" />
+                        <h1>Guías y artículos</h1>
+                    </div>
+                    <p>
+                        Artículos breves, claros y bien organizados para tutores que quieren entender mejor
+                        la rutina, el bienestar y la convivencia de sus mascotas.
+                    </p>
+
+                    <div class="blog-subnav">
+                        <a class="active" href="blog.html">Guías</a>
+                        <a href="resources.html">Herramientas</a>
+                    </div>
+
+                    <div class="blog-categories">
+                        <span class="chip">Perros</span>
+                        <span class="chip">Gatos</span>
+                        <span class="chip">Bienestar</span>
+                        <span class="chip">Convivencia</span>
+                        <span class="chip">Preparación</span>
+                    </div>
+                </div>
+
+                <div class="blog-hero-visual">
+                    <div class="blog-hero-icons">
+                        <div class="mini-icon-card">
+                            <img src="assets/icons/dog-calm.png" alt="Perro" onerror="this.src='assets/logo/logo-icon.png';" />
+                            <div>
+                                <strong>Perros</strong>
+                                <p class="muted">Rutina, señales y convivencia</p>
+                            </div>
+                        </div>
+
+                        <div class="mini-icon-card">
+                            <img src="assets/icons/cat-calm.png" alt="Gato" onerror="this.src='assets/logo/logo-icon.png';" />
+                            <div>
+                                <strong>Gatos</strong>
+                                <p class="muted">Territorio, estrés y preparación</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blog-hero-card">
+                        <p>
+                            Esta sección está pensada para lectura cómoda y rápida, pero con contenido suficiente
+                            para que el tutor salga con una idea más clara y útil, no solo con una frase bonita.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BIBLIOTECA -->
+        <section class="section">
+            <div class="container">
+                <span class="badge">Biblioteca</span>
+                <h2 class="section-title">Guías y artículos</h2>
+                <p class="section-text">
+                    Una primera colección editorial alineada con el enfoque de Nido Canino:
+                    grupos pequeños, bienestar emocional, preparación y cuidado en casa.
+                </p>
+
+                <div class="library-grid">
+                    <!-- ARTÍCULO 1 -->
+                    <article class="card article-card">
+                        <div class="article-meta">
+                            <span>Perros</span>
+                            <span>Convivencia</span>
+                            <span>Lectura breve</span>
+                        </div>
+
+                        <div class="article-visual">
+                            <img src="assets/illustrations/dog-routine.png"
+                                 alt="Perros en rutina equilibrada"
+                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=&quot;muted&quot;>Visual editorial</span>';" />
+                        </div>
+
+                        <h3>¿Por qué algunos perros necesitan grupos pequeños?</h3>
+
+                        <p class="article-intro">
+                            No todos los perros disfrutan entornos grupales intensos. Para muchos, la verdadera
+                            tranquilidad aparece cuando hay menos estímulos, mejor observación y pausas reales.
+                        </p>
+
+                        <details class="article-expand">
+                            <summary>Ver más</summary>
+                            <div class="article-body">
+                                <p>
+                                    En muchos servicios para perros se asume que “más interacción” siempre significa
+                                    “más bienestar”, pero eso no necesariamente es cierto. Algunos perros disfrutan
+                                    la actividad constante, mientras que otros se benefician mucho más de un entorno
+                                    predecible, con pausas, supervisión y menor presión social.
+                                </p>
+
+                                <p>
+                                    Cuando un perro está expuesto a demasiados estímulos al mismo tiempo —muchos perros,
+                                    movimiento continuo, ruido, transición rápida entre una actividad y otra— puede
+                                    aumentar su nivel de activación. El problema no es solo que “se canse”, sino que
+                                    le cueste volver a un estado de calma y regulación.
+                                </p>
+
+                                <p>
+                                    En estándares de cuidado más estructurados se insiste en que los grupos no deben
+                                    organizarse solo por espacio disponible, sino por compatibilidad, energía y capacidad
+                                    del perro para tolerar la dinámica grupal. También se recomienda planificar periodos
+                                    de descanso, no solo momentos de actividad.
+                                </p>
+
+                                <p>
+                                    Esto es especialmente importante en perros sensibles, perros con historial de
+                                    sobreestimulación, perros mayores o perros que funcionan bien socialmente pero se
+                                    saturan rápido. En esos casos, la calidad del cuidado no está en “tenerlos ocupados
+                                    todo el tiempo”, sino en saber cuándo bajar intensidad, cuándo separar y cuándo dejar
+                                    que el perro recupere tranquilidad.
+                                </p>
+
+                                <p>
+                                    Por eso, en una propuesta como Nido Canino, los grupos pequeños no son un detalle
+                                    decorativo de marca: son una decisión de diseño del servicio. Permiten observar mejor,
+                                    intervenir antes y cuidar la convivencia como un proceso, no como algo automático.
+                                </p>
+
+                                <details class="source-box">
+                                    <summary>Ver fuentes</summary>
+                                    <div class="source-content">
+                                        <ul>
+                                            <li>SPCA Certified Dog Day Care Standard, 2024.</li>
+                                            <li>AnimalKind Companion Animal Services Standards.</li>
+                                            <li>AKC, recomendaciones sobre evaluación previa en daycare.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+                        </details>
+                    </article>
+
+                    <!-- ARTÍCULO 2 -->
+                    <article class="card article-card">
+                        <div class="article-meta">
+                            <span>Perros</span>
+                            <span>Bienestar</span>
+                            <span>Lectura breve</span>
+                        </div>
+
+                        <h3>Señales tempranas de estrés en perros</h3>
+
+                        <p class="article-intro">
+                            El estrés no siempre empieza con algo evidente. A veces se ve primero en gestos pequeños:
+                            un bostezo fuera de lugar, mirar hacia otro lado, tensar el cuerpo o quedarse “quieto” de más.
+                        </p>
+
+                        <details class="article-expand">
+                            <summary>Ver más</summary>
+                            <div class="article-body">
+                                <p>
+                                    Una de las razones por las que muchos tutores sienten que “todo iba bien y de repente
+                                    pasó algo” es porque las primeras señales de incomodidad suelen ser sutiles. El perro
+                                    no siempre gruñe primero. A veces empieza mucho antes, con señales pequeñas que pasan
+                                    desapercibidas si nadie las está leyendo.
+                                </p>
+
+                                <p>
+                                    Entre esas señales pueden aparecer bostezos fuera de contexto, lamido de labios sin
+                                    comida presente, evitación de la mirada, cambios en la postura corporal, quietud excesiva,
+                                    rigidez, orejas hacia atrás o intención de retirarse. No significa que cada una de estas
+                                    conductas equivalga por sí sola a “problema grave”, pero sí que conviene leerlas dentro
+                                    del contexto.
+                                </p>
+
+                                <p>
+                                    En la práctica, ver esas señales temprano cambia mucho la calidad del cuidado. Permite
+                                    bajar intensidad antes de que el perro escale, darle espacio, pausar una interacción o
+                                    simplemente dejarlo descansar. Es una forma de prevención mucho más fina que esperar a
+                                    que el animal ya esté saturado o reaccione.
+                                </p>
+
+                                <p>
+                                    Esto importa todavía más en entornos con otros perros. En convivencia grupal, lo valioso
+                                    no es solo detectar conflicto abierto, sino notar cuándo un perro ya no está disfrutando
+                                    la situación. Un servicio bien manejado no se limita a intervenir cuando “ya pasó algo”;
+                                    también observa y regula antes.
+                                </p>
+
+                                <p>
+                                    Para el tutor, aprender esto sirve incluso en casa: ayuda a ajustar visitas, paseos,
+                                    saludos, manejo con extraños y expectativas sobre lo que el perro realmente tolera bien.
+                                    Muchas veces el bienestar mejora más por entender el umbral del perro que por exigirle
+                                    adaptarse a todo.
+                                </p>
+
+                                <details class="source-box">
+                                    <summary>Ver fuentes</summary>
+                                    <div class="source-content">
+                                        <ul>
+                                            <li>ASPCA Pro, guía de lenguaje corporal canino.</li>
+                                            <li>RSPCA, comprensión de lenguaje corporal en perros.</li>
+                                            <li>Literatura sobre señales de apaciguamiento y comunicación social en perros.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+                        </details>
+                    </article>
+
+                    <!-- ARTÍCULO 3 -->
+                    <article class="card article-card">
+                        <div class="article-meta">
+                            <span>Gatos</span>
+                            <span>Rutina</span>
+                            <span>Lectura breve</span>
+                        </div>
+
+                        <h3>Por qué muchos gatos están mejor en casa</h3>
+
+                        <p class="article-intro">
+                            Para muchos gatos, el bienestar no depende de “salir de la rutina”, sino justamente
+                            de conservarla. Su territorio, sus olores y sus escondites suelen ser parte del equilibrio.
+                        </p>
+
+                        <details class="article-expand">
+                            <summary>Ver más</summary>
+                            <div class="article-body">
+                                <p>
+                                    A diferencia de lo que ocurre con muchos perros, en gatos el entorno tiene un peso enorme
+                                    en la regulación emocional. Su sensación de seguridad está muy vinculada al territorio,
+                                    al acceso a recursos conocidos y a la posibilidad de controlar cuánto interactúan con lo
+                                    que ocurre alrededor.
+                                </p>
+
+                                <p>
+                                    Por eso, cuando un gato se queda en su casa y mantiene su rutina, muchas veces se reduce
+                                    parte del estrés que generaría moverlo a un lugar nuevo. No significa que cualquier visita
+                                    a domicilio sea ideal por sí sola, pero sí que conservar el ambiente puede ser una ventaja
+                                    importante frente a un cambio brusco de contexto.
+                                </p>
+
+                                <p>
+                                    Las guías de necesidades ambientales felinas han insistido durante años en que el confort
+                                    del gato con su ambiente está directamente relacionado con su bienestar físico y conductual.
+                                    Esto incluye acceso a escondites, recursos separados, posibilidad de retirarse, control del
+                                    espacio y consistencia en la rutina diaria.
+                                </p>
+
+                                <p>
+                                    Cuando un tutor viaja o se ausenta, lo más útil suele ser preservar esos elementos:
+                                    comida y agua en puntos conocidos, arenera limpia, acceso a sus zonas preferidas y una
+                                    interacción respetuosa. En gatos más reservados, una visita de calidad no siempre implica
+                                    “hacerlos jugar mucho”, sino permitir que conserven sensación de control.
+                                </p>
+
+                                <p>
+                                    Esa es precisamente la lógica detrás de una sublínea como visitas felinas a domicilio:
+                                    no llevar al gato a una dinámica ajena, sino acompañar su rutina desde el lugar donde
+                                    normalmente se siente más seguro.
+                                </p>
+
+                                <details class="source-box">
+                                    <summary>Ver fuentes</summary>
+                                    <div class="source-content">
+                                        <ul>
+                                            <li>AAFP / ISFM Feline Environmental Needs Guidelines.</li>
+                                            <li>International Cat Care, materiales de estrés y entorno felino.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+                        </details>
+                    </article>
+
+                    <!-- ARTÍCULO 4 -->
+                    <article class="card article-card">
+                        <div class="article-meta">
+                            <span>Gatos</span>
+                            <span>Viajes</span>
+                            <span>Lectura breve</span>
+                        </div>
+
+                        <h3>Cómo reducir el estrés del gato cuando usted se ausenta</h3>
+
+                        <p class="article-intro">
+                            Preparar bien una ausencia no es solo dejar comida. También es pensar en rutina, acceso,
+                            escondites, arenera y tipo de interacción que ese gato tolera mejor.
+                        </p>
+
+                        <details class="article-expand">
+                            <summary>Ver más</summary>
+                            <div class="article-body">
+                                <p>
+                                    Cuando un tutor va a ausentarse, el error más común es pensar solo en el aspecto logístico:
+                                    cuánta comida dejar, si el agua alcanza o si alguien puede entrar al apartamento. Todo eso
+                                    importa, pero para el gato también importa cómo cambia su sensación de control durante esos días.
+                                </p>
+
+                                <p>
+                                    Un gato que ya tiene escondites, rutas, puntos altos o rincones de descanso establecidos
+                                    suele beneficiarse de que esos espacios sigan disponibles y accesibles. Mover muebles,
+                                    cerrar habitaciones sin necesidad o alterar demasiado el ambiente puede aumentar la tensión,
+                                    incluso cuando sus necesidades básicas sí están cubiertas.
+                                </p>
+
+                                <p>
+                                    También conviene dejar muy claro cómo es su rutina real. No solo “come dos veces al día”,
+                                    sino si suele esconderse cuando llega alguien, si juega o no, si tolera contacto físico,
+                                    si hay horarios en los que está más activo o si conviene simplemente hablarle suave y
+                                    respetar distancia.
+                                </p>
+
+                                <p>
+                                    En algunos gatos, el apetito y el uso de arenera cambian cuando hay estrés. Por eso es
+                                    útil que la persona encargada sepa qué es normal en ese animal y qué sería una alerta.
+                                    Esa información reduce improvisación y ayuda a tomar decisiones más rápido si algo cambia.
+                                </p>
+
+                                <p>
+                                    Preparar una ausencia de esta manera no vuelve al tutor paranoico; lo vuelve más consciente.
+                                    Y en cuidado felino, esa conciencia de detalle suele marcar una diferencia mucho mayor que
+                                    intentar “animar” al gato a hacer cosas que no quiere.
+                                </p>
+
+                                <details class="source-box">
+                                    <summary>Ver fuentes</summary>
+                                    <div class="source-content">
+                                        <ul>
+                                            <li>AAFP / ISFM, pilares de necesidades ambientales felinas.</li>
+                                            <li>International Cat Care, estrés en gatos y cambios de rutina.</li>
+                                            <li>Materiales clínicos sobre inappetencia y signos de malestar en gatos.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+                        </details>
+                    </article>
+
+                    <!-- ARTÍCULO 5 -->
+                    <article class="card article-card">
+                        <div class="article-meta">
+                            <span>Perros</span>
+                            <span>Senior</span>
+                            <span>Lectura breve</span>
+                        </div>
+
+                        <h3>Qué suele necesitar más un perro senior: intensidad o estabilidad</h3>
+
+                        <p class="article-intro">
+                            En muchos perros mayores, el bienestar no mejora con más estímulo, sino con una rutina más predecible,
+                            mejor observación y menor exigencia social.
+                        </p>
+
+                        <details class="article-expand">
+                            <summary>Ver más</summary>
+                            <div class="article-body">
+                                <p>
+                                    Cuando un perro envejece, no solo cambian sus articulaciones o su energía. También puede cambiar
+                                    su tolerancia a ciertos contextos: ruido, presión social, tiempos largos de actividad o transiciones
+                                    rápidas entre momentos de excitación y descanso.
+                                </p>
+
+                                <p>
+                                    Por eso, en perros senior muchas veces la pregunta importante no es “¿cómo lo entretengo más?”,
+                                    sino “¿cómo le doy un entorno que le exija menos esfuerzo para estar bien?”. La estabilidad del
+                                    ambiente, la posibilidad de descansar sin interrupciones y una lectura más fina de sus cambios
+                                    cotidianos se vuelven especialmente valiosas.
+                                </p>
+
+                                <p>
+                                    En un contexto grupal, esto es todavía más relevante. Un perro mayor puede tolerar bien la presencia
+                                    de otros, pero no necesariamente el ritmo de perros más jóvenes o más intensos. Ahí es donde los
+                                    grupos pequeños y la supervisión real permiten adaptar mejor la experiencia sin exponerlo a una
+                                    dinámica que le pase por encima.
+                                </p>
+
+                                <p>
+                                    También conviene observar cambios pequeños: menor interés por interactuar, necesidad de más pausas,
+                                    cambios en apetito, sueño más ligero o menos ganas de moverse en ciertos momentos del día. No siempre
+                                    es una emergencia, pero sí una información valiosa para ajustar el cuidado.
+                                </p>
+
+                                <p>
+                                    En ese sentido, un servicio premium para perros senior no debería verse como “más cosas incluidas”,
+                                    sino como un entorno más atento, más sereno y más dispuesto a acompañar el ritmo real del perro.
+                                </p>
+
+                                <details class="source-box">
+                                    <summary>Ver fuentes</summary>
+                                    <div class="source-content">
+                                        <ul>
+                                            <li>Estándares de organización de descanso y agrupación en servicios de convivencia canina.</li>
+                                            <li>Principios de bienestar y observación aplicados a cuidado de perros en contextos grupales.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+                        </details>
+                    </article>
+
+                    <!-- ARTÍCULO 6 -->
+                    <article class="card article-card">
+                        <div class="article-meta">
+                            <span>Prevención</span>
+                            <span>Organización</span>
+                            <span>Lectura breve</span>
+                        </div>
+
+                        <h3>Vacunas y recordatorios: cómo organizarlos sin jugar a ser veterinario</h3>
+
+                        <p class="article-intro">
+                            En una app como esta, lo útil no es “adivinar esquemas”, sino ayudar al tutor a registrar fechas,
+                            ordenar información y tener recordatorios claros.
+                        </p>
+
+                        <details class="article-expand">
+                            <summary>Ver más</summary>
+                            <div class="article-body">
+                                <p>
+                                    Cuando se piensa en agregar herramientas de vacunas o desparasitación a una app de cuidado animal,
+                                    es fácil caer en una idea equivocada: que la aplicación “diga qué vacuna toca”. Pero ese no debería
+                                    ser el rol de una plataforma como Nido Canino, porque los esquemas reales dependen de edad, riesgo,
+                                    estilo de vida y criterio veterinario.
+                                </p>
+
+                                <p>
+                                    Lo que sí puede hacer una herramienta bien diseñada es ordenar información útil: fecha de la última
+                                    vacuna, próximo control, registro de desparasitación, observaciones importantes y evidencia del carné.
+                                    Eso mejora la organización del tutor sin convertir la app en una falsa autoridad clínica.
+                                </p>
+
+                                <p>
+                                    Las guías actuales de vacunación en perros y gatos insisten justamente en eso: hay vacunas esenciales
+                                    y decisiones que dependen del contexto del animal. No es una lista universal idéntica para todos los
+                                    casos. Por eso, hablar de recordatorios tiene sentido; hablar de “recomendación automática” ya sería
+                                    otra cosa.
+                                </p>
+
+                                <p>
+                                    Además, en servicios donde hay convivencia, boarding o atención externa, es completamente razonable
+                                    que el tutor tenga esa información a la mano. No solo por orden documental, sino porque ayuda a
+                                    responder rápido cuando una instalación o servicio pide soporte sanitario actualizado.
+                                </p>
+
+                                <p>
+                                    Entonces, si más adelante Nido Canino desarrolla un módulo de recordatorios, la mejor versión no sería
+                                    una “app veterinaria”, sino un organizador elegante y útil: fechas, alertas, adjuntos y claridad de que
+                                    la decisión médica final corresponde siempre al veterinario.
+                                </p>
+
+                                <details class="source-box">
+                                    <summary>Ver fuentes</summary>
+                                    <div class="source-content">
+                                        <ul>
+                                            <li>AAHA Canine Vaccination Guidelines, 2022.</li>
+                                            <li>WSAVA Vaccination Guidelines, 2024.</li>
+                                            <li>AVMA, materiales de divulgación sobre vacunación individualizada.</li>
+                                            <li>Ejemplos académicos e institucionales de exigencia de soporte sanitario en entornos con animales.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </div>
+                        </details>
+                    </article>
+                </div>
+
+                <div class="notice editorial-note">
+                    <strong>Nota editorial:</strong> este blog busca organizar información útil, clara y bien presentada para tutores.
+                    No reemplaza valoración veterinaria ni diagnóstico profesional.
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section">
+            <div class="container">
+                <div class="cta-band stack">
+                    <span class="badge" style="margin-inline: auto;">Siguiente paso</span>
+                    <h2 class="section-title">¿Quiere algo más práctico que lectura?</h2>
+                    <p>
+                        En la sección de Recursos podrá encontrar checklists, plantillas y herramientas rápidas
+                        para preparar mejor una solicitud o una rutina de cuidado.
+                    </p>
+
+                    <div class="cluster" style="justify-content: center; margin-top: 0.5rem;">
+                        <a class="btn btn-primary" href="resources.html">Ir a Recursos</a>
+                        <a class="btn btn-secondary" href="request.html">Solicitar servicio</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>Nido Canino · cuidado personalizado para perros y visitas para gatos en Bogotá.</p>
+        </div>
+    </footer>
+</body>
+</html>

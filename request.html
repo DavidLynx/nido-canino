@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nido Canino | Solicitar servicio</title>
+
+    <!-- Fuente -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet" />
+
+    <!-- CSS base -->
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+
+    <!-- Estilos específicos -->
+    <style>
+        .request-hero {
+            position: relative;
+            overflow: hidden;
+            padding-top: var(--space-11);
+            padding-bottom: var(--space-10);
+        }
+
+            .request-hero::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.13), transparent 26%), radial-gradient(circle at bottom right, rgba(200, 164, 123, 0.08), transparent 30%);
+                pointer-events: none;
+            }
+
+            .request-hero .container {
+                position: relative;
+                z-index: 1;
+            }
+
+        .request-hero-grid {
+            display: grid;
+            grid-template-columns: 1.02fr 0.98fr;
+            gap: var(--space-8);
+            align-items: start;
+        }
+
+        .request-hero-copy h1 {
+            max-width: 11ch;
+            margin-top: var(--space-3);
+            margin-bottom: var(--space-4);
+            letter-spacing: -0.04em;
+        }
+
+        .request-hero-copy p {
+            max-width: 60ch;
+            color: var(--text-soft);
+            font-size: var(--text-md);
+        }
+
+        .request-subpoints {
+            display: grid;
+            gap: var(--space-3);
+            margin-top: var(--space-6);
+        }
+
+        .request-subpoint {
+            padding: 1rem 1rem;
+            border-radius: var(--radius-lg);
+            background: var(--bg-card);
+            border: 1px solid var(--border-soft);
+        }
+
+            .request-subpoint strong {
+                display: block;
+                margin-bottom: 0.2rem;
+                color: var(--text-main);
+            }
+
+            .request-subpoint p {
+                color: var(--text-soft);
+                font-size: var(--text-sm);
+                line-height: var(--line-relaxed);
+            }
+
+        .request-page-section {
+            padding-bottom: var(--space-10);
+        }
+
+        .request-main-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: var(--space-6);
+            align-items: start;
+        }
+
+        .request-form-card,
+        .request-summary-card {
+            min-height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .request-form-card::before,
+            .request-summary-card::before {
+                content: "";
+                position: absolute;
+                inset: 0 auto auto 0;
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(90deg, var(--accent), transparent 70%);
+                opacity: 0.55;
+            }
+
+        .request-form-grid {
+            display: grid;
+            gap: var(--space-4);
+            margin-top: var(--space-4);
+        }
+
+            .request-form-grid .two-cols {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: var(--space-4);
+            }
+
+            .request-form-grid label {
+                display: block;
+                margin-bottom: 0.55rem;
+                font-size: var(--text-sm);
+                font-weight: 700;
+                color: var(--text-main);
+            }
+
+            .request-form-grid input,
+            .request-form-grid select,
+            .request-form-grid textarea {
+                width: 100%;
+                border-radius: var(--radius-md);
+                border: 1px solid var(--border-soft);
+                background: color-mix(in srgb, var(--bg-card) 92%, transparent);
+                color: var(--text-main);
+                padding: 0.9rem 0.95rem;
+                font: inherit;
+            }
+
+            .request-form-grid textarea {
+                min-height: 130px;
+                resize: vertical;
+            }
+
+        .request-helper {
+            padding: 0.95rem 1rem;
+            border-radius: var(--radius-md);
+            background: color-mix(in srgb, var(--bg-soft) 78%, transparent);
+            border: 1px solid var(--border-soft);
+            color: var(--text-soft);
+            font-size: var(--text-sm);
+            line-height: var(--line-relaxed);
+        }
+
+        .request-preview-box {
+            display: grid;
+            gap: var(--space-4);
+            margin-top: var(--space-4);
+        }
+
+        .summary-block {
+            padding: 1rem 1rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-soft);
+            background: color-mix(in srgb, var(--bg-soft) 72%, transparent);
+        }
+
+            .summary-block h3 {
+                margin-bottom: var(--space-3);
+            }
+
+        .summary-list {
+            display: grid;
+            gap: 0.7rem;
+        }
+
+            .summary-list div {
+                display: grid;
+                gap: 0.15rem;
+            }
+
+            .summary-list small {
+                color: var(--text-muted);
+                font-size: var(--text-xs);
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.04em;
+            }
+
+            .summary-list p {
+                color: var(--text-soft);
+                font-size: var(--text-sm);
+                line-height: var(--line-relaxed);
+            }
+
+        .wa-message-preview {
+            white-space: pre-wrap;
+            font-size: var(--text-sm);
+            color: var(--text-soft);
+            line-height: var(--line-relaxed);
+            background: color-mix(in srgb, var(--bg-card) 88%, transparent);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+        }
+
+        .request-actions {
+            display: flex;
+            gap: var(--space-3);
+            flex-wrap: wrap;
+            margin-top: var(--space-3);
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: #0f1711;
+            border: none;
+            box-shadow: 0 10px 24px rgba(37, 211, 102, 0.18);
+        }
+
+            .whatsapp-btn:hover {
+                filter: brightness(1.04);
+                color: #0f1711;
+            }
+
+        .note-band {
+            margin-top: var(--space-4);
+            padding: 1rem 1rem;
+            border-radius: var(--radius-md);
+            background: rgba(200, 164, 123, 0.08);
+            border: 1px solid rgba(200, 164, 123, 0.14);
+            color: var(--text-soft);
+            font-size: var(--text-sm);
+            line-height: var(--line-relaxed);
+        }
+
+        .mini-steps {
+            display: grid;
+            gap: var(--space-3);
+            margin-top: var(--space-5);
+        }
+
+        .mini-step {
+            display: grid;
+            grid-template-columns: 42px 1fr;
+            gap: var(--space-3);
+            align-items: start;
+        }
+
+        .mini-step-num {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background: var(--accent-soft);
+            border: 1px solid rgba(200, 164, 123, 0.16);
+            color: var(--accent);
+            font-weight: 800;
+            font-size: var(--text-sm);
+        }
+
+        .mini-step p {
+            color: var(--text-soft);
+            font-size: var(--text-sm);
+            line-height: var(--line-relaxed);
+        }
+
+        .bottom-cta {
+            margin-top: var(--space-8);
+            text-align: center;
+            padding: var(--space-8) var(--space-5);
+            border-radius: var(--radius-xl);
+            background: radial-gradient(circle at top center, rgba(200, 164, 123, 0.14), transparent 35%), var(--bg-card);
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-md);
+        }
+
+            .bottom-cta p {
+                max-width: 60ch;
+                margin: 0 auto;
+                color: var(--text-soft);
+            }
+
+        @media (max-width: 1100px) {
+            .request-hero-grid,
+            .request-main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .request-hero {
+                padding-top: var(--space-9);
+                padding-bottom: var(--space-8);
+            }
+
+            .request-hero-copy h1 {
+                max-width: 100%;
+            }
+
+            .request-form-grid .two-cols {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- JS base -->
+    <script src="js/config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/guards.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/pets.js"></script>
+    <script src="js/requests.js"></script>
+    <script src="data/resources-data.js"></script>
+    <script src="js/resources-page.js"></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html">
+                <img src="assets/logo/logo-icon.png" alt="Nido Canino" onerror="this.style.display='none';" />
+                <span>Nido Canino</span>
+            </a>
+
+            <nav class="nav-links">
+                <a data-nav href="index.html">Inicio</a>
+                <a data-nav href="services.html">Servicios</a>
+                <a data-nav href="blog.html">Blog</a>
+                <a data-nav href="resources.html">Recursos</a>
+                <a data-nav href="request.html">Solicitar servicio</a>
+                <span id="authSlot"></span>
+                <button class="btn btn-secondary" id="themeToggle" type="button">Modo claro</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="request-hero">
+            <div class="container request-hero-grid">
+                <div class="request-hero-copy">
+                    <span class="badge">Solicitud por WhatsApp · rápida y ordenada</span>
+                    <h1>Solicitar servicio</h1>
+                    <p>
+                        Cuéntenos brevemente qué necesita y armaremos una cotización inicial.
+                        La idea es que usted no tenga que escribir todo desde cero: aquí lo organiza,
+                        y luego lo envía por WhatsApp ya listo.
+                    </p>
+
+                    <div class="mini-steps">
+                        <article class="mini-step">
+                            <div class="mini-step-num">1</div>
+                            <div>
+                                <strong>Complete los datos básicos</strong>
+                                <p>Nombre, tipo de mascota, servicio y fecha tentativa.</p>
+                            </div>
+                        </article>
+
+                        <article class="mini-step">
+                            <div class="mini-step-num">2</div>
+                            <div>
+                                <strong>Revise el resumen</strong>
+                                <p>La página organiza automáticamente el mensaje para que quede claro y útil.</p>
+                            </div>
+                        </article>
+
+                        <article class="mini-step">
+                            <div class="mini-step-num">3</div>
+                            <div>
+                                <strong>Envíelo a WhatsApp</strong>
+                                <p>Se abre WhatsApp con el texto ya preparado para pedir cotización.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="request-subpoints">
+                    <article class="request-subpoint">
+                        <strong>Sin formularios eternos</strong>
+                        <p>Solo pedimos lo necesario para que la solicitud llegue clara y profesional.</p>
+                    </article>
+
+                    <article class="request-subpoint">
+                        <strong>Más útil para usted</strong>
+                        <p>No necesita redactar todo manualmente: el mensaje sale organizado automáticamente.</p>
+                    </article>
+
+                    <article class="request-subpoint">
+                        <strong>Más claro para Nido Canino</strong>
+                        <p>Recibimos la solicitud con mejor contexto para responder más rápido y mejor.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORM + RESUMEN -->
+        <section class="request-page-section">
+            <div class="container request-main-grid">
+                <!-- FORM -->
+                <section class="card request-form-card">
+                    <span class="badge">Formulario</span>
+                    <h2 class="section-title" style="margin-top: 0.8rem;">Cuéntenos lo esencial</h2>
+                    <p class="section-text">
+                        Complete estos datos para generar su mensaje de cotización.
+                    </p>
+
+                    <form id="whatsappRequestForm" class="request-form-grid">
+                        <div class="two-cols">
+                            <div>
+                                <label for="clientName">Su nombre</label>
+                                <input id="clientName" name="clientName" type="text" placeholder="Ej. Laura Gómez" />
+                            </div>
+
+                            <div>
+                                <label for="clientPhone">Celular</label>
+                                <input id="clientPhone" name="clientPhone" type="tel" placeholder="Ej. 312 000 0000" />
+                            </div>
+                        </div>
+
+                        <div class="two-cols">
+                            <div>
+                                <label for="petType">Tipo de animal</label>
+                                <select id="petType" name="petType">
+                                    <option value="">Seleccione</option>
+                                    <option value="Perro">Perro</option>
+                                    <option value="Gato">Gato</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="petName">Nombre de la mascota</label>
+                                <input id="petName" name="petName" type="text" placeholder="Ej. Toby" />
+                            </div>
+                        </div>
+
+                        <div class="two-cols">
+                            <div>
+                                <label for="serviceType">Servicio de interés</label>
+                                <select id="serviceType" name="serviceType">
+                                    <option value="">Seleccione</option>
+                                    <option value="Convivencia canina estructurada">Convivencia canina estructurada</option>
+                                    <option value="Salida o visita previa">Salida o visita previa</option>
+                                    <option value="Noche de cuidado">Noche de cuidado</option>
+                                    <option value="Paquete 5 días">Paquete 5 días</option>
+                                    <option value="Plan semanal">Plan semanal</option>
+                                    <option value="Plan mensual">Plan mensual</option>
+                                    <option value="Visita individual para gatos">Visita individual para gatos</option>
+                                    <option value="Plan de varias visitas para gatos">Plan de varias visitas para gatos</option>
+                                    <option value="Asesoría individual">Asesoría individual</option>
+                                    <option value="Pack 3 sesiones">Pack 3 sesiones</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="zone">Zona o localidad</label>
+                                <select id="zone" name="zone">
+                                    <option value="">Seleccione</option>
+                                    <option value="Fontibón">Fontibón</option>
+                                    <option value="Engativá">Engativá</option>
+                                    <option value="Modelia">Modelia</option>
+                                    <option value="Occidente">Occidente</option>
+                                    <option value="Otra zona de Bogotá">Otra zona de Bogotá</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="two-cols">
+                            <div>
+                                <label for="tentativeDate">Fecha tentativa</label>
+                                <input id="tentativeDate" name="tentativeDate" type="date" />
+                            </div>
+
+                            <div>
+                                <label for="timeRange">Horario aproximado</label>
+                                <select id="timeRange" name="timeRange">
+                                    <option value="">Seleccione</option>
+                                    <option value="Mañana">Mañana</option>
+                                    <option value="Tarde">Tarde</option>
+                                    <option value="Noche">Noche</option>
+                                    <option value="Flexible / por acordar">Flexible / por acordar</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="petProfile">Perfil breve de la mascota</label>
+                            <textarea id="petProfile"
+                                      name="petProfile"
+                                      placeholder="Ej. perro senior, tranquilo, sensible a grupos grandes, necesita pausas, come a horas específicas..."></textarea>
+                        </div>
+
+                        <div>
+                            <label for="extraNotes">Comentarios adicionales</label>
+                            <textarea id="extraNotes"
+                                      name="extraNotes"
+                                      placeholder="Ej. me interesa cotizar varios días, quisiera empezar con una evaluación previa, busco algo recurrente..."></textarea>
+                        </div>
+
+                        <div class="request-helper">
+                            Esta solicitud no confirma automáticamente el servicio. Sirve para enviar una cotización inicial mejor organizada y con contexto suficiente.
+                        </div>
+                    </form>
+                </section>
+
+                <!-- RESUMEN -->
+                <aside class="card request-summary-card">
+                    <span class="badge">Resumen</span>
+                    <h2 class="section-title" style="margin-top: 0.8rem;">Mensaje listo para WhatsApp</h2>
+                    <p class="section-text">
+                        Revise cómo se está armando su solicitud antes de enviarla.
+                    </p>
+
+                    <div class="request-preview-box">
+                        <div class="summary-block">
+                            <h3>Datos seleccionados</h3>
+
+                            <div class="summary-list">
+                                <div>
+                                    <small>Nombre</small>
+                                    <p id="summaryName">No indicado</p>
+                                </div>
+
+                                <div>
+                                    <small>Mascota</small>
+                                    <p id="summaryPet">No indicado</p>
+                                </div>
+
+                                <div>
+                                    <small>Servicio</small>
+                                    <p id="summaryService">No indicado</p>
+                                </div>
+
+                                <div>
+                                    <small>Zona</small>
+                                    <p id="summaryZone">No indicada</p>
+                                </div>
+
+                                <div>
+                                    <small>Fecha y horario</small>
+                                    <p id="summarySchedule">No indicado</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="summary-block">
+                            <h3>Mensaje que se enviará</h3>
+                            <div id="whatsappMessagePreview" class="wa-message-preview">
+                                Hola, quiero solicitar una cotización con Nido Canino.
+                            </div>
+                        </div>
+
+                        <div class="request-actions">
+                            <a id="whatsappCTA"
+                               class="btn whatsapp-btn"
+                               href="#"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                Pedir cotización por WhatsApp
+                            </a>
+
+                            <button id="clearFormBtn" class="btn btn-secondary" type="button">
+                                Limpiar
+                            </button>
+                        </div>
+
+                        <div class="note-band">
+                            Al dar clic, se abrirá WhatsApp con el mensaje ya armado para que usted solo lo revise y lo envíe.
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="container">
+                <div class="bottom-cta stack">
+                    <span class="badge" style="margin-inline: auto;">También puede explorar primero</span>
+                    <h2 class="section-title">¿Aún no tiene claro qué servicio necesita?</h2>
+                    <p>
+                        Puede revisar la página de servicios, leer una guía breve en el blog o usar los recursos
+                        antes de enviarnos la solicitud.
+                    </p>
+
+                    <div class="cluster" style="justify-content: center; margin-top: 0.5rem;">
+                        <a class="btn btn-secondary" href="services.html">Ver servicios</a>
+                        <a class="btn btn-secondary" href="blog.html">Ir al blog</a>
+                        <a class="btn btn-secondary" href="resources.html">Ir a recursos</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>Nido Canino · cuidado personalizado para perros y visitas para gatos en Bogotá.</p>
+        </div>
+    </footer>
+
+    <script>
+    (function () {
+      const WHATSAPP_NUMBER = "573124611816"; // Reemplace aquí si desea otro número
+
+      const form = document.getElementById("whatsappRequestForm");
+      const whatsappCTA = document.getElementById("whatsappCTA");
+      const clearFormBtn = document.getElementById("clearFormBtn");
+
+      const fields = {
+        clientName: document.getElementById("clientName"),
+        clientPhone: document.getElementById("clientPhone"),
+        petType: document.getElementById("petType"),
+        petName: document.getElementById("petName"),
+        serviceType: document.getElementById("serviceType"),
+        zone: document.getElementById("zone"),
+        tentativeDate: document.getElementById("tentativeDate"),
+        timeRange: document.getElementById("timeRange"),
+        petProfile: document.getElementById("petProfile"),
+        extraNotes: document.getElementById("extraNotes")
+      };
+
+      const summary = {
+        name: document.getElementById("summaryName"),
+        pet: document.getElementById("summaryPet"),
+        service: document.getElementById("summaryService"),
+        zone: document.getElementById("summaryZone"),
+        schedule: document.getElementById("summarySchedule"),
+        preview: document.getElementById("whatsappMessagePreview")
+      };
+
+      function safe(value, fallback = "No indicado") {
+        return value && value.trim() ? value.trim() : fallback;
+      }
+
+      function formatDate(value) {
+        if (!value) return "No indicada";
+        const date = new Date(value + "T00:00:00");
+        if (Number.isNaN(date.getTime())) return value;
+        return date.toLocaleDateString("es-CO", {
+          year: "numeric",
+          month: "long",
+          day: "numeric"
+        });
+      }
+
+      function buildMessage() {
+        const clientName = fields.clientName.value.trim();
+        const clientPhone = fields.clientPhone.value.trim();
+        const petType = fields.petType.value.trim();
+        const petName = fields.petName.value.trim();
+        const serviceType = fields.serviceType.value.trim();
+        const zone = fields.zone.value.trim();
+        const tentativeDate = fields.tentativeDate.value.trim();
+        const timeRange = fields.timeRange.value.trim();
+        const petProfile = fields.petProfile.value.trim();
+        const extraNotes = fields.extraNotes.value.trim();
+
+        const lines = [
+          "Hola, quiero solicitar una cotización con Nido Canino."
+        ];
+
+        if (clientName) lines.push("Mi nombre es " + clientName + ".");
+        if (clientPhone) lines.push("Mi celular es " + clientPhone + ".");
+        if (petType || petName) {
+          if (petType && petName) {
+            lines.push("Tengo un " + petType.toLowerCase() + " llamado " + petName + ".");
+          } else if (petType) {
+            lines.push("Tengo un " + petType.toLowerCase() + ".");
+          } else if (petName) {
+            lines.push("La mascota se llama " + petName + ".");
+          }
+        }
+        if (serviceType) lines.push("Estoy interesado(a) en: " + serviceType + ".");
+        if (zone) lines.push("Zona o localidad: " + zone + ".");
+        if (tentativeDate) lines.push("Fecha tentativa: " + formatDate(tentativeDate) + ".");
+        if (timeRange) lines.push("Horario aproximado: " + timeRange + ".");
+        if (petProfile) lines.push("Perfil breve de la mascota: " + petProfile + ".");
+        if (extraNotes) lines.push("Comentarios adicionales: " + extraNotes + ".");
+
+        lines.push("Quedo atento(a) a la información y cotización inicial.");
+
+        return lines.join("\n");
+      }
+
+      function updateSummary() {
+        const petType = fields.petType.value.trim();
+        const petName = fields.petName.value.trim();
+        const dateText = formatDate(fields.tentativeDate.value.trim());
+        const timeText = safe(fields.timeRange.value.trim(), "No indicado");
+
+        summary.name.textContent = safe(fields.clientName.value);
+        summary.pet.textContent =
+          petType || petName
+            ? [petType, petName].filter(Boolean).join(" · ")
+            : "No indicado";
+        summary.service.textContent = safe(fields.serviceType.value);
+        summary.zone.textContent = safe(fields.zone.value, "No indicada");
+        summary.schedule.textContent =
+          fields.tentativeDate.value || fields.timeRange.value
+            ? dateText + " · " + timeText
+            : "No indicado";
+
+        const message = buildMessage();
+        summary.preview.textContent = message;
+
+        const whatsappURL =
+          "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+        whatsappCTA.href = whatsappURL;
+      }
+
+      Object.values(fields).forEach((field) => {
+        field.addEventListener("input", updateSummary);
+        field.addEventListener("change", updateSummary);
+      });
+
+      clearFormBtn.addEventListener("click", function () {
+        form.reset();
+        updateSummary();
+      });
+
+      whatsappCTA.addEventListener("click", function (event) {
+        const hasName = fields.clientName.value.trim();
+        const hasPet = fields.petName.value.trim();
+        const hasService = fields.serviceType.value.trim();
+
+        if (!hasName || !hasPet || !hasService) {
+          event.preventDefault();
+          alert("Por favor complete al menos su nombre, el nombre de la mascota y el servicio de interés antes de continuar.");
+        }
+      });
+
+      updateSummary();
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nido Canino | Recursos</title>
+
+    <!-- Fuente -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet" />
+
+    <!-- CSS base -->
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+
+    <!-- Estilos específicos -->
+    <style>
+        .resources-hero {
+            position: relative;
+            overflow: hidden;
+            padding-top: var(--space-11);
+            padding-bottom: var(--space-10);
+        }
+
+            .resources-hero::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.13), transparent 26%), radial-gradient(circle at bottom right, rgba(200, 164, 123, 0.08), transparent 30%);
+                pointer-events: none;
+            }
+
+            .resources-hero .container {
+                position: relative;
+                z-index: 1;
+            }
+
+        .resources-hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: var(--space-8);
+            align-items: center;
+        }
+
+        .resources-hero-copy h1 {
+            max-width: 11ch;
+            margin-top: var(--space-3);
+            margin-bottom: var(--space-4);
+            letter-spacing: -0.04em;
+        }
+
+        .resources-hero-copy p {
+            max-width: 60ch;
+            color: var(--text-soft);
+            font-size: var(--text-md);
+        }
+
+        .resources-hero-panel {
+            display: grid;
+            gap: var(--space-4);
+        }
+
+        .resources-hero-card {
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.14), transparent 40%), var(--bg-card);
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-md);
+        }
+
+            .resources-hero-card p {
+                color: var(--text-soft);
+                line-height: var(--line-relaxed);
+            }
+
+        .resources-subnav {
+            display: flex;
+            gap: var(--space-3);
+            flex-wrap: wrap;
+            margin-top: var(--space-5);
+        }
+
+            .resources-subnav a {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0.75rem 1rem;
+                border-radius: var(--radius-pill);
+                border: 1px solid var(--border-soft);
+                color: var(--text-soft);
+                transition: all var(--transition-base);
+                background: color-mix(in srgb, var(--bg-soft) 70%, transparent);
+                font-size: var(--text-sm);
+                font-weight: 600;
+            }
+
+                .resources-subnav a.active,
+                .resources-subnav a:hover {
+                    border-color: var(--accent);
+                    color: var(--text-main);
+                }
+
+        .resources-chip-row {
+            display: flex;
+            gap: var(--space-3);
+            flex-wrap: wrap;
+            margin-top: var(--space-5);
+        }
+
+        .tool-highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--space-5);
+            margin-top: var(--space-6);
+        }
+
+        .tool-highlight-card {
+            min-height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .tool-highlight-card::before {
+                content: "";
+                position: absolute;
+                inset: 0 auto auto 0;
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(90deg, var(--accent), transparent 70%);
+                opacity: 0.55;
+            }
+
+            .tool-highlight-card p {
+                color: var(--text-soft);
+                line-height: var(--line-relaxed);
+                font-size: var(--text-sm);
+            }
+
+        .resource-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: var(--space-5);
+            margin-top: var(--space-6);
+        }
+
+        .resource-card-advanced {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .resource-card-advanced::before {
+                content: "";
+                position: absolute;
+                inset: 0 auto auto 0;
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(90deg, var(--accent), transparent 70%);
+                opacity: 0.55;
+            }
+
+        .resource-meta {
+            display: flex;
+            gap: var(--space-3);
+            flex-wrap: wrap;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: var(--text-xs);
+            font-weight: 600;
+        }
+
+            .resource-meta span {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.35rem;
+            }
+
+        .checklist-box {
+            display: grid;
+            gap: var(--space-3);
+            margin-top: var(--space-2);
+        }
+
+        .check-item {
+            display: grid;
+            grid-template-columns: 22px 1fr;
+            gap: 0.75rem;
+            align-items: start;
+            color: var(--text-soft);
+            font-size: var(--text-sm);
+            line-height: var(--line-relaxed);
+        }
+
+            .check-item input {
+                margin-top: 0.15rem;
+                accent-color: var(--accent);
+            }
+
+        .helper-note {
+            padding: 0.95rem 1rem;
+            border-radius: var(--radius-md);
+            background: color-mix(in srgb, var(--bg-soft) 76%, transparent);
+            border: 1px solid var(--border-soft);
+            color: var(--text-soft);
+            font-size: var(--text-sm);
+            line-height: var(--line-relaxed);
+        }
+
+        .mini-tool-form {
+            display: grid;
+            gap: var(--space-4);
+        }
+
+            .mini-tool-form .field-inline {
+                display: grid;
+                gap: 0.55rem;
+            }
+
+            .mini-tool-form label {
+                color: var(--text-main);
+                font-weight: 600;
+                font-size: var(--text-sm);
+            }
+
+            .mini-tool-form select,
+            .mini-tool-form input,
+            .mini-tool-form textarea {
+                width: 100%;
+                border-radius: var(--radius-md);
+                border: 1px solid var(--border-soft);
+                background: color-mix(in srgb, var(--bg-card) 92%, transparent);
+                color: var(--text-main);
+                padding: 0.85rem 0.95rem;
+                font: inherit;
+            }
+
+            .mini-tool-form textarea {
+                min-height: 110px;
+                resize: vertical;
+            }
+
+        details.resource-expand {
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            background: color-mix(in srgb, var(--bg-soft) 78%, transparent);
+            overflow: hidden;
+            margin-top: auto;
+        }
+
+            details.resource-expand summary {
+                cursor: pointer;
+                list-style: none;
+                padding: 0.95rem 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-weight: 700;
+                color: var(--text-main);
+                font-size: var(--text-sm);
+            }
+
+                details.resource-expand summary::marker {
+                    content: "";
+                }
+
+                details.resource-expand summary::after {
+                    content: "+";
+                    font-size: 1rem;
+                    color: var(--accent);
+                }
+
+        details[open].resource-expand summary::after {
+            content: "−";
+        }
+
+        .resource-expand-body {
+            padding: 0 1rem 1rem;
+            display: grid;
+            gap: var(--space-3);
+        }
+
+            .resource-expand-body p,
+            .resource-expand-body li {
+                color: var(--text-soft);
+                line-height: var(--line-relaxed);
+                font-size: var(--text-sm);
+            }
+
+            .resource-expand-body ul {
+                list-style: disc;
+                padding-left: 1rem;
+                display: grid;
+                gap: 0.4rem;
+            }
+
+        .resource-visual {
+            width: 100%;
+            min-height: 180px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-soft);
+            background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.16), transparent 35%), linear-gradient(180deg, var(--bg-card-2), var(--bg-card));
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+        }
+
+            .resource-visual img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .logic-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--space-5);
+            margin-top: var(--space-6);
+        }
+
+        .logic-card p {
+            color: var(--text-soft);
+            font-size: var(--text-sm);
+            line-height: var(--line-relaxed);
+        }
+
+        .cta-band {
+            padding: var(--space-10) var(--space-6);
+            border-radius: var(--radius-xl);
+            background: radial-gradient(circle at top center, rgba(200, 164, 123, 0.14), transparent 35%), var(--bg-card);
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+
+            .cta-band p {
+                max-width: 60ch;
+                margin: 0 auto;
+                color: var(--text-soft);
+            }
+
+        @media (max-width: 1100px) {
+            .resources-hero-grid,
+            .tool-highlight-grid,
+            .resource-grid-2,
+            .logic-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .resources-hero {
+                padding-top: var(--space-9);
+                padding-bottom: var(--space-8);
+            }
+
+            .resources-hero-copy h1 {
+                max-width: 100%;
+            }
+
+            .resource-visual {
+                min-height: 160px;
+            }
+        }
+    </style>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- JS -->
+    <script src="js/config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/guards.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/pets.js"></script>
+    <script src="js/requests.js"></script>
+    <script src="data/resources-data.js"></script>
+    <script src="js/resources-page.js"></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html">
+                <img src="assets/logo/logo-icon.png" alt="Nido Canino" onerror="this.style.display='none';" />
+                <span>Nido Canino</span>
+            </a>
+
+            <nav class="nav-links">
+                <a data-nav href="index.html">Inicio</a>
+                <a data-nav href="services.html">Servicios</a>
+                <a data-nav href="blog.html">Blog</a>
+                <a data-nav href="resources.html">Recursos</a>
+                <a data-nav href="request.html">Solicitar servicio</a>
+                <span id="authSlot"></span>
+                <button class="btn btn-secondary" id="themeToggle" type="button">Modo claro</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="resources-hero">
+            <div class="container resources-hero-grid">
+                <div class="resources-hero-copy">
+                    <span class="badge">Herramientas rápidas · preparación útil</span>
+                    <div class="page-title-with-icon">
+                        <img src="assets/icons/icon-resources.png" alt="Recursos" />
+                        <h1>Recursos prácticos</h1>
+                    </div>
+                    <p>
+                        Una sección pensada para hacer, no solo para leer: checklists, plantillas y ayudas rápidas
+                        para organizar mejor la rutina y preparar una solicitud con más claridad.
+                    </p>
+
+                    <div class="resources-subnav">
+                        <a href="blog.html">Guías</a>
+                        <a class="active" href="resources.html">Herramientas</a>
+                    </div>
+
+                    <div class="resources-chip-row">
+                        <span class="chip">Checklists</span>
+                        <span class="chip">Preparación</span>
+                        <span class="chip">Rutina</span>
+                        <span class="chip">Perros</span>
+                        <span class="chip">Gatos</span>
+                    </div>
+                </div>
+
+                <div class="resources-hero-panel">
+                    <article class="resources-hero-card">
+                        <p>
+                            Esta página no está pensada como blog largo. Está diseñada para resolver dudas prácticas,
+                            ayudarle a preparar mejor el servicio y ordenar información que normalmente termina dispersa.
+                        </p>
+                    </article>
+
+                    <article class="resources-hero-card">
+                        <p>
+                            Varias de estas herramientas se pueden usar ya como apoyo visual; después podremos conectarlas
+                            con lógica real, perfil, recordatorios o datos guardados en la cuenta.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESTACADOS -->
+        <section class="section">
+            <div class="container">
+                <span class="badge">Empiece por aquí</span>
+                <h2 class="section-title">Herramientas más útiles para el MVP</h2>
+                <p class="section-text">
+                    Estas son las primeras piezas que más valor dan sin volver la app demasiado compleja.
+                </p>
+
+                <div class="tool-highlight-grid">
+                    <article class="card tool-highlight-card stack">
+                        <h3>Checklist antes de solicitar servicio</h3>
+                        <p>
+                            Para ordenar lo básico antes de escribir o enviar una solicitud: fechas, zona,
+                            rutina, observaciones y necesidades especiales.
+                        </p>
+                        <a class="btn btn-secondary" href="#checklist-solicitud">Abrir</a>
+                    </article>
+
+                    <article class="card tool-highlight-card stack">
+                        <h3>Checklist de convivencia canina</h3>
+                        <p>
+                            Para dejar listo lo importante si el perro va a convivencia estructurada,
+                            evitando omisiones de rutina, alimentación o señales relevantes.
+                        </p>
+                        <a class="btn btn-secondary" href="#checklist-convivencia">Abrir</a>
+                    </article>
+
+                    <article class="card tool-highlight-card stack">
+                        <h3>Checklist de visita felina</h3>
+                        <p>
+                            Para dejar preparada la casa y la información necesaria cuando el gato será
+                            atendido en su propio entorno.
+                        </p>
+                        <a class="btn btn-secondary" href="#checklist-gatos">Abrir</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHECKLIST SOLICITUD -->
+        <section class="section" id="checklist-solicitud">
+            <div class="container">
+                <span class="badge">Checklist</span>
+                <h2 class="section-title">Antes de solicitar un servicio</h2>
+                <p class="section-text">
+                    Este checklist ayuda a que la solicitud llegue más clara y con mejor contexto desde el inicio.
+                </p>
+
+                <div class="resource-grid-2">
+                    <article class="card resource-card-advanced">
+                        <div class="resource-meta">
+                            <span>Preparación</span>
+                            <span>1 min</span>
+                        </div>
+
+                        <h3>Qué conviene tener claro antes de enviar la solicitud</h3>
+
+                        <div class="checklist-box">
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Ya sé qué servicio me interesa más: convivencia, evaluación previa, visita felina o asesoría.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Tengo una fecha tentativa o por lo menos un rango aproximado.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Tengo clara la zona o localidad desde donde se coordinaría el servicio.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Puedo describir brevemente el perfil de la mascota: edad, tamaño, energía y necesidades especiales.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Si hay medicación o condición médica, ya la tengo anotada para no olvidarla.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Si mi perro es sensible, ya sé qué señales o situaciones conviene mencionar desde el inicio.</span>
+                            </label>
+                        </div>
+
+                        <div class="helper-note">
+                            Mientras más clara llegue la solicitud, más fácil es revisar compatibilidad, cupo y necesidades reales sin perder tiempo en idas y vueltas.
+                        </div>
+                    </article>
+
+                    <article class="card resource-card-advanced">
+                        <div class="resource-visual">
+                            <img src="assets/illustrations/dog-stress.png"
+                                 alt="Preparación de solicitud"
+                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=&quot;muted&quot;>Herramienta visual</span>';" />
+                        </div>
+
+                        <h3>Por qué esta herramienta sí vale la pena</h3>
+                        <p class="article-intro">
+                            En un servicio como Nido Canino no se trata de “reservar por reservar”. Se necesita contexto suficiente
+                            para decidir si el servicio solicitado realmente encaja con la mascota y con la operación.
+                        </p>
+
+                        <details class="resource-expand">
+                            <summary>Ver lógica de uso</summary>
+                            <div class="resource-expand-body">
+                                <p>
+                                    Esta herramienta tiene sentido porque no intenta reemplazar una evaluación profesional; solo ordena
+                                    información práctica del tutor. Eso la vuelve útil, realista y fácil de convertir después en un flujo
+                                    conectado con el perfil del usuario.
+                                </p>
+                                <p>
+                                    En la versión actual funciona como apoyo visual. En una fase siguiente podría usar los datos del perfil
+                                    y de las mascotas para marcar automáticamente qué ya está completo y qué falta.
+                                </p>
+                            </div>
+                        </details>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONVIVENCIA -->
+        <section class="section" id="checklist-convivencia">
+            <div class="container">
+                <span class="badge">Perros</span>
+                <h2 class="section-title">Checklist de convivencia canina</h2>
+                <p class="section-text">
+                    Una guía rápida para dejar listo lo importante antes de una jornada, noche o paquete de convivencia.
+                </p>
+
+                <div class="resource-grid-2">
+                    <article class="card resource-card-advanced">
+                        <div class="resource-meta">
+                            <span>Convivencia</span>
+                            <span>1 min</span>
+                        </div>
+
+                        <h3>Qué no debería faltar</h3>
+
+                        <div class="checklist-box">
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Comida medida y explicada: cantidad, horario y observaciones.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Correa, arnés o implemento que el perro usa normalmente.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Información breve sobre su forma de descansar, comer o relacionarse con otros perros.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Dato claro sobre si hay restricciones físicas, dolor, edad avanzada o condición especial.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Contacto de emergencia y datos básicos veterinarios a la mano.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Alguna observación sobre lo que suele calmar al perro o lo que conviene evitar.</span>
+                            </label>
+                        </div>
+
+                        <details class="resource-expand">
+                            <summary>Ver observaciones útiles</summary>
+                            <div class="resource-expand-body">
+                                <p>
+                                    Lo que más ayuda no es solo traer “sus cosas”, sino explicar su rutina real. Un perro puede comer perfecto
+                                    en casa y ponerse selectivo en otro entorno; puede convivir bien, pero necesitar más pausas; o tolerar bien
+                                    otros perros siempre que no lo presionen demasiado.
+                                </p>
+                                <p>
+                                    Ese tipo de detalle hace que el cuidado sea más fino y más coherente con el enfoque premium de la marca.
+                                </p>
+                            </div>
+                        </details>
+                    </article>
+
+                    <article class="card resource-card-advanced">
+                        <h3>Mini plantilla: observaciones rápidas del perro</h3>
+
+                        <form class="mini-tool-form">
+                            <div class="field-inline">
+                                <label for="dog-energy">Nivel de energía</label>
+                                <select id="dog-energy" name="dog_energy">
+                                    <option value="">Seleccione</option>
+                                    <option>Bajo</option>
+                                    <option>Medio</option>
+                                    <option>Alto</option>
+                                </select>
+                            </div>
+
+                            <div class="field-inline">
+                                <label for="dog-social">Convivencia con otros perros</label>
+                                <select id="dog-social" name="dog_social">
+                                    <option value="">Seleccione</option>
+                                    <option>Generalmente tranquila</option>
+                                    <option>Necesita adaptación</option>
+                                    <option>Depende del contexto</option>
+                                </select>
+                            </div>
+
+                            <div class="field-inline">
+                                <label for="dog-note">Algo importante que debamos saber</label>
+                                <textarea id="dog-note" name="dog_note" placeholder="Ejemplo: necesita pausas largas, come mejor en calma, evita presión al saludar..."></textarea>
+                            </div>
+                        </form>
+
+                        <div class="helper-note">
+                            Por ahora esta plantilla es visual. Después podremos conectarla a perfil o solicitudes para guardar esta información.
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- GATOS -->
+        <section class="section" id="checklist-gatos">
+            <div class="container">
+                <span class="badge">Gatos</span>
+                <h2 class="section-title">Checklist de visita felina a domicilio</h2>
+                <p class="section-text">
+                    Pensado para que la visita se apoye en la rutina real del gato y no en improvisación.
+                </p>
+
+                <div class="resource-grid-2">
+                    <article class="card resource-card-advanced">
+                        <div class="resource-meta">
+                            <span>Visita felina</span>
+                            <span>1 min</span>
+                        </div>
+
+                        <h3>Qué conviene dejar listo en casa</h3>
+
+                        <div class="checklist-box">
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Comida y agua claramente ubicadas, con instrucciones simples.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Arena, pala, bolsa y punto de limpieza identificados.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Acceso libre a sus zonas habituales, escondites o puntos altos si los usa.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Indicación sobre si suele acercarse solo, esconderse o tolerar poco contacto.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Dato claro sobre medicación, suplementos o alertas a observar.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Contacto de emergencia y veterinario disponible.</span>
+                            </label>
+                        </div>
+
+                        <details class="resource-expand">
+                            <summary>Ver por qué esto importa</summary>
+                            <div class="resource-expand-body">
+                                <p>
+                                    En gatos, una buena visita no siempre significa “hacer mucho”. Muchas veces significa respetar el territorio,
+                                    entender la rutina y evitar forzar interacción donde el gato necesita control y previsibilidad.
+                                </p>
+                                <p>
+                                    Una preparación simple pero clara suele reducir errores, estrés y dudas durante la visita.
+                                </p>
+                            </div>
+                        </details>
+                    </article>
+
+                    <article class="card resource-card-advanced">
+                        <div class="resource-visual">
+                            <img src="assets/illustrations/cat-care.png"
+                                 alt="Rutina felina en casa"
+                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=&quot;muted&quot;>Herramienta visual</span>';" />
+                        </div>
+
+                        <h3>Mini ficha: rutina del gato</h3>
+
+                        <form class="mini-tool-form">
+                            <div class="field-inline">
+                                <label for="cat-routine">Tipo de rutina</label>
+                                <select id="cat-routine" name="cat_routine">
+                                    <option value="">Seleccione</option>
+                                    <option>Muy estable</option>
+                                    <option>Moderadamente flexible</option>
+                                    <option>Sensible a cambios</option>
+                                </select>
+                            </div>
+
+                            <div class="field-inline">
+                                <label for="cat-social">Con extraños</label>
+                                <select id="cat-social" name="cat_social">
+                                    <option value="">Seleccione</option>
+                                    <option>Se acerca solo</option>
+                                    <option>Prefiere distancia</option>
+                                    <option>Se esconde casi siempre</option>
+                                </select>
+                            </div>
+
+                            <div class="field-inline">
+                                <label for="cat-note">Detalle importante</label>
+                                <textarea id="cat-note" name="cat_note" placeholder="Ejemplo: come mejor si nadie lo mira, se esconde al abrir la puerta, no forzar juego..."></textarea>
+                            </div>
+                        </form>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- SELECTOR -->
+        <section class="section">
+            <div class="container">
+                <span class="badge">Orientación</span>
+                <h2 class="section-title">Mini selector de servicio</h2>
+                <p class="section-text">
+                    No reemplaza una evaluación, pero sí ayuda a orientar mejor al tutor antes de escribir o solicitar.
+                </p>
+
+                <div class="resource-grid-2">
+                    <article class="card resource-card-advanced">
+                        <h3>Qué servicio podría ajustarse mejor</h3>
+
+                        <form class="mini-tool-form">
+                            <div class="field-inline">
+                                <label for="pet-type">Tipo de mascota</label>
+                                <select id="pet-type" name="pet_type">
+                                    <option value="">Seleccione</option>
+                                    <option>Perro</option>
+                                    <option>Gato</option>
+                                </select>
+                            </div>
+
+                            <div class="field-inline">
+                                <label for="need-type">Qué necesita</label>
+                                <select id="need-type" name="need_type">
+                                    <option value="">Seleccione</option>
+                                    <option>Cuidado puntual</option>
+                                    <option>Prueba / adaptación</option>
+                                    <option>Servicio recurrente</option>
+                                    <option>Orientación o asesoría</option>
+                                </select>
+                            </div>
+
+                            <div class="field-inline">
+                                <label for="context-type">Cómo suele responder al entorno</label>
+                                <select id="context-type" name="context_type">
+                                    <option value="">Seleccione</option>
+                                    <option>Se adapta con facilidad</option>
+                                    <option>Necesita más calma</option>
+                                    <option>Prefiere quedarse en casa</option>
+                                </select>
+                            </div>
+                        </form>
+
+                        <div class="helper-note">
+                            En una fase siguiente, este bloque puede devolver una recomendación automática según lo seleccionado.
+                        </div>
+                    </article>
+
+                    <article class="card resource-card-advanced">
+                        <h3>Cómo debería funcionar luego</h3>
+                        <p class="article-intro">
+                            Esta herramienta sí tiene mucho sentido para Nido Canino porque traduce el criterio de la marca
+                            a una orientación simple para el usuario.
+                        </p>
+
+                        <details class="resource-expand">
+                            <summary>Ver lógica recomendada</summary>
+                            <div class="resource-expand-body">
+                                <ul>
+                                    <li>Si es gato y la opción dominante es “prefiere quedarse en casa”, priorizar visita felina.</li>
+                                    <li>Si es perro y el tutor marca “prueba / adaptación”, sugerir salida o visita previa.</li>
+                                    <li>Si es perro y la necesidad es recurrente, sugerir convivencia o plan semanal/mensual.</li>
+                                    <li>Si la situación es más de ajuste conductual o rutina, sugerir asesoría.</li>
+                                </ul>
+
+                                <p>
+                                    Es una herramienta viable para desarrollar internamente sin necesidad de API externa, porque la lógica
+                                    depende de reglas simples alineadas con los servicios ya definidos.
+                                </p>
+                            </div>
+                        </details>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- RECORDATORIOS -->
+        <section class="section">
+            <div class="container">
+                <span class="badge">Fase siguiente</span>
+                <h2 class="section-title">Recordatorios básicos</h2>
+                <p class="section-text">
+                    No como criterio veterinario automático, sino como organizador elegante de fechas y documentos.
+                </p>
+
+                <div class="resource-grid-2">
+                    <article class="card resource-card-advanced">
+                        <h3>Qué sí tendría sentido guardar</h3>
+
+                        <div class="checklist-box">
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Última vacuna registrada</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Próxima fecha sugerida por su veterinario</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Última desparasitación</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Próximo control o revisión</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Foto o soporte del carné</span>
+                            </label>
+                        </div>
+
+                        <div class="helper-note">
+                            La utilidad aquí está en ordenar información y recordar fechas, no en decir qué esquema corresponde a cada mascota.
+                        </div>
+                    </article>
+
+                    <article class="card resource-card-advanced">
+                        <h3>Por qué conviene dejarlo para una siguiente etapa</h3>
+
+                        <p class="article-intro">
+                            Esta función sí puede ser valiosa, pero no es lo más urgente para el MVP visual.
+                        </p>
+
+                        <details class="resource-expand">
+                            <summary>Ver criterio</summary>
+                            <div class="resource-expand-body">
+                                <p>
+                                    Primero conviene cerrar bien la experiencia principal: entender el servicio, crear cuenta,
+                                    registrar mascota y solicitar. Después, cuando ese recorrido esté sólido, vale más la pena
+                                    sumar recordatorios y organización avanzada.
+                                </p>
+                                <p>
+                                    Técnicamente se puede construir con Supabase sin depender de una API externa. La parte importante
+                                    sería guardar fechas, mostrar estados y, más adelante, enviar avisos programados.
+                                </p>
+                            </div>
+                        </details>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- LÓGICA DEL HUB -->
+        <section class="section">
+            <div class="container">
+                <span class="badge">Diseño del sistema</span>
+                <h2 class="section-title">Cómo se imagina esta sección a futuro</h2>
+                <p class="section-text">
+                    Para que Recursos se sienta realmente como producto, no como página suelta, estas son las tres capas lógicas más fuertes.
+                </p>
+
+                <div class="logic-grid">
+                    <article class="card logic-card stack">
+                        <h3>Capa 1 · Preparación</h3>
+                        <p>
+                            Checklists y plantillas que ayudan a preparar mejor la información antes de solicitar o coordinar un servicio.
+                        </p>
+                    </article>
+
+                    <article class="card logic-card stack">
+                        <h3>Capa 2 · Orientación</h3>
+                        <p>
+                            Herramientas simples que ayudan a ubicar qué servicio encaja mejor, sin reemplazar evaluación ni criterio profesional.
+                        </p>
+                    </article>
+
+                    <article class="card logic-card stack">
+                        <h3>Capa 3 · Organización</h3>
+                        <p>
+                            Más adelante: recordatorios, fechas, documentos y elementos básicos del historial práctico de cada mascota.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section">
+            <div class="container">
+                <div class="cta-band stack">
+                    <span class="badge" style="margin-inline: auto;">Siguiente paso</span>
+                    <h2 class="section-title">¿Quiere pasar de la preparación a la solicitud?</h2>
+                    <p>
+                        Cuando ya tenga claro el tipo de servicio y la información básica de su mascota, puede enviar una solicitud tentativa y revisamos el caso.
+                    </p>
+
+                    <div class="cluster" style="justify-content: center; margin-top: 0.5rem;">
+                        <a class="btn btn-primary" href="request.html">Solicitar servicio</a>
+                        <a class="btn btn-secondary" href="blog.html">Volver al Blog</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>Nido Canino · cuidado personalizado para perros y visitas para gatos en Bogotá.</p>
+        </div>
+    </footer>
+</body>
+</html>

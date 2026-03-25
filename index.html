@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nido Canino | Inicio</title>
+
+    <!-- Fuente -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+
+    <!-- Estilos específicos de home -->
+    <style>
+        .home-hero {
+            position: relative;
+            overflow: hidden;
+            padding-top: var(--space-11);
+            padding-bottom: var(--space-10);
+        }
+
+            .home-hero::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.13), transparent 26%), radial-gradient(circle at bottom right, rgba(200, 164, 123, 0.08), transparent 30%);
+                pointer-events: none;
+            }
+
+            .home-hero .container {
+                position: relative;
+                z-index: 1;
+            }
+
+        .home-hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: var(--space-8);
+            align-items: start;
+        }
+
+        .home-hero-copy h1 {
+            max-width: 10ch;
+            margin-top: var(--space-3);
+            margin-bottom: var(--space-4);
+            letter-spacing: -0.04em;
+        }
+
+        .home-hero-copy p {
+            max-width: 58ch;
+            color: var(--text-soft);
+            font-size: var(--text-md);
+        }
+
+        .hero-action-row {
+            margin-top: var(--space-5);
+            display: flex;
+            gap: var(--space-3);
+            flex-wrap: wrap;
+        }
+
+        .hero-kpis {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--space-4);
+            margin-top: var(--space-7);
+        }
+
+            .hero-kpis .card {
+                min-height: 110px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .hero-kpis strong {
+                display: block;
+                font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+                margin-bottom: 0.25rem;
+                letter-spacing: -0.03em;
+            }
+
+            .hero-kpis span {
+                color: var(--text-soft);
+                font-size: var(--text-sm);
+                line-height: 1.5;
+            }
+
+        .home-hero-panel {
+            display: grid;
+            gap: var(--space-4);
+            align-content: start;
+        }
+
+        .hero-panel-card {
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.14), transparent 40%), var(--bg-card);
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-md);
+        }
+
+            .hero-panel-card p {
+                color: var(--text-soft);
+                line-height: var(--line-relaxed);
+            }
+
+        .hero-logo-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+            padding: 1rem;
+        }
+
+        .hero-full-logo {
+            width: min(100%, 420px);
+            max-height: 420px;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            margin-inline: auto;
+        }
+
+        .hero-mini-cards {
+            display: flex;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .hero-mini-card {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: 0.9rem 1rem;
+            border-radius: var(--radius-lg);
+            background: var(--bg-card);
+            border: 1px solid var(--border-soft);
+            min-width: 190px;
+        }
+
+            .hero-mini-card img {
+                width: 48px;
+                height: 48px;
+                object-fit: cover;
+                border-radius: 14px;
+                background: var(--accent-soft);
+                border: 1px solid var(--border-soft);
+                flex-shrink: 0;
+            }
+
+        @media (max-width: 1100px) {
+            .home-hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-kpis {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-logo-card {
+                min-height: 100px;
+                padding: 0.75rem;
+            }
+
+            .hero-full-logo {
+                width: min(100%, 190px);
+                max-height: 78px;
+            }
+        }
+        
+        .hero-panel-card {
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.14), transparent 40%), var(--bg-card);
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-md);
+        }
+
+            .hero-panel-card p {
+                color: var(--text-soft);
+                line-height: var(--line-relaxed);
+            }
+
+        .hero-mini-cards {
+            display: flex;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .hero-mini-card {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: 0.9rem 1rem;
+            border-radius: var(--radius-lg);
+            background: var(--bg-card);
+            border: 1px solid var(--border-soft);
+            min-width: 190px;
+        }
+
+            .hero-mini-card img {
+                width: 48px;
+                height: 48px;
+                object-fit: cover;
+                border-radius: 14px;
+                background: var(--accent-soft);
+                border: 1px solid var(--border-soft);
+                flex-shrink: 0;
+            }
+
+        .section-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--space-5);
+            margin-top: var(--space-6);
+        }
+
+        .path-card,
+        .space-card,
+        .value-card {
+            min-height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .path-card::before,
+            .space-card::before,
+            .value-card::before {
+                content: "";
+                position: absolute;
+                inset: 0 auto auto 0;
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(90deg, var(--accent), transparent 70%);
+                opacity: 0.55;
+            }
+
+            .path-card p,
+            .space-card p,
+            .value-card p {
+                color: var(--text-soft);
+                line-height: var(--line-relaxed);
+                font-size: var(--text-sm);
+            }
+
+            .path-card h3,
+            .space-card h3,
+            .value-card h3 {
+                margin-bottom: var(--space-2);
+            }
+
+            .space-card img {
+                width: 100%;
+                height: 220px;
+                object-fit: cover;
+                border-radius: var(--radius-lg);
+                border: 1px solid var(--border-soft);
+                margin-bottom: var(--space-4);
+                background: var(--bg-soft);
+            }
+
+        .process-grid {
+            display: grid;
+            gap: var(--space-4);
+            margin-top: var(--space-6);
+        }
+
+        .process-step {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: var(--space-4);
+            align-items: start;
+        }
+
+        .process-step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            background: var(--accent-soft);
+            border: 1px solid rgba(200, 164, 123, 0.16);
+            color: var(--accent);
+            font-weight: 800;
+            font-size: var(--text-md);
+        }
+
+        .process-step .card p {
+            color: var(--text-soft);
+            font-size: var(--text-sm);
+            line-height: var(--line-relaxed);
+        }
+
+        .featured-read-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: var(--space-5);
+            margin-top: var(--space-6);
+        }
+
+        .featured-read-card {
+            min-height: 100%;
+        }
+
+            .featured-read-card p {
+                color: var(--text-soft);
+                line-height: var(--line-relaxed);
+                font-size: var(--text-sm);
+            }
+
+        .section-cta {
+            padding: var(--space-10) var(--space-6);
+            border-radius: var(--radius-xl);
+            background: radial-gradient(circle at top center, rgba(200, 164, 123, 0.14), transparent 35%), var(--bg-card);
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+
+            .section-cta p {
+                max-width: 62ch;
+                margin: 0 auto;
+                color: var(--text-soft);
+            }
+
+        @media (max-width: 1100px) {
+            .home-hero-grid,
+            .section-grid-3,
+            .featured-read-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-kpis {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .home-hero {
+                padding-top: var(--space-9);
+                padding-bottom: var(--space-8);
+            }
+
+            .home-hero-copy h1 {
+                max-width: 100%;
+            }
+
+            .process-step {
+                grid-template-columns: 48px 1fr;
+            }
+
+            .process-step-number {
+                width: 48px;
+                height: 48px;
+                border-radius: 14px;
+            }
+
+            .space-card img {
+                height: 190px;
+            }
+        }
+    </style>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- JS -->
+    <script src="js/config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/guards.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/pets.js"></script>
+    <script src="js/requests.js"></script>
+    <script src="data/resources-data.js"></script>
+    <script src="js/resources-page.js"></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html">
+                <img src="assets/logo/logo-icon.png" alt="Nido Canino" onerror="this.style.display='none';" />
+                <span>Nido Canino</span>
+            </a>
+
+            <nav class="nav-links">
+                <a data-nav href="index.html">Inicio</a>
+                <a data-nav href="services.html">Servicios</a>
+                <a data-nav href="blog.html">Blog</a>
+                <a data-nav href="resources.html">Recursos</a>
+                <a data-nav href="request.html">Solicitar servicio</a>
+                <span id="authSlot"></span>
+                <button class="btn btn-secondary" id="themeToggle" type="button">Modo claro</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="home-hero">
+            <div class="container home-hero-grid">
+                <div class="home-hero-copy">
+                    <span class="badge">Grupos pequeños · cuidado personalizado</span>
+                    <h1>Cuidado más tranquilo para perros y gatos</h1>
+                    <p>
+                        Nido Canino es una propuesta de cuidado pensada para tutores
+                        que valoran la calma, la observación real y un entorno más
+                        estructurado que el de una guardería masiva.
+                    </p>
+
+                    <div class="hero-action-row">
+                        <a class="btn btn-primary" href="request.html">Solicitar servicio</a>
+                        <a class="btn btn-secondary" href="services.html">Ver servicios</a>
+                    </div>
+
+                    <div class="hero-kpis">
+                        <article class="card">
+                            <strong>Máx. 5 perros</strong>
+                            <span>La convivencia se diseña con cupos limitados y mejor observación.</span>
+                        </article>
+
+                        <article class="card">
+                            <strong>Bogotá</strong>
+                            <span>Operación pensada principalmente para occidente y zonas cercanas.</span>
+                        </article>
+
+                        <article class="card">
+                            <strong>Modelo premium</strong>
+                            <span>Menos saturación, más criterio, más estructura y mejor lectura de cada caso.</span>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="home-hero-panel">
+                    <article class="hero-panel-card hero-logo-card">
+                        <img src="assets/logo/logo-full.png"
+                             alt="Nido Canino"
+                             class="hero-full-logo"
+                             onerror="this.style.display='none';" />
+                    </article>
+
+                    <div class="hero-mini-cards">
+                        <div class="hero-mini-card">
+                            <img src="assets/icons/dog-calm.png" alt="Perro" onerror="this.src='assets/logo/logo-icon.png';" />
+                            <div>
+                                <strong>Convivencia canina</strong>
+                                <p class="muted">Entorno más regulado</p>
+                            </div>
+                        </div>
+
+                        <div class="hero-mini-card">
+                            <img src="assets/icons/cat-calm.png" alt="Gato" onerror="this.src='assets/logo/logo-icon.png';" />
+                            <div>
+                                <strong>Visitas para gatos</strong>
+                                <p class="muted">Rutina en casa</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <article class="hero-panel-card">
+                        <p>
+                            No todo animal necesita el mismo tipo de cuidado. Por eso Nido Canino no parte de la cantidad,
+                            sino de la compatibilidad, la rutina y el bienestar real de la mascota.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!-- PROPUESTA DE VALOR -->
+        <section class="section">
+            <div class="container">
+                <span class="badge">La propuesta</span>
+                <h2 class="section-title">Un modelo pensado para la estabilidad, no para la saturación</h2>
+                <p class="section-text">
+                    La idea central de Nido Canino no es “tener perros ocupados todo el tiempo”, sino ofrecer un entorno
+                    donde la convivencia se pueda observar, regular y sostener con más criterio.
+                </p>
+
+                <div class="section-grid-3">
+                    <article class="card value-card stack">
+                        <h3>Menos estímulo innecesario</h3>
+                        <p>
+                            El cuidado mejora cuando el entorno permite bajar intensidad, respetar pausas y leer mejor al perro.
+                        </p>
+                    </article>
+
+                    <article class="card value-card stack">
+                        <h3>Más observación real</h3>
+                        <p>
+                            Con menos cupos y más estructura, es más fácil notar cambios en comportamiento, energía o adaptación.
+                        </p>
+                    </article>
+
+                    <article class="card value-card stack">
+                        <h3>Servicios con criterio</h3>
+                        <p>
+                            Cada caso se revisa según perfil, zona, duración y compatibilidad. No todo se confirma automáticamente.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3 RUTAS PRINCIPALES -->
+        <section class="section">
+            <div class="container">
+                <span class="badge">Explore la web</span>
+                <h2 class="section-title">Tres rutas claras dentro de Nido Canino</h2>
+                <p class="section-text">
+                    El sitio no está pensado solo para “pedir un servicio”, sino para orientar, educar y preparar mejor al tutor.
+                </p>
+
+                <div class="section-grid-3">
+
+                    <article class="card path-card stack">
+                        <div class="card-icon">
+                            <img src="assets/icons/icon-services.png" alt="Servicios" />
+                        </div>
+
+                        <h3>Servicios</h3>
+
+                        <p>
+                            Conozca cómo funciona la convivencia canina, la evaluación previa,
+                            las visitas para gatos y las asesorías.
+                        </p>
+
+                        <a class="btn btn-secondary" href="services.html">Ir a Servicios</a>
+                    </article>
+
+                    <article class="card path-card stack route-card">
+
+
+                        <div class="card-icon">
+                            <img src="assets/icons/icon-blog.png" alt="Blog" />
+                        </div>
+                        <h3>Blog</h3>
+                        <p>
+                            Guías breves para entender mejor señales de estrés, grupos pequeños, perros senior, gatos en casa y preparación.
+                        </p>
+                        <a class="btn btn-secondary" href="blog.html">Ir al Blog</a>
+                    </article>
+
+                    <article class="card path-card stack route-card">
+                        <img src="assets/icons/icon-resources.png" alt="Recursos Nido Canino" class="route-icon" />
+                        <h3>Recursos</h3>
+                        <p>
+                            Checklists, plantillas y herramientas rápidas para organizar mejor una solicitud o la rutina de una mascota.
+                        </p>
+                        <a class="btn btn-secondary" href="resources.html">Ir a Recursos</a>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ESPACIOS -->
+        <section class="section">
+            <div class="container">
+                <span class="badge">El entorno</span>
+                <h2 class="section-title">Un espacio pensado para bajar el ritmo</h2>
+                <p class="section-text">
+                    El entorno también comunica el tipo de cuidado. Por eso el espacio importa tanto como la rutina.
+                </p>
+
+                <div class="section-grid-3">
+                    <article class="card space-card">
+                        <img src="assets/photos/space-rest.png" alt="Zona de descanso" onerror="this.style.display='none';" />
+                        <h3>Descanso</h3>
+                        <p>
+                            Espacios más tranquilos, cómodos y visualmente limpios ayudan a que el perro no viva en activación constante.
+                        </p>
+                    </article>
+
+                    <article class="card space-card">
+                        <img src="assets/photos/space-food.png" alt="Rutina de comida" onerror="this.style.display='none';" />
+                        <h3>Rutina de comida</h3>
+                        <p>
+                            La organización también se ve en lo básico: alimentación, orden y claridad sobre lo que necesita cada perro.
+                        </p>
+                    </article>
+
+                    <article class="card space-card">
+                        <img src="assets/photos/space-play.png" alt="Zona de convivencia" onerror="this.style.display='none';" />
+                        <h3>Convivencia</h3>
+                        <p>
+                            El objetivo no es llenar de actividad cada minuto, sino sostener una convivencia que pueda regularse mejor.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCESO -->
+        <section class="section">
+            <div class="container">
+                <span class="badge">Proceso</span>
+                <h2 class="section-title">Cómo funciona Nido Canino</h2>
+                <p class="section-text">
+                    La solicitud en la app es una aproximación inicial. La confirmación llega después de revisar el caso.
+                </p>
+
+                <div class="process-grid">
+                    <article class="process-step">
+                        <div class="process-step-number">1</div>
+                        <div class="card stack-sm">
+                            <h3>Conozca el servicio</h3>
+                            <p>
+                                Revise si lo que necesita encaja mejor con convivencia canina, evaluación previa, visita felina o asesoría.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="process-step">
+                        <div class="process-step-number">2</div>
+                        <div class="card stack-sm">
+                            <h3>Cree su perfil y registre la mascota</h3>
+                            <p>
+                                La app permite organizar la información básica del tutor y de la mascota antes de solicitar.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="process-step">
+                        <div class="process-step-number">3</div>
+                        <div class="card stack-sm">
+                            <h3>Envíe una solicitud tentativa</h3>
+                            <p>
+                                Se revisa disponibilidad, perfil de la mascota, zona y viabilidad del servicio solicitado.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="process-step">
+                        <div class="process-step-number">4</div>
+                        <div class="card stack-sm">
+                            <h3>Confirmación y siguientes pasos</h3>
+                            <p>
+                                Si el caso encaja, se acuerdan detalles operativos, tiempos y, cuando aplique, evaluación previa.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESTACADOS BLOG/RECURSOS -->
+        <section class="section">
+            <div class="container">
+                <span class="badge">Empiece por algo útil</span>
+                <h2 class="section-title">Dos formas rápidas de aprovechar la web</h2>
+                <p class="section-text">
+                    Si todavía no va a solicitar servicio, igual puede usar la web para entender mejor el perfil de su mascota o prepararse mejor.
+                </p>
+
+                <div class="featured-read-grid">
+                    <article class="card featured-read-card stack">
+                        <h3>Leer</h3>
+                        <p>
+                            En el Blog encontrará artículos breves sobre señales de estrés, grupos pequeños, gatos en casa,
+                            perros senior y preparación del tutor.
+                        </p>
+                        <a class="btn btn-secondary" href="blog.html">Ir al Blog</a>
+                    </article>
+
+                    <article class="card featured-read-card stack">
+                        <h3>Organizar</h3>
+                        <p>
+                            En Recursos encontrará checklists y herramientas rápidas para ordenar mejor información práctica antes de solicitar.
+                        </p>
+                        <a class="btn btn-secondary" href="resources.html">Ir a Recursos</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="section">
+            <div class="container">
+                <div class="section-cta stack">
+                    <span class="badge" style="margin-inline: auto;">Siguiente paso</span>
+                    <h2 class="section-title">¿Quiere revisar si su mascota encaja con alguno de nuestros servicios?</h2>
+                    <p>
+                        Puede empezar explorando los servicios, leer una guía breve o enviar una solicitud tentativa.
+                        La idea es que llegue con más claridad y que el proceso se sienta cuidado desde el inicio.
+                    </p>
+
+                    <div class="cluster" style="justify-content: center; margin-top: 0.5rem;">
+                        <a class="btn btn-primary" href="request.html">Solicitar servicio</a>
+                        <a class="btn btn-secondary" href="services.html">Ver servicios</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>Nido Canino · cuidado personalizado para perros y visitas para gatos en Bogotá.</p>
+        </div>
+    </footer>
+</body>
+</html>

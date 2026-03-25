@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nido Canino | Servicios</title>
+
+    <!-- Fuente -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+
+    <!-- Ajustes visuales puntuales de esta página -->
+    <style>
+        .services-hero {
+            position: relative;
+            overflow: hidden;
+            padding-top: var(--space-11);
+            padding-bottom: var(--space-10);
+        }
+
+            .services-hero::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.12), transparent 26%), radial-gradient(circle at bottom right, rgba(200, 164, 123, 0.08), transparent 28%);
+                pointer-events: none;
+            }
+
+            .services-hero .container {
+                position: relative;
+                z-index: 1;
+            }
+
+        .services-hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: var(--space-8);
+            align-items: center;
+        }
+
+        .services-hero-copy h1 {
+            max-width: 11ch;
+            margin-top: var(--space-3);
+            margin-bottom: var(--space-4);
+            letter-spacing: -0.04em;
+        }
+
+        .services-hero-copy p {
+            max-width: 58ch;
+            font-size: var(--text-md);
+            color: var(--text-soft);
+        }
+
+        .services-hero-visual {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: var(--space-5);
+        }
+
+        .service-mini-icons {
+            display: flex;
+            gap: var(--space-4);
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+            .service-mini-icons .mini-icon-card {
+                display: flex;
+                align-items: center;
+                gap: var(--space-3);
+                padding: 0.9rem 1rem;
+                border-radius: var(--radius-lg);
+                background: var(--bg-card);
+                border: 1px solid var(--border-soft);
+                min-width: 180px;
+            }
+
+            .service-mini-icons img {
+                width: 46px;
+                height: 46px;
+                object-fit: cover;
+                border-radius: 14px;
+                background: var(--accent-soft);
+                border: 1px solid var(--border-soft);
+                flex-shrink: 0;
+            }
+
+        .service-overview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--space-5);
+            margin-top: var(--space-6);
+        }
+
+        .service-overview-card {
+            position: relative;
+            overflow: hidden;
+            min-height: 100%;
+        }
+
+            .service-overview-card::before {
+                content: "";
+                position: absolute;
+                inset: 0 auto auto 0;
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(90deg, var(--accent), transparent 70%);
+                opacity: 0.6;
+            }
+
+            .service-overview-card .price {
+                font-size: var(--text-lg);
+                font-weight: 800;
+                color: var(--text-main);
+                letter-spacing: -0.03em;
+            }
+
+                .service-overview-card .price small {
+                    display: block;
+                    margin-top: 0.2rem;
+                    color: var(--text-muted);
+                    font-size: var(--text-xs);
+                    font-weight: 500;
+                }
+
+        .service-pillars {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--space-5);
+            margin-top: var(--space-6);
+        }
+
+        .service-detail {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: var(--space-6);
+            align-items: start;
+            margin-top: var(--space-7);
+        }
+
+            .service-detail + .service-detail {
+                margin-top: var(--space-8);
+            }
+
+        .service-pricing-box {
+            position: sticky;
+            top: calc(var(--header-height) + 1rem);
+        }
+
+        .price-list {
+            display: grid;
+            gap: var(--space-3);
+        }
+
+        .price-item {
+            padding: 0.95rem 1rem;
+            border-radius: var(--radius-md);
+            background: color-mix(in srgb, var(--bg-soft) 86%, transparent);
+            border: 1px solid var(--border-soft);
+        }
+
+            .price-item strong {
+                display: block;
+                margin-bottom: 0.25rem;
+                color: var(--text-main);
+            }
+
+            .price-item span {
+                color: var(--text-soft);
+                font-size: var(--text-sm);
+                line-height: 1.5;
+            }
+
+        .details-stack {
+            display: grid;
+            gap: var(--space-3);
+            margin-top: var(--space-5);
+        }
+
+        details.service-faq,
+        details.service-note {
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            background: color-mix(in srgb, var(--bg-card) 88%, transparent);
+            overflow: hidden;
+        }
+
+            details.service-faq summary,
+            details.service-note summary {
+                cursor: pointer;
+                list-style: none;
+                padding: 1rem 1rem;
+                font-weight: 700;
+                color: var(--text-main);
+            }
+
+            details.service-faq summary,
+            details.service-note summary {
+                cursor: pointer;
+                list-style: none;
+                padding: 1rem 1rem;
+                font-weight: 700;
+                color: var(--text-main);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+                details.service-faq summary::marker,
+                details.service-note summary::marker {
+                    content: "";
+                }
+
+                details.service-faq summary::after,
+                details.service-note summary::after {
+                    content: "+";
+                    font-size: 1.1rem;
+                    color: var(--accent);
+                    transition: transform 0.2s ease;
+                }
+
+        details[open].service-faq summary::after,
+        details[open].service-note summary::after {
+            content: "−";
+        }
+
+            details.service-faq .details-body,
+            details.service-note .details-body {
+                padding: 0 1rem 1rem;
+                color: var(--text-soft);
+                line-height: var(--line-relaxed);
+                font-size: var(--text-sm);
+            }
+
+        .timeline {
+            display: grid;
+            gap: var(--space-4);
+            margin-top: var(--space-6);
+        }
+
+        .timeline-step {
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            gap: var(--space-4);
+            align-items: start;
+        }
+
+            .timeline-step .step-number {
+                width: 56px;
+                height: 56px;
+                border-radius: 18px;
+                display: grid;
+                place-items: center;
+                background: var(--accent-soft);
+                border: 1px solid rgba(200, 164, 123, 0.16);
+                color: var(--accent);
+                font-weight: 800;
+                font-size: var(--text-md);
+            }
+
+        .pricing-highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--space-5);
+            margin-top: var(--space-6);
+        }
+
+        .pricing-highlight-card {
+            min-height: 100%;
+        }
+
+            .pricing-highlight-card .big-price {
+                font-size: clamp(1.6rem, 2.5vw, 2rem);
+                font-weight: 800;
+                letter-spacing: -0.04em;
+                margin: var(--space-3) 0 var(--space-2);
+            }
+
+        .faq-grid {
+            display: grid;
+            gap: var(--space-3);
+            margin-top: var(--space-6);
+        }
+
+        .final-cta {
+            text-align: center;
+            padding: var(--space-10) var(--space-6);
+            border-radius: var(--radius-xl);
+            background: radial-gradient(circle at top center, rgba(200, 164, 123, 0.14), transparent 35%), var(--bg-card);
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-md);
+        }
+
+            .final-cta p {
+                max-width: 58ch;
+                margin: 0 auto;
+                color: var(--text-soft);
+            }
+
+        @media (max-width: 1100px) {
+            .services-hero-grid,
+            .service-detail,
+            .service-overview-grid,
+            .service-pillars,
+            .pricing-highlight-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-pricing-box {
+                position: static;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .services-hero {
+                padding-top: var(--space-9);
+                padding-bottom: var(--space-8);
+            }
+
+            .services-hero-copy h1 {
+                max-width: 100%;
+            }
+
+            .timeline-step {
+                grid-template-columns: 48px 1fr;
+            }
+
+                .timeline-step .step-number {
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 14px;
+                }
+        }
+    </style>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- JS -->
+    <script src="js/config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/guards.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/pets.js"></script>
+    <script src="js/requests.js"></script>
+    <script src="data/resources-data.js"></script>
+    <script src="js/resources-page.js"></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html">
+                <img src="assets/logo/logo-icon.png" alt="Nido Canino" onerror="this.style.display='none';" />
+                <span>Nido Canino</span>
+            </a>
+
+            <nav class="nav-links">
+                <a data-nav href="index.html">Inicio</a>
+                <a data-nav href="services.html">Servicios</a>
+                <a data-nav href="blog.html">Blog</a>
+                <a data-nav href="resources.html">Recursos</a>
+                <a data-nav href="request.html">Solicitar servicio</a>
+                <span id="authSlot"></span>
+                <button class="btn btn-secondary" id="themeToggle" type="button">Modo claro</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="services-hero">
+            <div class="container services-hero-grid">
+                <div class="services-hero-copy">
+                    <span class="badge">Cupos limitados · grupos pequeños</span>
+                    <div class="page-title-with-icon">
+                        <img src="assets/icons/icon-services.png" alt="Servicios" />
+                        <h1>Servicios y tarifas</h1>
+                    </div>
+                    <p>
+                        Cuidado personalizado para perros y visitas a domicilio para gatos,
+                        con enfoque en bienestar emocional, calma, observación y rutinas más estables.
+                    </p>
+
+                    <div class="cluster" style="margin-top: 1.5rem;">
+                        <a class="btn btn-primary" href="request.html">Solicitar servicio</a>
+                        <a class="btn btn-secondary" href="#pricing">Ver tarifas</a>
+                    </div>
+                </div>
+
+                <div class="hero-card services-hero-visual">
+                    <div class="service-mini-icons">
+                        <div class="mini-icon-card">
+                            <img src="assets/icons/dog-calm.png" alt="Perro tranquilo" onerror="this.src='assets/logo/logo-icon.png';" />
+                            <div>
+                                <strong>Convivencia canina</strong>
+                                <p class="muted">Máx. 5 perros</p>
+                            </div>
+                        </div>
+
+                        <div class="mini-icon-card">
+                            <img src="assets/icons/cat-calm.png" alt="Gato tranquilo" onerror="this.src='assets/logo/logo-icon.png';" />
+                            <div>
+                                <strong>Visitas para gatos</strong>
+                                <p class="muted">Atención en casa</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notice">
+                        No trabajamos como guardería masiva. Cada servicio se revisa según el perfil de la mascota, el equilibrio del grupo y la disponibilidad real.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- POSICIONAMIENTO -->
+        <section class="section">
+            <div class="container">
+                <span class="badge">Nuestro enfoque</span>
+                <h2 class="section-title">Un modelo pensado para el bienestar real</h2>
+                <p class="section-text">
+                    En Nido Canino priorizamos la estabilidad del entorno, la observación constante y el manejo consciente de la convivencia.
+                    Nuestro servicio principal está orientado a perros que se benefician de grupos pequeños, espacios tranquilos y rutinas claras.
+                    También ofrecemos visitas para gatos en casa, respetando su territorio y su ritmo.
+                </p>
+
+                <div class="service-pillars">
+                    <article class="card stack">
+                        <h3>Grupos reducidos</h3>
+                        <p class="muted">
+                            Trabajamos con cupos limitados para proteger la calidad del cuidado y el equilibrio de la convivencia.
+                        </p>
+                    </article>
+
+                    <article class="card stack">
+                        <h3>Ambiente más tranquilo</h3>
+                        <p class="muted">
+                            Espacios cómodos, supervisión real y menos sobreestimulación que en formatos más masivos.
+                        </p>
+                    </article>
+
+                    <article class="card stack">
+                        <h3>Evaluación previa</h3>
+                        <p class="muted">
+                            Cada caso se revisa para definir si el servicio solicitado es realmente adecuado para la mascota.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESUMEN DE SERVICIOS -->
+        <section class="section">
+            <div class="container">
+                <span class="badge">Resumen</span>
+                <h2 class="section-title">Servicios principales</h2>
+                <p class="section-text">
+                    Esta vista rápida le ayuda a identificar cuál servicio puede ajustarse mejor a su necesidad antes de enviar la solicitud.
+                </p>
+
+                <div class="service-overview-grid">
+                    <article class="card service-overview-card stack">
+                        <span class="badge">Principal</span>
+                        <h3>Convivencia canina estructurada</h3>
+                        <p class="muted">
+                            Ideal para perros que se benefician de grupos pequeños, observación constante y un entorno más estable.
+                        </p>
+                        <div class="stack-sm">
+                            <p class="muted">• Máximo 5 perros</p>
+                            <p class="muted">• Rutina supervisada</p>
+                            <p class="muted">• Ambiente doméstico y controlado</p>
+                        </div>
+                        <div class="price">
+                            Desde $70.000
+                            <small>Día de convivencia</small>
+                        </div>
+                        <a class="btn btn-secondary" href="#convivencia">Ver detalle</a>
+                    </article>
+
+                    <article class="card service-overview-card stack">
+                        <span class="badge">Evaluación</span>
+                        <h3>Salida / visita previa</h3>
+                        <p class="muted">
+                            Ideal para observar compatibilidad, rutina y necesidades antes de confirmar un servicio más largo.
+                        </p>
+                        <div class="stack-sm">
+                            <p class="muted">• Observación inicial</p>
+                            <p class="muted">• Lectura básica de comportamiento</p>
+                            <p class="muted">• Aproximación previa al servicio</p>
+                        </div>
+                        <div class="price">
+                            Desde $40.000
+                            <small>Evaluación de 2 horas</small>
+                        </div>
+                        <a class="btn btn-secondary" href="#evaluacion">Ver detalle</a>
+                    </article>
+
+                    <article class="card service-overview-card stack">
+                        <span class="badge">Felino</span>
+                        <h3>Cuidado felino a domicilio</h3>
+                        <p class="muted">
+                            Ideal para gatos que se sienten mejor en casa y requieren continuidad en su rutina cotidiana.
+                        </p>
+                        <div class="stack-sm">
+                            <p class="muted">• Alimentación y agua</p>
+                            <p class="muted">• Limpieza de arenera</p>
+                            <p class="muted">• Revisión general y compañía</p>
+                        </div>
+                        <div class="price">
+                            Desde $60.000
+                            <small>Visita individual</small>
+                        </div>
+                        <a class="btn btn-secondary" href="#gatos">Ver detalle</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- DETALLE 1 -->
+        <section class="section" id="convivencia">
+            <div class="container">
+                <span class="badge">Servicio principal</span>
+                <h2 class="section-title">Convivencia canina estructurada</h2>
+                <p class="section-text">
+                    Experiencia de convivencia en grupos pequeños, con enfoque en bienestar emocional, supervisión real y equilibrio del grupo.
+                </p>
+
+                <div class="service-detail">
+                    <div class="stack">
+                        <article class="card stack">
+                            <h3>Qué es</h3>
+                            <p class="muted">
+                                Este servicio está pensado para perros que necesitan un entorno más tranquilo que el de una guardería tradicional.
+                                En lugar de dinámicas masivas o de sobreestimulación, Nido Canino trabaja con cupos reducidos, observación constante y una convivencia más cuidada.
+                            </p>
+                        </article>
+
+                        <article class="card stack">
+                            <h3>Qué incluye</h3>
+                            <div class="stack-sm">
+                                <p class="muted">• Supervisión durante convivencia, descanso y rutina general</p>
+                                <p class="muted">• Espacios cómodos para reposo</p>
+                                <p class="muted">• Interacción guiada según el equilibrio del grupo</p>
+                                <p class="muted">• Seguimiento general del comportamiento y adaptación</p>
+                            </div>
+                        </article>
+
+                        <article class="card stack">
+                            <h3>Ideal para</h3>
+                            <div class="stack-sm">
+                                <p class="muted">• Perros sensibles a grupos grandes</p>
+                                <p class="muted">• Perros que necesitan más estructura</p>
+                                <p class="muted">• Perros senior o con necesidad de entornos más tranquilos</p>
+                                <p class="muted">• Tutores que buscan un servicio más personalizado</p>
+                            </div>
+                        </article>
+
+                        <div class="details-stack">
+                            <details class="service-note">
+                                <summary>Consideraciones importantes</summary>
+                                <div class="details-body">
+                                    La solicitud no confirma automáticamente la reserva. Cada caso se revisa según el perfil del perro, el equilibrio del grupo, la disponibilidad y la duración solicitada.
+                                </div>
+                            </details>
+
+                            <details class="service-note">
+                                <summary>Modalidades disponibles</summary>
+                                <div class="details-body">
+                                    Día de convivencia, noche de cuidado, paquete de 5 días, plan semanal y plan mensual con cupos limitados.
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+
+                    <aside class="card service-pricing-box stack">
+                        <span class="badge">Tarifas orientativas</span>
+                        <h3>Convivencia canina</h3>
+
+                        <div class="price-list">
+                            <div class="price-item">
+                                <strong>Salida / visita previa</strong>
+                                <span>Desde $40.000 · Evaluación de 2 horas</span>
+                            </div>
+
+                            <div class="price-item">
+                                <strong>Día de convivencia</strong>
+                                <span>Desde $70.000 · Jornada completa con supervisión, rutina y socialización guiada</span>
+                            </div>
+
+                            <div class="price-item">
+                                <strong>Noche de cuidado</strong>
+                                <span>Desde $90.000 · Ambiente controlado y seguro durante la noche</span>
+                            </div>
+
+                            <div class="price-item">
+                                <strong>Paquete 5 días</strong>
+                                <span>Desde $320.000 · Ideal para adaptación o necesidades puntuales</span>
+                            </div>
+
+                            <div class="price-item">
+                                <strong>Plan semanal</strong>
+                                <span>Desde $250.000 · Para tutores con necesidad recurrente</span>
+                            </div>
+
+                            <div class="price-item">
+                                <strong>Plan mensual</strong>
+                                <span>Desde $850.000 · Cupos limitados y seguimiento continuo</span>
+                            </div>
+                        </div>
+
+                        <a class="btn btn-primary btn-full" href="request.html">Solicitar convivencia</a>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- DETALLE 2 -->
+        <section class="section" id="evaluacion">
+            <div class="container">
+                <span class="badge">Evaluación previa</span>
+                <h2 class="section-title">Salida / visita previa</h2>
+                <p class="section-text">
+                    Una primera aproximación para observar al perro, conocer su rutina y revisar si el servicio posterior puede ser adecuado.
+                </p>
+
+                <div class="service-detail">
+                    <div class="stack">
+                        <article class="card stack">
+                            <h3>Qué es</h3>
+                            <p class="muted">
+                                Antes de confirmar ciertos servicios, puede recomendarse una salida o visita previa.
+                                Esta etapa permite observar el comportamiento del perro, entender mejor sus necesidades y reducir incertidumbre para ambas partes.
+                            </p>
+                        </article>
+
+                        <article class="card stack">
+                            <h3>Qué puede incluir</h3>
+                            <div class="stack-sm">
+                                <p class="muted">• Observación inicial del perro</p>
+                                <p class="muted">• Revisión de rutinas básicas</p>
+                                <p class="muted">• Conversación inicial con el tutor</p>
+                                <p class="muted">• Lectura general de adaptación y compatibilidad</p>
+                            </div>
+                        </article>
+
+                        <article class="card stack">
+                            <h3>Para qué sirve</h3>
+                            <div class="stack-sm">
+                                <p class="muted">• Reducir incertidumbre antes de una estancia</p>
+                                <p class="muted">• Evaluar si el servicio solicitado es adecuado</p>
+                                <p class="muted">• Facilitar una mejor transición</p>
+                            </div>
+                        </article>
+
+                        <div class="details-stack">
+                            <details class="service-note">
+                                <summary>Importante</summary>
+                                <div class="details-body">
+                                    La evaluación previa no garantiza aceptación automática, pero sí ayuda a tomar una decisión más responsable y más segura para todos.
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+
+                    <aside class="card service-pricing-box stack">
+                        <span class="badge">Tarifa orientativa</span>
+                        <h3>Evaluación</h3>
+
+                        <div class="price-list">
+                            <div class="price-item">
+                                <strong>Salida / visita previa</strong>
+                                <span>Desde $40.000 · Evaluación de 2 horas</span>
+                            </div>
+                        </div>
+
+                        <a class="btn btn-primary btn-full" href="request.html">Solicitar evaluación</a>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- DETALLE 3 -->
+        <section class="section" id="gatos">
+            <div class="container">
+                <span class="badge">Servicio felino</span>
+                <h2 class="section-title">Cuidado felino a domicilio</h2>
+                <p class="section-text">
+                    Atención en casa para reducir el estrés del gato y mantener su rutina con la menor alteración posible.
+                </p>
+
+                <div class="service-detail">
+                    <div class="stack">
+                        <article class="card stack">
+                            <h3>Qué es</h3>
+                            <p class="muted">
+                                Muchos gatos se sienten mejor cuando permanecen en su territorio y conservan su rutina habitual.
+                                Por eso ofrecemos visitas a domicilio orientadas a cubrir sus necesidades básicas sin exponerlos a cambios innecesarios de entorno.
+                            </p>
+                        </article>
+
+                        <article class="card stack">
+                            <h3>Qué incluye</h3>
+                            <div class="stack-sm">
+                                <p class="muted">• Alimentación según indicación del tutor</p>
+                                <p class="muted">• Reposición de agua</p>
+                                <p class="muted">• Limpieza de arenera</p>
+                                <p class="muted">• Revisión general y compañía suave si aplica</p>
+                            </div>
+                        </article>
+
+                        <article class="card stack">
+                            <h3>Ideal para</h3>
+                            <div class="stack-sm">
+                                <p class="muted">• Tutores que viajan o se ausentan</p>
+                                <p class="muted">• Gatos sensibles a cambios de entorno</p>
+                                <p class="muted">• Rutinas que requieren continuidad en casa</p>
+                            </div>
+                        </article>
+
+                        <div class="details-stack">
+                            <details class="service-note">
+                                <summary>Consideraciones</summary>
+                                <div class="details-body">
+                                    La cobertura se revisa según zona, frecuencia y logística. El servicio se agenda previamente y la disponibilidad se confirma después de revisar cada caso.
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+
+                    <aside class="card service-pricing-box stack">
+                        <span class="badge">Tarifas orientativas</span>
+                        <h3>Visitas para gatos</h3>
+
+                        <div class="price-list">
+                            <div class="price-item">
+                                <strong>Visita individual</strong>
+                                <span>Desde $60.000 · Alimentación, limpieza de arenera, revisión general y compañía</span>
+                            </div>
+
+                            <div class="price-item">
+                                <strong>Plan de varias visitas</strong>
+                                <span>Desde $550.000 · Paquete de 10 visitas con seguimiento continuo</span>
+                            </div>
+                        </div>
+
+                        <a class="btn btn-primary btn-full" href="request.html">Solicitar visita</a>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- ASESORÍAS -->
+        <section class="section">
+            <div class="container">
+                <span class="badge">Orientación</span>
+                <h2 class="section-title">Asesorías en convivencia y bienestar</h2>
+                <p class="section-text">
+                    Espacios de orientación para tutores que desean entender mejor ciertas dinámicas, ajustar rutinas o mejorar la relación con su animal.
+                </p>
+
+                <div class="pricing-highlight-grid">
+                    <article class="card pricing-highlight-card stack">
+                        <h3>Sesión individual</h3>
+                        <div class="big-price">Desde $180.000</div>
+                        <p class="muted">
+                            Espacio de orientación puntual para revisar una situación específica y proponer ajustes iniciales.
+                        </p>
+                    </article>
+
+                    <article class="card pricing-highlight-card stack">
+                        <h3>Pack 3 sesiones</h3>
+                        <div class="big-price">Desde $480.000</div>
+                        <p class="muted">
+                            Ideal para procesos que requieren seguimiento, observación y trabajo en varias etapas.
+                        </p>
+                    </article>
+
+                    <article class="card pricing-highlight-card stack">
+                        <h3>Nota</h3>
+                        <div class="big-price" style="font-size: 1.35rem;">Según el caso</div>
+                        <p class="muted">
+                            El enfoque, la duración y el alcance pueden variar según la situación específica del tutor y del animal.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCESO -->
+        <section class="section">
+            <div class="container">
+                <span class="badge">Proceso</span>
+                <h2 class="section-title">Cómo funciona</h2>
+                <p class="section-text">
+                    La solicitud dentro de la app es una aproximación inicial. La confirmación final se realiza después de revisar disponibilidad y perfil.
+                </p>
+
+                <div class="timeline">
+                    <article class="timeline-step">
+                        <div class="step-number">1</div>
+                        <div class="card stack-sm">
+                            <h3>Solicitud inicial</h3>
+                            <p class="muted">
+                                El tutor envía una solicitud con los datos básicos de la mascota, el servicio deseado y una fecha tentativa.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="timeline-step">
+                        <div class="step-number">2</div>
+                        <div class="card stack-sm">
+                            <h3>Revisión del perfil</h3>
+                            <p class="muted">
+                                Se revisa si el servicio solicitado se ajusta al perfil de la mascota, la zona y la disponibilidad real.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="timeline-step">
+                        <div class="step-number">3</div>
+                        <div class="card stack-sm">
+                            <h3>Evaluación o adaptación previa</h3>
+                            <p class="muted">
+                                En algunos casos puede recomendarse una salida o visita previa antes de confirmar una estancia o proceso más largo.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="timeline-step">
+                        <div class="step-number">4</div>
+                        <div class="card stack-sm">
+                            <h3>Confirmación del servicio</h3>
+                            <p class="muted">
+                                Si el caso es viable, se confirma el servicio y se acuerdan los detalles operativos y de agenda.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- TARIFAS RESUMIDAS -->
+        <section class="section" id="pricing">
+            <div class="container">
+                <span class="badge">Tarifas</span>
+                <h2 class="section-title">Precios orientativos</h2>
+                <p class="section-text">
+                    Los valores que aparecen aquí son informativos y pueden variar según el tamaño, la raza, el comportamiento del animal, la ubicación, la duración del servicio y las necesidades específicas del caso.
+                </p>
+
+                <div class="pricing-highlight-grid">
+                    <article class="card pricing-highlight-card stack">
+                        <h3>Convivencia canina</h3>
+                        <div class="big-price">Desde $70.000</div>
+                        <p class="muted">Jornada completa con supervisión, rutina y socialización guiada.</p>
+                    </article>
+
+                    <article class="card pricing-highlight-card stack">
+                        <h3>Evaluación previa</h3>
+                        <div class="big-price">Desde $40.000</div>
+                        <p class="muted">Salida o visita previa de 2 horas para observación y compatibilidad.</p>
+                    </article>
+
+                    <article class="card pricing-highlight-card stack">
+                        <h3>Visitas para gatos</h3>
+                        <div class="big-price">Desde $60.000</div>
+                        <p class="muted">Atención básica en casa para mantener la rutina del gato con menor estrés.</p>
+                    </article>
+                </div>
+
+                <div class="notice" style="margin-top: 1.5rem;">
+                    <strong>Nota importante:</strong> cada caso es evaluado previamente para garantizar la seguridad, el bienestar de la mascota y el equilibrio del grupo cuando aplica.
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section">
+            <div class="container">
+                <span class="badge">Preguntas frecuentes</span>
+                <h2 class="section-title">Lo que suele necesitar saber antes de solicitar</h2>
+
+                <div class="faq-grid">
+                    <details class="service-faq">
+                        <summary>¿La solicitud confirma automáticamente la reserva?</summary>
+                        <div class="details-body">
+                            No. La solicitud sirve como aproximación inicial. Después revisamos disponibilidad, perfil de la mascota y viabilidad del servicio.
+                        </div>
+                    </details>
+
+                    <details class="service-faq">
+                        <summary>¿Todos los perros pueden entrar a convivencia?</summary>
+                        <div class="details-body">
+                            No necesariamente. Evaluamos cada caso para proteger el bienestar de la mascota y el equilibrio del grupo.
+                        </div>
+                    </details>
+
+                    <details class="service-faq">
+                        <summary>¿Trabajan con grupos grandes?</summary>
+                        <div class="details-body">
+                            No. Nido Canino trabaja con grupos reducidos y cupos limitados.
+                        </div>
+                    </details>
+
+                    <details class="service-faq">
+                        <summary>¿Pueden cuidar perros senior?</summary>
+                        <div class="details-body">
+                            Sí, siempre que el caso sea compatible con el servicio solicitado y con el entorno.
+                        </div>
+                    </details>
+
+                    <details class="service-faq">
+                        <summary>¿Las visitas para gatos son en toda Bogotá?</summary>
+                        <div class="details-body">
+                            La cobertura se revisa según la zona y la logística disponible.
+                        </div>
+                    </details>
+
+                    <details class="service-faq">
+                        <summary>¿Puedo solicitar varios días o paquetes?</summary>
+                        <div class="details-body">
+                            Sí. Hay modalidades por día, noche, paquetes de varios días y opciones recurrentes según cada servicio.
+                        </div>
+                    </details>
+
+                    <details class="service-faq">
+                        <summary>¿Debo registrar a mi mascota antes?</summary>
+                        <div class="details-body">
+                            Sí. Para solicitar servicio en la app, primero debe crear cuenta y registrar al menos una mascota.
+                        </div>
+                    </details>
+
+                    <details class="service-faq">
+                        <summary>¿Qué pasa después de enviar la solicitud?</summary>
+                        <div class="details-body">
+                            Nos pondremos en contacto para revisar el caso, aclarar detalles y confirmar los siguientes pasos.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="section">
+            <div class="container">
+                <div class="final-cta stack">
+                    <span class="badge" style="margin-inline: auto;">Siguiente paso</span>
+                    <h2 class="section-title">¿Quiere revisar si su mascota encaja con alguno de nuestros servicios?</h2>
+                    <p>
+                        Envíe una solicitud y revisaremos el caso con base en el perfil de su mascota, la zona, la duración y la disponibilidad real.
+                    </p>
+
+                    <div class="cluster" style="justify-content: center; margin-top: 0.5rem;">
+                        <a class="btn btn-primary" href="request.html">Solicitar servicio</a>
+                        <a class="btn btn-secondary" href="pets.html">Registrar mascota</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>Nido Canino · cuidado personalizado para perros y visitas para gatos en Bogotá.</p>
+        </div>
+    </footer>
+</body>
+</html>

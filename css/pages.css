@@ -1,0 +1,356 @@
+/* =================================================
+   HOME · HERO
+   ================================================= */
+
+.hero h1 {
+    max-width: 11ch;
+    margin-top: var(--space-3);
+    margin-bottom: var(--space-4);
+    letter-spacing: -0.04em;
+}
+
+.hero p {
+    max-width: 58ch;
+    font-size: var(--text-md);
+    color: var(--text-soft);
+}
+
+.hero .badge {
+    margin-bottom: var(--space-2);
+}
+
+.hero .cluster {
+    margin-top: var(--space-5);
+}
+
+.hero-card {
+    min-height: 100%;
+    justify-content: center;
+    text-align: center;
+}
+
+    .hero-card img {
+        margin-bottom: var(--space-4);
+    }
+
+    .hero-card p {
+        max-width: 34ch;
+        margin-inline: auto;
+    }
+
+.kpis {
+    margin-top: var(--space-8);
+}
+
+    .kpis .card {
+        text-align: left;
+    }
+
+    .kpis strong {
+        font-size: clamp(1.35rem, 2.4vw, 1.8rem);
+        letter-spacing: -0.03em;
+    }
+
+    .kpis span {
+        color: var(--text-soft);
+        font-size: var(--text-sm);
+    }
+
+/* =================================================
+   HOME · SERVICIOS
+   ================================================= */
+
+.service-card {
+    min-height: 220px;
+    justify-content: flex-start;
+}
+
+    .service-card p {
+        font-size: var(--text-sm);
+        line-height: var(--line-relaxed);
+    }
+
+/* =================================================
+   HOME · ESPACIOS
+   ================================================= */
+
+.photo-card h3 {
+    font-size: var(--text-lg);
+}
+
+.photo-card p {
+    font-size: var(--text-sm);
+    line-height: var(--line-relaxed);
+}
+
+/* =================================================
+   HOME · RECURSOS
+   ================================================= */
+
+.resource-card {
+    min-height: 100%;
+}
+
+    .resource-card h3 {
+        line-height: 1.2;
+    }
+
+    .resource-card .muted {
+        font-size: var(--text-sm);
+    }
+
+/* =================================================
+   SERVICES PAGE
+   ================================================= */
+
+main .section-title + .section-text {
+    margin-bottom: var(--space-2);
+}
+
+.stack > .card h2 {
+    margin-bottom: var(--space-2);
+}
+
+.stack > .card p {
+    line-height: var(--line-relaxed);
+}
+
+/* =================================================
+   RESOURCES PAGE
+   ================================================= */
+
+.resource-card .notice {
+    line-height: var(--line-relaxed);
+}
+
+/* =================================================
+   AUTH PAGE
+   ================================================= */
+
+.auth-wrap > div:first-child {
+    text-align: center;
+}
+
+.auth-wrap .section-title {
+    margin-bottom: var(--space-3);
+}
+
+.auth-wrap .section-text {
+    margin-inline: auto;
+}
+
+.auth-wrap .card h2 {
+    margin-bottom: var(--space-4);
+}
+
+.auth-wrap .two-col {
+    margin-top: var(--space-4);
+}
+
+.auth-wrap .card form {
+    height: 100%;
+}
+
+/* =================================================
+   PROFILE / PETS / REQUESTS PAGES
+   ================================================= */
+
+.dashboard-grid .section-title {
+    margin-bottom: var(--space-4);
+}
+
+.dashboard-grid section.card,
+.dashboard-grid > section {
+    min-width: 0;
+}
+
+.pet-card p,
+.request-card p {
+    font-size: var(--text-sm);
+    line-height: var(--line-relaxed);
+}
+
+.pet-card .btn,
+.request-card .btn {
+    margin-top: auto;
+}
+
+.request-card h3 {
+    margin-bottom: 0;
+}
+
+/* =================================================
+   REQUEST FORM PAGE
+   ================================================= */
+
+#requestGate {
+    margin-top: var(--space-3);
+}
+
+#requestForm {
+    margin-top: var(--space-2);
+}
+
+/* =================================================
+   PROFILE FORM
+   ================================================= */
+
+#profileForm .stack {
+    gap: var(--space-3);
+}
+
+/* =================================================
+   PETS PAGE
+   ================================================= */
+
+#petsList {
+    margin-top: var(--space-4);
+}
+
+#petForm {
+    margin-top: var(--space-3);
+}
+
+/* =================================================
+   REQUESTS PAGE
+   ================================================= */
+
+#requestsList {
+    margin-top: var(--space-3);
+}
+
+/* =================================================
+   EMPTY STATES / MESSAGES
+   ================================================= */
+
+#authMsg,
+#profileMsg,
+#petMsg,
+#requestMsg {
+    margin-bottom: var(--space-4);
+}
+
+/* =================================================
+   UTILIDADES VISUALES EXTRA
+   ================================================= */
+
+.section-title + .badge {
+    margin-top: var(--space-2);
+}
+
+.card h3 + p {
+    margin-top: var(--space-1);
+}
+
+/* =================================================
+   RESPONSIVE
+   ================================================= */
+
+@media (max-width: 980px) {
+    .hero h1 {
+        max-width: 14ch;
+    }
+
+    .hero-card p {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 760px) {
+    .hero {
+        padding-top: var(--space-9);
+        padding-bottom: var(--space-8);
+    }
+
+        .hero h1 {
+            max-width: 100%;
+            margin-bottom: var(--space-3);
+        }
+
+        .hero p {
+            font-size: var(--text-base);
+        }
+
+    .hero-card {
+        text-align: left;
+    }
+
+        .hero-card p {
+            margin-inline: 0;
+        }
+
+    .service-card,
+    .photo-card,
+    .resource-card {
+        min-height: auto;
+    }
+
+    .auth-wrap {
+        padding-top: var(--space-6);
+    }
+}
+/* =================================================
+   INDEX · ROUTE CARDS
+   ================================================= */
+
+.route-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+}
+
+.route-icon {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 0.75rem;
+    opacity: 0.98;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* el ícono de recursos tiende a verse más grande visualmente */
+.route-card:nth-child(3) .route-icon {
+    width: 85px;
+    height: 85px;
+}
+
+.route-card:hover .route-icon {
+    transform: translateY(-3px) scale(1.04);
+    opacity: 1;
+}
+/* =================================================
+   ICON ALIGN FIX · CARDS HOME
+   ================================================= */
+
+.path-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+    /* contenedor del icono */
+    .path-card .card-icon {
+        height: 90px; /* 👈 CLAVE */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: var(--space-3);
+    }
+
+        /* imagen dentro del icono */
+        .path-card .card-icon img {
+            max-height: 70px;
+            width: auto;
+            object-fit: contain;
+        }
+
+    /* título */
+    .path-card h3 {
+        margin-top: 0;
+    }
