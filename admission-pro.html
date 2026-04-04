@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nido Canino | Formulario PRO de Admisión</title>
+    <link rel="icon" type="image/png" href="assets/logo/logo-icon.png" />
+    <link rel="shortcut icon" href="assets/logo/logo-icon.png" />
+    <link rel="apple-touch-icon" href="assets/logo/logo-icon.png" />
+    <!-- Fuente -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet" />
+
+    <!-- CSS base -->
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        .admission-hero {
+            position: relative;
+            overflow: hidden;
+            padding-top: var(--space-11);
+            padding-bottom: var(--space-9);
+        }
+
+            .admission-hero::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.13), transparent 26%), radial-gradient(circle at bottom right, rgba(200, 164, 123, 0.08), transparent 30%);
+                pointer-events: none;
+            }
+
+            .admission-hero .container {
+                position: relative;
+                z-index: 1;
+            }
+
+        .admission-hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: var(--space-8);
+            align-items: start;
+        }
+
+        .admission-hero-copy h1 {
+            max-width: 11ch;
+            margin-top: var(--space-3);
+            margin-bottom: var(--space-4);
+            letter-spacing: -0.04em;
+        }
+
+        .admission-hero-copy p {
+            max-width: 64ch;
+            color: var(--text-soft);
+            font-size: var(--text-md);
+        }
+
+        .admission-hero-side {
+            display: grid;
+            gap: var(--space-4);
+        }
+
+        .admission-info-card {
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.14), transparent 40%), var(--bg-card);
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-md);
+        }
+
+            .admission-info-card p {
+                color: var(--text-soft);
+                line-height: var(--line-relaxed);
+                font-size: var(--text-sm);
+            }
+
+        .admission-page-section {
+            padding-bottom: var(--space-10);
+        }
+
+        .admission-form {
+            display: grid;
+            gap: var(--space-6);
+        }
+
+        .admission-section-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+            .admission-section-card::before {
+                content: "";
+                position: absolute;
+                inset: 0 auto auto 0;
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(90deg, var(--accent), transparent 70%);
+                opacity: 0.55;
+            }
+
+        .admission-section-title {
+            margin-bottom: var(--space-4);
+        }
+
+            .admission-section-title p {
+                color: var(--text-soft);
+                font-size: var(--text-sm);
+                line-height: var(--line-relaxed);
+                margin-top: 0.35rem;
+            }
+
+        .admission-grid {
+            display: grid;
+            gap: var(--space-4);
+        }
+
+        .two-cols {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: var(--space-4);
+        }
+
+        .field-block label {
+            display: block;
+            margin-bottom: 0.55rem;
+            color: var(--text-main);
+            font-weight: 700;
+            font-size: var(--text-sm);
+        }
+
+        .field-block input:not([type="checkbox"]),
+        .field-block select,
+        .field-block textarea {
+            width: 100%;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-soft);
+            background: color-mix(in srgb, var(--bg-card) 92%, transparent);
+            color: var(--text-main);
+            padding: 0.9rem 0.95rem;
+            font: inherit;
+        }
+
+        .field-block textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .field-note {
+            margin-top: 0.4rem;
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+        }
+
+        .checkbox-grid {
+            display: grid;
+            gap: 0.75rem;
+            margin-top: 0.25rem;
+        }
+
+        .checkbox-grid-compact {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.9rem 1.2rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            gap: 0.7rem;
+            align-items: center;
+            color: var(--text-soft);
+            font-size: var(--text-sm);
+            line-height: var(--line-relaxed);
+            padding: 0.35rem 0;
+        }
+
+            .checkbox-item input[type="checkbox"] {
+                appearance: auto;
+                -webkit-appearance: checkbox;
+                width: 18px;
+                height: 18px;
+                margin: 0;
+                accent-color: var(--accent);
+                flex-shrink: 0;
+                border: none;
+                background: transparent;
+                box-shadow: none;
+            }
+
+        .admission-actions {
+            display: flex;
+            gap: var(--space-3);
+            flex-wrap: wrap;
+            margin-top: var(--space-2);
+        }
+
+        .admission-helper {
+            padding: 1rem 1rem;
+            border-radius: var(--radius-md);
+            background: rgba(200, 164, 123, 0.08);
+            border: 1px solid rgba(200, 164, 123, 0.14);
+            color: var(--text-soft);
+            font-size: var(--text-sm);
+            line-height: var(--line-relaxed);
+        }
+
+        .download-btn {
+            box-shadow: 0 10px 24px rgba(200, 164, 123, 0.16);
+        }
+
+        .bottom-note {
+            margin-top: var(--space-4);
+            color: var(--text-muted);
+            font-size: var(--text-sm);
+        }
+
+        @media (max-width: 1100px) {
+            .admission-hero-grid,
+            .two-cols {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .admission-hero {
+                padding-top: var(--space-9);
+                padding-bottom: var(--space-8);
+            }
+
+            .admission-hero-copy h1 {
+                max-width: 100%;
+            }
+        }
+    </style>
+
+    <!-- JS base -->
+    <script src="js/config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/guards.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/pets.js"></script>
+    <script src="js/requests.js"></script>
+    <script src="data/resources-data.js"></script>
+    <script src="js/resources-page.js"></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html">
+                <img src="assets/logo/logo-icon.png" alt="Nido Canino" onerror="this.style.display='none';" />
+                <span>Nido Canino</span>
+            </a>
+
+            <nav class="nav-links">
+                <a data-nav href="index.html">Inicio</a>
+                <a data-nav href="services.html">Servicios</a>
+                <a data-nav href="blog.html">Blog</a>
+                <a data-nav href="resources.html">Recursos</a>
+                <a data-nav href="request.html">Solicitar cotización</a>
+                <span id="authSlot"></span>
+                
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="admission-hero">
+            <div class="container admission-hero-grid">
+                <div class="admission-hero-copy">
+                    <span class="badge">Formulario PRO · admisión con criterio</span>
+                    <h1>Formulario PRO de admisión</h1>
+                    <p>
+                        Este formulario permite revisar si el perfil de su perro es compatible con el modelo de convivencia
+                        canina estructurada de Nido Canino. Diligenciarlo no garantiza ingreso automático al servicio.
+                    </p>
+                </div>
+
+                <div class="admission-hero-side">
+                    <article class="admission-info-card">
+                        <p>
+                            Está pensado para casos que requieren una revisión más seria antes de hablar de ingreso,
+                            compatibilidad, evaluación o modalidad de convivencia.
+                        </p>
+                    </article>
+
+                    <article class="admission-info-card">
+                        <p>
+                            Al final podrá descargar un PDF blanco y simple con toda la información diligenciada.
+                            Ese archivo es para revisión del caso, no para compartirlo por WhatsApp.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="admission-page-section">
+            <div class="container">
+                <form id="admissionForm" class="admission-form">
+
+                    <!-- 1. DATOS DEL TUTOR -->
+                    <section class="card admission-section-card">
+                        <div class="admission-section-title">
+                            <span class="badge">Sección 1</span>
+                            <h2>Datos del tutor</h2>
+                            <p>Información básica de contacto y contexto inicial del servicio solicitado.</p>
+                        </div>
+
+                        <div class="admission-grid">
+                            <div class="two-cols">
+                                <div class="field-block">
+                                    <label for="tutor_name">Nombre completo</label>
+                                    <input id="tutor_name" name="tutor_name" type="text" required />
+                                </div>
+
+                                <div class="field-block">
+                                    <label for="tutor_phone">Celular / WhatsApp</label>
+                                    <input id="tutor_phone" name="tutor_phone" type="text" placeholder="3XX XXX XXXX" required />
+                                </div>
+                            </div>
+
+                            <div class="two-cols">
+                                <div class="field-block">
+                                    <label for="tutor_email">Correo electrónico</label>
+                                    <input id="tutor_email" name="tutor_email" type="email" required />
+                                </div>
+
+                                <div class="field-block">
+                                    <label for="tutor_zone">Barrio / zona de residencia</label>
+                                    <input id="tutor_zone" name="tutor_zone" type="text" required />
+                                    <div class="field-note">No es necesario pedir dirección completa en esta etapa.</div>
+                                </div>
+                            </div>
+
+                            <div class="two-cols">
+                                <div class="field-block">
+                                    <label for="how_found">¿Cómo conoció Nido Canino?</label>
+                                    <select id="how_found" name="how_found" required>
+                                        <option value="">Seleccione</option>
+                                        <option>Instagram</option>
+                                        <option>Referido</option>
+                                        <option>Google</option>
+                                        <option>Veterinaria</option>
+                                        <option>Otro</option>
+                                    </select>
+                                </div>
+
+                                <div class="field-block">
+                                    <label for="service_interest">¿Qué servicio le interesa?</label>
+                                    <select id="service_interest" name="service_interest" required>
+                                        <option value="">Seleccione</option>
+                                        <option>Convivencia mensual</option>
+                                        <option>Estancia corta</option>
+                                        <option>Valoración inicial</option>
+                                        <option>Aún no sabe</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="field-block">
+                                <label for="need_resolve">¿Qué necesidad desea resolver?</label>
+                                <textarea id="need_resolve" name="need_resolve" required></textarea>
+                            </div>
+
+                            <div class="field-block">
+                                <label for="required_schedule">Horario en el que requeriría el servicio</label>
+                                <input id="required_schedule" name="required_schedule" type="text" required />
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 2. DATOS BÁSICOS DEL PERRO -->
+                    <section class="card admission-section-card">
+                        <div class="admission-section-title">
+                            <span class="badge">Sección 2</span>
+                            <h2>Datos básicos del perro</h2>
+                            <p>Información general para ubicar perfil, etapa de vida y contexto familiar.</p>
+                        </div>
+
+                        <div class="admission-grid">
+                            <div class="two-cols">
+                                <div class="field-block">
+                                    <label for="dog_name">Nombre del perro</label>
+                                    <input id="dog_name" name="dog_name" type="text" required />
+                                </div>
+
+                                <div class="field-block">
+                                    <label for="dog_age">Edad</label>
+                                    <input id="dog_age" name="dog_age" type="text" required />
+                                </div>
+                            </div>
+
+                            <div class="two-cols">
+                                <div class="field-block">
+                                    <label for="dog_breed">Raza o tipo</label>
+                                    <input id="dog_breed" name="dog_breed" type="text" required />
+                                </div>
+
+                                <div class="field-block">
+                                    <label for="dog_sex">Sexo</label>
+                                    <select id="dog_sex" name="dog_sex" required>
+                                        <option value="">Seleccione</option>
+                                        <option>Macho</option>
+                                        <option>Hembra</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="two-cols">
+                                <div class="field-block">
+                                    <label for="dog_neutered">¿Está esterilizado?</label>
+                                    <select id="dog_neutered" name="dog_neutered" required>
+                                        <option value="">Seleccione</option>
+                                        <option>Sí</option>
+                                        <option>No</option>
+                                        <option>Parcial</option>
+                                    </select>
+                                </div>
+
+                                <div class="field-block">
+                                    <label for="dog_weight">Peso aproximado</label>
+                                    <input id="dog_weight" name="dog_weight" type="text" />
+                                </div>
+                            </div>
+
+                            <div class="field-block">
+                                <label for="time_with_family">Tiempo con la familia</label>
+                                <input id="time_with_family" name="time_with_family" type="text" />
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 3. SALUD -->
+                    <section class="card admission-section-card">
+                        <div class="admission-section-title">
+                            <span class="badge">Sección 3</span>
+                            <h2>Salud</h2>
+                            <p>Información mínima necesaria para entender el estado general del perro y condiciones relevantes.</p>
+                        </div>
+
+                        <div class="admission-grid">
+                            <div class="two-cols">
+                                <div class="field-block">
+                                    <label for="vaccines_up_to_date">¿Tiene vacunas al día?</label>
+                                    <select id="vaccines_up_to_date" name="vaccines_up_to_date" required>
+                                        <option value="">Seleccione</option>
+                                        <option>Sí</option>
+                                        <option>No</option>
+                                        <option>En proceso</option>
+                                    </select>
+                                </div>
+
+                                <div class="field-block">
+                                    <label for="deworming_current">¿Tiene desparasitación vigente?</label>
+                                    <select id="deworming_current" name="deworming_current" required>
+                                        <option value="">Seleccione</option>
+                                        <option>Sí</option>
+                                        <option>No</option>
+                                        <option>No sabe</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="field-block">
+                                <label for="flea_control">¿Tiene control antipulgas vigente?</label>
+                                <select id="flea_control" name="flea_control" required>
+                                    <option value="">Seleccione</option>
+                                    <option>Sí</option>
+                                    <option>No</option>
+                                    <option>No sabe</option>
+                                </select>
+                            </div>
+
+                            <div class="field-block">
+                                <label for="health_condition">¿Tiene enfermedad, tratamiento, dolor o limitación física relevante?</label>
+                                <textarea id="health_condition" name="health_condition" required></textarea>
+                            </div>
+
+                            <div class="field-block">
+                                <label for="medications">Medicamentos actuales, dosis y horarios</label>
+                                <textarea id="medications" name="medications"></textarea>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 4. CONVIVENCIA Y COMPORTAMIENTO -->
+                    <section class="card admission-section-card">
+                        <div class="admission-section-title">
+                            <span class="badge">Sección 4</span>
+                            <h2>Convivencia y comportamiento</h2>
+                            <p>Esta sección ayuda a revisar compatibilidad básica con un modelo de grupo pequeño y estable.</p>
+                        </div>
+
+                        <div class="admission-grid">
+                            <div class="two-cols">
+                                <div class="field-block">
+                                    <label for="stable_with_dogs">¿Ha convivido con otros perros de forma estable?</label>
+                                    <select id="stable_with_dogs" name="stable_with_dogs" required>
+                                        <option value="">Seleccione</option>
+                                        <option>Sí</option>
+                                        <option>No</option>
+                                        <option>Muy poco</option>
+                                    </select>
+                                </div>
+
+                                <div class="field-block">
+                                    <label for="unknown_people">¿Tolera personas desconocidas?</label>
+                                    <select id="unknown_people" name="unknown_people" required>
+                                        <option value="">Seleccione</option>
+                                        <option>Sí</option>
+                                        <option>A veces</option>
+                                        <option>No</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="two-cols">
+                                <div class="field-block">
+                                    <label for="handling_basic">¿Tolera manipulación básica?</label>
+                                    <select id="handling_basic" name="handling_basic" required>
+                                        <option value="">Seleccione</option>
+                                        <option>Sí</option>
+                                        <option>A veces</option>
+                                        <option>No</option>
+                                    </select>
+                                </div>
+
+                                <div class="field-block">
+                                    <label for="previous_daycare">¿Ha asistido antes a guardería, hotel o paseo grupal?</label>
+                                    <select id="previous_daycare" name="previous_daycare" required>
+                                        <option value="">Seleccione</option>
+                                        <option>Sí</option>
+                                        <option>No</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="two-cols">
+                                <div class="field-block">
+                                    <label for="separation_anxiety">¿Presenta ansiedad al separarse del tutor?</label>
+                                    <select id="separation_anxiety" name="separation_anxiety" required>
+                                        <option value="">Seleccione</option>
+                                        <option>Sí</option>
+                                        <option>No</option>
+                                        <option>No sabe</option>
+                                    </select>
+                                </div>
+
+                                <div class="field-block">
+                                    <label for="bite_attempt">¿Ha mordido o intentado morder?</label>
+                                    <select id="bite_attempt" name="bite_attempt" required>
+                                        <option value="">Seleccione</option>
+                                        <option>Sí</option>
+                                        <option>No</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="field-block">
+                                <label>¿Presenta reactividad con perros o personas?</label>
+                                <div class="checkbox-grid checkbox-grid-compact">
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="reactivity[]" value="Con perros" />
+                                        <span>Con perros</span>
+                                    </label>
+
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="reactivity[]" value="Con personas" />
+                                        <span>Con personas</span>
+                                    </label>
+
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="reactivity[]" value="No presenta" />
+                                        <span>No presenta</span>
+                                    </label>
+
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="reactivity[]" value="No sabe" />
+                                        <span>No sabe</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="field-block">
+                                <label>¿Protege comida, cama, juguetes o tutor?</label>
+                                <div class="checkbox-grid checkbox-grid-compact">
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="resource_guarding[]" value="Comida" />
+                                        <span>Comida</span>
+                                    </label>
+
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="resource_guarding[]" value="Juguetes" />
+                                        <span>Juguetes</span>
+                                    </label>
+
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="resource_guarding[]" value="Cama" />
+                                        <span>Cama</span>
+                                    </label>
+
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="resource_guarding[]" value="Tutor" />
+                                        <span>Tutor</span>
+                                    </label>
+
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="resource_guarding[]" value="No" />
+                                        <span>No</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="field-block">
+                                <label for="home_behavior">¿Cómo se comporta dentro de casa?</label>
+                                <textarea id="home_behavior" name="home_behavior" required></textarea>
+                            </div>
+
+                            <div class="field-block">
+                                <label for="outdoor_behavior">¿Cómo se comporta en calle, parque o con estímulos nuevos?</label>
+                                <textarea id="outdoor_behavior" name="outdoor_behavior" required></textarea>
+                            </div>
+
+                            <div class="field-block">
+                                <label for="important_episodes">Explique episodios importantes de agresión, pelea, pánico, huida o destrucción</label>
+                                <textarea id="important_episodes" name="important_episodes"></textarea>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 5. RUTINA -->
+                    <section class="card admission-section-card">
+                        <div class="admission-section-title">
+                            <span class="badge">Sección 5</span>
+                            <h2>Rutina</h2>
+                            <p>Información para entender mejor estructura diaria, regulación y puntos de desajuste.</p>
+                        </div>
+
+                        <div class="admission-grid">
+                            <div class="two-cols">
+                                <div class="field-block">
+                                    <label for="walks_per_day">Cantidad y duración de paseos diarios</label>
+                                    <input id="walks_per_day" name="walks_per_day" type="text" required />
+                                </div>
+
+                                <div class="field-block">
+                                    <label for="time_alone">Tiempo que permanece solo</label>
+                                    <input id="time_alone" name="time_alone" type="text" required />
+                                </div>
+                            </div>
+
+                            <div class="two-cols">
+                                <div class="field-block">
+                                    <label for="food_type">Tipo de alimentación</label>
+                                    <select id="food_type" name="food_type" required>
+                                        <option value="">Seleccione</option>
+                                        <option>Concentrado</option>
+                                        <option>BARF</option>
+                                        <option>Casera</option>
+                                        <option>Mixta</option>
+                                    </select>
+                                </div>
+
+                                <div class="field-block">
+                                    <label for="needs_management">Manejo de necesidades</label>
+                                    <select id="needs_management" name="needs_management" required>
+                                        <option value="">Seleccione</option>
+                                        <option>Paseo</option>
+                                        <option>Tapete</option>
+                                        <option>Pañal</option>
+                                        <option>Mixto</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="field-block">
+                                <label for="attachment_objects">Objetos de apego</label>
+                                <input id="attachment_objects" name="attachment_objects" type="text" />
+                            </div>
+
+                            <div class="field-block">
+                                <label for="commands_known">Comandos básicos que conoce</label>
+                                <textarea id="commands_known" name="commands_known"></textarea>
+                            </div>
+
+                            <div class="field-block">
+                                <label for="known_triggers">Detonantes conocidos o situaciones que lo desregulan</label>
+                                <textarea id="known_triggers" name="known_triggers" required></textarea>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 6. CIERRE -->
+                    <section class="card admission-section-card">
+                        <div class="admission-section-title">
+                            <span class="badge">Sección 6</span>
+                            <h2>Compatibilidad y cierre</h2>
+                            <p>Confirmaciones mínimas para continuar el proceso de forma clara.</p>
+                        </div>
+
+                        <div class="admission-grid">
+                            <div class="field-block">
+                                <label for="understands_model">¿Comprende que Nido Canino trabaja con grupos pequeños, estables y compatibles?</label>
+                                <select id="understands_model" name="understands_model" required>
+                                    <option value="">Seleccione</option>
+                                    <option>Sí</option>
+                                    <option>No</option>
+                                </select>
+                            </div>
+
+                            <div class="field-block">
+                                <label for="understands_no_guarantee">¿Comprende que diligenciar el formulario no garantiza ingreso automático?</label>
+                                <select id="understands_no_guarantee" name="understands_no_guarantee" required>
+                                    <option value="">Seleccione</option>
+                                    <option>Sí</option>
+                                    <option>No</option>
+                                </select>
+                            </div>
+
+                            <div class="field-block">
+                                <label for="accepts_evaluation">¿Está dispuesto a asistir a entrevista o evaluación si se requiere?</label>
+                                <select id="accepts_evaluation" name="accepts_evaluation" required>
+                                    <option value="">Seleccione</option>
+                                    <option>Sí</option>
+                                    <option>No</option>
+                                </select>
+                            </div>
+
+                            <div class="field-block">
+                                <label for="can_send_support">¿Puede enviar carnet y videos si el caso continúa?</label>
+                                <select id="can_send_support" name="can_send_support" required>
+                                    <option value="">Seleccione</option>
+                                    <option>Sí</option>
+                                    <option>No</option>
+                                </select>
+                            </div>
+
+                            <div class="admission-helper">
+                                Este formulario está pensado para revisión del caso. Al final podrá descargar una versión simple en PDF y, si lo desea, compartirla directamente al WhatsApp de Nido Canino para continuar el proceso.
+                            </div>
+
+                            <div class="admission-actions">
+                                <button type="button" class="btn btn-primary download-btn" id="downloadPdfBtn">
+                                    Generar y descargar PDF
+                                </button>
+
+                                <button type="button" class="btn btn-secondary" id="sendWhatsAppBtn">
+                                    Enviar formulario por WhatsApp
+                                </button>
+
+                                <button type="reset" class="btn btn-secondary">
+                                    Limpiar formulario
+                                </button>
+                            </div>
+
+                            <p class="bottom-note">
+                                Importante: puede descargar el PDF para conservarlo y también compartir el formulario diligenciado por WhatsApp para que Nido Canino lo revise.
+                            </p>
+                        </div>
+                    </section>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Nido Canino · convivencia canina estructurada y visitas para gatos en Bogotá.</p>
+        </div>
+    </footer>
+    <script>
+        const admissionFields = [
+            ["Nombre completo", "tutor_name"],
+            ["Celular / WhatsApp", "tutor_phone"],
+            ["Correo electrónico", "tutor_email"],
+            ["Barrio / zona de residencia", "tutor_zone"],
+            ["¿Cómo conoció Nido Canino?", "how_found"],
+            ["¿Qué servicio le interesa?", "service_interest"],
+            ["¿Qué necesidad desea resolver?", "need_resolve"],
+            ["Horario en el que requeriría el servicio", "required_schedule"],
+
+            ["Nombre del perro", "dog_name"],
+            ["Edad", "dog_age"],
+            ["Raza o tipo", "dog_breed"],
+            ["Sexo", "dog_sex"],
+            ["¿Está esterilizado?", "dog_neutered"],
+            ["Peso aproximado", "dog_weight"],
+            ["Tiempo con la familia", "time_with_family"],
+
+            ["¿Tiene vacunas al día?", "vaccines_up_to_date"],
+            ["¿Tiene desparasitación vigente?", "deworming_current"],
+            ["¿Tiene control antipulgas vigente?", "flea_control"],
+            ["¿Tiene enfermedad, tratamiento, dolor o limitación física relevante?", "health_condition"],
+            ["Medicamentos actuales, dosis y horarios", "medications"],
+
+            ["¿Ha convivido con otros perros de forma estable?", "stable_with_dogs"],
+            ["¿Tolera personas desconocidas?", "unknown_people"],
+            ["¿Tolera manipulación básica?", "handling_basic"],
+            ["¿Ha asistido antes a guardería, hotel o paseo grupal?", "previous_daycare"],
+            ["¿Presenta ansiedad al separarse del tutor?", "separation_anxiety"],
+            ["¿Ha mordido o intentado morder?", "bite_attempt"],
+            ["¿Cómo se comporta dentro de casa?", "home_behavior"],
+            ["¿Cómo se comporta en calle, parque o con estímulos nuevos?", "outdoor_behavior"],
+            ["Explique episodios importantes de agresión, pelea, pánico, huida o destrucción", "important_episodes"],
+
+            ["Cantidad y duración de paseos diarios", "walks_per_day"],
+            ["Tiempo que permanece solo", "time_alone"],
+            ["Tipo de alimentación", "food_type"],
+            ["Manejo de necesidades", "needs_management"],
+            ["Objetos de apego", "attachment_objects"],
+            ["Comandos básicos que conoce", "commands_known"],
+            ["Detonantes conocidos o situaciones que lo desregulan", "known_triggers"],
+
+            ["¿Comprende que Nido Canino trabaja con grupos pequeños, estables y compatibles?", "understands_model"],
+            ["¿Comprende que diligenciar el formulario no garantiza ingreso automático?", "understands_no_guarantee"],
+            ["¿Está dispuesto a asistir a entrevista o evaluación si se requiere?", "accepts_evaluation"],
+            ["¿Puede enviar carnet y videos si el caso continúa?", "can_send_support"]
+        ];
+
+        function getCheckboxValues(name) {
+            return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
+                .map((el) => el.value)
+                .join(", ");
+        }
+
+        function buildPdfLines() {
+            const lines = [];
+            lines.push("NIDO CANINO");
+            lines.push("Formulario PRO de Admisión");
+            lines.push("");
+
+            admissionFields.forEach(([label, id]) => {
+                const el = document.getElementById(id);
+                const value = el ? el.value.trim() : "";
+                lines.push(`${label}: ${value || "No diligenciado"}`);
+                lines.push("");
+            });
+
+            lines.push(`¿Presenta reactividad con perros o personas?: ${getCheckboxValues("reactivity[]") || "No diligenciado"}`);
+            lines.push("");
+            lines.push(`¿Protege comida, cama, juguetes o tutor?: ${getCheckboxValues("resource_guarding[]") || "No diligenciado"}`);
+            lines.push("");
+
+            return lines;
+        }
+
+        function downloadAdmissionPdf() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({
+                orientation: "portrait",
+                unit: "pt",
+                format: "a4"
+            });
+
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const pageHeight = doc.internal.pageSize.getHeight();
+            const margin = 40;
+            let y = 50;
+
+            doc.setFillColor(255, 255, 255);
+            doc.rect(0, 0, pageWidth, pageHeight, "F");
+
+            const logoImg = new Image();
+            logoImg.src = "assets/logo/logo-icon.png";
+
+            const finishPdf = () => {
+                doc.setTextColor(20, 20, 20);
+
+                if (logoImg.complete && logoImg.naturalWidth > 0) {
+                    try {
+                        doc.addImage(logoImg, "PNG", margin, y - 5, 28, 28);
+                    } catch (e) { }
+                }
+
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(16);
+                doc.text("NIDO CANINO", margin + 38, y + 12);
+                y += 32;
+
+                doc.setFontSize(12);
+                doc.text("Formulario PRO de Admisión", margin, y);
+                y += 22;
+
+                doc.setFont("helvetica", "normal");
+                doc.setFontSize(10);
+
+                const lines = buildPdfLines();
+
+                lines.forEach((line) => {
+                    const wrapped = doc.splitTextToSize(line, pageWidth - margin * 2);
+                    wrapped.forEach((row) => {
+                        if (y > pageHeight - 45) {
+                            doc.addPage();
+                            doc.setFillColor(255, 255, 255);
+                            doc.rect(0, 0, pageWidth, pageHeight, "F");
+                            doc.setTextColor(20, 20, 20);
+                            doc.setFont("helvetica", "normal");
+                            doc.setFontSize(10);
+                            y = 50;
+                        }
+                        doc.text(row, margin, y);
+                        y += 14;
+                    });
+                });
+
+                const dogName = document.getElementById("dog_name")?.value.trim() || "Perro";
+                const safeName = dogName.replace(/\s+/g, "_");
+                doc.save(`Admision_NidoCanino_${safeName}.pdf`);
+            };
+
+            if (!logoImg.complete) {
+                logoImg.onload = finishPdf;
+                logoImg.onerror = finishPdf;
+            } else {
+                finishPdf();
+            }
+        }
+
+        function buildWhatsAppAdmissionMessage() {
+            const tutorName = document.getElementById("tutor_name")?.value.trim() || "No indicado";
+            const dogName = document.getElementById("dog_name")?.value.trim() || "No indicado";
+            const serviceInterest = document.getElementById("service_interest")?.value.trim() || "No indicado";
+
+            return [
+                "Hola, este es el formulario PRO de admisión diligenciado para revisión.",
+                "",
+                `Tutor: ${tutorName}`,
+                `Perro: ${dogName}`,
+                `Servicio de interés: ${serviceInterest}`,
+                "",
+                "Adjunto el PDF para que puedan analizar el caso y decirme el siguiente paso."
+            ].join("\n");
+        }
+
+        function sendAdmissionToWhatsApp() {
+            const phone = "573124611816";
+            const message = buildWhatsAppAdmissionMessage();
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(url, "_blank");
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const downloadBtn = document.getElementById("downloadPdfBtn");
+            const whatsappBtn = document.getElementById("sendWhatsAppBtn");
+
+            if (downloadBtn) {
+                downloadBtn.addEventListener("click", downloadAdmissionPdf);
+            }
+
+            if (whatsappBtn) {
+                whatsappBtn.addEventListener("click", sendAdmissionToWhatsApp);
+            }
+        });
+    </script>
+
+</body>
+</html>
