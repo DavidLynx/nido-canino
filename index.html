@@ -1,478 +1,472 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Guardería Canina en Bogotá | Cuidado Canino Premium y Cuidado Felino a Domicilio | Nido Canino</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta name="description" content="Guardería canina en Bogotá con enfoque en grupos pequeños, convivencia estructurada y bienestar real. También ofrecemos cuidado felino a domicilio en Bogotá. Cupos limitados." />
+<title>Guardería canina en Bogotá | Cuidado canino premium y cuidado felino a domicilio | Nido Canino</title>
+<meta name="description" content="Guardería canina en Bogotá con grupos pequeños, convivencia estructurada y bienestar real. Nido Canino también ofrece cuidado felino a domicilio en Bogotá. Cupos limitados." />
+<meta name="robots" content="index, follow" />
+<meta name="author" content="Nido Canino" />
+<link rel="canonical" href="https://nido-canino.vercel.app/" />
 
-    <meta name="keywords" content="guardería canina Bogotá, cuidado de perros Bogotá, hotel canino Bogotá, guardería para perros Bogotá, cuidado felino a domicilio Bogotá, cuidado de gatos Bogotá, guardería canina premium Bogotá" />
+<!-- Open Graph -->
+<meta property="og:locale" content="es_CO" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Nido Canino" />
+<meta property="og:title" content="Guardería canina en Bogotá | Nido Canino" />
+<meta property="og:description" content="Cuidado canino premium con grupos pequeños, convivencia estructurada y cuidado felino a domicilio en Bogotá." />
+<meta property="og:url" content="https://nido-canino.vercel.app/" />
+<meta property="og:image" content="https://nido-canino.vercel.app/assets/logo/logo-full.png" />
+<meta property="og:image:alt" content="Nido Canino, guardería canina y cuidado felino a domicilio en Bogotá" />
 
-    <meta name="robots" content="index, follow" />
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Guardería canina en Bogotá | Nido Canino" />
+<meta name="twitter:description" content="Convivencia canina estructurada y cuidado felino a domicilio en Bogotá." />
+<meta name="twitter:image" content="https://nido-canino.vercel.app/assets/logo/logo-full.png" />
 
-    <meta name="author" content="Nido Canino" />
+<!-- SEO local -->
+<meta name="geo.region" content="CO-DC" />
+<meta name="geo.placename" content="Bogotá" />
+<meta name="geo.position" content="4.7110;-74.0721" />
+<meta name="ICBM" content="4.7110, -74.0721" />
 
-    <!-- Open Graph (para compartir en WhatsApp y redes) -->
-    <meta property="og:title" content="Guardería Canina en Bogotá | Nido Canino" />
-    <meta property="og:description" content="Cuidado canino premium con máximo 5 perros por grupo. También cuidado felino a domicilio en Bogotá." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://nido-canino.vercel.app/" />
-    <meta property="og:image" content="https://nido-canino.vercel.app/assets/logo/logo-full.png" />
+<link rel="icon" type="image/png" href="assets/logo/logo-icon.png" />
+<link rel="icon" type="image/x-icon" href="assets/logo/nidoico.ico" />
+<link rel="shortcut icon" href="assets/logo/logo-icon.png" />
+<link rel="shortcut icon" href="assets/logo/nidoico.ico" />
+<link rel="apple-touch-icon" href="assets/logo/logo-icon.png" />
 
-    <!-- SEO técnico local -->
-    <meta name="geo.region" content="CO-DC" />
-    <meta name="geo.placename" content="Bogotá" />
-    <meta name="geo.position" content="4.7110;-74.0721" />
-    <meta name="ICBM" content="4.7110, -74.0721" />
-    <link rel="icon" type="image/png" href="assets/logo/logo-icon.png" />
-    <link rel="shortcut icon" href="assets/logo/logo-icon.png" />
-    <link rel="apple-touch-icon" href="assets/logo/logo-icon.png" />
-    <!-- Fuente -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet" />
+<!-- Estilos específicos de home -->
+<style>
+    .home-hero {
+        position: relative;
+        overflow: hidden;
+        padding-top: var(--space-11);
+        padding-bottom: var(--space-10);
+    }
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/variables.css" />
-    <link rel="stylesheet" href="css/themes.css" />
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/layout.css" />
-    <link rel="stylesheet" href="css/components.css" />
-    <link rel="stylesheet" href="css/pages.css" />
+        .home-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.13), transparent 26%), radial-gradient(circle at bottom right, rgba(200, 164, 123, 0.08), transparent 30%);
+            pointer-events: none;
+        }
 
-    <!-- Estilos específicos de home -->
-    <style>
-        .home-hero {
+        .home-hero .container {
             position: relative;
-            overflow: hidden;
-            padding-top: var(--space-11);
-            padding-bottom: var(--space-10);
+            z-index: 1;
         }
 
-            .home-hero::before {
-                content: "";
-                position: absolute;
-                inset: 0;
-                background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.13), transparent 26%), radial-gradient(circle at bottom right, rgba(200, 164, 123, 0.08), transparent 30%);
-                pointer-events: none;
+    .home-hero-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: var(--space-8);
+        align-items: start;
+    }
+
+    .home-hero-copy h1 {
+        max-width: 12ch;
+        margin-top: var(--space-3);
+        margin-bottom: var(--space-4);
+        letter-spacing: -0.04em;
+    }
+
+    .home-hero-copy p {
+        max-width: 60ch;
+        color: var(--text-soft);
+        font-size: var(--text-md);
+    }
+
+    .hero-action-row {
+        margin-top: var(--space-5);
+        display: flex;
+        gap: var(--space-3);
+        flex-wrap: wrap;
+    }
+
+    .hero-helper {
+        margin-top: var(--space-3);
+        color: var(--text-soft);
+        font-size: var(--text-sm);
+    }
+
+        .hero-helper a {
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+            .hero-helper a:hover {
+                text-decoration: underline;
             }
 
-            .home-hero .container {
-                position: relative;
-                z-index: 1;
-            }
+    .hero-kpis {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--space-4);
+        margin-top: var(--space-7);
+    }
 
-        .home-hero-grid {
-            display: grid;
-            grid-template-columns: 1.05fr 0.95fr;
-            gap: var(--space-8);
-            align-items: start;
-        }
-
-        .home-hero-copy h1 {
-            max-width: 12ch;
-            margin-top: var(--space-3);
-            margin-bottom: var(--space-4);
-            letter-spacing: -0.04em;
-        }
-
-        .home-hero-copy p {
-            max-width: 60ch;
-            color: var(--text-soft);
-            font-size: var(--text-md);
-        }
-
-        .hero-action-row {
-            margin-top: var(--space-5);
+        .hero-kpis .card {
+            min-height: 110px;
             display: flex;
-            gap: var(--space-3);
-            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        .hero-helper {
-            margin-top: var(--space-3);
-            color: var(--text-soft);
-            font-size: var(--text-sm);
-        }
-
-            .hero-helper a {
-                color: var(--accent);
-                font-weight: 600;
-                text-decoration: none;
-            }
-
-                .hero-helper a:hover {
-                    text-decoration: underline;
-                }
-
-        .hero-kpis {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: var(--space-4);
-            margin-top: var(--space-7);
-        }
-
-            .hero-kpis .card {
-                min-height: 110px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-            }
-
-            .hero-kpis strong {
-                display: block;
-                font-size: clamp(1.35rem, 2.4vw, 1.85rem);
-                margin-bottom: 0.25rem;
-                letter-spacing: -0.03em;
-            }
-
-            .hero-kpis span {
-                color: var(--text-soft);
-                font-size: var(--text-sm);
-                line-height: 1.5;
-            }
-
-        .membership-title {
-            font-size: clamp(1.2rem, 1.55vw, 1.45rem);
-            line-height: 1.08;
+        .hero-kpis strong {
+            display: block;
+            font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+            margin-bottom: 0.25rem;
             letter-spacing: -0.03em;
         }
 
-        .home-hero-panel {
-            display: grid;
-            gap: var(--space-4);
-            align-content: start;
+        .hero-kpis span {
+            color: var(--text-soft);
+            font-size: var(--text-sm);
+            line-height: 1.5;
         }
 
-        .hero-logo-standalone {
-            display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
-            padding: 0.15rem 0 0.35rem;
+    .membership-title {
+        font-size: clamp(1.2rem, 1.55vw, 1.45rem);
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+    }
+
+    .home-hero-panel {
+        display: grid;
+        gap: var(--space-4);
+        align-content: start;
+    }
+
+    .hero-logo-standalone {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 0.15rem 0 0.35rem;
+    }
+
+        .hero-logo-standalone img {
+            width: min(100%, 470px);
+            max-height: 300px;
+            height: auto;
+            object-fit: contain;
+            display: block;
         }
 
-            .hero-logo-standalone img {
-                width: min(100%, 470px);
-                max-height: 300px;
-                height: auto;
-                object-fit: contain;
-                display: block;
-            }
+    .hero-service-panel {
+        padding: var(--space-5);
+        border-radius: var(--radius-xl);
+        background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.10), transparent 40%), var(--bg-card);
+        border: 1px solid var(--border-soft);
+        box-shadow: var(--shadow-md);
+    }
 
-        .hero-service-panel {
-            padding: var(--space-5);
-            border-radius: var(--radius-xl);
-            background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.10), transparent 40%), var(--bg-card);
+    .hero-service-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-4);
+    }
+
+    .hero-service-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1rem 0.9rem;
+        border-radius: var(--radius-xl);
+        background: color-mix(in srgb, var(--bg-soft) 82%, transparent);
+        border: 1px solid var(--border-soft);
+        text-decoration: none;
+        transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+        min-height: 185px;
+    }
+
+        .hero-service-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(200, 164, 123, 0.28);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+        }
+
+        .hero-service-card img {
+            width: 93px;
+            height: 93px;
+            object-fit: contain;
+            margin-bottom: 0.75rem;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            flex-shrink: 0;
+        }
+
+        .hero-service-card strong {
+            display: block;
+            color: var(--text-main);
+            font-size: 0.98rem;
+            line-height: 1.25;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero-service-card p {
+            color: var(--text-soft);
+            font-size: var(--text-sm);
+            line-height: 1.45;
+            max-width: 18ch;
+            margin: 0;
+        }
+
+    .hero-note-card {
+        padding: 1rem 1.1rem;
+        border-radius: var(--radius-xl);
+        background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.08), transparent 40%), var(--bg-card);
+        border: 1px solid var(--border-soft);
+        box-shadow: var(--shadow-md);
+    }
+
+        .hero-note-card p {
+            color: var(--text-soft);
+            line-height: var(--line-relaxed);
+            margin: 0;
+            text-align: center;
+        }
+
+        .hero-note-card a {
+            color: var(--accent);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+    .hero-bottom-notes {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-5);
+        margin-top: var(--space-6);
+    }
+
+    .hero-bottom-card {
+        padding: 1.15rem 1.2rem;
+        border-radius: var(--radius-xl);
+        background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.08), transparent 40%), var(--bg-card);
+        border: 1px solid var(--border-soft);
+        box-shadow: var(--shadow-sm);
+    }
+
+        .hero-bottom-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+
+        .hero-bottom-card p {
+            margin: 0;
+            color: var(--text-soft);
+            line-height: var(--line-relaxed);
+            font-size: var(--text-sm);
+        }
+
+    .section-grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--space-5);
+        margin-top: var(--space-6);
+    }
+
+    .path-card,
+    .space-card,
+    .value-card {
+        min-height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .path-card::before,
+        .space-card::before,
+        .value-card::before {
+            content: "";
+            position: absolute;
+            inset: 0 auto auto 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent), transparent 70%);
+            opacity: 0.55;
+        }
+
+        .path-card p,
+        .space-card p,
+        .value-card p {
+            color: var(--text-soft);
+            line-height: var(--line-relaxed);
+            font-size: var(--text-sm);
+        }
+
+        .path-card h3,
+        .space-card h3,
+        .value-card h3 {
+            margin-bottom: var(--space-2);
+        }
+
+        .space-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
             border: 1px solid var(--border-soft);
-            box-shadow: var(--shadow-md);
+            margin-bottom: var(--space-4);
+            background: var(--bg-soft);
+        }
+
+    .process-grid {
+        display: grid;
+        gap: var(--space-4);
+        margin-top: var(--space-6);
+    }
+
+    .process-step {
+        display: grid;
+        grid-template-columns: 60px 1fr;
+        gap: var(--space-4);
+        align-items: start;
+    }
+
+    .process-step-number {
+        width: 60px;
+        height: 60px;
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        background: var(--accent-soft);
+        border: 1px solid rgba(200, 164, 123, 0.16);
+        color: var(--accent);
+        font-weight: 800;
+        font-size: var(--text-md);
+    }
+
+    .process-step .card p {
+        color: var(--text-soft);
+        font-size: var(--text-sm);
+        line-height: var(--line-relaxed);
+    }
+
+    .featured-read-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-5);
+        margin-top: var(--space-6);
+    }
+
+    .featured-read-card {
+        min-height: 100%;
+    }
+
+        .featured-read-card p {
+            color: var(--text-soft);
+            line-height: var(--line-relaxed);
+            font-size: var(--text-sm);
+        }
+
+    .section-cta {
+        padding: var(--space-10) var(--space-6);
+        border-radius: var(--radius-xl);
+        background: radial-gradient(circle at top center, rgba(200, 164, 123, 0.14), transparent 35%), var(--bg-card);
+        border: 1px solid var(--border-soft);
+        box-shadow: var(--shadow-md);
+        text-align: center;
+    }
+
+        .section-cta p {
+            max-width: 70ch;
+            margin: 0 auto;
+            color: var(--text-soft);
+        }
+
+    @media (max-width: 1100px) {
+        .home-hero-grid,
+        .section-grid-3,
+        .featured-read-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .hero-kpis,
+        .hero-bottom-notes {
+            grid-template-columns: 1fr;
         }
 
         .hero-service-grid {
-            display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: var(--space-4);
         }
 
-        .hero-service-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 1rem 0.9rem;
-            border-radius: var(--radius-xl);
-            background: color-mix(in srgb, var(--bg-soft) 82%, transparent);
-            border: 1px solid var(--border-soft);
-            text-decoration: none;
-            transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
-            min-height: 185px;
+        .hero-logo-standalone {
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 760px) {
+        .home-hero {
+            padding-top: var(--space-9);
+            padding-bottom: var(--space-8);
         }
 
-            .hero-service-card:hover {
-                transform: translateY(-3px);
-                border-color: rgba(200, 164, 123, 0.28);
-                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
-            }
-
-            .hero-service-card img {
-                width: 93px;
-                height: 93px;
-                object-fit: contain;
-                margin-bottom: 0.75rem;
-                background: transparent;
-                border: none;
-                border-radius: 0;
-                flex-shrink: 0;
-            }
-
-            .hero-service-card strong {
-                display: block;
-                color: var(--text-main);
-                font-size: 0.98rem;
-                line-height: 1.25;
-                margin-bottom: 0.3rem;
-            }
-
-            .hero-service-card p {
-                color: var(--text-soft);
-                font-size: var(--text-sm);
-                line-height: 1.45;
-                max-width: 18ch;
-                margin: 0;
-            }
-
-        .hero-note-card {
-            padding: 1rem 1.1rem;
-            border-radius: var(--radius-xl);
-            background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.08), transparent 40%), var(--bg-card);
-            border: 1px solid var(--border-soft);
-            box-shadow: var(--shadow-md);
-        }
-
-            .hero-note-card p {
-                color: var(--text-soft);
-                line-height: var(--line-relaxed);
-                margin: 0;
-                text-align: center;
-            }
-
-            .hero-note-card a {
-                color: var(--accent);
-                font-weight: 700;
-                text-decoration: none;
-            }
-
-        .hero-bottom-notes {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: var(--space-5);
-            margin-top: var(--space-6);
-        }
-
-        .hero-bottom-card {
-            padding: 1.15rem 1.2rem;
-            border-radius: var(--radius-xl);
-            background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.08), transparent 40%), var(--bg-card);
-            border: 1px solid var(--border-soft);
-            box-shadow: var(--shadow-sm);
-        }
-
-            .hero-bottom-card h3 {
-                margin-bottom: 0.5rem;
-                color: var(--text-main);
-                font-size: 1rem;
-            }
-
-            .hero-bottom-card p {
-                margin: 0;
-                color: var(--text-soft);
-                line-height: var(--line-relaxed);
-                font-size: var(--text-sm);
-            }
-
-        .section-grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: var(--space-5);
-            margin-top: var(--space-6);
-        }
-
-        .path-card,
-        .space-card,
-        .value-card {
-            min-height: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
-            .path-card::before,
-            .space-card::before,
-            .value-card::before {
-                content: "";
-                position: absolute;
-                inset: 0 auto auto 0;
-                width: 100%;
-                height: 1px;
-                background: linear-gradient(90deg, var(--accent), transparent 70%);
-                opacity: 0.55;
-            }
-
-            .path-card p,
-            .space-card p,
-            .value-card p {
-                color: var(--text-soft);
-                line-height: var(--line-relaxed);
-                font-size: var(--text-sm);
-            }
-
-            .path-card h3,
-            .space-card h3,
-            .value-card h3 {
-                margin-bottom: var(--space-2);
-            }
-
-            .space-card img {
-                width: 100%;
-                height: 220px;
-                object-fit: cover;
-                border-radius: var(--radius-lg);
-                border: 1px solid var(--border-soft);
-                margin-bottom: var(--space-4);
-                background: var(--bg-soft);
-            }
-
-        .process-grid {
-            display: grid;
-            gap: var(--space-4);
-            margin-top: var(--space-6);
+        .home-hero-copy h1 {
+            max-width: 100%;
         }
 
         .process-step {
-            display: grid;
-            grid-template-columns: 60px 1fr;
-            gap: var(--space-4);
-            align-items: start;
+            grid-template-columns: 48px 1fr;
         }
 
         .process-step-number {
-            width: 60px;
-            height: 60px;
-            border-radius: 18px;
-            display: grid;
-            place-items: center;
-            background: var(--accent-soft);
-            border: 1px solid rgba(200, 164, 123, 0.16);
-            color: var(--accent);
-            font-weight: 800;
-            font-size: var(--text-md);
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
         }
 
-        .process-step .card p {
-            color: var(--text-soft);
-            font-size: var(--text-sm);
-            line-height: var(--line-relaxed);
+        .space-card img {
+            height: 190px;
         }
 
-        .featured-read-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: var(--space-5);
-            margin-top: var(--space-6);
+        .hero-logo-standalone {
+            justify-content: center;
         }
 
-        .featured-read-card {
-            min-height: 100%;
+            .hero-logo-standalone img {
+                width: min(100%, 240px);
+                max-height: 165px;
+            }
+
+        .hero-service-grid {
+            grid-template-columns: 1fr;
         }
 
-            .featured-read-card p {
-                color: var(--text-soft);
-                line-height: var(--line-relaxed);
-                font-size: var(--text-sm);
-            }
-
-        .section-cta {
-            padding: var(--space-10) var(--space-6);
-            border-radius: var(--radius-xl);
-            background: radial-gradient(circle at top center, rgba(200, 164, 123, 0.14), transparent 35%), var(--bg-card);
-            border: 1px solid var(--border-soft);
-            box-shadow: var(--shadow-md);
-            text-align: center;
+        .hero-service-card {
+            min-height: auto;
         }
 
-            .section-cta p {
-                max-width: 70ch;
-                margin: 0 auto;
-                color: var(--text-soft);
+            .hero-service-card img {
+                width: 84px;
+                height: 84px;
             }
+    }
+</style>
 
-        @media (max-width: 1100px) {
-            .home-hero-grid,
-            .section-grid-3,
-            .featured-read-grid {
-                grid-template-columns: 1fr;
-            }
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-            .hero-kpis,
-            .hero-bottom-notes {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-service-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .hero-logo-standalone {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 760px) {
-            .home-hero {
-                padding-top: var(--space-9);
-                padding-bottom: var(--space-8);
-            }
-
-            .home-hero-copy h1 {
-                max-width: 100%;
-            }
-
-            .process-step {
-                grid-template-columns: 48px 1fr;
-            }
-
-            .process-step-number {
-                width: 48px;
-                height: 48px;
-                border-radius: 14px;
-            }
-
-            .space-card img {
-                height: 190px;
-            }
-
-            .hero-logo-standalone {
-                justify-content: center;
-            }
-
-                .hero-logo-standalone img {
-                    width: min(100%, 240px);
-                    max-height: 165px;
-                }
-
-            .hero-service-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-service-card {
-                min-height: auto;
-            }
-
-                .hero-service-card img {
-                    width: 84px;
-                    height: 84px;
-                }
-        }
-    </style>
-
-    <!-- Supabase -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <!-- JS -->
-    <script src="js/config.js"></script>
-    <script src="js/supabase-client.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/ui.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/guards.js"></script>
-    <script src="js/profile.js"></script>
-    <script src="js/pets.js"></script>
-    <script src="js/requests.js"></script>
-    <script src="data/resources-data.js"></script>
-    <script src="js/resources-page.js"></script>
-    <script src="js/main.js" defer></script>
+<!-- JS -->
+<script src="js/config.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/guards.js"></script>
+<script src="js/profile.js"></script>
+<script src="js/pets.js"></script>
+<script src="js/requests.js"></script>
+<script src="data/resources-data.js"></script>
+<script src="js/resources-page.js"></script>
+<script src="js/main.js" defer></script>
 </head>
 <body>
     <!-- Header -->
@@ -490,7 +484,7 @@
                 <a data-nav href="resources.html">Recursos</a>
                 <a data-nav href="request.html">Solicitar cotización</a>
                 <span id="authSlot"></span>
-                
+
             </nav>
         </div>
     </header>
@@ -602,251 +596,251 @@
             </div>
         </section>
 
-            <!-- PROPUESTA DE VALOR -->
-            <section class="section">
-                <div class="container">
-                    <span class="badge">La propuesta</span>
-                    <h2 class="section-title">Un modelo pensado para pocos perros y decisiones responsables</h2>
-                    <p class="section-text">
-                        Nido Canino no está diseñado para operar desde el volumen ni desde la improvisación.
-                        Su propuesta parte de una idea más precisa: ofrecer un entorno donde la convivencia
-                        pueda observarse, regularse y sostenerse con criterio, estructura, compatibilidad y
-                        una admisión que proteja al perro, al grupo y al servicio.
-                    </p>
+        <!-- PROPUESTA DE VALOR -->
+        <section class="section">
+            <div class="container">
+                <span class="badge">La propuesta</span>
+                <h2 class="section-title">Un modelo pensado para pocos perros y decisiones responsables</h2>
+                <p class="section-text">
+                    Nido Canino no está diseñado para operar desde el volumen ni desde la improvisación.
+                    Su propuesta parte de una idea más precisa: ofrecer un entorno donde la convivencia
+                    pueda observarse, regularse y sostenerse con criterio, estructura, compatibilidad y
+                    una admisión que proteja al perro, al grupo y al servicio.
+                </p>
 
-                    <div class="section-grid-3">
-                        <article class="card value-card stack">
-                            <h3>Menos saturación, más estabilidad</h3>
-                            <p>
-                                No todo perro se beneficia de entornos abiertos, ruidosos o de alta rotación.
-                                Un grupo pequeño permite reducir sobreestimulación y sostener una convivencia más regulada.
-                            </p>
-                        </article>
-
-                        <article class="card value-card stack">
-                            <h3>Observación real del comportamiento</h3>
-                            <p>
-                                Trabajar con pocos perros y con una dinámica más ordenada facilita leer mejor
-                                la energía, la adaptación, las pausas y las necesidades reales de cada caso.
-                            </p>
-                        </article>
-
-                        <article class="card value-card stack">
-                            <h3>Proceso claro y admisión con criterio</h3>
-                            <p>
-                                El servicio no se confirma automáticamente. Cada solicitud se revisa según perfil,
-                                necesidad, compatibilidad y viabilidad operativa, para proteger al perro, al grupo y al proceso.
-                            </p>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 3 RUTAS PRINCIPALES -->
-            <section class="section">
-                <div class="container">
-                    <span class="badge">Siguiente paso</span>
-                    <h2 class="section-title">Tres rutas claras para avanzar sin desordenar el proceso</h2>
-                    <p class="section-text">
-                        La web debe ayudarle a llegar al siguiente paso correcto según su caso.
-                        Aquí puede cotizar, pedir una revisión seria de compatibilidad o activar la ruta adecuada
-                        para cuidado felino sin mezclar todo en el mismo punto de contacto.
-                    </p>
-
-                    <div class="section-grid-3">
-                        <article class="card path-card stack">
-                            <div class="card-icon">
-                                <img src="assets/icons/icon-services.png" alt="Cotización rápida" />
-                            </div>
-                            <h3>Cotización rápida</h3>
-                            <p>
-                                Ruta inicial para convivencia canina, estancias cortas, noches, cuidado felino
-                                u orientación comercial cuando todavía necesita una respuesta breve y ordenada.
-                            </p>
-                            <a class="btn btn-secondary" href="request.html">Solicitar cotización</a>
-                        </article>
-
-                        <article class="card path-card stack route-card">
-                            <div class="card-icon">
-                                <img src="assets/icons/icon-blog.png" alt="Evaluar compatibilidad" />
-                            </div>
-                            <h3>Evaluar compatibilidad</h3>
-                            <p>
-                                Ruta recomendada cuando desea una revisión más seria del perfil del perro antes
-                                de hablar de ingreso, cupo o modalidad de convivencia.
-                            </p>
-                            <a class="btn btn-secondary" href="admission-pro.html">Ir al Formulario PRO</a>
-                        </article>
-
-                        <article class="card path-card stack route-card">
-                            <img src="assets/icons/icon-resources.png" alt="Cuidado felino a domicilio" class="route-icon" />
-                            <h3>Cuidado felino a domicilio</h3>
-                            <p>
-                                Servicio pensado para gatos que se benefician de permanecer en casa, con continuidad
-                                de rutina y menor estrés frente a cambios de entorno.
-                            </p>
-                            <a class="btn btn-secondary" href="request.html">Solicitar visita felina</a>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ESPACIOS -->
-            <section class="section">
-                <div class="container">
-                    <span class="badge">El entorno</span>
-                    <h2 class="section-title">Un espacio que también hace parte del cuidado</h2>
-                    <p class="section-text">
-                        El entorno no es un detalle secundario. También influye en el ritmo, la regulación
-                        y la experiencia del perro durante la convivencia. Por eso el espacio debe acompañar
-                        el tipo de manejo que se promete.
-                    </p>
-
-                    <div class="section-grid-3">
-                        <article class="card space-card">
-                            <img src="assets/photos/space-rest.png" alt="Zona de descanso" onerror="this.style.display='none';" />
-                            <h3>Descanso</h3>
-                            <p>
-                                Espacios tranquilos, limpios y visualmente organizados ayudan a reducir
-                                activación innecesaria y favorecen una convivencia con más pausas y menos saturación.
-                            </p>
-                        </article>
-
-                        <article class="card space-card">
-                            <img src="assets/photos/space-food.png" alt="Rutina de comida" onerror="this.style.display='none';" />
-                            <h3>Rutina y orden</h3>
-                            <p>
-                                La calidad del cuidado también se refleja en lo básico: alimentación,
-                                tiempos, organización y claridad sobre lo que necesita cada perro dentro del grupo.
-                            </p>
-                        </article>
-
-                        <article class="card space-card">
-                            <img src="assets/photos/space-play.png" alt="Zona de convivencia" onerror="this.style.display='none';" />
-                            <h3>Convivencia regulada</h3>
-                            <p>
-                                El objetivo no es llenar cada minuto de actividad, sino sostener un entorno
-                                donde la interacción pueda observarse, acompañarse y mantenerse bajo control.
-                            </p>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <!-- PROCESO -->
-            <section class="section">
-                <div class="container">
-                    <span class="badge">Proceso</span>
-                    <h2 class="section-title">Cómo funciona Nido Canino</h2>
-                    <p class="section-text">
-                        El proceso está diseñado para orientar mejor al tutor, separar rutas,
-                        revisar compatibilidad con criterio y proteger la calidad del servicio antes
-                        de cualquier confirmación.
-                    </p>
-
-                    <div class="process-grid">
-                        <article class="process-step">
-                            <div class="process-step-number">1</div>
-                            <div class="card stack-sm">
-                                <h3>Elija la ruta correcta</h3>
-                                <p>
-                                    Puede empezar por cotización rápida, evaluación de compatibilidad o cuidado felino
-                                    a domicilio, según el nivel de revisión que necesite y el tipo de mascota.
-                                </p>
-                            </div>
-                        </article>
-
-                        <article class="process-step">
-                            <div class="process-step-number">2</div>
-                            <div class="card stack-sm">
-                                <h3>Comparta la información inicial</h3>
-                                <p>
-                                    En esta etapa se revisa el tipo de servicio, perfil general, zona, duración,
-                                    antecedentes relevantes y la urgencia real del caso.
-                                </p>
-                            </div>
-                        </article>
-
-                        <article class="process-step">
-                            <div class="process-step-number">3</div>
-                            <div class="card stack-sm">
-                                <h3>Se revisa compatibilidad, zona y disponibilidad</h3>
-                                <p>
-                                    No todos los casos avanzan igual. Nido Canino revisa energía, manejo,
-                                    compatibilidad con el grupo, cobertura operativa y cupo real antes de dar respuesta final.
-                                </p>
-                            </div>
-                        </article>
-
-                        <article class="process-step">
-                            <div class="process-step-number">4</div>
-                            <div class="card stack-sm">
-                                <h3>Se define evaluación, reserva o ingreso</h3>
-                                <p>
-                                    Si el caso encaja, se avanza con evaluación, admisión, reserva o coordinación operativa.
-                                    Si no encaja, se responde con claridad para no comprometer seguridad ni desordenar el modelo.
-                                </p>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <!-- DESTACADOS BLOG/RECURSOS -->
-            <section class="section">
-                <div class="container">
-                    <span class="badge">Empiece por algo útil</span>
-                    <h2 class="section-title">Dos formas prácticas de aprovechar la web antes de avanzar</h2>
-                    <p class="section-text">
-                        Si todavía no está listo para solicitar, puede usar este espacio para entender mejor
-                        el perfil de su mascota, ordenar información importante y llegar al proceso con mayor claridad.
-                    </p>
-
-                    <div class="featured-read-grid">
-                        <article class="card featured-read-card stack">
-                            <h3>Leer y entender mejor</h3>
-                            <p>
-                                En el Blog encontrará artículos breves sobre señales de estrés,
-                                grupos pequeños, gatos en casa, preparación del tutor y bienestar animal aplicado.
-                            </p>
-                            <a class="btn btn-secondary" href="blog.html">Ir al Blog</a>
-                        </article>
-
-                        <article class="card featured-read-card stack">
-                            <h3>Organizar antes de solicitar</h3>
-                            <p>
-                                En Recursos encontrará materiales útiles para revisar datos clave,
-                                preparar una solicitud y entender mejor qué información conviene tener lista.
-                            </p>
-                            <a class="btn btn-secondary" href="resources.html">Ir a Recursos</a>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CTA FINAL -->
-            <section class="section">
-                <div class="container">
-                    <div class="section-cta stack">
-                        <span class="badge" style="margin-inline: auto;">Siguiente paso</span>
-                        <h2 class="section-title">¿Quiere revisar si su mascota encaja en Nido Canino?</h2>
+                <div class="section-grid-3">
+                    <article class="card value-card stack">
+                        <h3>Menos saturación, más estabilidad</h3>
                         <p>
-                            Puede empezar por una cotización rápida o, si su caso requiere una revisión más seria,
-                            avanzar al Formulario PRO. Revisaremos perfil, zona, duración, disponibilidad y compatibilidad
-                            con el modelo antes de confirmar cualquier ingreso, reserva o estancia.
+                            No todo perro se beneficia de entornos abiertos, ruidosos o de alta rotación.
+                            Un grupo pequeño permite reducir sobreestimulación y sostener una convivencia más regulada.
                         </p>
+                    </article>
 
-                        <div class="cluster" style="justify-content: center; margin-top: 0.5rem;">
-                            <a class="btn btn-primary" href="request.html">Solicitar cotización rápida</a>
-                            <a class="btn btn-secondary" href="admission-pro.html">Evaluar compatibilidad de mi perro</a>
-                        </div>
-                        <p class="muted" style="margin-top: 0.75rem;">
-                            Si necesita cuidado felino a domicilio, use la cotización rápida y le orientamos la modalidad adecuada.
+                    <article class="card value-card stack">
+                        <h3>Observación real del comportamiento</h3>
+                        <p>
+                            Trabajar con pocos perros y con una dinámica más ordenada facilita leer mejor
+                            la energía, la adaptación, las pausas y las necesidades reales de cada caso.
                         </p>
-                    </div>
+                    </article>
+
+                    <article class="card value-card stack">
+                        <h3>Proceso claro y admisión con criterio</h3>
+                        <p>
+                            El servicio no se confirma automáticamente. Cada solicitud se revisa según perfil,
+                            necesidad, compatibilidad y viabilidad operativa, para proteger al perro, al grupo y al proceso.
+                        </p>
+                    </article>
                 </div>
-            </section>
-</main>
+            </div>
+        </section>
+
+        <!-- 3 RUTAS PRINCIPALES -->
+        <section class="section">
+            <div class="container">
+                <span class="badge">Siguiente paso</span>
+                <h2 class="section-title">Tres rutas claras para avanzar sin desordenar el proceso</h2>
+                <p class="section-text">
+                    La web debe ayudarle a llegar al siguiente paso correcto según su caso.
+                    Aquí puede cotizar, pedir una revisión seria de compatibilidad o activar la ruta adecuada
+                    para cuidado felino sin mezclar todo en el mismo punto de contacto.
+                </p>
+
+                <div class="section-grid-3">
+                    <article class="card path-card stack">
+                        <div class="card-icon">
+                            <img src="assets/icons/icon-services.png" alt="Cotización rápida" />
+                        </div>
+                        <h3>Cotización rápida</h3>
+                        <p>
+                            Ruta inicial para convivencia canina, estancias cortas, noches, cuidado felino
+                            u orientación comercial cuando todavía necesita una respuesta breve y ordenada.
+                        </p>
+                        <a class="btn btn-secondary" href="request.html">Solicitar cotización</a>
+                    </article>
+
+                    <article class="card path-card stack route-card">
+                        <div class="card-icon">
+                            <img src="assets/icons/icon-blog.png" alt="Evaluar compatibilidad" />
+                        </div>
+                        <h3>Evaluar compatibilidad</h3>
+                        <p>
+                            Ruta recomendada cuando desea una revisión más seria del perfil del perro antes
+                            de hablar de ingreso, cupo o modalidad de convivencia.
+                        </p>
+                        <a class="btn btn-secondary" href="admission-pro.html">Ir al Formulario PRO</a>
+                    </article>
+
+                    <article class="card path-card stack route-card">
+                        <img src="assets/icons/icon-resources.png" alt="Cuidado felino a domicilio" class="route-icon" />
+                        <h3>Cuidado felino a domicilio</h3>
+                        <p>
+                            Servicio pensado para gatos que se benefician de permanecer en casa, con continuidad
+                            de rutina y menor estrés frente a cambios de entorno.
+                        </p>
+                        <a class="btn btn-secondary" href="request.html">Solicitar visita felina</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ESPACIOS -->
+        <section class="section">
+            <div class="container">
+                <span class="badge">El entorno</span>
+                <h2 class="section-title">Un espacio que también hace parte del cuidado</h2>
+                <p class="section-text">
+                    El entorno no es un detalle secundario. También influye en el ritmo, la regulación
+                    y la experiencia del perro durante la convivencia. Por eso el espacio debe acompañar
+                    el tipo de manejo que se promete.
+                </p>
+
+                <div class="section-grid-3">
+                    <article class="card space-card">
+                        <img src="assets/photos/space-rest.png" alt="Zona de descanso" onerror="this.style.display='none';" />
+                        <h3>Descanso</h3>
+                        <p>
+                            Espacios tranquilos, limpios y visualmente organizados ayudan a reducir
+                            activación innecesaria y favorecen una convivencia con más pausas y menos saturación.
+                        </p>
+                    </article>
+
+                    <article class="card space-card">
+                        <img src="assets/photos/space-food.png" alt="Rutina de comida" onerror="this.style.display='none';" />
+                        <h3>Rutina y orden</h3>
+                        <p>
+                            La calidad del cuidado también se refleja en lo básico: alimentación,
+                            tiempos, organización y claridad sobre lo que necesita cada perro dentro del grupo.
+                        </p>
+                    </article>
+
+                    <article class="card space-card">
+                        <img src="assets/photos/space-play.png" alt="Zona de convivencia" onerror="this.style.display='none';" />
+                        <h3>Convivencia regulada</h3>
+                        <p>
+                            El objetivo no es llenar cada minuto de actividad, sino sostener un entorno
+                            donde la interacción pueda observarse, acompañarse y mantenerse bajo control.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCESO -->
+        <section class="section">
+            <div class="container">
+                <span class="badge">Proceso</span>
+                <h2 class="section-title">Cómo funciona Nido Canino</h2>
+                <p class="section-text">
+                    El proceso está diseñado para orientar mejor al tutor, separar rutas,
+                    revisar compatibilidad con criterio y proteger la calidad del servicio antes
+                    de cualquier confirmación.
+                </p>
+
+                <div class="process-grid">
+                    <article class="process-step">
+                        <div class="process-step-number">1</div>
+                        <div class="card stack-sm">
+                            <h3>Elija la ruta correcta</h3>
+                            <p>
+                                Puede empezar por cotización rápida, evaluación de compatibilidad o cuidado felino
+                                a domicilio, según el nivel de revisión que necesite y el tipo de mascota.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="process-step">
+                        <div class="process-step-number">2</div>
+                        <div class="card stack-sm">
+                            <h3>Comparta la información inicial</h3>
+                            <p>
+                                En esta etapa se revisa el tipo de servicio, perfil general, zona, duración,
+                                antecedentes relevantes y la urgencia real del caso.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="process-step">
+                        <div class="process-step-number">3</div>
+                        <div class="card stack-sm">
+                            <h3>Se revisa compatibilidad, zona y disponibilidad</h3>
+                            <p>
+                                No todos los casos avanzan igual. Nido Canino revisa energía, manejo,
+                                compatibilidad con el grupo, cobertura operativa y cupo real antes de dar respuesta final.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="process-step">
+                        <div class="process-step-number">4</div>
+                        <div class="card stack-sm">
+                            <h3>Se define evaluación, reserva o ingreso</h3>
+                            <p>
+                                Si el caso encaja, se avanza con evaluación, admisión, reserva o coordinación operativa.
+                                Si no encaja, se responde con claridad para no comprometer seguridad ni desordenar el modelo.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESTACADOS BLOG/RECURSOS -->
+        <section class="section">
+            <div class="container">
+                <span class="badge">Empiece por algo útil</span>
+                <h2 class="section-title">Dos formas prácticas de aprovechar la web antes de avanzar</h2>
+                <p class="section-text">
+                    Si todavía no está listo para solicitar, puede usar este espacio para entender mejor
+                    el perfil de su mascota, ordenar información importante y llegar al proceso con mayor claridad.
+                </p>
+
+                <div class="featured-read-grid">
+                    <article class="card featured-read-card stack">
+                        <h3>Leer y entender mejor</h3>
+                        <p>
+                            En el Blog encontrará artículos breves sobre señales de estrés,
+                            grupos pequeños, gatos en casa, preparación del tutor y bienestar animal aplicado.
+                        </p>
+                        <a class="btn btn-secondary" href="blog.html">Ir al Blog</a>
+                    </article>
+
+                    <article class="card featured-read-card stack">
+                        <h3>Organizar antes de solicitar</h3>
+                        <p>
+                            En Recursos encontrará materiales útiles para revisar datos clave,
+                            preparar una solicitud y entender mejor qué información conviene tener lista.
+                        </p>
+                        <a class="btn btn-secondary" href="resources.html">Ir a Recursos</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="section">
+            <div class="container">
+                <div class="section-cta stack">
+                    <span class="badge" style="margin-inline: auto;">Siguiente paso</span>
+                    <h2 class="section-title">¿Quiere revisar si su mascota encaja en Nido Canino?</h2>
+                    <p>
+                        Puede empezar por una cotización rápida o, si su caso requiere una revisión más seria,
+                        avanzar al Formulario PRO. Revisaremos perfil, zona, duración, disponibilidad y compatibilidad
+                        con el modelo antes de confirmar cualquier ingreso, reserva o estancia.
+                    </p>
+
+                    <div class="cluster" style="justify-content: center; margin-top: 0.5rem;">
+                        <a class="btn btn-primary" href="request.html">Solicitar cotización rápida</a>
+                        <a class="btn btn-secondary" href="admission-pro.html">Evaluar compatibilidad de mi perro</a>
+                    </div>
+                    <p class="muted" style="margin-top: 0.75rem;">
+                        Si necesita cuidado felino a domicilio, use la cotización rápida y le orientamos la modalidad adecuada.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -856,5 +850,3 @@
     </footer>
 </body>
 </html>
-preview.html
-Mostrando preview.html.
