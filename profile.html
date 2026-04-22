@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nido Canino | Mi perfil</title>
+    <link rel="icon" type="image/png" href="assets/logo/logo-icon.png" />
+    <link rel="shortcut icon" href="assets/logo/logo-icon.png" />
+    <link rel="apple-touch-icon" href="assets/logo/logo-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <style>
+        .profile-page {
+            padding-block: var(--space-10);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-5);
+            margin-bottom: var(--space-6);
+        }
+
+        .profile-avatar {
+            width: 86px;
+            height: 86px;
+            border-radius: 24px;
+            object-fit: cover;
+            background: var(--accent-soft);
+            border: 1px solid var(--border-soft);
+        }
+
+        .profile-actions {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--space-5);
+        }
+
+        @media (max-width: 860px) {
+            .profile-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/guards.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html">
+                <img src="assets/logo/logo-icon.png" alt="Nido Canino" onerror="this.style.display='none';" />
+                <span>Nido Canino</span>
+            </a>
+
+            <nav class="nav-links">
+                <a data-nav href="index.html">Inicio</a>
+                <a data-nav href="services.html">Servicios</a>
+                <a data-nav href="blog.html">Blog</a>
+                <a data-nav href="resources.html">Recursos</a>
+                <a data-nav href="request.html">Solicitar servicio</a>
+                <span id="authSlot"></span>
+            </nav>
+        </div>
+    </header>
+
+    <main class="profile-page">
+        <section class="container">
+            <div class="card">
+                <div class="profile-header">
+                    <img id="profileAvatar" class="profile-avatar" src="assets/logo/logo-icon.png" alt="Perfil Nido Canino" />
+                    <div class="stack-sm">
+                        <span class="badge">Perfil protegido</span>
+                        <h1 id="profileName">Mi cuenta</h1>
+                        <p id="profileEmail" class="section-text">Correo conectado con Supabase Auth</p>
+                    </div>
+                </div>
+
+                <div class="profile-actions">
+                    <article class="card-soft">
+                        <h3>Mascotas</h3>
+                        <p class="section-text">Siguiente fase: crear fichas de perros o gatos asociadas a esta cuenta.</p>
+                        <a class="btn btn-secondary btn-full" href="pets.html">Ver mascotas</a>
+                    </article>
+                    <article class="card-soft">
+                        <h3>Solicitudes</h3>
+                        <p class="section-text">Siguiente fase: guardar cotizaciones y procesos de admision desde Supabase.</p>
+                        <a class="btn btn-secondary btn-full" href="requests.html">Ver solicitudes</a>
+                    </article>
+                    <article class="card-soft">
+                        <h3>Formulario PRO</h3>
+                        <p class="section-text">Ruta seria para evaluar compatibilidad con mas informacion del caso.</p>
+                        <a class="btn btn-primary btn-full" href="admission-pro.html">Abrir formulario</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© Nido Canino. Grupos pequenos, criterio y seguimiento consciente.</p>
+        </div>
+    </footer>
+</body>
+</html>

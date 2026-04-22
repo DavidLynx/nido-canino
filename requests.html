@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nido Canino | Solicitudes</title>
+    <link rel="icon" type="image/png" href="assets/logo/logo-icon.png" />
+    <link rel="shortcut icon" href="assets/logo/logo-icon.png" />
+    <link rel="apple-touch-icon" href="assets/logo/logo-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/guards.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html">
+                <img src="assets/logo/logo-icon.png" alt="Nido Canino" onerror="this.style.display='none';" />
+                <span>Nido Canino</span>
+            </a>
+            <nav class="nav-links">
+                <a data-nav href="index.html">Inicio</a>
+                <a data-nav href="services.html">Servicios</a>
+                <a data-nav href="blog.html">Blog</a>
+                <a data-nav href="resources.html">Recursos</a>
+                <a data-nav href="request.html">Solicitar servicio</a>
+                <span id="authSlot"></span>
+            </nav>
+        </div>
+    </header>
+
+    <main class="section">
+        <section class="container dashboard-grid">
+            <aside class="side-menu">
+                <a href="profile.html">Perfil</a>
+                <a href="pets.html">Mascotas</a>
+                <a class="active" href="requests.html">Solicitudes</a>
+            </aside>
+            <section class="card">
+                <span class="badge">Solicitudes</span>
+                <h1>Historial de solicitudes</h1>
+                <p class="section-text">
+                    Esta vista ya queda protegida por login. La siguiente fase conectara cotizaciones y admisiones con <code>service_requests</code>.
+                </p>
+                <div class="empty-state">
+                    <h3>Aun no hay solicitudes guardadas</h3>
+                    <p>Por ahora la cotizacion rapida sigue saliendo por WhatsApp; luego se guardara tambien en Supabase.</p>
+                    <a class="btn btn-primary" href="request.html">Solicitar servicio</a>
+                </div>
+            </section>
+        </section>
+    </main>
+</body>
+</html>

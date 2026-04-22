@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nido Canino | Ingresar</title>
+    <link rel="icon" type="image/png" href="assets/logo/logo-icon.png" />
+    <link rel="shortcut icon" href="assets/logo/logo-icon.png" />
+    <link rel="apple-touch-icon" href="assets/logo/logo-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <style>
+        .auth-page {
+            padding-block: var(--space-10);
+        }
+
+        .auth-panel {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: var(--space-6);
+            align-items: stretch;
+        }
+
+        .auth-brand-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 430px;
+            background:
+                radial-gradient(circle at top left, rgba(200, 164, 123, 0.14), transparent 36%),
+                var(--bg-card);
+        }
+
+        .auth-brand-card img {
+            width: 150px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .auth-login-card {
+            display: grid;
+            gap: var(--space-5);
+            align-content: center;
+        }
+
+        .auth-login-card h1 {
+            max-width: 12ch;
+        }
+
+        .google-mark {
+            width: 18px;
+            height: 18px;
+            display: inline-grid;
+            place-items: center;
+            border-radius: 50%;
+            background: #fff;
+            color: #1f1f1f;
+            font-weight: 800;
+            font-size: 0.78rem;
+        }
+
+        .auth-session-panel {
+            display: grid;
+            gap: var(--space-3);
+        }
+
+        @media (max-width: 860px) {
+            .auth-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-brand-card {
+                min-height: auto;
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/guards.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html">
+                <img src="assets/logo/logo-icon.png" alt="Nido Canino" onerror="this.style.display='none';" />
+                <span>Nido Canino</span>
+            </a>
+
+            <nav class="nav-links">
+                <a data-nav href="index.html">Inicio</a>
+                <a data-nav href="services.html">Servicios</a>
+                <a data-nav href="blog.html">Blog</a>
+                <a data-nav href="resources.html">Recursos</a>
+                <a data-nav href="request.html">Solicitar servicio</a>
+                <span id="authSlot"></span>
+            </nav>
+        </div>
+    </header>
+
+    <main class="auth-page">
+        <section class="container auth-panel">
+            <aside class="card auth-brand-card">
+                <div class="stack">
+                    <span class="badge">Cuenta Nido Canino</span>
+                    <h1>Ingreso para tutores</h1>
+                    <p class="section-text">
+                        Este acceso sera la base para guardar perfiles, mascotas, solicitudes y el avance del proceso de admision.
+                    </p>
+                </div>
+                <img src="assets/logo/logo-full.png" alt="Nido Canino" onerror="this.style.display='none';" />
+            </aside>
+
+            <section class="card auth-login-card">
+                <div class="stack-sm">
+                    <span class="badge">Acceso seguro</span>
+                    <h2>Continua con Google</h2>
+                    <p class="section-text">
+                        Usa una cuenta de Google para entrar. La admision y los datos privados se activaran por fases, sin cambiar el proceso actual de cotizacion.
+                    </p>
+                </div>
+
+                <button id="googleLoginButton" class="btn btn-primary btn-full" type="button">
+                    <span class="google-mark" aria-hidden="true">G</span>
+                    Ingresar con Google
+                </button>
+
+                <div id="authStatus" class="hidden"></div>
+
+                <div id="authSessionPanel" class="notice success auth-session-panel hidden">
+                    <strong>Sesion iniciada</strong>
+                    <p id="authAccountName">Cuenta conectada</p>
+                    <div class="cluster">
+                        <a id="postLoginLink" class="btn btn-primary" href="profile.html">Ir a mi perfil</a>
+                        <button class="btn btn-secondary" type="button" data-auth-signout>Salir</button>
+                    </div>
+                </div>
+
+                <p class="section-text">
+                    Si vienes desde una pagina protegida, al iniciar sesion volveras automaticamente a esa seccion.
+                </p>
+            </section>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© Nido Canino. Cuidado con criterio, calma y observacion real.</p>
+        </div>
+    </footer>
+</body>
+</html>
