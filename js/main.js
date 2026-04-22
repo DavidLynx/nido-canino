@@ -23,4 +23,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (window.NidoRequestsPage) {
         await NidoRequestsPage.init();
     }
+
+    if (window.NidoGalleryPage) {
+        NidoGalleryPage.init();
+    }
 });
