@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nido Canino | Mascotas</title>
+    <link rel="icon" type="image/png" href="assets/logo/logo-icon.png" />
+    <link rel="shortcut icon" href="assets/logo/logo-icon.png" />
+    <link rel="apple-touch-icon" href="assets/logo/logo-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/guards.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/pets.js"></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html">
+                <img src="assets/logo/logo-icon.png" alt="Nido Canino" onerror="this.style.display='none';" />
+                <span>Nido Canino</span>
+            </a>
+            <nav class="nav-links">
+                <a data-nav href="index.html">Inicio</a>
+                <a data-nav href="services.html">Servicios</a>
+                <a data-nav href="blog.html">Blog</a>
+                <a data-nav href="resources.html">Recursos</a>
+                <a data-nav href="request.html">Solicitar servicio</a>
+                <span id="authSlot"></span>
+            </nav>
+        </div>
+    </header>
+
+    <main class="app-page">
+        <section class="container dashboard-grid">
+            <aside class="side-menu">
+                <a href="profile.html">Perfil</a>
+                <a class="active" href="pets.html">Mascotas</a>
+                <a href="requests.html">Solicitudes</a>
+            </aside>
+
+            <section class="app-panel">
+                <div class="card">
+                    <div class="app-page-header">
+                        <div>
+                            <span class="badge">Mascotas</span>
+                            <h1>Fichas de cuidado</h1>
+                            <p class="section-text">Registra solo lo necesario para entender rutina, compatibilidad y necesidades basicas.</p>
+                        </div>
+                        <button id="newPetButton" class="btn btn-primary" type="button">Nueva mascota</button>
+                    </div>
+
+                    <div id="petMsg" class="hidden"></div>
+                    <div id="petsList" class="app-card-list"></div>
+                </div>
+
+                <form id="petForm" class="card hidden">
+                    <div class="app-page-header">
+                        <div>
+                            <span class="badge" id="petFormMode">Nueva ficha</span>
+                            <h2 id="petFormTitle">Agregar mascota</h2>
+                            <p class="section-text">La ficha puede editarse despues. Evitamos pedir datos excesivos en esta etapa.</p>
+                        </div>
+                        <div class="app-record-actions">
+                            <button id="cancelPetButton" class="btn btn-secondary" type="button">Cancelar</button>
+                            <button id="savePetButton" class="btn btn-primary" type="submit">Guardar mascota</button>
+                        </div>
+                    </div>
+
+                    <input id="petId" name="id" type="hidden" />
+
+                    <div class="app-form-grid">
+                        <div class="field">
+                            <label for="petName">Nombre</label>
+                            <input id="petName" name="name" required />
+                        </div>
+                        <div class="field">
+                            <label for="species">Especie</label>
+                            <select id="species" name="species" required>
+                                <option value="dog">Perro</option>
+                                <option value="cat">Gato</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="breed">Raza o mezcla</label>
+                            <select id="breed" name="breed"></select>
+                        </div>
+                        <div id="breedCustomField" class="field hidden">
+                            <label for="breedCustom">Otra raza</label>
+                            <input id="breedCustom" name="breed_custom" placeholder="Escribe la raza o mezcla" />
+                        </div>
+                        <div class="field">
+                            <label for="sex">Sexo</label>
+                            <select id="sex" name="sex">
+                                <option value="">No indicado</option>
+                                <option value="female">Hembra</option>
+                                <option value="male">Macho</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="ageText">Edad</label>
+                            <input id="ageText" name="age_text" placeholder="Ej. 3 anos, 8 meses" />
+                        </div>
+                        <div class="field">
+                            <label for="birthDate">Fecha de nacimiento</label>
+                            <input id="birthDate" name="birth_date" type="date" />
+                        </div>
+                        <div class="field">
+                            <label for="weightKg">Peso aprox. kg</label>
+                            <input id="weightKg" name="weight_kg" type="number" min="0" step="0.1" />
+                        </div>
+                        <div class="field">
+                            <label for="energyLevel">Nivel de energia</label>
+                            <select id="energyLevel" name="energy_level">
+                                <option value="">No indicado</option>
+                                <option value="bajo">Bajo</option>
+                                <option value="medio">Medio</option>
+                                <option value="alto">Alto</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="sizeCategory">Tamano</label>
+                            <select id="sizeCategory" name="size_category">
+                                <option value="">No indicado</option>
+                                <option value="pequeno">Pequeno</option>
+                                <option value="mediano">Mediano</option>
+                                <option value="grande">Grande</option>
+                                <option value="gigante">Gigante</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label class="cluster">
+                                <input id="isNeutered" name="is_neutered" type="checkbox" />
+                                Esterilizado
+                            </label>
+                        </div>
+                        <div class="field">
+                            <label class="cluster">
+                                <input id="vaccinesUpToDate" name="vaccines_up_to_date" type="checkbox" />
+                                Vacunas al dia
+                            </label>
+                        </div>
+                        <div class="field">
+                            <label class="cluster">
+                                <input id="dewormingUpToDate" name="deworming_up_to_date" type="checkbox" />
+                                Desparasitacion al dia
+                            </label>
+                        </div>
+                        <div class="field field-full">
+                            <label for="temperament">Temperamento</label>
+                            <textarea id="temperament" name="temperament" placeholder="Ej. Sociable con perros tranquilos, reservado al inicio, sensible al ruido."></textarea>
+                        </div>
+                        <div class="field field-full">
+                            <label for="medicalNotes">Notas medicas</label>
+                            <textarea id="medicalNotes" name="medical_notes" placeholder="Alergias, medicacion, restricciones o antecedentes importantes."></textarea>
+                        </div>
+                        <div class="field field-full">
+                            <label for="medications">Medicamentos</label>
+                            <textarea id="medications" name="medications" placeholder="Medicamentos actuales, dosis o indicaciones del tutor."></textarea>
+                        </div>
+                        <div class="field field-full">
+                            <label for="behaviorNotes">Notas de comportamiento</label>
+                            <textarea id="behaviorNotes" name="behavior_notes" placeholder="Reactividad, miedos, manejo con otros animales, detonantes conocidos."></textarea>
+                        </div>
+                        <div class="field field-full">
+                            <label for="feedingNotes">Alimentacion</label>
+                            <textarea id="feedingNotes" name="feeding_notes" placeholder="Tipo de comida, horarios, restricciones."></textarea>
+                        </div>
+                        <div class="field field-full">
+                            <label for="specialCareNotes">Cuidados especiales</label>
+                            <textarea id="specialCareNotes" name="special_care_notes" placeholder="Rutinas, paseo, descanso, objetos importantes o recomendaciones."></textarea>
+                        </div>
+                        <div class="field field-full">
+                            <label for="photoUrl">URL de foto opcional</label>
+                            <input id="photoUrl" name="photo_url" type="url" placeholder="https://..." />
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </section>
+    </main>
+</body>
+</html>

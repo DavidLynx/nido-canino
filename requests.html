@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nido Canino | Solicitudes</title>
+    <link rel="icon" type="image/png" href="assets/logo/logo-icon.png" />
+    <link rel="shortcut icon" href="assets/logo/logo-icon.png" />
+    <link rel="apple-touch-icon" href="assets/logo/logo-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/guards.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/requests.js"></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html">
+                <img src="assets/logo/logo-icon.png" alt="Nido Canino" onerror="this.style.display='none';" />
+                <span>Nido Canino</span>
+            </a>
+            <nav class="nav-links">
+                <a data-nav href="index.html">Inicio</a>
+                <a data-nav href="services.html">Servicios</a>
+                <a data-nav href="blog.html">Blog</a>
+                <a data-nav href="resources.html">Recursos</a>
+                <a data-nav href="request.html">Solicitar servicio</a>
+                <span id="authSlot"></span>
+            </nav>
+        </div>
+    </header>
+
+    <main class="app-page">
+        <section class="container dashboard-grid">
+            <aside class="side-menu">
+                <a href="profile.html">Perfil</a>
+                <a href="pets.html">Mascotas</a>
+                <a class="active" href="requests.html">Solicitudes</a>
+            </aside>
+
+            <section class="app-panel">
+                <form id="serviceRequestForm" class="card">
+                    <div class="app-page-header">
+                        <div>
+                            <span class="badge">Solicitud de servicio</span>
+                            <h1>Nueva solicitud</h1>
+                            <p class="section-text">Un registro simple para ordenar la conversacion y dejar historial del proceso.</p>
+                        </div>
+                        <button id="saveRequestButton" class="btn btn-primary" type="submit">Crear solicitud</button>
+                    </div>
+
+                    <div id="requestMsg" class="hidden"></div>
+
+                    <div class="app-form-grid">
+                        <div class="field">
+                            <label for="requestPetId">Mascota</label>
+                            <select id="requestPetId" name="pet_id">
+                                <option value="">Cargando mascotas...</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="requestServiceType">Servicio</label>
+                            <select id="requestServiceType" name="service_type" required>
+                                <option value="">Seleccione un servicio</option>
+                                <option value="Convivencia canina">Convivencia canina</option>
+                                <option value="Formulario PRO">Formulario PRO</option>
+                                <option value="Visita para gatos">Visita para gatos</option>
+                                <option value="Asesoria">Asesoria</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="dateStart">Fecha inicio</label>
+                            <input id="dateStart" name="date_start" type="date" />
+                        </div>
+                        <div class="field">
+                            <label for="dateEnd">Fecha fin</label>
+                            <input id="dateEnd" name="date_end" type="date" />
+                        </div>
+                        <div class="field field-full">
+                            <label for="durationLabel">Duracion o frecuencia</label>
+                            <input id="durationLabel" name="duration_label" placeholder="Ej. Un dia, una semana, visitas del 10 al 15" />
+                        </div>
+                        <div class="field field-full">
+                            <label for="needDescription">Necesidad general</label>
+                            <textarea id="needDescription" name="need_description" placeholder="Cuentanos que necesitas resolver y cualquier detalle breve del contexto."></textarea>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="card">
+                    <div class="app-page-header">
+                        <div>
+                            <span class="badge">Historial</span>
+                            <h2>Solicitudes previas</h2>
+                            <p class="section-text">Estados iniciales para dar seguimiento sin saturar la experiencia.</p>
+                        </div>
+                    </div>
+                    <div id="requestsList" class="app-card-list"></div>
+                </div>
+            </section>
+        </section>
+    </main>
+</body>
+</html>

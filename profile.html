@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nido Canino | Mi perfil</title>
+    <link rel="icon" type="image/png" href="assets/logo/logo-icon.png" />
+    <link rel="shortcut icon" href="assets/logo/logo-icon.png" />
+    <link rel="apple-touch-icon" href="assets/logo/logo-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/guards.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html">
+                <img src="assets/logo/logo-icon.png" alt="Nido Canino" onerror="this.style.display='none';" />
+                <span>Nido Canino</span>
+            </a>
+
+            <nav class="nav-links">
+                <a data-nav href="index.html">Inicio</a>
+                <a data-nav href="services.html">Servicios</a>
+                <a data-nav href="blog.html">Blog</a>
+                <a data-nav href="resources.html">Recursos</a>
+                <a data-nav href="request.html">Solicitar servicio</a>
+                <span id="authSlot"></span>
+            </nav>
+        </div>
+    </header>
+
+    <main class="app-page">
+        <section class="container dashboard-grid">
+            <aside class="side-menu">
+                <a class="active" href="profile.html">Perfil</a>
+                <a href="pets.html">Mascotas</a>
+                <a href="requests.html">Solicitudes</a>
+            </aside>
+
+            <section class="app-panel">
+                <div class="card">
+                    <div class="app-page-header">
+                        <div>
+                            <span class="badge">Perfil del tutor</span>
+                            <h1>Mi cuenta</h1>
+                            <p class="section-text">Datos esenciales para orientar mejor el proceso, sin pedir informacion innecesaria.</p>
+                        </div>
+                        <a class="btn btn-secondary" href="pets.html">Gestionar mascotas</a>
+                    </div>
+
+                    <div id="profileMsg" class="hidden"></div>
+
+                    <div class="profile-summary">
+                        <img id="profileAvatar" class="profile-avatar" src="assets/logo/logo-icon.png" alt="Perfil Nido Canino" />
+                        <div class="stack-sm">
+                            <h2 id="profileName">Tutor Nido Canino</h2>
+                            <p id="profileEmail" class="section-text">Correo conectado con Supabase Auth</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-data-grid" aria-live="polite">
+                        <div class="profile-data-item">
+                            <small>Telefono</small>
+                            <strong id="profilePhoneView">Sin registrar</strong>
+                        </div>
+                        <div class="profile-data-item">
+                            <small>Zona</small>
+                            <strong id="profileZoneView">Sin registrar</strong>
+                        </div>
+                        <div class="profile-data-item">
+                            <small>Servicios de interes</small>
+                            <strong id="profileServicesView">Sin registrar</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="profileForm" class="card">
+                    <div class="app-page-header">
+                        <div>
+                            <span class="badge">Editar informacion</span>
+                            <h2>Datos del hogar y contacto</h2>
+                            <p class="section-text">Esta informacion ayuda a evaluar compatibilidad y preparar solicitudes futuras.</p>
+                        </div>
+                        <button id="profileSaveButton" class="btn btn-primary" type="submit">Guardar perfil</button>
+                    </div>
+
+                    <div class="app-form-grid">
+                        <div class="field">
+                            <label for="fullName">Nombre completo</label>
+                            <input id="fullName" name="full_name" autocomplete="name" required />
+                        </div>
+                        <div class="field">
+                            <label for="phone">Celular</label>
+                            <input id="phone" name="phone" autocomplete="tel" placeholder="Ej. 312 000 0000" />
+                        </div>
+                        <div class="field">
+                            <label for="city">Ciudad</label>
+                            <input id="city" name="city" value="Bogota" />
+                        </div>
+                        <div class="field">
+                            <label for="zone">Zona o localidad</label>
+                            <input id="zone" name="zone" placeholder="Ej. Modelia, Fontibon, Engativa" />
+                        </div>
+                        <div class="field">
+                            <label for="housingType">Tipo de vivienda</label>
+                            <select id="housingType" name="housing_type">
+                                <option value="">Seleccione una opcion</option>
+                                <option value="apartamento">Apartamento</option>
+                                <option value="casa">Casa</option>
+                                <option value="casa_con_jardin">Casa con jardin</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="experienceLevel">Experiencia con mascotas</label>
+                            <select id="experienceLevel" name="experience_level">
+                                <option value="">Seleccione una opcion</option>
+                                <option value="primera_mascota">Primera mascota</option>
+                                <option value="experiencia_basica">Experiencia basica</option>
+                                <option value="experiencia_media">Experiencia media</option>
+                                <option value="experiencia_alta">Experiencia alta</option>
+                            </select>
+                        </div>
+                        <div class="field field-full">
+                            <label>Servicios de interes</label>
+                            <div id="preferredServicesGroup" class="choice-chip-group" aria-label="Servicios de interes">
+                                <button class="choice-chip" type="button" data-service-value="convivencia_canina">Convivencia canina</button>
+                                <button class="choice-chip" type="button" data-service-value="evaluacion_previa">Evaluacion previa</button>
+                                <button class="choice-chip" type="button" data-service-value="cuidado_felino">Cuidado felino</button>
+                                <button class="choice-chip" type="button" data-service-value="asesoria">Asesoria</button>
+                                <button class="choice-chip" type="button" data-service-value="no_definido">No definido</button>
+                            </div>
+                        </div>
+                        <div class="field field-full">
+                            <label class="cluster">
+                                <input id="hasOtherPets" name="has_other_pets" type="checkbox" />
+                                Hay otras mascotas en casa
+                            </label>
+                        </div>
+                        <div class="field field-full">
+                            <label for="notes">Notas relevantes</label>
+                            <textarea id="notes" name="notes" placeholder="Rutinas, expectativas, restricciones o informacion breve que debamos tener presente."></textarea>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; Nido Canino. Grupos pequenos, criterio y seguimiento consciente.</p>
+        </div>
+    </footer>
+</body>
+</html>
