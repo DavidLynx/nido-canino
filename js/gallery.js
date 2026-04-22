@@ -77,6 +77,7 @@
             this.activePhotoIndex = photoIndex;
             const backdrop = document.getElementById("galleryLightbox");
             backdrop?.classList.remove("hidden");
+            if (backdrop) backdrop.scrollTop = 0;
             document.body.classList.add("gallery-lock");
             this.showPhoto(photoIndex);
         },
@@ -99,12 +100,24 @@
             const count = document.getElementById("galleryCount");
 
             if (image) {
+                image.decoding = "async";
                 image.src = item.photos[this.activePhotoIndex];
                 image.alt = `${item.name} en Nido Canino`;
             }
             if (title) title.textContent = item.name;
             if (text) text.textContent = item.description;
             if (count) count.textContent = `${this.activePhotoIndex + 1} / ${total}`;
+
+            this.preloadPhoto((this.activePhotoIndex + 1) % total);
+        },
+
+        preloadPhoto(index) {
+            const item = this.items[this.activeItemIndex];
+            if (!item || !item.photos[index]) return;
+
+            const image = new Image();
+            image.decoding = "async";
+            image.src = item.photos[index];
         }
     };
 
