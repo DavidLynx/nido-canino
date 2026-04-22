@@ -15,4 +15,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (window.NidoProfilePage) {
         await NidoProfilePage.init();
     }
+
+    if (window.NidoPetsPage) {
+        await NidoPetsPage.init();
+    }
+
+    if (window.NidoRequestsPage) {
+        await NidoRequestsPage.init();
+    }
 });

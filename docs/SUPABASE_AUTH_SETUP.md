@@ -6,8 +6,8 @@ Esta guia deja documentado el primer bloque de login con Google para Nido Canino
 
 ```js
 window.NIDO_CONFIG = {
-    supabaseUrl: "https://TU-PROYECTO.supabase.co",
-    supabaseAnonKey: "TU_ANON_O_PUBLISHABLE_KEY",
+    supabaseUrl: "https://adggcgotsldsvrwkmkua.supabase.co",
+    supabaseAnonKey: "sb_publishable_9LGO32fxhY3QlJKVVzZ3Nw_cqO8kxjR",
     authRedirectPath: "auth.html",
     postLoginPath: "profile.html",
     protectedPaths: ["profile.html", "pets.html", "requests.html"]
@@ -42,7 +42,7 @@ Authorized JavaScript origins:
 
 Authorized redirect URI:
 
-- `https://TU-PROYECTO.supabase.co/auth/v1/callback`
+- `https://adggcgotsldsvrwkmkua.supabase.co/auth/v1/callback`
 
 Luego pega el Client ID y Client Secret en Supabase:
 
