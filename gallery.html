@@ -1,0 +1,333 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nido Canino | Recuerdos</title>
+    <link rel="icon" type="image/png" href="assets/logo/logo-icon.png" />
+    <link rel="shortcut icon" href="assets/logo/logo-icon.png" />
+    <link rel="apple-touch-icon" href="assets/logo/logo-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <style>
+        .gallery-hero {
+            padding-block: var(--space-11) var(--space-8);
+        }
+
+        .gallery-hero h1 {
+            max-width: 12ch;
+            margin-block: var(--space-3);
+        }
+
+        .gallery-hero p {
+            max-width: 62ch;
+            color: var(--text-soft);
+            font-size: var(--text-md);
+            line-height: var(--line-relaxed);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--space-5);
+            padding-bottom: var(--space-10);
+        }
+
+        .gallery-card {
+            position: relative;
+            overflow: hidden;
+            min-height: 430px;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-soft);
+            background: var(--bg-card);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            animation: galleryIn 0.65s ease both;
+        }
+
+        .gallery-card:nth-child(2n) {
+            animation-delay: 0.08s;
+        }
+
+        .gallery-card:nth-child(3n) {
+            animation-delay: 0.14s;
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            min-height: 430px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.7s ease, filter 0.7s ease;
+        }
+
+        .gallery-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 30%, rgba(0, 0, 0, 0.78));
+            opacity: 0.9;
+            transition: opacity 0.45s ease;
+        }
+
+        .gallery-card-overlay {
+            position: absolute;
+            inset: auto var(--space-5) var(--space-5);
+            z-index: 1;
+            transform: translateY(8px);
+            transition: transform 0.45s ease;
+        }
+
+        .gallery-card-overlay span {
+            display: inline-flex;
+            margin-bottom: var(--space-2);
+            padding: 0.35rem 0.7rem;
+            border-radius: var(--radius-pill);
+            background: rgba(245, 239, 231, 0.92);
+            color: #15120f;
+            font-size: var(--text-xs);
+            font-weight: 800;
+        }
+
+        .gallery-card-overlay h3 {
+            font-size: clamp(1.45rem, 2vw, 1.9rem);
+            margin-bottom: var(--space-2);
+            color: #fff8ef;
+        }
+
+        .gallery-card-overlay p {
+            color: rgba(255, 248, 239, 0.82);
+            line-height: var(--line-relaxed);
+        }
+
+        .gallery-card:hover img,
+        .gallery-card:focus-visible img {
+            transform: scale(1.06);
+            filter: saturate(1.05);
+        }
+
+        .gallery-card:hover .gallery-card-overlay,
+        .gallery-card:focus-visible .gallery-card-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-card:focus-visible {
+            outline: 3px solid rgba(200, 164, 123, 0.55);
+            outline-offset: 3px;
+        }
+
+        .gallery-cta {
+            margin-bottom: var(--space-10);
+            text-align: center;
+        }
+
+        .gallery-cta p {
+            max-width: 58ch;
+            margin: var(--space-3) auto var(--space-5);
+            color: var(--text-soft);
+        }
+
+        .gallery-cta .cluster {
+            justify-content: center;
+        }
+
+        .gallery-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: var(--z-modal);
+            display: grid;
+            place-items: center;
+            padding: var(--space-5);
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(12px);
+        }
+
+        .gallery-lightbox-inner {
+            width: min(100%, 1040px);
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: var(--space-5);
+            align-items: stretch;
+        }
+
+        .gallery-lightbox-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-xl);
+            background: #050505;
+            min-height: 68vh;
+        }
+
+        .gallery-lightbox-image img {
+            width: 100%;
+            height: 100%;
+            max-height: 78vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        .gallery-lightbox-panel {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: var(--space-5);
+            padding: var(--space-5);
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(17, 17, 17, 0.92);
+        }
+
+        .gallery-lightbox-panel p {
+            color: var(--text-soft);
+            line-height: var(--line-relaxed);
+        }
+
+        .gallery-lightbox-actions {
+            display: flex;
+            gap: var(--space-2);
+            flex-wrap: wrap;
+        }
+
+        .gallery-close {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        .gallery-lock {
+            overflow: hidden;
+        }
+
+        @keyframes galleryIn {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 980px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .gallery-lightbox-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-lightbox-image {
+                min-height: 56vh;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .gallery-hero {
+                padding-block: var(--space-8) var(--space-6);
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-card,
+            .gallery-card img {
+                min-height: 360px;
+            }
+
+            .gallery-lightbox {
+                padding: var(--space-3);
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/guards.js"></script>
+    <script src="data/gallery-data.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html">
+                <img src="assets/logo/logo-icon.png" alt="Nido Canino" onerror="this.style.display='none';" />
+                <span>Nido Canino</span>
+            </a>
+
+            <nav class="nav-links">
+                <a data-nav href="index.html">Inicio</a>
+                <a data-nav href="services.html">Servicios</a>
+                <a data-nav href="gallery.html">Galería</a>
+                <a data-nav href="blog.html">Blog</a>
+                <a data-nav href="resources.html">Recursos</a>
+                <a data-nav href="request.html">Solicitar cotizacion</a>
+                <span id="authSlot"></span>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="gallery-hero">
+            <div class="container">
+                <span class="badge">Recuerdos reales</span>
+                <h1>Haz parte de Nido Canino</h1>
+                <p>
+                    Momentos tranquilos, miradas reales y compania con criterio. Esta galeria celebra a algunos perros que han hecho parte de la historia de Nido.
+                </p>
+            </div>
+        </section>
+
+        <section class="container">
+            <div id="galleryGrid" class="gallery-grid"></div>
+        </section>
+
+        <section class="container gallery-cta">
+            <div class="card">
+                <span class="badge">Cupos con criterio</span>
+                <h2>Una experiencia pequena, cuidada y consciente</h2>
+                <p>Si buscas un entorno mas estable y observado para tu perro, empieza por conocer el modelo y solicitar una primera orientacion.</p>
+                <div class="cluster">
+                    <a class="btn btn-secondary" href="services.html">Ver servicios</a>
+                    <a class="btn btn-primary" href="request.html">Solicitar cotizacion</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="galleryLightbox" class="gallery-lightbox hidden" aria-modal="true" role="dialog">
+        <button id="galleryClose" class="btn btn-secondary gallery-close" type="button">Cerrar</button>
+        <div class="gallery-lightbox-inner">
+            <div class="gallery-lightbox-image">
+                <img id="galleryImage" src="" alt="" />
+            </div>
+            <aside class="gallery-lightbox-panel">
+                <div>
+                    <span id="galleryCount" class="badge">1 / 1</span>
+                    <h2 id="galleryTitle">Nido Canino</h2>
+                    <p id="galleryText"></p>
+                </div>
+                <div class="gallery-lightbox-actions">
+                    <button id="galleryPrev" class="btn btn-secondary" type="button">Anterior</button>
+                    <button id="galleryNext" class="btn btn-primary" type="button">Siguiente</button>
+                </div>
+            </aside>
+        </div>
+    </div>
+</body>
+</html>
