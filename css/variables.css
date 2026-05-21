@@ -16,6 +16,24 @@
     --accent-soft: rgba(200, 164, 123, 0.12);
     --border-soft: rgba(255, 255, 255, 0.08);
     --border-strong: rgba(255, 255, 255, 0.14);
+    /* =========================
+     TOKENS SEMÁNTICOS · NIDO
+     ========================= */
+    --nido-dark-canvas: #0f0e0d;
+    --nido-dark-elevated: #1c1a17;
+    --nido-dark-card: #24211d;
+    --nido-warm-canvas: #fbf6ee;
+    --nido-warm-card: #fffaf3;
+    --nido-warm-card-strong: #f1e3d0;
+    --nido-camel: #c8a47b;
+    --nido-camel-hover: #d8b58c;
+    --nido-camel-deep: #8c6844;
+    --nido-media-overlay: linear-gradient(180deg, rgba(15, 14, 13, 0.08), rgba(15, 14, 13, 0.72));
+    --nido-app-panel: rgba(255, 250, 243, 0.06);
+    --nido-focus-ring: 0 0 0 3px rgba(216, 181, 140, 0.28);
+    --nido-warm-text: #211c17;
+    --nido-warm-text-soft: #5d4d3d;
+    --nido-warm-border: rgba(91, 65, 40, 0.14);
     --success: #8fbb91;
     --warning: #d9b56f;
     --danger: #cc7f7f;
