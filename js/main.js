@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (window.Utils) {
         Utils.initTheme();
         Utils.setActiveNav();
+        Utils.initMobileNav();
     }
 
     if (window.NidoAuth) {

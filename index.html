@@ -921,16 +921,15 @@
         }
 
         .site-header .brand img {
-            width: min(156px, 58vw);
-            max-height: 50px;
+            width: min(140px, 48vw);
+            max-height: 44px;
         }
 
         .site-header .nav-links {
-            width: 100%;
-            max-width: 100%;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            gap: 0.45rem 0.75rem;
+            display: grid;
+            grid-template-columns: auto auto auto minmax(4.6rem, 1fr) 40px;
+            align-items: center;
+            gap: 0.22rem;
             overflow-x: visible;
             padding-bottom: 0;
         }
@@ -1132,15 +1131,23 @@
                 <span class="sr-only">Nido Canino</span>
             </a>
 
-            <nav class="nav-links">
+<nav class="nav-links" aria-label="Navegacion principal">
                 <a data-nav href="index.html">Inicio</a>
                 <a data-nav href="services.html">Servicios</a>
                 <a data-nav href="gallery.html">Galería</a>
-                <a data-nav href="blog.html">Blog</a>
-                <a data-nav href="resources.html">Recursos</a>
-                <a data-nav href="request.html">Solicitar cotización</a>
                 <span id="authSlot"></span>
-
+                <div class="nav-overflow">
+                    <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="mobileNavMenu" aria-label="Abrir menu de navegacion">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </button>
+                    <div class="nav-menu" id="mobileNavMenu">
+                        <a data-nav href="request.html">Solicitar cotización</a>
+                        <a data-nav href="blog.html">Blog</a>
+                        <a data-nav href="resources.html">Recursos</a>
+                    </div>
+                </div>
             </nav>
         </div>
     </header>
@@ -1590,6 +1597,20 @@
         <div class="container footer-content">
             <p>Nido Canino · Cuidado estructurado y bienestar animal en Bogotá</p>
             <a href="#">Términos y condiciones</a>
+            <div class="footer-social" aria-label="Redes sociales de Nido Canino">
+                <span class="footer-social-title">Síganos en redes sociales</span>
+                <div class="footer-social-list">
+                    <a class="footer-social-link" href="https://www.instagram.com/nidocaninobogota" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Nido Canino">
+                        <img class="footer-social-icon" src="assets/icons/social/instagram.svg" alt="" aria-hidden="true" />
+                    </a>
+                    <a class="footer-social-link" href="https://www.tiktok.com/@nidocanino" target="_blank" rel="noopener noreferrer" aria-label="TikTok de Nido Canino">
+                        <img class="footer-social-icon" src="assets/icons/social/tiktok.svg" alt="" aria-hidden="true" />
+                    </a>
+                    <a class="footer-social-link" href="https://wa.me/573124611816" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de Nido Canino">
+                        <img class="footer-social-icon" src="assets/icons/social/whatsapp.svg" alt="" aria-hidden="true" />
+                    </a>
+                </div>
+            </div>
             <p class="footer-credit">Creado por Lynx Visual Division</p>
         </div>
     </footer>

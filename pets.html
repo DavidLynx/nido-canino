@@ -34,14 +34,23 @@
             <a class="brand" href="index.html">
                 <img src="assets/logo/NIDO-FULL.svg" alt="Nido Canino" onerror="this.style.display='none';" />
             </a>
-            <nav class="nav-links">
+<nav class="nav-links" aria-label="Navegacion principal">
                 <a data-nav href="index.html">Inicio</a>
                 <a data-nav href="services.html">Servicios</a>
                 <a data-nav href="gallery.html">Galería</a>
-                <a data-nav href="blog.html">Blog</a>
-                <a data-nav href="resources.html">Recursos</a>
-                <a data-nav href="request.html">Solicitar servicio</a>
                 <span id="authSlot"></span>
+                <div class="nav-overflow">
+                    <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="mobileNavMenu" aria-label="Abrir menu de navegacion">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </button>
+                    <div class="nav-menu" id="mobileNavMenu">
+                        <a data-nav href="request.html">Solicitar cotización</a>
+                        <a data-nav href="blog.html">Blog</a>
+                        <a data-nav href="resources.html">Recursos</a>
+                    </div>
+                </div>
             </nav>
         </div>
     </header>
@@ -199,6 +208,20 @@
         <div class="container footer-content">
             <p>Nido Canino · Cuidado estructurado y bienestar animal en Bogotá</p>
             <a href="#">Términos y condiciones</a>
+            <div class="footer-social" aria-label="Redes sociales de Nido Canino">
+                <span class="footer-social-title">Síganos en redes sociales</span>
+                <div class="footer-social-list">
+                    <a class="footer-social-link" href="https://www.instagram.com/nidocaninobogota" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Nido Canino">
+                        <img class="footer-social-icon" src="assets/icons/social/instagram.svg" alt="" aria-hidden="true" />
+                    </a>
+                    <a class="footer-social-link" href="https://www.tiktok.com/@nidocanino" target="_blank" rel="noopener noreferrer" aria-label="TikTok de Nido Canino">
+                        <img class="footer-social-icon" src="assets/icons/social/tiktok.svg" alt="" aria-hidden="true" />
+                    </a>
+                    <a class="footer-social-link" href="https://wa.me/573124611816" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de Nido Canino">
+                        <img class="footer-social-icon" src="assets/icons/social/whatsapp.svg" alt="" aria-hidden="true" />
+                    </a>
+                </div>
+            </div>
             <p class="footer-credit">Creado por Lynx Visual Division</p>
         </div>
     </footer>

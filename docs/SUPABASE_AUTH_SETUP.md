@@ -1,6 +1,6 @@
 # Supabase Auth setup
 
-Esta guia deja documentado el primer bloque de login con Google para Nido Canino.
+Esta guia deja documentado el acceso con correo y contraseña, Magic Link / OTP y Google para Nido Canino.
 
 ## Valores que debe tener `js/config.js`
 
@@ -51,6 +51,26 @@ Luego pega el Client ID y Client Secret en Supabase:
 3. Google.
 4. Enable Google.
 5. Save.
+
+## Correo, contrasena y Magic Link / OTP
+
+Para que el registro por correo, ingreso con contrasena y Magic Link / OTP funcionen:
+
+1. Authentication.
+2. Providers.
+3. Email.
+4. Enable Email provider.
+5. Enable new user signup.
+6. Si Confirm email esta activo, el usuario debe confirmar su correo antes de ingresar con contrasena.
+
+En Authentication > URL Configuration:
+
+- Site URL: la URL de produccion.
+- Redirect URLs: incluye `/auth.html` para produccion, localhost y previews que uses.
+
+En Authentication > Email Templates:
+
+- La plantilla "Magic Link or OTP" debe incluir `{{ .ConfirmationURL }}` para que el correo tenga un enlace magico clicable.
 
 ## Prueba local
 
