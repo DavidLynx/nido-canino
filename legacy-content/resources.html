@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nido Canino | Recursos</title>
+    <link rel="icon" type="image/x-icon" href="assets/logo/favicon.ico" />
+    <link rel="shortcut icon" href="assets/logo/favicon.ico" />
+    <link rel="apple-touch-icon" href="assets/logo/NIDO-ICON.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+
+    <style>
+        .resources-hero {
+            position: relative;
+            overflow: hidden;
+            padding-top: var(--space-11);
+            padding-bottom: var(--space-10);
+        }
+
+            .resources-hero::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.13), transparent 26%), radial-gradient(circle at bottom right, rgba(200, 164, 123, 0.08), transparent 30%);
+                pointer-events: none;
+            }
+
+            .resources-hero .container {
+                position: relative;
+                z-index: 1;
+            }
+
+        .resources-hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: var(--space-8);
+            align-items: center;
+        }
+
+        .resources-hero-copy h1 {
+            max-width: 12ch;
+            margin-top: var(--space-3);
+            margin-bottom: var(--space-4);
+            letter-spacing: -0.04em;
+        }
+
+        .resources-hero-copy p {
+            max-width: 64ch;
+            color: var(--text-soft);
+            font-size: var(--text-md);
+        }
+
+        .resources-hero-panel {
+            display: grid;
+            gap: var(--space-4);
+        }
+
+        .resources-hero-card {
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.14), transparent 40%), var(--bg-card);
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-md);
+        }
+
+            .resources-hero-card p {
+                color: var(--text-soft);
+                line-height: var(--line-relaxed);
+            }
+
+        .resources-subnav {
+            display: flex;
+            gap: var(--space-3);
+            flex-wrap: wrap;
+            margin-top: var(--space-5);
+        }
+
+            .resources-subnav a {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0.75rem 1rem;
+                border-radius: var(--radius-pill);
+                border: 1px solid var(--border-soft);
+                color: var(--text-soft);
+                transition: all var(--transition-base);
+                background: color-mix(in srgb, var(--bg-soft) 70%, transparent);
+                font-size: var(--text-sm);
+                font-weight: 600;
+            }
+
+                .resources-subnav a.active,
+                .resources-subnav a:hover {
+                    border-color: var(--accent);
+                    color: var(--text-main);
+                }
+
+        .resources-chip-row {
+            display: flex;
+            gap: var(--space-3);
+            flex-wrap: wrap;
+            margin-top: var(--space-5);
+        }
+
+        .tool-highlight-grid,
+        .logic-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--space-5);
+            margin-top: var(--space-6);
+        }
+
+        .tool-highlight-card,
+        .logic-card,
+        .resource-card-advanced {
+            min-height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .tool-highlight-card::before,
+            .logic-card::before,
+            .resource-card-advanced::before {
+                content: "";
+                position: absolute;
+                inset: 0 auto auto 0;
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(90deg, var(--accent), transparent 70%);
+                opacity: 0.55;
+            }
+
+            .tool-highlight-card p,
+            .logic-card p,
+            .resource-card-advanced p,
+            .resource-expand-body p,
+            .resource-expand-body li {
+                color: var(--text-soft);
+                line-height: var(--line-relaxed);
+                font-size: var(--text-sm);
+            }
+
+        .resource-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: var(--space-5);
+            margin-top: var(--space-6);
+        }
+
+        .resource-card-advanced {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+
+        .resource-meta {
+            display: flex;
+            gap: var(--space-3);
+            flex-wrap: wrap;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: var(--text-xs);
+            font-weight: 600;
+        }
+
+            .resource-meta span {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.35rem;
+            }
+
+        .checklist-box {
+            display: grid;
+            gap: var(--space-3);
+            margin-top: var(--space-2);
+        }
+
+        .check-item {
+            display: grid;
+            grid-template-columns: 22px 1fr;
+            gap: 0.75rem;
+            align-items: start;
+            color: var(--text-soft);
+            font-size: var(--text-sm);
+            line-height: var(--line-relaxed);
+        }
+
+            .check-item input {
+                margin-top: 0.15rem;
+                accent-color: var(--accent);
+            }
+
+        .helper-note {
+            padding: 0.95rem 1rem;
+            border-radius: var(--radius-md);
+            background: color-mix(in srgb, var(--bg-soft) 76%, transparent);
+            border: 1px solid var(--border-soft);
+            color: var(--text-soft);
+            font-size: var(--text-sm);
+            line-height: var(--line-relaxed);
+        }
+
+        details.resource-expand {
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            background: color-mix(in srgb, var(--bg-soft) 78%, transparent);
+            overflow: hidden;
+            margin-top: auto;
+        }
+
+            details.resource-expand summary {
+                cursor: pointer;
+                list-style: none;
+                padding: 0.95rem 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-weight: 700;
+                color: var(--text-main);
+                font-size: var(--text-sm);
+            }
+
+                details.resource-expand summary::marker {
+                    content: "";
+                }
+
+                details.resource-expand summary::after {
+                    content: "+";
+                    font-size: 1rem;
+                    color: var(--accent);
+                }
+
+        details[open].resource-expand summary::after {
+            content: "−";
+        }
+
+        .resource-expand-body {
+            padding: 0 1rem 1rem;
+            display: grid;
+            gap: var(--space-3);
+        }
+
+            .resource-expand-body ul {
+                list-style: disc;
+                padding-left: 1rem;
+                display: grid;
+                gap: 0.4rem;
+            }
+
+        .resource-visual {
+            width: 100%;
+            min-height: 180px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-soft);
+            background: radial-gradient(circle at top left, rgba(200, 164, 123, 0.16), transparent 35%), linear-gradient(180deg, var(--bg-card-2), var(--bg-card));
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+        }
+
+            .resource-visual img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .cta-band {
+            padding: var(--space-10) var(--space-6);
+            border-radius: var(--radius-xl);
+            background: radial-gradient(circle at top center, rgba(200, 164, 123, 0.14), transparent 35%), var(--bg-card);
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+
+            .cta-band p {
+                max-width: 66ch;
+                margin: 0 auto;
+                color: var(--text-soft);
+            }
+
+        @media (max-width: 1100px) {
+            .resources-hero-grid,
+            .tool-highlight-grid,
+            .resource-grid-2,
+            .logic-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .resources-hero {
+                padding-top: var(--space-9);
+                padding-bottom: var(--space-8);
+            }
+
+            .resources-hero-copy h1 {
+                max-width: 100%;
+            }
+
+            .resource-visual {
+                min-height: 160px;
+            }
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/guards.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/pets.js"></script>
+    <script src="js/requests.js"></script>
+    <script src="data/resources-data.js"></script>
+    <script src="js/resources-page.js"></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html">
+                <img src="assets/logo/NIDO-FULL.svg" alt="Nido Canino" onerror="this.style.display='none';" />
+            </a>
+
+<nav class="nav-links" aria-label="Navegacion principal">
+                <a data-nav href="index.html">Inicio</a>
+                <a data-nav href="services.html">Servicios</a>
+                <a data-nav href="gallery.html">Galería</a>
+                <span id="authSlot"></span>
+                <div class="nav-overflow">
+                    <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="mobileNavMenu" aria-label="Abrir menu de navegacion">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </button>
+                    <div class="nav-menu" id="mobileNavMenu">
+                        <a data-nav href="request.html">Solicitar cotización</a>
+                        <a data-nav href="blog.html">Blog</a>
+                        <a data-nav href="resources.html">Recursos</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="resources-hero">
+            <div class="container resources-hero-grid">
+                <div class="resources-hero-copy">
+                    <span class="badge">Preparación útil · claridad antes de avanzar</span>
+                    <div class="page-title-with-icon">
+                        <img src="assets/icons/icon-resources.png" alt="Recursos" />
+                        <h1>Recursos prácticos para preparar mejor su caso</h1>
+                    </div>
+                    <p>
+                        Esta sección está pensada para ayudarle a organizar mejor la información de su perro o gato,
+                        entender qué ruta suele corresponder y llegar al siguiente paso con más claridad. No sustituye
+                        la admisión ni la evaluación, pero sí hace que el proceso sea más ordenado y más útil desde el inicio.
+                    </p>
+
+                    <div class="resources-subnav">
+                        <a href="blog.html">Guías</a>
+                        <a class="active" href="resources.html">Recursos</a>
+                    </div>
+
+                    <div class="resources-chip-row">
+                        <span class="chip">Preparación del caso</span>
+                        <span class="chip">Convivencia canina</span>
+                        <span class="chip">Visita felina</span>
+                        <span class="chip">Ruta correcta</span>
+                    </div>
+                </div>
+
+                <div class="resources-hero-panel">
+                    <article class="resources-hero-card">
+                        <p>
+                            En Nido Canino no todo empieza con una reserva inmediata. En muchos casos, lo más valioso es
+                            entender primero si el servicio encaja, qué información conviene revisar y qué nivel de filtro
+                            corresponde según el perfil de la mascota y la necesidad real del tutor.
+                        </p>
+                    </article>
+
+                    <article class="resources-hero-card">
+                        <p>
+                            Por eso esta página funciona como una capa intermedia de confianza: orienta, ordena y ayuda a
+                            distinguir entre una cotización inicial, una revisión más completa de compatibilidad y una consulta
+                            puntual de cuidado felino a domicilio.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <span class="badge">Empiece por aquí</span>
+                <h2 class="section-title">Tres recursos que suelen ayudar más al inicio</h2>
+                <p class="section-text">
+                    Estas piezas no buscan complicar el proceso. Buscan que el caso llegue mejor explicado, mejor filtrado y con una ruta más clara.
+                </p>
+
+                <div class="tool-highlight-grid">
+                    <article class="card tool-highlight-card stack">
+                        <h3>Preparar la información del caso</h3>
+                        <p>
+                            Una guía breve para ordenar fechas, rutina, necesidades relevantes y contexto general antes de escribirnos.
+                        </p>
+                        <a class="btn btn-secondary" href="#preparar-caso">Ver recurso</a>
+                    </article>
+
+                    <article class="card tool-highlight-card stack">
+                        <h3>Preparación para convivencia canina</h3>
+                        <p>
+                            Qué conviene tener claro cuando lo que se está evaluando es una convivencia estructurada en grupo pequeño.
+                        </p>
+                        <a class="btn btn-secondary" href="#convivencia-canina">Ver recurso</a>
+                    </article>
+
+                    <article class="card tool-highlight-card stack">
+                        <h3>Preparación para visita felina</h3>
+                        <p>
+                            Una referencia útil para organizar la visita a domicilio y respetar mejor la rutina real del gato.
+                        </p>
+                        <a class="btn btn-secondary" href="#visita-felina">Ver recurso</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="preparar-caso">
+            <div class="container">
+                <span class="badge">Preparación del caso</span>
+                <h2 class="section-title">Qué conviene tener claro antes de avanzar con Nido Canino</h2>
+                <p class="section-text">
+                    No se trata de tener todo perfectamente resuelto. Se trata de reunir la información que más ayuda a revisar un caso con criterio,
+                    evitar idas y vueltas innecesarias y distinguir mejor si conviene una cotización inicial o una evaluación más completa.
+                </p>
+
+                <div class="resource-grid-2">
+                    <article class="card resource-card-advanced">
+                        <div class="resource-meta">
+                            <span>Claridad inicial</span>
+                            <span>Filtro suave</span>
+                        </div>
+
+                        <h3>Información que suele ayudar desde el primer contacto</h3>
+
+                        <div class="checklist-box">
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>La necesidad principal: convivencia canina, evaluación previa, estancia corta, visita felina u orientación inicial.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Un rango de fechas o una idea básica de cuándo podría requerirse el servicio.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Zona o sector desde donde se coordinaría el servicio, para revisar viabilidad operativa.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Edad, tamaño, nivel de energía y cualquier condición relevante de la mascota.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Rutina general, forma de descanso, alimentación y observaciones que sí conviene mencionar desde el inicio.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Si existe sensibilidad conductual, medicación o antecedente importante, una referencia breve ayuda mucho a ubicar mejor el caso.</span>
+                            </label>
+                        </div>
+
+                        <div class="helper-note">
+                            En Nido Canino la revisión previa del caso hace parte del servicio. Tener este contexto desde el inicio ayuda a orientar mejor la conversación y a proteger la calidad del proceso.
+                        </div>
+                    </article>
+
+                    <article class="card resource-card-advanced">
+                        <div class="resource-visual">
+                            <img src="assets/illustrations/dog-stress.png" alt="Preparación del caso" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=&quot;muted&quot;>Preparación del caso</span>';" />
+                        </div>
+
+                        <h3>Qué ocurre después con esa información</h3>
+                        <p class="article-intro">
+                            Cuando el caso llega más claro, es más fácil distinguir si basta con una orientación comercial inicial o si lo correcto es pasar a una revisión más completa de compatibilidad.
+                        </p>
+
+                        <details class="resource-expand">
+                            <summary>Ver cómo se traduce en el proceso</summary>
+                            <div class="resource-expand-body">
+                                <p>
+                                    En convivencia canina, la información inicial ayuda a decidir si el caso puede avanzar a entrevista, evaluación y eventual adaptación. Diligenciar un formulario más completo no garantiza ingreso automático; permite revisar el caso con más seriedad.
+                                </p>
+                                <p>
+                                    En servicio felino, esta claridad ayuda a revisar zona, frecuencia, logística y condiciones generales de la visita sin mezclar el flujo con el proceso de convivencia canina.
+                                </p>
+                            </div>
+                        </details>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="convivencia-canina">
+            <div class="container">
+                <span class="badge">Perros</span>
+                <h2 class="section-title">Cómo preparar un caso de convivencia canina estructurada</h2>
+                <p class="section-text">
+                    La convivencia canina en Nido Canino no se confirma por volumen ni por urgencia. Se revisa según perfil, compatibilidad, proceso de admisión y cupo real dentro de un grupo pequeño y estable.
+                </p>
+
+                <div class="resource-grid-2">
+                    <article class="card resource-card-advanced">
+                        <div class="resource-meta">
+                            <span>Máximo 5 perros</span>
+                            <span>Admisión con criterio</span>
+                        </div>
+
+                        <h3>Aspectos que suelen ser importantes para revisar compatibilidad</h3>
+
+                        <div class="checklist-box">
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Cómo se comporta normalmente dentro de casa y cómo responde en calle, parque o con estímulos nuevos.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Nivel de socialización, tipo de interacción con otros perros y necesidad de pausas o regulación.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Rutina de alimentación, descanso, horarios y observaciones que ayuden a sostener una convivencia ordenada.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Antecedentes médicos, dolor, alergias, limitaciones físicas o medicación, si existen.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Episodios relevantes de miedo, pelea, huida, pánico, reactividad o desregulación que convenga revisar con honestidad.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Disponibilidad real para seguir el proceso de entrevista, evaluación y adaptación cuando el caso lo requiera.</span>
+                            </label>
+                        </div>
+
+                        <details class="resource-expand">
+                            <summary>Ver por qué esto hace parte del filtro</summary>
+                            <div class="resource-expand-body">
+                                <p>
+                                    Un perro puede ser muy querido, muy sociable en ciertos contextos y aun así no ser compatible con un ingreso inmediato a convivencia grupal. El objetivo del filtro no es cerrar puertas sin criterio, sino cuidar la estabilidad del grupo, del perro y del servicio.
+                                </p>
+                                <p>
+                                    Por eso la aprobación comercial nunca equivale por sí sola a cupo confirmado. Antes debe revisarse el caso y la disponibilidad real del grupo.
+                                </p>
+                            </div>
+                        </details>
+                    </article>
+
+                    <article class="card resource-card-advanced">
+                        <h3>Cuándo suele tener más sentido pasar al Formulario PRO</h3>
+                        <p class="article-intro">
+                            Cuando la necesidad es convivencia canina, estancia corta o ingreso con intención real, la ruta más útil suele ser una revisión más completa del caso.
+                        </p>
+
+                        <div class="helper-note">
+                            El Formulario PRO ayuda a ordenar salud, rutina, comportamiento, compatibilidad con el modelo y soportes básicos. No reemplaza la decisión final, pero sí evita entrevistas improductivas y reduce fricción operativa.
+                        </div>
+
+                        <details class="resource-expand">
+                            <summary>Ver señales de buena ruta</summary>
+                            <div class="resource-expand-body">
+                                <ul>
+                                    <li>Cuando el tutor ya sabe que le interesa convivencia canina y quiere avanzar con criterio real.</li>
+                                    <li>Cuando el perro requiere lectura de compatibilidad antes de pensar en una estancia o continuidad.</li>
+                                    <li>Cuando hay antecedentes, observaciones médicas o conductuales que conviene revisar bien desde el inicio.</li>
+                                    <li>Cuando no se busca una reserva improvisada, sino un ingreso coherente con el modelo.</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <div class="cluster" style="margin-top: auto;">
+                            <a class="btn btn-primary" href="admission-pro.html">Evaluar compatibilidad de mi perro</a>
+                            <a class="btn btn-secondary" href="services.html">Ver servicios</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="visita-felina">
+            <div class="container">
+                <span class="badge">Gatos</span>
+                <h2 class="section-title">Cómo preparar una visita felina a domicilio</h2>
+                <p class="section-text">
+                    En muchos gatos, mantener la rutina en casa reduce mejor el estrés que trasladarlos a un entorno nuevo. Por eso este servicio parte de respetar el territorio, la previsibilidad y las condiciones reales del hogar.
+                </p>
+
+                <div class="resource-grid-2">
+                    <article class="card resource-card-advanced">
+                        <div class="resource-meta">
+                            <span>Rutina en casa</span>
+                            <span>Menos cambio</span>
+                        </div>
+
+                        <h3>Qué conviene dejar claro antes de la visita</h3>
+
+                        <div class="checklist-box">
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Ubicación de comida, agua, arena, implementos de limpieza y puntos básicos de acceso.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Rutina general del gato: horarios, nivel de interacción, escondites habituales y forma en que suele responder a extraños.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Condiciones médicas, suplementación, medicación o alertas puntuales que deban observarse.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Información de contacto de emergencia y referencia veterinaria cuando aplique.</span>
+                            </label>
+
+                            <label class="check-item">
+                                <input type="checkbox" />
+                                <span>Observaciones sencillas que ayuden a que la visita sea más tranquila: qué suele calmarlo, qué conviene evitar y cómo se mueve por la casa.</span>
+                            </label>
+                        </div>
+
+                        <details class="resource-expand">
+                            <summary>Ver por qué esta preparación sí importa</summary>
+                            <div class="resource-expand-body">
+                                <p>
+                                    En gatos, una buena visita no depende de forzar interacción, sino de entender mejor su rutina y sostenerla con orden. Una preparación clara reduce dudas durante la visita y hace que el servicio sea más funcional desde el inicio.
+                                </p>
+                            </div>
+                        </details>
+                    </article>
+
+                    <article class="card resource-card-advanced">
+                        <div class="resource-visual">
+                            <img src="assets/illustrations/cat-care.png" alt="Visita felina a domicilio" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=&quot;muted&quot;>Visita felina</span>';" />
+                        </div>
+
+                        <h3>Qué suele revisarse para orientar este servicio</h3>
+                        <p class="article-intro">
+                            La lógica del servicio felino no debe mezclarse con la convivencia canina. Aquí lo importante suele ser revisar zona, frecuencia, duración estimada de la visita y condiciones básicas del hogar.
+                        </p>
+
+                        <div class="helper-note">
+                            Si su necesidad es felina, la ruta correcta suele ser una consulta inicial o una solicitud puntual del servicio, no el Formulario PRO de convivencia canina.
+                        </div>
+
+                        <div class="cluster" style="margin-top: auto;">
+                            <a class="btn btn-primary" href="request.html">Consultar visita felina</a>
+                            <a class="btn btn-secondary" href="services.html">Ver servicios</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <span class="badge">Orientación</span>
+                <h2 class="section-title">Cómo identificar qué ruta suele corresponder mejor</h2>
+                <p class="section-text">
+                    No todos los casos necesitan el mismo nivel de entrada. En algunos basta una cotización inicial; en otros, lo más responsable es pasar primero por una revisión más completa de compatibilidad.
+                </p>
+
+                <div class="logic-grid">
+                    <article class="card logic-card stack">
+                        <h3>Cotización inicial</h3>
+                        <p>
+                            Suele tener sentido cuando la necesidad todavía está en una fase temprana y lo primero que se busca es orientación comercial básica sobre servicio, disponibilidad general o rango de valor.
+                        </p>
+                        <a class="btn btn-secondary" href="request.html">Solicitar cotización</a>
+                    </article>
+
+                    <article class="card logic-card stack">
+                        <h3>Evaluación de compatibilidad</h3>
+                        <p>
+                            Suele corresponder mejor cuando el interés real es convivencia canina, estancia corta o ingreso con intención concreta y se necesita revisar el caso con más detalle antes de confirmar un cupo.
+                        </p>
+                        <a class="btn btn-secondary" href="admission-pro.html">Ir al Formulario PRO</a>
+                    </article>
+
+                    <article class="card logic-card stack">
+                        <h3>Ruta felina</h3>
+                        <p>
+                            Cuando se trata de cuidado felino a domicilio, la conversación debe ir por una vía propia, enfocada en rutina en casa, logística y condiciones específicas de la visita.
+                        </p>
+                        <a class="btn btn-secondary" href="request.html">Consultar servicio felino</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="cta-band stack">
+                    <span class="badge" style="margin-inline: auto;">Siguiente paso</span>
+                    <h2 class="section-title">Avance por la ruta que mejor corresponda a su caso</h2>
+                    <p>
+                        Si ya tiene una idea general de la necesidad, puede empezar por una cotización inicial. Si busca revisar con mayor seriedad la compatibilidad de su perro con el modelo de Nido Canino, lo más útil es avanzar al Formulario PRO.
+                    </p>
+
+                    <div class="cluster" style="justify-content: center; margin-top: 0.5rem;">
+                        <a class="btn btn-primary" href="admission-pro.html">Evaluar compatibilidad de mi perro</a>
+                        <a class="btn btn-secondary" href="request.html">Solicitar cotización</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>Nido Canino · Cuidado estructurado y bienestar animal en Bogotá</p>
+            <a href="#">Términos y condiciones</a>
+            <div class="footer-social" aria-label="Redes sociales de Nido Canino">
+                <span class="footer-social-title">Síganos en redes sociales</span>
+                <div class="footer-social-list">
+                    <a class="footer-social-link" href="https://www.instagram.com/nidocaninobogota" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Nido Canino">
+                        <img class="footer-social-icon" src="assets/icons/social/instagram.svg" alt="" aria-hidden="true" />
+                    </a>
+                    <a class="footer-social-link" href="https://www.tiktok.com/@nidocanino" target="_blank" rel="noopener noreferrer" aria-label="TikTok de Nido Canino">
+                        <img class="footer-social-icon" src="assets/icons/social/tiktok.svg" alt="" aria-hidden="true" />
+                    </a>
+                    <a class="footer-social-link" href="https://wa.me/573124611816" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de Nido Canino">
+                        <img class="footer-social-icon" src="assets/icons/social/whatsapp.svg" alt="" aria-hidden="true" />
+                    </a>
+                </div>
+            </div>
+            <p class="footer-credit">Creado por Lynx Visual Division</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,33 @@
+@import "../css/reset.css";
+@import "../css/variables.css";
+@import "../css/themes.css";
+@import "../css/base.css";
+@import "../css/layout.css";
+@import "../css/components.css";
+@import "../css/pages.css";
+@import "../css/hola.css";
+
+:root {
+  --font-main: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.legacy-route-root {
+  display: contents;
+}
+
+.service-detail > *,
+.routine-table-wrap {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nido Canino | Ingresar</title>
+    <link rel="icon" type="image/x-icon" href="assets/logo/favicon.ico" />
+    <link rel="shortcut icon" href="assets/logo/favicon.ico" />
+    <link rel="apple-touch-icon" href="assets/logo/NIDO-ICON.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <style>
+        .auth-page {
+            padding-block: var(--space-10);
+        }
+
+        .auth-panel {
+            display: grid;
+            grid-template-columns: minmax(280px, 0.9fr) minmax(340px, 1.1fr);
+            gap: var(--space-6);
+            align-items: stretch;
+        }
+
+        .auth-brand-card {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 430px;
+            background:
+                linear-gradient(150deg, rgba(200, 164, 123, 0.16), transparent 42%),
+                var(--bg-card);
+        }
+
+        .auth-brand-card::after {
+            content: "";
+            position: absolute;
+            inset: auto -18% -18% auto;
+            width: 230px;
+            height: 230px;
+            border: 1px solid rgba(200, 164, 123, 0.18);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .auth-brand-card img {
+            width: min(290px, 78%);
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.22));
+        }
+
+        .auth-login-card {
+            display: grid;
+            gap: var(--space-4);
+        }
+
+        .auth-method {
+            display: grid;
+            gap: var(--space-4);
+            padding: var(--space-5);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            background: color-mix(in srgb, var(--bg-soft) 72%, transparent);
+        }
+
+        .auth-method h2,
+        .auth-method h3 {
+            margin: 0;
+        }
+
+        .auth-field {
+            display: grid;
+            gap: var(--space-2);
+        }
+
+        .auth-field label {
+            color: var(--text-main);
+            font-size: var(--text-sm);
+            font-weight: 700;
+        }
+
+        .auth-field input {
+            width: 100%;
+        }
+
+        .auth-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3);
+        }
+
+        .auth-helper {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: var(--text-sm);
+            line-height: var(--line-relaxed);
+        }
+
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            color: var(--text-muted);
+            font-size: var(--text-xs);
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--border-soft);
+        }
+
+        .auth-oauth {
+            display: grid;
+            gap: var(--space-3);
+        }
+
+        .google-mark {
+            width: 18px;
+            height: 18px;
+            display: inline-grid;
+            place-items: center;
+            border-radius: 50%;
+            background: #fff;
+            color: #1f1f1f;
+            font-weight: 800;
+            font-size: 0.78rem;
+        }
+
+        .auth-session-panel {
+            display: grid;
+            gap: var(--space-3);
+        }
+
+        @media (max-width: 560px) {
+            .auth-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 860px) {
+            .auth-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-brand-card {
+                min-height: auto;
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/guards.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html">
+                <img src="assets/logo/NIDO-FULL.svg" alt="Nido Canino" onerror="this.style.display='none';" />
+            </a>
+
+<nav class="nav-links" aria-label="Navegacion principal">
+                <a data-nav href="index.html">Inicio</a>
+                <a data-nav href="services.html">Servicios</a>
+                <a data-nav href="gallery.html">Galería</a>
+                <span id="authSlot"></span>
+                <div class="nav-overflow">
+                    <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="mobileNavMenu" aria-label="Abrir menu de navegacion">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </button>
+                    <div class="nav-menu" id="mobileNavMenu">
+                        <a data-nav href="request.html">Solicitar cotización</a>
+                        <a data-nav href="blog.html">Blog</a>
+                        <a data-nav href="resources.html">Recursos</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="auth-page">
+        <section class="container auth-panel">
+            <aside class="card auth-brand-card">
+                <div class="stack">
+                    <span class="badge">Cuenta Nido Canino</span>
+                    <h1>Ingreso para tutores</h1>
+                    <p class="section-text">
+                        Este acceso sera la base para guardar perfiles, mascotas, solicitudes y el avance del proceso de admision.
+                    </p>
+                </div>
+                <img src="assets/logo/NIDO-FULL.svg" alt="Nido Canino" onerror="this.style.display='none';" />
+            </aside>
+
+            <section class="card auth-login-card">
+                <form id="emailAuthForm" class="auth-method" novalidate>
+                    <div class="stack-sm">
+                        <span class="badge">Acceso principal</span>
+                        <h2>Correo y contraseña</h2>
+                        <p class="auth-helper">Ingrese con su cuenta Nido Canino o cree una cuenta nueva con confirmacion por correo.</p>
+                    </div>
+
+                    <div class="auth-field">
+                        <label for="authEmail">Correo electronico</label>
+                        <input id="authEmail" name="email" type="email" autocomplete="email" placeholder="nombre@correo.com" required />
+                    </div>
+
+                    <div class="auth-field">
+                        <label for="authPassword">Contraseña</label>
+                        <input id="authPassword" name="password" type="password" autocomplete="current-password" placeholder="Su contraseña" required minlength="6" />
+                    </div>
+
+                    <div class="auth-actions">
+                        <button id="emailLoginButton" class="btn btn-primary" type="submit">Ingresar</button>
+                        <button id="emailSignupButton" class="btn btn-secondary" type="button">Crear cuenta</button>
+                    </div>
+                </form>
+
+                <section class="auth-method" aria-labelledby="magicLinkTitle">
+                    <div class="stack-sm">
+                        <span class="badge">Sin contraseña</span>
+                        <h3 id="magicLinkTitle">Enlace magico</h3>
+                        <p class="auth-helper">Le enviaremos un enlace seguro a su correo para ingresar sin contraseña.</p>
+                    </div>
+
+                    <button id="magicLinkButton" class="btn btn-secondary btn-full" type="button">Enviar enlace magico</button>
+                </section>
+
+                <div class="auth-divider">Opcional</div>
+
+                <section class="auth-oauth" aria-label="Acceso con Google">
+                    <button id="googleLoginButton" class="btn btn-secondary btn-full" type="button">
+                        <span class="google-mark" aria-hidden="true">G</span>
+                        Continuar con Google
+                    </button>
+                </section>
+
+                <div id="authStatus" class="hidden"></div>
+
+                <div id="authSessionPanel" class="notice success auth-session-panel hidden">
+                    <strong>Sesion iniciada</strong>
+                    <p id="authAccountName">Cuenta conectada</p>
+                    <div class="cluster">
+                        <a id="postLoginLink" class="btn btn-primary" href="profile.html">Ir a mi perfil</a>
+                        <button class="btn btn-secondary" type="button" data-auth-signout>Salir</button>
+                    </div>
+                </div>
+
+                <p class="section-text">
+                    Si vienes desde una pagina protegida, al iniciar sesion volveras automaticamente a esa seccion.
+                </p>
+            </section>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>Nido Canino · Cuidado estructurado y bienestar animal en Bogotá</p>
+            <a href="#">Términos y condiciones</a>
+            <div class="footer-social" aria-label="Redes sociales de Nido Canino">
+                <span class="footer-social-title">Síganos en redes sociales</span>
+                <div class="footer-social-list">
+                    <a class="footer-social-link" href="https://www.instagram.com/nidocaninobogota" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Nido Canino">
+                        <img class="footer-social-icon" src="assets/icons/social/instagram.svg" alt="" aria-hidden="true" />
+                    </a>
+                    <a class="footer-social-link" href="https://www.tiktok.com/@nidocanino" target="_blank" rel="noopener noreferrer" aria-label="TikTok de Nido Canino">
+                        <img class="footer-social-icon" src="assets/icons/social/tiktok.svg" alt="" aria-hidden="true" />
+                    </a>
+                    <a class="footer-social-link" href="https://wa.me/573124611816" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de Nido Canino">
+                        <img class="footer-social-icon" src="assets/icons/social/whatsapp.svg" alt="" aria-hidden="true" />
+                    </a>
+                </div>
+            </div>
+            <p class="footer-credit">Creado por Lynx Visual Division</p>
+        </div>
+    </footer>
+</body>
+</html>
