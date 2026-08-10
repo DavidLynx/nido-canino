@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+
+    <title>Hola | Nido Canino</title>
+    <meta name="description" content="Conozca Nido Canino, visite nuestras redes sociales y encuentre nuestros canales oficiales de contacto." />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Nido Canino" />
+    <link rel="canonical" href="https://nidocanino.org/hola" />
+
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nido Canino" />
+    <meta property="og:title" content="Hola | Nido Canino" />
+    <meta property="og:description" content="Conozca Nido Canino, visite nuestras redes sociales y encuentre nuestros canales oficiales de contacto." />
+    <meta property="og:url" content="https://nidocanino.org/hola" />
+    <meta property="og:image" content="https://nidocanino.org/assets/logo/NIDO-FULL.svg" />
+    <meta property="og:image:alt" content="Logo de Nido Canino" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Hola | Nido Canino" />
+    <meta name="twitter:description" content="Redes sociales y canales oficiales de contacto de Nido Canino." />
+    <meta name="twitter:image" content="https://nidocanino.org/assets/logo/NIDO-FULL.svg" />
+
+    <link rel="icon" type="image/x-icon" href="assets/logo/favicon.ico" />
+    <link rel="shortcut icon" href="assets/logo/favicon.ico" />
+    <link rel="apple-touch-icon" href="assets/logo/NIDO-ICON.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/themes.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <link rel="stylesheet" href="css/hola.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/guards.js"></script>
+    <script src="js/social-links.js"></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/hola.js" defer></script>
+</head>
+<body class="hola-page">
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html">
+                <img src="assets/logo/NIDO-FULL.svg" alt="Nido Canino" onerror="this.style.display='none';" />
+                <span class="sr-only">Nido Canino</span>
+            </a>
+
+            <nav class="nav-links" aria-label="Navegación principal">
+                <a data-nav href="index.html">Inicio</a>
+                <a data-nav href="services.html">Servicios</a>
+                <a data-nav href="gallery.html">Galería</a>
+                <span id="authSlot"></span>
+                <div class="nav-overflow">
+                    <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="mobileNavMenu" aria-label="Abrir menú de navegación">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </button>
+                    <div class="nav-menu" id="mobileNavMenu">
+                        <a data-nav href="request.html">Solicitar cotización</a>
+                        <a data-nav href="blog.html">Blog</a>
+                        <a data-nav href="resources.html">Recursos</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="hola-main">
+        <section class="hola-shell" aria-labelledby="holaTitle">
+            <div class="hola-card">
+                <header class="hola-intro">
+                    <a class="hola-logo-link" href="index.html" aria-label="Ir al inicio de Nido Canino" data-hola-channel="website-logo">
+                        <img class="hola-logo" src="assets/logo/NIDO-FULL.svg" alt="Nido Canino" />
+                    </a>
+                    <p class="hola-kicker">Nuestra tarjeta digital</p>
+                    <h1 id="holaTitle">Hola, somos Nido Canino.</h1>
+                    <p class="hola-lead">Conózcanos, acompáñenos en nuestro día a día y encuentre aquí todas las formas de estar en contacto con Nido.</p>
+                    <p class="hola-location"><span aria-hidden="true"></span>Modelia · Bogotá</p>
+                </header>
+
+                <section class="hola-primary" aria-labelledby="holaPrimaryTitle">
+                    <h2 class="sr-only" id="holaPrimaryTitle">Canales principales</h2>
+                    <div class="hola-primary-list" id="holaPrimaryLinks"></div>
+                </section>
+
+                <section class="hola-ecosystem" aria-labelledby="holaSocialTitle">
+                    <div class="hola-section-heading">
+                        <h2 id="holaSocialTitle">Encuéntrenos también aquí</h2>
+                        <p>Elija el canal que prefiera.</p>
+                    </div>
+                    <div class="hola-social-grid" id="holaSocialLinks"></div>
+                </section>
+
+                <p class="hola-signoff">Nos encantará saber de usted.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>Nido Canino · Cuidado estructurado y bienestar animal en Bogotá</p>
+            <a href="#">Términos y condiciones</a>
+            <div class="footer-social" aria-label="Redes sociales de Nido Canino">
+                <span class="footer-social-title">Síganos en redes sociales</span>
+                <div class="footer-social-list" id="holaFooterSocial"></div>
+            </div>
+            <p class="footer-credit">Creado por Lynx Visual Division</p>
+        </div>
+    </footer>
+</body>
+</html>
