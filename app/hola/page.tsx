@@ -39,6 +39,23 @@ const ecosystemChannels = [
 ];
 
 const holaHref = (channel: SocialLink) => channel.holaHref ?? channel.href;
+const holaPrimaryHref = (channel: SocialLink) =>
+  channel.holaPrimaryHref ?? channel.holaHref ?? channel.href;
+
+const primaryEventNames: Partial<Record<SocialLink["key"], string>> = {
+  website: "hola_services_click",
+  instagram: "hola_instagram_work_click",
+  whatsapp: "hola_whatsapp_primary_click",
+};
+
+const secondaryEventNames: Record<SocialLink["key"], string> = {
+  instagram: "hola_instagram_secondary_click",
+  tiktok: "hola_tiktok_click",
+  facebook: "hola_facebook_click",
+  whatsapp: "hola_whatsapp_secondary_click",
+  website: "hola_web_click",
+  email: "hola_email_click",
+};
 
 const instagramPreviewPhotos = [
   { src: "/assets/photos/gallery/bruno-1.jpg", className: "is-bruno" },
@@ -68,8 +85,8 @@ function Destination({ channel, index }: { channel: SocialLink; index: number })
     <>
       <LinkIcon channel={channel} />
       <span className="hola-destination-copy">
-        <strong>{channel.title}</strong>
-        <span>{channel.detail}</span>
+        <strong>{channel.holaPrimaryTitle ?? channel.title}</strong>
+        <span>{channel.holaPrimaryDetail ?? channel.detail}</span>
       </span>
       <span className="hola-destination-end" aria-hidden="true">
         {channel.key === "website" ? <PawMark className="hola-cta-paw" /> : null}
@@ -93,7 +110,12 @@ function Destination({ channel, index }: { channel: SocialLink; index: number })
     return (
       <div className={`hola-destination-wrap is-${channel.key}`} style={style}>
         {preview}
-        <Link className={className} href={holaHref(channel)} data-hola-channel={channel.key}>
+        <Link
+          className={className}
+          href={holaPrimaryHref(channel)}
+          data-hola-channel={channel.key}
+          data-hola-event={primaryEventNames[channel.key]}
+        >
           {content}
         </Link>
       </div>
@@ -105,10 +127,11 @@ function Destination({ channel, index }: { channel: SocialLink; index: number })
       {preview}
       <a
         className={className}
-        href={holaHref(channel)}
+        href={holaPrimaryHref(channel)}
         target="_blank"
         rel="noopener noreferrer"
         data-hola-channel={channel.key}
+        data-hola-event={primaryEventNames[channel.key]}
       >
         {content}
       </a>
@@ -136,6 +159,7 @@ function SocialItem({ channel }: { channel: SocialLink }) {
         className={className}
         href={holaHref(channel)}
         data-hola-channel={channel.key}
+        data-hola-event={secondaryEventNames[channel.key]}
         aria-label={`Abrir ${channel.label} de Nido Canino`}
       >
         {content}
@@ -145,6 +169,7 @@ function SocialItem({ channel }: { channel: SocialLink }) {
         className={className}
         href={holaHref(channel)}
         data-hola-channel={channel.key}
+        data-hola-event={secondaryEventNames[channel.key]}
         aria-label={`Abrir ${channel.label} de Nido Canino`}
       >
         {content}
@@ -159,6 +184,7 @@ function SocialItem({ channel }: { channel: SocialLink }) {
       target="_blank"
       rel="noopener noreferrer"
       data-hola-channel={channel.key}
+      data-hola-event={secondaryEventNames[channel.key]}
       aria-label={`Abrir ${channel.label} de Nido Canino`}
     >
       {content}
@@ -194,7 +220,7 @@ export default function HolaPage() {
             <p className="hola-kicker">Nuestra tarjeta digital</p>
             <h1 id="holaTitle">Hola, somos Nido Canino.</h1>
             <p className="hola-lead">
-              Conózcanos, acompáñenos en nuestro día a día y encuentre aquí todas las formas de estar en contacto con Nido.
+              Conózcanos, explore nuestros servicios y encuentre la mejor forma de estar en contacto con Nido.
             </p>
             <p className="hola-location"><span aria-hidden="true" />Modelia · Bogotá</p>
           </header>

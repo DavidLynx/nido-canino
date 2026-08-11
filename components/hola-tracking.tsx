@@ -23,6 +23,17 @@ export function HolaTracking() {
           destination: target instanceof HTMLAnchorElement ? target.href : null,
         },
       }));
+
+      const conversionEvent = target.dataset.holaEvent;
+      if (conversionEvent) {
+        window.dispatchEvent(new CustomEvent(conversionEvent, {
+          detail: {
+            ...pageDetail,
+            channel: target.dataset.holaChannel,
+            destination: target instanceof HTMLAnchorElement ? target.href : null,
+          },
+        }));
+      }
     };
 
     document.addEventListener("click", trackClick);

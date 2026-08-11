@@ -65,6 +65,8 @@
     padding: clamp(1.35rem, 4vw, 2.6rem);
     color: var(--nido-warm-text);
     background:
+        radial-gradient(circle at 76% 17%, rgba(200, 164, 123, 0.14) 0 1px, transparent 2px),
+        radial-gradient(circle at 23% 73%, rgba(255, 255, 255, 0.48) 0 1px, transparent 2px),
         radial-gradient(circle at 11% 8%, rgba(255, 255, 255, 0.58), transparent 24%),
         radial-gradient(circle at 88% 92%, rgba(200, 164, 123, 0.08), transparent 28%),
         linear-gradient(145deg, #fffaf2 0%, var(--nido-warm-canvas) 48%, #f7efe4 100%);
@@ -120,7 +122,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
     border-radius: var(--radius-md);
     animation: hola-rise 0.62s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -139,7 +141,7 @@
 
 .hola-logo {
     display: block;
-    width: clamp(142px, 35vw, 188px);
+    width: clamp(138px, 34vw, 180px);
     max-height: 96px;
     object-fit: contain;
     transition: opacity var(--transition-base), transform var(--transition-base), filter var(--transition-base);
@@ -153,7 +155,7 @@
 }
 
 .hola-kicker {
-    margin-bottom: 0.55rem;
+    margin-bottom: 0.36rem;
     color: var(--nido-camel-deep);
     font-size: 0.7rem;
     font-weight: 800;
@@ -172,7 +174,7 @@
 
 .hola-lead {
     max-width: 52ch;
-    margin: 1rem auto 0;
+    margin: 0.75rem auto 0;
     color: var(--nido-warm-text-soft);
     font-size: clamp(0.96rem, 2.4vw, 1.08rem);
     line-height: 1.65;
@@ -183,7 +185,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    margin-top: 0.9rem;
+    margin-top: 0.64rem;
     color: var(--nido-camel-deep);
     font-size: var(--text-xs);
     font-weight: 700;
@@ -201,7 +203,7 @@
 }
 
 .hola-primary {
-    margin-top: clamp(1.45rem, 4.3vw, 2.35rem);
+    margin-top: clamp(1.2rem, 3.6vw, 1.85rem);
 }
 
 .hola-primary-list {
@@ -253,7 +255,7 @@
 
 .hola-destination.is-primary {
     color: var(--text-main);
-    background: linear-gradient(140deg, #201e1a, #171613 70%);
+    background: linear-gradient(140deg, #241f1a, #181613 72%);
     border-color: rgba(200, 164, 123, 0.48);
     box-shadow: 0 8px 20px rgba(20, 18, 15, 0.16), inset 0 1px rgba(255, 255, 255, 0.04);
 }
@@ -266,18 +268,20 @@
     background: linear-gradient(90deg, transparent, rgba(255, 247, 234, 0.16), transparent);
     pointer-events: none;
     transform: skewX(-18deg) translateX(-190%);
-    animation: hola-cta-sheen 1.15s 1.1s ease-out both;
+    animation: hola-cta-sheen-cycle 60s 1.1s ease-in-out infinite;
 }
 
-.hola-destination:hover {
+.hola-destination:hover,
+.hola-destination:focus-visible {
     color: var(--nido-warm-text);
     background: var(--nido-warm-card);
     border-color: rgba(140, 104, 68, 0.46);
     box-shadow: 0 14px 30px rgba(89, 61, 36, 0.11);
-    transform: translateY(-3px);
+    transform: translateY(-2px);
 }
 
-.hola-destination.is-primary:hover {
+.hola-destination.is-primary:hover,
+.hola-destination.is-primary:focus-visible {
     color: var(--text-main);
     background: linear-gradient(140deg, #29251f, #1b1916 72%);
     border-color: var(--nido-camel);
@@ -290,12 +294,16 @@
     box-shadow: 0 14px 30px rgba(89, 61, 36, 0.08), 0 0 24px rgba(58, 132, 78, 0.11);
 }
 
-.hola-destination:active,
-.hola-social-item:active {
+.hola-destination:active {
     transform: translateY(0) scale(0.985);
 }
 
+.hola-social-item:active {
+    transform: translateY(0) scale(0.98);
+}
+
 .hola-link-icon {
+    position: relative;
     display: inline-grid;
     width: 46px;
     height: 46px;
@@ -304,6 +312,7 @@
     background: var(--nido-dark-elevated);
     border: 1px solid rgba(200, 164, 123, 0.28);
     border-radius: 15px;
+    overflow: hidden;
     transition: transform var(--transition-base), background var(--transition-fast), border-color var(--transition-fast);
 }
 
@@ -311,7 +320,23 @@
     background: rgba(255, 250, 243, 0.075);
 }
 
+.hola-destination.is-primary .hola-link-icon::before {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    z-index: 0;
+    border: 1px solid transparent;
+    border-top-color: rgba(216, 181, 140, 0.76);
+    border-right-color: rgba(216, 181, 140, 0.38);
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    animation: hola-web-orbit 0.64s 0.82s var(--ease-nido) both;
+}
+
 .hola-link-icon img {
+    position: relative;
+    z-index: 1;
     width: 25px;
     height: 25px;
     object-fit: contain;
@@ -320,12 +345,46 @@
 .hola-destination.is-website:hover .hola-link-icon,
 .hola-destination.is-website:focus-visible .hola-link-icon {
     border-color: rgba(216, 181, 140, 0.5);
-    transform: rotate(-4deg) scale(1.04);
+    transform: rotate(-3deg) scale(1.04);
 }
 
 .hola-destination.is-website:hover .hola-link-icon img,
 .hola-destination.is-website:focus-visible .hola-link-icon img {
-    animation: hola-globe-turn 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    animation: hola-web-nudge 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hola-destination.is-instagram:hover,
+.hola-destination.is-instagram:focus-visible {
+    border-color: rgba(159, 89, 126, 0.32);
+    box-shadow: 0 14px 30px rgba(89, 61, 36, 0.09), 0 0 24px rgba(147, 77, 113, 0.08);
+}
+
+.hola-destination.is-instagram:hover .hola-link-icon img,
+.hola-destination.is-instagram:focus-visible .hola-link-icon img {
+    animation: hola-instagram-wiggle 0.32s ease-out;
+}
+
+.hola-destination.is-whatsapp:hover .hola-link-icon img,
+.hola-destination.is-whatsapp:focus-visible .hola-link-icon img {
+    animation: hola-whatsapp-chat 0.32s ease-out;
+}
+
+.hola-destination.is-instagram .hola-link-icon::after,
+.hola-destination.is-whatsapp .hola-link-icon::after {
+    content: "";
+    position: absolute;
+    inset: -45% auto -45% -65%;
+    width: 30%;
+    background: linear-gradient(90deg, transparent, rgba(255, 250, 243, 0.28), transparent);
+    pointer-events: none;
+    transform: skewX(-18deg) translateX(-180%);
+}
+
+.hola-destination.is-instagram:hover .hola-link-icon::after,
+.hola-destination.is-instagram:focus-visible .hola-link-icon::after,
+.hola-destination.is-whatsapp:hover .hola-link-icon::after,
+.hola-destination.is-whatsapp:focus-visible .hola-link-icon::after {
+    animation: hola-icon-sheen 0.48s ease-out;
 }
 
 .hola-destination-copy,
@@ -370,7 +429,7 @@
 
 .hola-destination:hover .hola-arrow,
 .hola-destination:focus-visible .hola-arrow {
-    transform: translateX(3px);
+    transform: translateX(5px);
 }
 
 .hola-ecosystem {
@@ -425,19 +484,25 @@
         box-shadow var(--transition-fast);
 }
 
-a.hola-social-item:hover {
+a.hola-social-item:hover,
+a.hola-social-item:focus-visible {
     color: var(--nido-warm-text);
     background: var(--nido-warm-card);
     border-color: rgba(140, 104, 68, 0.42);
     box-shadow: 0 10px 22px rgba(89, 61, 36, 0.09);
-    transform: translateY(-3px);
+    transform: translateY(-2px);
 }
 
-.hola-social-item.is-instagram:hover { border-color: rgba(168, 73, 127, 0.34); }
-.hola-social-item.is-tiktok:hover { border-color: rgba(49, 123, 124, 0.32); }
-.hola-social-item.is-facebook:hover { border-color: rgba(67, 103, 162, 0.32); }
-.hola-social-item.is-whatsapp:hover { border-color: rgba(58, 132, 78, 0.32); }
-.hola-social-item.is-email:hover { border-color: rgba(171, 115, 69, 0.36); }
+.hola-social-item.is-instagram:hover,
+.hola-social-item.is-instagram:focus-visible { border-color: rgba(168, 73, 127, 0.34); }
+.hola-social-item.is-tiktok:hover,
+.hola-social-item.is-tiktok:focus-visible { border-color: rgba(49, 123, 124, 0.32); }
+.hola-social-item.is-facebook:hover,
+.hola-social-item.is-facebook:focus-visible { border-color: rgba(67, 103, 162, 0.32); }
+.hola-social-item.is-whatsapp:hover,
+.hola-social-item.is-whatsapp:focus-visible { border-color: rgba(58, 132, 78, 0.32); }
+.hola-social-item.is-email:hover,
+.hola-social-item.is-email:focus-visible { border-color: rgba(171, 115, 69, 0.36); }
 
 .hola-social-item .hola-link-icon {
     width: 38px;
@@ -448,7 +513,8 @@ a.hola-social-item:hover {
 .hola-social-item:hover .hola-link-icon,
 .hola-social-item:focus-visible .hola-link-icon {
     border-color: rgba(216, 181, 140, 0.45);
-    transform: scale(1.055) rotate(-2deg);
+    box-shadow: 0 6px 14px rgba(89, 61, 36, 0.12);
+    transform: scale(1.035);
 }
 
 .hola-social-item .hola-link-icon img {
@@ -465,13 +531,41 @@ a.hola-social-item:hover {
 }
 
 .hola-social-copy small {
-    overflow: hidden;
     margin-top: 0.12rem;
     color: var(--nido-warm-text-soft);
     font-size: 0.65rem;
     line-height: 1.25;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: normal;
+    transition: color var(--transition-fast);
+}
+
+.hola-social-item:hover .hola-social-copy small,
+.hola-social-item:focus-visible .hola-social-copy small {
+    color: var(--nido-camel-deep);
+}
+
+.hola-social-item.is-instagram:is(:hover, :focus-visible, :active) .hola-link-icon img {
+    animation: hola-instagram-wiggle 0.32s ease-out;
+}
+
+.hola-social-item.is-tiktok:is(:hover, :focus-visible, :active) .hola-link-icon img {
+    animation: hola-tiktok-beat 0.3s ease-out;
+}
+
+.hola-social-item.is-facebook:is(:hover, :focus-visible, :active) .hola-link-icon img {
+    animation: hola-facebook-lift 0.3s ease-out;
+}
+
+.hola-social-item.is-whatsapp:is(:hover, :focus-visible, :active) .hola-link-icon img {
+    animation: hola-whatsapp-chat 0.32s ease-out;
+}
+
+.hola-social-item.is-website:is(:hover, :focus-visible, :active) .hola-link-icon img {
+    animation: hola-web-nudge 0.34s ease-out;
+}
+
+.hola-social-item.is-email:is(:hover, :focus-visible, :active) .hola-link-icon img {
+    animation: hola-facebook-lift 0.3s ease-out;
 }
 
 .hola-social-arrow {
@@ -564,9 +658,10 @@ a.hola-social-item:hover {
     to { opacity: 0.82; background-position: -110% 0; width: 5rem; }
 }
 
-@keyframes hola-cta-sheen {
-    from { transform: skewX(-18deg) translateX(-190%); }
-    to { transform: skewX(-18deg) translateX(760%); }
+@keyframes hola-cta-sheen-cycle {
+    0% { transform: skewX(-18deg) translateX(-190%); }
+    1.8% { transform: skewX(-18deg) translateX(760%); }
+    1.81%, 100% { transform: skewX(-18deg) translateX(760%); }
 }
 
 @keyframes hola-logo-halo {
@@ -575,10 +670,48 @@ a.hola-social-item:hover {
     100% { opacity: 0; transform: scale(1.18); }
 }
 
-@keyframes hola-globe-turn {
-    0% { transform: rotate(0); }
-    60% { transform: rotate(190deg); }
-    100% { transform: rotate(360deg); }
+@keyframes hola-instagram-wiggle {
+    0% { transform: rotate(0) scale(1); }
+    35% { transform: rotate(-3deg) scale(1.05); }
+    70% { transform: rotate(3deg) scale(1.035); }
+    100% { transform: rotate(0) scale(1); }
+}
+
+@keyframes hola-tiktok-beat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-1.5px) scale(1.04); }
+}
+
+@keyframes hola-facebook-lift {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+}
+
+@keyframes hola-whatsapp-chat {
+    0%, 100% { transform: translateX(0) scale(1); }
+    38% { transform: translateX(2px) scale(1.04); }
+    72% { transform: translateX(-1px) scale(1.025); }
+}
+
+@keyframes hola-web-nudge {
+    0%, 100% { transform: rotate(0); }
+    55% { transform: rotate(8deg); }
+}
+
+@keyframes hola-web-orbit {
+    0% { opacity: 0; transform: rotate(-72deg) scale(0.82); }
+    36% { opacity: 0.82; }
+    100% { opacity: 0; transform: rotate(72deg) scale(1.04); }
+}
+
+@keyframes hola-polaroid-place {
+    from { opacity: 0; translate: 0 14px; }
+    to { opacity: 0.93; translate: 0 0; }
+}
+
+@keyframes hola-icon-sheen {
+    from { transform: skewX(-18deg) translateX(-180%); }
+    to { transform: skewX(-18deg) translateX(600%); }
 }
 
 @keyframes hola-ambient-drift {
@@ -595,23 +728,30 @@ a.hola-social-item:hover {
     .hola-instagram-preview {
         position: absolute;
         inset: 0;
-        z-index: 1;
+        z-index: 4;
         display: block;
+        overflow: visible;
         pointer-events: none;
     }
 
     .hola-instagram-polaroid {
+        --photo-lift: 0px;
+        --photo-rotation: 0deg;
+        --photo-scale: 1;
         position: absolute;
-        width: 102px;
+        z-index: 4;
+        width: 88px;
         aspect-ratio: 0.84;
         overflow: hidden;
         padding: 5px 5px 18px;
         background: #fffaf3;
         border: 1px solid rgba(91, 65, 40, 0.14);
         border-radius: 5px;
-        box-shadow: 0 14px 26px rgba(46, 31, 20, 0.18);
+        box-shadow: 0 12px 24px rgba(46, 31, 20, 0.16);
         opacity: 0;
-        transition: opacity 0.28s ease, transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+        transform: translateY(var(--photo-lift)) rotate(var(--photo-rotation)) scale(var(--photo-scale));
+        transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.38s ease;
+        animation: hola-polaroid-place 0.52s var(--ease-nido) both;
     }
 
     .hola-instagram-polaroid img {
@@ -623,41 +763,51 @@ a.hola-social-item:hover {
     }
 
     .hola-instagram-polaroid.is-bruno {
-        top: -28px;
-        left: -82px;
-        transform: translate(22px, 14px) rotate(-7deg) scale(0.82);
+        top: -23px;
+        left: 58%;
+        z-index: 2;
+        --photo-rotation: -7deg;
+        --photo-scale: 0.9;
+        animation-delay: 0.88s;
     }
 
     .hola-instagram-polaroid.is-simba {
-        top: -48px;
-        left: 50%;
-        transform: translate(-50%, 22px) rotate(3deg) scale(0.82);
+        top: -39px;
+        left: 70%;
+        z-index: 3;
+        --photo-rotation: 3deg;
+        --photo-scale: 0.94;
+        animation-delay: 0.96s;
     }
 
     .hola-instagram-polaroid.is-oso {
-        top: -24px;
-        right: -82px;
-        transform: translate(-22px, 14px) rotate(7deg) scale(0.82);
+        top: -18px;
+        left: 79%;
+        z-index: 1;
+        --photo-rotation: 7deg;
+        --photo-scale: 0.88;
+        animation-delay: 1.04s;
     }
 
     .hola-destination-wrap.is-instagram:hover .hola-instagram-polaroid,
     .hola-destination-wrap.is-instagram:focus-within .hola-instagram-polaroid {
-        opacity: 0.96;
+        --photo-lift: -4px;
+        box-shadow: 0 17px 30px rgba(46, 31, 20, 0.22);
     }
 
     .hola-destination-wrap.is-instagram:hover .is-bruno,
     .hola-destination-wrap.is-instagram:focus-within .is-bruno {
-        transform: translate(0, 0) rotate(-9deg) scale(1);
+        --photo-rotation: -8deg;
     }
 
     .hola-destination-wrap.is-instagram:hover .is-simba,
     .hola-destination-wrap.is-instagram:focus-within .is-simba {
-        transform: translate(-50%, -8px) rotate(2deg) scale(0.94);
+        --photo-rotation: 2deg;
     }
 
     .hola-destination-wrap.is-instagram:hover .is-oso,
     .hola-destination-wrap.is-instagram:focus-within .is-oso {
-        transform: translate(0, 0) rotate(9deg) scale(1);
+        --photo-rotation: 8deg;
     }
 }
 
@@ -669,6 +819,13 @@ a.hola-social-item:hover {
     .hola-social-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
+}
+
+@media (max-width: 619px) {
+    .hola-social-arrow {
+        display: none;
+    }
+
 }
 
 @media (max-width: 899px) {
@@ -709,6 +866,28 @@ a.hola-social-item:hover {
     }
 }
 
+@media (max-width: 340px) {
+    .hola-destination {
+        grid-template-columns: 42px minmax(0, 1fr) 20px;
+        gap: 0.62rem;
+        padding: 0.75rem;
+    }
+
+    .hola-destination .hola-link-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 13px;
+    }
+
+    .hola-destination-copy strong {
+        font-size: 0.94rem;
+    }
+
+    .hola-destination-copy > span {
+        font-size: 0.7rem;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .hola-main::before,
     .hola-main::after,
@@ -722,10 +901,15 @@ a.hola-social-item:hover {
     .hola-location,
     .hola-destination-wrap,
     .hola-destination.is-primary::before,
-    .hola-destination.is-website:hover .hola-link-icon img,
+    .hola-destination.is-primary .hola-link-icon::before,
+    .hola-destination .hola-link-icon,
+    .hola-destination .hola-link-icon img,
+    .hola-destination .hola-link-icon::after,
+    .hola-social-item .hola-link-icon img,
+    .hola-instagram-polaroid,
     .hola-ecosystem,
     .hola-signoff {
-        animation: none;
+        animation: none !important;
     }
 
     .hola-logo-link,
@@ -748,6 +932,30 @@ a.hola-social-item:hover {
     .hola-logo-paw,
     .hola-cta-paw,
     .hola-instagram-polaroid {
+        opacity: 0.93;
         transition: none;
+        translate: none;
     }
+
+    .hola-destination:hover,
+    .hola-destination:focus-visible,
+    .hola-social-item:hover,
+    .hola-social-item:focus-visible,
+    .hola-logo-link:hover .hola-logo,
+    .hola-logo-link:focus-visible .hola-logo,
+    .hola-social-item:hover .hola-link-icon,
+    .hola-social-item:focus-visible .hola-link-icon,
+    .hola-destination:hover .hola-arrow,
+    .hola-destination:focus-visible .hola-arrow {
+        transform: none;
+    }
+
+    .hola-destination-wrap.is-instagram:hover .hola-instagram-polaroid,
+    .hola-destination-wrap.is-instagram:focus-within .hola-instagram-polaroid {
+        --photo-lift: 0px;
+    }
+
+    .hola-destination-wrap.is-instagram:is(:hover, :focus-within) .is-bruno { --photo-rotation: -7deg; }
+    .hola-destination-wrap.is-instagram:is(:hover, :focus-within) .is-simba { --photo-rotation: 3deg; }
+    .hola-destination-wrap.is-instagram:is(:hover, :focus-within) .is-oso { --photo-rotation: 7deg; }
 }
