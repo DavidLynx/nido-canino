@@ -34,6 +34,13 @@
     --nido-warm-text: #211c17;
     --nido-warm-text-soft: #5d4d3d;
     --nido-warm-border: rgba(91, 65, 40, 0.14);
+    --nido-surface-warm: #fbf6ee;
+    --nido-surface-dark: #171512;
+    --nido-surface-deep: #0f0e0c;
+    --nido-border-warm: rgba(200, 164, 123, 0.24);
+    --nido-glow-copper: 0 18px 46px rgba(140, 104, 68, 0.18);
+    --nido-glow-cream: 0 18px 46px rgba(255, 246, 232, 0.08);
+    --nido-glow-olive: 0 18px 46px rgba(91, 98, 65, 0.12);
     --success: #8fbb91;
     --warning: #d9b56f;
     --danger: #cc7f7f;
@@ -102,6 +109,11 @@
     --transition-fast: 0.18s ease;
     --transition-base: 0.25s ease;
     --transition-slow: 0.35s ease;
+    --motion-fast: 180ms;
+    --motion-medium: 520ms;
+    --motion-slow: 1200ms;
+    --ease-nido: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
     /* =========================
      HEADER
      ========================= */

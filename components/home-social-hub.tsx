@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { PawMark } from "@/components/effects/paw-mark";
 import { socialLinks } from "@/lib/social-links";
 
 const featuredChannels = [socialLinks.instagram, socialLinks.tiktok, socialLinks.whatsapp];
@@ -24,6 +25,7 @@ export function HomeSocialHub() {
           </div>
           <Link className="home-social-hub__cta" href="/hola?origen=landing">
             Encontrarnos <span aria-hidden="true">→</span>
+            <PawMark className="home-social-hub__paw" />
           </Link>
         </div>
       </div>

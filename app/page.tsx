@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { HeroCarousel } from "@/components/home/hero-carousel";
 import { HomeSocialHub } from "@/components/home-social-hub";
 import { LegacyRoute } from "@/components/legacy-route";
 import { siteConfig } from "@/lib/site";
@@ -29,6 +30,7 @@ export default function HomePage() {
   return (
     <>
       <LegacyRoute source="index.html" />
+      <HeroCarousel />
       <HomeSocialHub />
     </>
   );

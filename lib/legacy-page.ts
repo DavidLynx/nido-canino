@@ -35,7 +35,9 @@ function normalizeLegacyUrls(value: string) {
 }
 
 export function readLegacyPage(fileName: string): LegacyPageContent {
-  const source = readFileSync(join(process.cwd(), "legacy-content", fileName), "utf8");
+  const source = readFileSync(join(process.cwd(), "legacy-content", fileName), "utf8")
+    .replaceAll("\r\n", "\n")
+    .replaceAll("\r", "\n");
   const mainHtml = source.match(/<main\b[\s\S]*?<\/main>/i)?.[0];
 
   if (!mainHtml) {

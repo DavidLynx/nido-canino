@@ -1,0 +1,481 @@
+/* Services: editorial depth, warm-dark surfaces and restrained interaction. */
+main .services-hero {
+    isolation: isolate;
+    min-height: min(790px, calc(100svh - var(--header-height)));
+    padding-block: clamp(4rem, 8vw, 7.5rem);
+    background:
+        radial-gradient(circle at 8% 10%, rgba(200, 164, 123, 0.19), transparent 29%),
+        radial-gradient(circle at 88% 78%, rgba(91, 98, 65, 0.14), transparent 31%),
+        linear-gradient(145deg, #171410 0%, #0f0e0c 56%, #16130f 100%);
+}
+
+main .services-hero::before {
+    z-index: -2;
+    background:
+        linear-gradient(105deg, transparent 0 48%, rgba(255, 246, 232, 0.035) 49% 50%, transparent 51%),
+        radial-gradient(circle at 30% 30%, rgba(200, 164, 123, 0.12), transparent 34%);
+}
+
+main .services-hero::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    right: -14rem;
+    bottom: -18rem;
+    width: 42rem;
+    height: 42rem;
+    border: 1px solid rgba(200, 164, 123, 0.11);
+    border-radius: 50%;
+    box-shadow: inset 0 0 8rem rgba(200, 164, 123, 0.04);
+    animation: nido-services-orbit 18s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+main .services-hero-grid {
+    grid-template-columns: minmax(0, 0.94fr) minmax(480px, 1.06fr);
+    gap: clamp(3rem, 6vw, 6.5rem);
+}
+
+main .services-hero-copy {
+    position: relative;
+    z-index: 2;
+}
+
+main .services-hero-copy > * {
+    animation: nido-services-enter 700ms var(--ease-nido) both;
+}
+
+main .services-hero-copy > :nth-child(2) { animation-delay: 80ms; }
+main .services-hero-copy > :nth-child(3) { animation-delay: 150ms; }
+main .services-hero-copy > :nth-child(4) { animation-delay: 220ms; }
+
+main .services-hero .page-title-with-icon {
+    display: grid;
+    grid-template-columns: 78px minmax(0, 1fr);
+    gap: 1.15rem;
+    align-items: center;
+    margin-block: 1.25rem 1.4rem;
+}
+
+main .services-hero .page-title-with-icon img {
+    width: 78px;
+    height: 78px;
+    margin: 0;
+    object-fit: contain;
+    border: 1px solid rgba(200, 164, 123, 0.22);
+    border-radius: 23px;
+    background: rgba(255, 250, 243, 0.055);
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.28), inset 0 1px rgba(255, 255, 255, 0.06);
+}
+
+main .services-hero-copy .page-title-with-icon h1 {
+    max-width: 11ch;
+    margin: 0;
+    font-size: clamp(2.7rem, 5vw, 5rem);
+    line-height: 0.97;
+    letter-spacing: -0.058em;
+    text-wrap: balance;
+}
+
+main .services-hero-copy > p {
+    max-width: 57ch;
+    color: #d4c6b5;
+    line-height: 1.72;
+}
+
+main .services-hero-visual.hero-card {
+    position: relative;
+    gap: 1.4rem;
+    padding: clamp(1rem, 2.4vw, 1.65rem);
+    overflow: hidden;
+    border-color: rgba(200, 164, 123, 0.2);
+    background: linear-gradient(145deg, rgba(40, 36, 31, 0.9), rgba(23, 21, 18, 0.96));
+    box-shadow: 0 34px 84px rgba(0, 0, 0, 0.42), inset 0 1px rgba(255, 255, 255, 0.055);
+}
+
+main .services-hero-visual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(125deg, rgba(255, 255, 255, 0.04), transparent 30% 70%, rgba(200, 164, 123, 0.055));
+    pointer-events: none;
+}
+
+main .services-hero .service-mini-icons {
+    gap: 0.85rem;
+}
+
+main .services-hero .mini-icon-card {
+    position: relative;
+    min-height: 225px;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1.15rem;
+    overflow: hidden;
+    text-align: left;
+    border-color: rgba(200, 164, 123, 0.13);
+    border-radius: 20px;
+    background: linear-gradient(150deg, rgba(255, 250, 243, 0.075), rgba(255, 250, 243, 0.025));
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.035);
+    transition: transform var(--motion-fast) var(--ease-nido), border-color var(--motion-fast) ease, background var(--motion-fast) ease, box-shadow var(--motion-fast) ease;
+}
+
+main .services-hero .mini-icon-card img {
+    position: relative;
+    z-index: 2;
+    width: 76px;
+    height: 76px;
+    margin: 0 0 1rem;
+    border-radius: 17px;
+    filter: saturate(0.9) contrast(1.03);
+    transition: transform var(--motion-medium) var(--ease-nido), filter var(--motion-fast) ease;
+}
+
+main .services-hero .mini-icon-card strong {
+    display: block;
+    margin-bottom: 0.45rem;
+    font-size: 0.98rem;
+    line-height: 1.25;
+}
+
+main .services-hero .mini-icon-card strong::after {
+    content: "  ↗";
+    display: inline-block;
+    color: var(--accent);
+    opacity: 0;
+    transform: translate(-4px, 3px);
+    transition: opacity var(--motion-fast) ease, transform var(--motion-fast) var(--ease-nido);
+}
+
+main .services-hero .mini-icon-card p {
+    max-width: none;
+    font-size: 0.79rem;
+    line-height: 1.52;
+}
+
+main .services-hero .mini-icon-card:hover,
+main .services-hero .mini-icon-card:focus-visible {
+    transform: translateY(-3px);
+    border-color: rgba(200, 164, 123, 0.38);
+    background: linear-gradient(150deg, rgba(200, 164, 123, 0.12), rgba(255, 250, 243, 0.035));
+    box-shadow: 0 18px 34px rgba(0, 0, 0, 0.26), inset 0 1px rgba(255, 255, 255, 0.06);
+}
+
+main .services-hero .mini-icon-card:hover img,
+main .services-hero .mini-icon-card:focus-visible img {
+    transform: scale(1.035) rotate(-1deg);
+    filter: saturate(1.02) contrast(1.04);
+}
+
+main .services-hero .mini-icon-card:hover strong::after,
+main .services-hero .mini-icon-card:focus-visible strong::after {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+main .services-hero .notice {
+    position: relative;
+    margin: 0;
+    border-color: rgba(200, 164, 123, 0.18);
+    background: rgba(15, 14, 12, 0.43);
+}
+
+/* A softer editorial rhythm replaces a long stack of identical dark sections. */
+main .services-hero ~ .section {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    padding-block: clamp(4.75rem, 8vw, 7.5rem);
+    border-top: 1px solid rgba(200, 164, 123, 0.1);
+    background:
+        radial-gradient(circle at 94% 18%, rgba(200, 164, 123, 0.055), transparent 24%),
+        var(--nido-surface-dark);
+}
+
+main .services-hero ~ .section:nth-of-type(3n) {
+    background:
+        radial-gradient(circle at 6% 80%, rgba(91, 98, 65, 0.075), transparent 25%),
+        #1c1915;
+}
+
+main .services-hero ~ .section:nth-of-type(4n) {
+    background:
+        linear-gradient(115deg, rgba(255, 250, 243, 0.025), transparent 42%),
+        #12110f;
+}
+
+main .services-hero ~ .section .container {
+    position: relative;
+    z-index: 1;
+}
+
+main .services-hero ~ .section .section-title {
+    max-width: 19ch;
+    margin-top: 1rem;
+    font-size: clamp(2rem, 4.2vw, 3.7rem);
+    line-height: 1.04;
+    letter-spacing: -0.048em;
+    text-wrap: balance;
+}
+
+main .services-hero ~ .section .section-text {
+    max-width: 72ch;
+    color: #c9bcac;
+    line-height: 1.75;
+}
+
+main .services-hero ~ .section .card,
+main .services-hero ~ .section details.service-faq,
+main .services-hero ~ .section details.service-note,
+main .services-hero ~ .section .routine-table-wrap {
+    border-color: rgba(200, 164, 123, 0.14);
+    background: linear-gradient(145deg, rgba(40, 37, 32, 0.91), rgba(29, 27, 23, 0.94));
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.035), 0 18px 44px rgba(0, 0, 0, 0.1);
+}
+
+main .services-hero ~ .section .card {
+    transition: transform var(--motion-fast) var(--ease-nido), border-color var(--motion-fast) ease, box-shadow var(--motion-fast) ease;
+}
+
+main .services-hero ~ .section .card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(200, 164, 123, 0.31);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.05), 0 22px 52px rgba(0, 0, 0, 0.22);
+}
+
+main .services-hero ~ .section .service-overview-grid,
+main .services-hero ~ .section .service-pillars,
+main .services-hero ~ .section .pricing-highlight-grid {
+    gap: clamp(1rem, 2vw, 1.45rem);
+}
+
+main .services-hero ~ .section .service-overview-card {
+    padding-top: 2rem;
+    overflow: hidden;
+}
+
+main .services-hero ~ .section .service-overview-card::before {
+    height: 2px;
+    opacity: 0.72;
+}
+
+main .services-hero ~ .section .pricing-highlight-card .big-price,
+main .services-hero ~ .section .service-overview-card .price {
+    color: #f3dfc7;
+}
+
+main .services-hero ~ .section .service-detail {
+    gap: clamp(1.3rem, 3vw, 2.4rem);
+}
+
+main .services-hero ~ .section .service-pricing-box {
+    border-color: rgba(200, 164, 123, 0.27);
+    background: linear-gradient(145deg, rgba(58, 48, 38, 0.95), rgba(29, 26, 22, 0.98));
+    box-shadow: 0 28px 65px rgba(0, 0, 0, 0.24), inset 0 1px rgba(255, 255, 255, 0.05);
+}
+
+main .services-hero ~ .section .price-item {
+    border-color: rgba(200, 164, 123, 0.12);
+    background: rgba(15, 14, 12, 0.28);
+}
+
+main .services-hero ~ .section details.service-faq,
+main .services-hero ~ .section details.service-note {
+    transition: border-color var(--motion-fast) ease, background var(--motion-fast) ease;
+}
+
+main .services-hero ~ .section details[open].service-faq,
+main .services-hero ~ .section details[open].service-note {
+    border-color: rgba(200, 164, 123, 0.3);
+    background: linear-gradient(145deg, rgba(52, 46, 38, 0.95), rgba(29, 27, 23, 0.96));
+}
+
+main .services-hero ~ .section details summary:focus-visible {
+    outline: 2px solid var(--accent-hover);
+    outline-offset: -4px;
+}
+
+main .services-hero ~ .section .timeline {
+    position: relative;
+    gap: 0;
+}
+
+main .services-hero ~ .section .timeline::before {
+    content: "";
+    position: absolute;
+    top: 2rem;
+    bottom: 2rem;
+    left: 28px;
+    width: 1px;
+    background: linear-gradient(var(--accent), rgba(200, 164, 123, 0.08));
+}
+
+main .services-hero ~ .section .timeline-step {
+    position: relative;
+    padding-block: 0.8rem 1.45rem;
+}
+
+main .services-hero ~ .section .timeline-step .step-number {
+    z-index: 1;
+    border-color: rgba(200, 164, 123, 0.3);
+    background: #2a251f;
+    box-shadow: 0 0 0 7px #171512;
+}
+
+main .services-hero ~ .section .routine-table th {
+    background: rgba(200, 164, 123, 0.09);
+}
+
+main .services-hero ~ .section .final-cta {
+    padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+    border-color: rgba(200, 164, 123, 0.28);
+    background:
+        radial-gradient(circle at 50% 0%, rgba(200, 164, 123, 0.2), transparent 40%),
+        linear-gradient(145deg, #2b251e, #171512);
+    box-shadow: 0 30px 75px rgba(0, 0, 0, 0.3), inset 0 1px rgba(255, 255, 255, 0.055);
+}
+
+main .services-hero ~ .section .final-cta .section-title {
+    max-width: 22ch;
+    margin-inline: auto;
+}
+
+@keyframes nido-services-enter {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes nido-services-orbit {
+    from { transform: translate3d(-1%, 2%, 0) scale(0.96); opacity: 0.55; }
+    to { transform: translate3d(2%, -1%, 0) scale(1.04); opacity: 0.95; }
+}
+
+@media (max-width: 1100px) {
+    main .services-hero {
+        min-height: 0;
+    }
+
+    main .services-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+    }
+
+    main .services-hero-copy .page-title-with-icon h1 {
+        max-width: 15ch;
+    }
+
+    main .services-hero-visual.hero-card {
+        max-width: 760px;
+    }
+}
+
+@media (max-width: 760px) {
+    main .services-hero {
+        padding-block: 3.4rem 4rem;
+    }
+
+    main .services-hero::after {
+        right: -18rem;
+        bottom: -20rem;
+    }
+
+    main .services-hero .page-title-with-icon {
+        grid-template-columns: 58px minmax(0, 1fr);
+        gap: 0.8rem;
+    }
+
+    main .services-hero .page-title-with-icon img {
+        width: 58px;
+        height: 58px;
+        border-radius: 17px;
+    }
+
+    main .services-hero-copy .page-title-with-icon h1 {
+        font-size: clamp(2.25rem, 12vw, 3.35rem);
+    }
+
+    main .services-hero .service-mini-icons {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    main .services-hero .mini-icon-card {
+        min-height: 195px;
+        padding: 1rem;
+    }
+
+    main .services-hero .mini-icon-card img {
+        width: 62px;
+        height: 62px;
+    }
+
+    main .services-hero .mini-icon-card p {
+        font-size: 0.75rem;
+    }
+
+    main .services-hero ~ .section {
+        padding-block: 4.25rem;
+    }
+
+    main .services-hero ~ .section .timeline::before {
+        left: 24px;
+    }
+
+    main .services-hero ~ .section .timeline-step .step-number {
+        box-shadow: 0 0 0 6px #171512;
+    }
+}
+
+@media (max-width: 460px) {
+    main .services-hero-grid {
+        gap: 2.6rem;
+    }
+
+    main .services-hero .service-mini-icons {
+        grid-template-columns: 1fr;
+    }
+
+    main .services-hero .mini-icon-card {
+        min-height: 0;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.9rem;
+        text-align: left;
+    }
+
+    main .services-hero .mini-icon-card img {
+        flex: 0 0 56px;
+        width: 56px;
+        height: 56px;
+        margin: 0;
+    }
+
+    main .services-hero .mini-icon-card p {
+        margin: 0;
+    }
+
+    main .services-hero .cluster .btn {
+        width: 100%;
+    }
+}
+
+@media (hover: none), (pointer: coarse) {
+    main .services-hero .mini-icon-card:hover,
+    main .services-hero ~ .section .card:hover {
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    main .services-hero::after,
+    main .services-hero-copy > * {
+        animation: none;
+    }
+
+    main .services-hero .mini-icon-card,
+    main .services-hero .mini-icon-card img,
+    main .services-hero .mini-icon-card strong::after,
+    main .services-hero ~ .section .card {
+        transition: none;
+    }
+}

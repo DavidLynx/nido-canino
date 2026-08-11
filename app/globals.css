@@ -6,6 +6,9 @@
 @import "../css/components.css";
 @import "../css/pages.css";
 @import "../css/hola.css";
+@import "../css/motion.css";
+@import "../css/home-evolution.css";
+@import "../css/services-evolution.css";
 
 :root {
   --font-main: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;

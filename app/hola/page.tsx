@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { PawTrail } from "@/components/effects/paw-trail";
+import { PawMark } from "@/components/effects/paw-mark";
 import { HolaTracking } from "@/components/hola-tracking";
 import { socialLinks, type SocialLink } from "@/lib/social-links";
 
@@ -45,18 +45,6 @@ const instagramPreviewPhotos = [
   { src: "/assets/photos/gallery/simba-1.jpg", className: "is-simba" },
   { src: "/assets/photos/gallery/oso-1.jpg", className: "is-oso" },
 ] as const;
-
-function PawMark({ className = "" }: { className?: string }) {
-  return (
-    <span className={`nido-paw ${className}`.trim()} aria-hidden="true">
-      <span className="nido-paw__toe is-one" />
-      <span className="nido-paw__toe is-two" />
-      <span className="nido-paw__toe is-three" />
-      <span className="nido-paw__toe is-four" />
-      <span className="nido-paw__pad" />
-    </span>
-  );
-}
 
 function LinkIcon({ channel }: { channel: SocialLink }) {
   return (
@@ -184,7 +172,6 @@ export default function HolaPage() {
       <Suspense fallback={null}>
         <HolaTracking />
       </Suspense>
-      <PawTrail />
       <section className="hola-shell" aria-labelledby="holaTitle">
         <div className="hola-card">
           <header className="hola-intro">

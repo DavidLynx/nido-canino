@@ -506,42 +506,6 @@ a.hola-social-item:hover {
     box-shadow: var(--nido-focus-ring);
 }
 
-/* Reusable CSS paw: shared by CTA details and the cursor trail. */
-.nido-paw {
-    position: relative;
-    display: block;
-    width: 18px;
-    height: 18px;
-    color: currentColor;
-}
-
-.nido-paw__toe,
-.nido-paw__pad {
-    position: absolute;
-    display: block;
-    background: currentColor;
-}
-
-.nido-paw__toe {
-    width: 4.5px;
-    height: 5.5px;
-    border-radius: 50%;
-}
-
-.nido-paw__toe.is-one { top: 2.5px; left: 1.5px; transform: rotate(-28deg); }
-.nido-paw__toe.is-two { top: 0; left: 5.2px; transform: rotate(-8deg); }
-.nido-paw__toe.is-three { top: 0; right: 4.3px; transform: rotate(8deg); }
-.nido-paw__toe.is-four { top: 2.5px; right: 0.7px; transform: rotate(28deg); }
-
-.nido-paw__pad {
-    bottom: 1.2px;
-    left: 50%;
-    width: 10px;
-    height: 8px;
-    border-radius: 50% 50% 45% 45%;
-    transform: translateX(-50%);
-}
-
 .hola-logo-paw {
     position: absolute;
     right: -1.15rem;
@@ -574,10 +538,6 @@ a.hola-social-item:hover {
 .hola-destination.is-website:focus-visible .hola-cta-paw {
     opacity: 0.68;
     transform: rotate(10deg) scale(0.72);
-}
-
-.paw-trail {
-    display: none;
 }
 
 .hola-instagram-preview {
@@ -631,38 +591,7 @@ a.hola-social-item:hover {
     to { opacity: 0.9; transform: translate(-48%, -47%) scale(1.07); }
 }
 
-@keyframes hola-paw-fade {
-    0% { opacity: 0; transform: translate3d(var(--paw-x), var(--paw-y), 0) rotate(var(--paw-rotation)) scale(0.55); }
-    20% { opacity: 0.34; }
-    100% { opacity: 0; transform: translate3d(var(--paw-x), var(--paw-y), 0) rotate(var(--paw-rotation)) scale(0.86); }
-}
-
 @media (hover: hover) and (pointer: fine) {
-    .paw-trail {
-        position: fixed;
-        inset: 0;
-        z-index: 18;
-        display: block;
-        overflow: hidden;
-        pointer-events: none;
-    }
-
-    .paw-trail__print {
-        --paw-x: -50px;
-        --paw-y: -50px;
-        --paw-rotation: 0deg;
-        position: absolute;
-        top: -9px;
-        left: -9px;
-        color: var(--nido-camel);
-        opacity: 0;
-        will-change: transform, opacity;
-    }
-
-    .paw-trail__print.is-active {
-        animation: hola-paw-fade 1.05s ease-out forwards;
-    }
-
     .hola-instagram-preview {
         position: absolute;
         inset: 0;
@@ -743,7 +672,6 @@ a.hola-social-item:hover {
 }
 
 @media (max-width: 899px) {
-    .paw-trail,
     .hola-instagram-preview {
         display: none !important;
     }
@@ -796,8 +724,7 @@ a.hola-social-item:hover {
     .hola-destination.is-primary::before,
     .hola-destination.is-website:hover .hola-link-icon img,
     .hola-ecosystem,
-    .hola-signoff,
-    .paw-trail__print.is-active {
+    .hola-signoff {
         animation: none;
     }
 
@@ -810,10 +737,6 @@ a.hola-social-item:hover {
     .hola-ecosystem,
     .hola-signoff {
         opacity: 1;
-    }
-
-    .paw-trail {
-        display: none;
     }
 
     .hola-destination,

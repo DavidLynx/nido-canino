@@ -1,0 +1,361 @@
+/* Shared Nido motion and interaction language. */
+::selection {
+    color: #21170f;
+    background: rgba(216, 181, 140, 0.82);
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--nido-camel-hover);
+    outline-offset: 3px;
+    box-shadow: var(--nido-focus-ring);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    * {
+        scrollbar-color: rgba(200, 164, 123, 0.55) #151310;
+        scrollbar-width: thin;
+    }
+
+    *::-webkit-scrollbar {
+        width: 11px;
+        height: 11px;
+    }
+
+    *::-webkit-scrollbar-track {
+        background: #151310;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, rgba(216, 181, 140, 0.66), rgba(140, 104, 68, 0.58));
+        border: 3px solid #151310;
+        border-radius: var(--radius-pill);
+    }
+}
+
+.btn,
+button.btn,
+a.btn {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    transition:
+        color var(--motion-fast) ease,
+        background var(--motion-fast) ease,
+        border-color var(--motion-fast) ease,
+        box-shadow var(--motion-fast) ease,
+        transform var(--motion-fast) var(--ease-nido);
+}
+
+.btn:hover,
+button.btn:hover,
+a.btn:hover {
+    border-color: rgba(216, 181, 140, 0.58);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.2), 0 0 22px rgba(200, 164, 123, 0.08);
+    transform: translateY(-2px);
+}
+
+.btn:active,
+button.btn:active,
+a.btn:active {
+    transform: translateY(0) scale(0.985);
+}
+
+.nido-cta-row a.btn::after,
+.section-cta a.btn::after,
+.services-hero a.btn::after,
+.final-cta a.btn::after {
+    content: "→";
+    margin-left: 0.1rem;
+    transition: transform var(--motion-fast) var(--ease-nido);
+}
+
+.nido-cta-row a.btn:hover::after,
+.nido-cta-row a.btn:focus-visible::after,
+.section-cta a.btn:hover::after,
+.section-cta a.btn:focus-visible::after,
+.services-hero a.btn:hover::after,
+.services-hero a.btn:focus-visible::after,
+.final-cta a.btn:hover::after,
+.final-cta a.btn:focus-visible::after {
+    transform: translateX(5px);
+}
+
+.nido-cta-row .btn-primary::before,
+.services-hero .btn-primary::before,
+.section-cta .btn-primary::before,
+.final-cta .btn-primary::before,
+.home-social-hub__cta::before {
+    content: "";
+    position: absolute;
+    inset: -70% auto -70% -34%;
+    width: 18%;
+    background: linear-gradient(90deg, transparent, rgba(255, 250, 243, 0.4), transparent);
+    pointer-events: none;
+    transform: skewX(-18deg) translateX(-220%);
+    animation: nido-button-sheen 1.15s 0.9s ease-out both;
+}
+
+.site-header .brand img {
+    transition: filter var(--motion-fast) ease, opacity var(--motion-fast) ease, transform var(--motion-fast) var(--ease-nido);
+}
+
+.site-header .brand:hover img,
+.site-header .brand:focus-visible img {
+    filter: drop-shadow(0 8px 18px rgba(200, 164, 123, 0.16));
+    opacity: 0.96;
+    transform: scale(1.015);
+}
+
+.site-header .nav-links > a,
+.site-header .nav-menu a,
+.site-footer a:not(.footer-social-link) {
+    position: relative;
+    transition: color var(--motion-fast) ease, text-shadow var(--motion-fast) ease;
+}
+
+.site-header .nav-links > a:hover,
+.site-header .nav-links > a:focus-visible,
+.site-header .nav-links > a.active,
+.site-footer a:not(.footer-social-link):hover,
+.site-footer a:not(.footer-social-link):focus-visible {
+    color: var(--nido-camel-hover);
+    text-shadow: 0 0 18px rgba(200, 164, 123, 0.14);
+}
+
+.site-header .nav-links > a::after,
+.site-footer a:not(.footer-social-link)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -0.28rem;
+    left: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--nido-camel), transparent);
+    opacity: 0;
+    transform: scaleX(0.35);
+    transition: opacity var(--motion-fast) ease, transform var(--motion-fast) var(--ease-nido);
+}
+
+.site-header .nav-links > a:hover::after,
+.site-header .nav-links > a:focus-visible::after,
+.site-header .nav-links > a.active::after,
+.site-footer a:not(.footer-social-link):hover::after,
+.site-footer a:not(.footer-social-link):focus-visible::after {
+    opacity: 0.8;
+    transform: scaleX(1);
+}
+
+.site-footer .footer-social-link {
+    transition:
+        background var(--motion-fast) ease,
+        border-color var(--motion-fast) ease,
+        box-shadow var(--motion-fast) ease,
+        transform var(--motion-fast) var(--ease-nido);
+}
+
+.site-footer .footer-social-link:hover,
+.site-footer .footer-social-link:focus-visible {
+    box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2), 0 0 18px rgba(200, 164, 123, 0.1);
+    transform: translateY(-2px);
+}
+
+.site-footer .footer-social-link:hover img,
+.site-footer .footer-social-link:focus-visible img {
+    transform: scale(1.05);
+}
+
+.footer-social-icon {
+    transition: transform var(--motion-fast) var(--ease-nido);
+}
+
+body.nido-motion-ready .nido-scroll-reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity var(--motion-medium) ease, transform var(--motion-medium) var(--ease-nido);
+}
+
+body.nido-motion-ready .nido-scroll-reveal.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+body.nido-motion-ready .nido-scroll-reveal .nido-reveal-group > * {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+body.nido-motion-ready .nido-scroll-reveal.is-revealed .nido-reveal-group > * {
+    animation: nido-group-reveal var(--motion-medium) var(--ease-nido) both;
+}
+
+body.nido-motion-ready .nido-scroll-reveal.is-revealed .nido-reveal-group > *:nth-child(2) { animation-delay: 70ms; }
+body.nido-motion-ready .nido-scroll-reveal.is-revealed .nido-reveal-group > *:nth-child(3) { animation-delay: 140ms; }
+body.nido-motion-ready .nido-scroll-reveal.is-revealed .nido-reveal-group > *:nth-child(4) { animation-delay: 210ms; }
+body.nido-motion-ready .nido-scroll-reveal.is-revealed .nido-reveal-group > *:nth-child(n + 5) { animation-delay: 260ms; }
+
+.nido-paw {
+    position: relative;
+    display: block;
+    width: 18px;
+    height: 18px;
+    color: currentColor;
+}
+
+.nido-paw__toe,
+.nido-paw__pad {
+    position: absolute;
+    display: block;
+    background: currentColor;
+}
+
+.nido-paw__toe {
+    width: 4.5px;
+    height: 5.5px;
+    border-radius: 50%;
+}
+
+.nido-paw__toe.is-one { top: 2.5px; left: 1.5px; transform: rotate(-28deg); }
+.nido-paw__toe.is-two { top: 0; left: 5.2px; transform: rotate(-8deg); }
+.nido-paw__toe.is-three { top: 0; right: 4.3px; transform: rotate(8deg); }
+.nido-paw__toe.is-four { top: 2.5px; right: 0.7px; transform: rotate(28deg); }
+
+.nido-paw__pad {
+    bottom: 1.2px;
+    left: 50%;
+    width: 10px;
+    height: 8px;
+    border-radius: 50% 50% 45% 45%;
+    transform: translateX(-50%);
+}
+
+.paw-trail {
+    display: none;
+}
+
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+    .paw-trail {
+        position: fixed;
+        inset: 0;
+        z-index: 18;
+        display: block;
+        overflow: hidden;
+        pointer-events: none;
+    }
+
+    .paw-trail__print {
+        --paw-x: -50px;
+        --paw-y: -50px;
+        --paw-rotation: 0deg;
+        position: absolute;
+        top: -9px;
+        left: -9px;
+        color: var(--nido-camel);
+        opacity: 0;
+        will-change: transform, opacity;
+    }
+
+    .paw-trail__print.is-active {
+        animation: nido-paw-fade 1.05s ease-out forwards;
+    }
+
+    .nido-pointer-glow {
+        --mouse-x: 50%;
+        --mouse-y: 50%;
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+    }
+
+    .nido-pointer-glow::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background: radial-gradient(240px circle at var(--mouse-x) var(--mouse-y), rgba(216, 181, 140, 0.13), transparent 66%);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--motion-fast) ease;
+    }
+
+    .nido-pointer-glow:hover::after {
+        opacity: 1;
+    }
+
+    .nido-pointer-glow > * {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+@media (max-width: 980px) {
+    .nav-overflow.is-open .nav-menu a {
+        animation: nido-menu-entry 280ms var(--ease-nido) both;
+    }
+
+    .nav-overflow.is-open .nav-menu a:nth-child(2) { animation-delay: 45ms; }
+    .nav-overflow.is-open .nav-menu a:nth-child(3) { animation-delay: 90ms; }
+}
+
+@keyframes nido-button-sheen {
+    from { transform: skewX(-18deg) translateX(-220%); }
+    to { transform: skewX(-18deg) translateX(880%); }
+}
+
+@keyframes nido-group-reveal {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes nido-menu-entry {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes nido-paw-fade {
+    0% { opacity: 0; transform: translate3d(var(--paw-x), var(--paw-y), 0) rotate(var(--paw-rotation)) scale(0.55); }
+    20% { opacity: 0.27; }
+    100% { opacity: 0; transform: translate3d(var(--paw-x), var(--paw-y), 0) rotate(var(--paw-rotation)) scale(0.84); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+    }
+
+    body.nido-motion-ready .nido-scroll-reveal,
+    body.nido-motion-ready .nido-scroll-reveal .nido-reveal-group > * {
+        opacity: 1;
+        transform: none;
+        transition: none;
+        animation: none;
+    }
+
+    .paw-trail {
+        display: none !important;
+    }
+
+    .nido-cta-row .btn-primary::before,
+    .services-hero .btn-primary::before,
+    .section-cta .btn-primary::before,
+    .final-cta .btn-primary::before,
+    .home-social-hub__cta::before,
+    .nav-overflow.is-open .nav-menu a {
+        animation: none;
+    }
+
+    .btn,
+    button.btn,
+    a.btn,
+    .site-header .brand img,
+    .site-header .nav-links > a,
+    .site-footer a,
+    .footer-social-icon {
+        transition: none;
+    }
+}

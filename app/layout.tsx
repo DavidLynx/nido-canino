@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { LegacyRuntime } from "@/components/legacy-runtime";
+import { PawTrail } from "@/components/effects/paw-trail";
+import { SiteMotion } from "@/components/effects/site-motion";
 import { siteConfig } from "@/lib/site";
 
 import "./globals.css";
@@ -57,6 +59,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="es" className={inter.variable}>
       <body>
         <Header />
+        <PawTrail />
+        <SiteMotion />
         {children}
         <Footer />
         <LegacyRuntime />

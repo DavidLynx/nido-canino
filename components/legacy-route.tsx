@@ -10,11 +10,23 @@ export function LegacyRoute({ source }: { source: string }) {
   return (
     <>
       {page.styles.map((style, index) => (
-        <style dangerouslySetInnerHTML={{ __html: style }} key={`${source}-style-${index}`} />
+        <style
+          dangerouslySetInnerHTML={{ __html: style }}
+          key={`${source}-style-${index}`}
+          suppressHydrationWarning
+        />
       ))}
-      <div className="legacy-route-root" dangerouslySetInnerHTML={{ __html: page.mainHtml }} />
+      <div
+        className="legacy-route-root"
+        dangerouslySetInnerHTML={{ __html: page.mainHtml }}
+        suppressHydrationWarning
+      />
       {page.supplementalHtml ? (
-        <div className="legacy-route-root" dangerouslySetInnerHTML={{ __html: page.supplementalHtml }} />
+        <div
+          className="legacy-route-root"
+          dangerouslySetInnerHTML={{ __html: page.supplementalHtml }}
+          suppressHydrationWarning
+        />
       ) : null}
       {page.inlineScripts.map((script, index) => (
         <Fragment key={`${source}-script-${index}`}>

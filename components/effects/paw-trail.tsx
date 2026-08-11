@@ -1,15 +1,26 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
+
+import { PawMark } from "./paw-mark";
 
 const PAW_COUNT = 8;
 const MIN_DISTANCE = 34;
 const MIN_INTERVAL = 92;
 
+const operationalRoutes = ["/auth", "/profile", "/pets", "/request", "/requests"];
+
 export function PawTrail() {
   const trailRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const isOperational = operationalRoutes.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`),
+  );
 
   useEffect(() => {
+    if (isOperational) return;
+
     const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -69,18 +80,14 @@ export function PawTrail() {
       window.removeEventListener("pointermove", onPointerMove);
       if (frame) window.cancelAnimationFrame(frame);
     };
-  }, []);
+  }, [isOperational]);
+
+  if (isOperational) return null;
 
   return (
     <div className="paw-trail" ref={trailRef} aria-hidden="true">
       {Array.from({ length: PAW_COUNT }, (_, index) => (
-        <span className="nido-paw paw-trail__print" key={index}>
-          <span className="nido-paw__toe is-one" />
-          <span className="nido-paw__toe is-two" />
-          <span className="nido-paw__toe is-three" />
-          <span className="nido-paw__toe is-four" />
-          <span className="nido-paw__pad" />
-        </span>
+        <PawMark className="paw-trail__print" key={index} />
       ))}
     </div>
   );
