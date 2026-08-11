@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { HomeSocialHub } from "@/components/home-social-hub";
 import { LegacyRoute } from "@/components/legacy-route";
 import { siteConfig } from "@/lib/site";
 
@@ -25,5 +26,10 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  return <LegacyRoute source="index.html" />;
+  return (
+    <>
+      <LegacyRoute source="index.html" />
+      <HomeSocialHub />
+    </>
+  );
 }

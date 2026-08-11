@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+import { PawTrail } from "@/components/effects/paw-trail";
 import { HolaTracking } from "@/components/hola-tracking";
 import { socialLinks, type SocialLink } from "@/lib/social-links";
 
@@ -39,6 +40,24 @@ const ecosystemChannels = [
 
 const holaHref = (channel: SocialLink) => channel.holaHref ?? channel.href;
 
+const instagramPreviewPhotos = [
+  { src: "/assets/photos/gallery/bruno-1.jpg", className: "is-bruno" },
+  { src: "/assets/photos/gallery/simba-1.jpg", className: "is-simba" },
+  { src: "/assets/photos/gallery/oso-1.jpg", className: "is-oso" },
+] as const;
+
+function PawMark({ className = "" }: { className?: string }) {
+  return (
+    <span className={`nido-paw ${className}`.trim()} aria-hidden="true">
+      <span className="nido-paw__toe is-one" />
+      <span className="nido-paw__toe is-two" />
+      <span className="nido-paw__toe is-three" />
+      <span className="nido-paw__toe is-four" />
+      <span className="nido-paw__pad" />
+    </span>
+  );
+}
+
 function LinkIcon({ channel }: { channel: SocialLink }) {
   return (
     <span className="hola-link-icon" aria-hidden="true">
@@ -56,7 +75,7 @@ function Arrow() {
 }
 
 function Destination({ channel, index }: { channel: SocialLink; index: number }) {
-  const className = `hola-destination${channel.key === "website" ? " is-primary" : ""}`;
+  const className = `hola-destination is-${channel.key}${channel.key === "website" ? " is-primary" : ""}`;
   const content = (
     <>
       <LinkIcon channel={channel} />
@@ -64,30 +83,48 @@ function Destination({ channel, index }: { channel: SocialLink; index: number })
         <strong>{channel.title}</strong>
         <span>{channel.detail}</span>
       </span>
-      <Arrow />
+      <span className="hola-destination-end" aria-hidden="true">
+        {channel.key === "website" ? <PawMark className="hola-cta-paw" /> : null}
+        <Arrow />
+      </span>
     </>
   );
   const style = { "--hola-order": index } as CSSProperties;
 
+  const preview = channel.key === "instagram" ? (
+    <span className="hola-instagram-preview" aria-hidden="true">
+      {instagramPreviewPhotos.map((photo) => (
+        <span className={`hola-instagram-polaroid ${photo.className}`} key={photo.src}>
+          <Image src={photo.src} alt="" width={112} height={132} />
+        </span>
+      ))}
+    </span>
+  ) : null;
+
   if (!channel.external) {
     return (
-      <Link className={className} href={holaHref(channel)} data-hola-channel={channel.key} style={style}>
-        {content}
-      </Link>
+      <div className={`hola-destination-wrap is-${channel.key}`} style={style}>
+        {preview}
+        <Link className={className} href={holaHref(channel)} data-hola-channel={channel.key}>
+          {content}
+        </Link>
+      </div>
     );
   }
 
   return (
-    <a
-      className={className}
-      href={holaHref(channel)}
-      target="_blank"
-      rel="noopener noreferrer"
-      data-hola-channel={channel.key}
-      style={style}
-    >
-      {content}
-    </a>
+    <div className={`hola-destination-wrap is-${channel.key}`} style={style}>
+      {preview}
+      <a
+        className={className}
+        href={holaHref(channel)}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-hola-channel={channel.key}
+      >
+        {content}
+      </a>
+    </div>
   );
 }
 
@@ -99,13 +136,16 @@ function SocialItem({ channel }: { channel: SocialLink }) {
         <strong>{channel.label}</strong>
         <small>{channel.detail}</small>
       </span>
+      <span className="hola-social-arrow" aria-hidden="true">→</span>
     </>
   );
+
+  const className = `hola-social-item is-${channel.key}`;
 
   if (!channel.external) {
     return channel.key === "website" ? (
       <Link
-        className="hola-social-item"
+        className={className}
         href={holaHref(channel)}
         data-hola-channel={channel.key}
         aria-label={`Abrir ${channel.label} de Nido Canino`}
@@ -114,7 +154,7 @@ function SocialItem({ channel }: { channel: SocialLink }) {
       </Link>
     ) : (
       <a
-        className="hola-social-item"
+        className={className}
         href={holaHref(channel)}
         data-hola-channel={channel.key}
         aria-label={`Abrir ${channel.label} de Nido Canino`}
@@ -126,7 +166,7 @@ function SocialItem({ channel }: { channel: SocialLink }) {
 
   return (
     <a
-      className="hola-social-item"
+      className={className}
       href={holaHref(channel)}
       target="_blank"
       rel="noopener noreferrer"
@@ -144,6 +184,7 @@ export default function HolaPage() {
       <Suspense fallback={null}>
         <HolaTracking />
       </Suspense>
+      <PawTrail />
       <section className="hola-shell" aria-labelledby="holaTitle">
         <div className="hola-card">
           <header className="hola-intro">
@@ -161,6 +202,7 @@ export default function HolaPage() {
                 height={512}
                 priority
               />
+              <PawMark className="hola-logo-paw" />
             </Link>
             <p className="hola-kicker">Nuestra tarjeta digital</p>
             <h1 id="holaTitle">Hola, somos Nido Canino.</h1>
