@@ -1,0 +1,196 @@
+{
+  "blog": [
+    {
+      "file": "blog/01_grupos_pequenos.md",
+      "slug": "por-que-algunos-perros-necesitan-grupos-pequenos",
+      "title": "Por qué algunos perros necesitan grupos pequeños",
+      "category": "Señales y comportamiento",
+      "image": "/assets/editorial/blog/blog-grupos-pequenos.webp",
+      "cta": "Conozca nuestros servicios y planes",
+      "ctaHref": "/services"
+    },
+    {
+      "file": "blog/02_senales_estres.md",
+      "slug": "senales-tempranas-de-estres-en-perros",
+      "title": "Señales tempranas de estrés en perros: mirar antes de que el cuerpo grite",
+      "category": "Señales y comportamiento",
+      "image": "/assets/editorial/blog/blog-estres-perro.webp",
+      "cta": "Conozca cómo funciona la adaptación",
+      "ctaHref": "/admission-pro"
+    },
+    {
+      "file": "blog/03_temblor.md",
+      "slug": "que-hacer-con-su-perro-durante-un-temblor",
+      "title": "Qué hacer con su perro durante un temblor: antes, durante y después",
+      "category": "Preparación y seguridad",
+      "image": "/assets/editorial/blog/blog-sismo-mascotas.webp",
+      "cta": "Vea el checklist de emergencia para mascotas",
+      "ctaHref": "/resources/kit-emergencia-mascotas"
+    },
+    {
+      "file": "blog/04_senior.md",
+      "slug": "perro-senior-intensidad-o-estabilidad",
+      "title": "Perro senior: ¿más intensidad o más estabilidad?",
+      "category": "Rutina y bienestar",
+      "image": "/assets/editorial/blog/blog-perro-senior.webp",
+      "cta": "Conozca nuestros servicios",
+      "ctaHref": "/services"
+    },
+    {
+      "file": "blog/05_adaptacion.md",
+      "slug": "adaptacion-previa-que-observamos",
+      "title": "Adaptación previa: qué observamos antes de confirmar un cupo",
+      "category": "Casos Nido",
+      "image": "/assets/editorial/blog/blog-adaptacion.webp",
+      "cta": "Ir al Formulario PRO",
+      "ctaHref": "/admission-pro"
+    },
+    {
+      "file": "blog/06_simba.md",
+      "slug": "simba-adaptar-el-entorno",
+      "title": "Simba: cuando cuidar también significa adaptar el entorno",
+      "category": "Casos Nido",
+      "image": "/assets/editorial/blog/blog-simba.webp",
+      "cta": "Conozca cómo cuidamos",
+      "ctaHref": "/services"
+    },
+    {
+      "file": "blog/07_gato_casa.md",
+      "slug": "por-que-algunos-gatos-prefieren-cuidado-en-casa",
+      "title": "Por qué algunos gatos agradecen que el cuidado llegue a casa",
+      "category": "Cuidado felino",
+      "image": "/assets/editorial/blog/blog-gato-casa.webp",
+      "cta": "Conozca la visita felina",
+      "ctaHref": "/services"
+    },
+    {
+      "file": "blog/08_ausencia_gato.md",
+      "slug": "ausencias-y-gatos-reducir-cambios",
+      "title": "Ausencias y gatos: cómo reducir cambios innecesarios",
+      "category": "Cuidado felino",
+      "image": "/assets/editorial/blog/blog-ausencia-gato.webp",
+      "cta": "Use el checklist antes de una ausencia",
+      "ctaHref": "/resources/checklist-ausencia-gato"
+    },
+    {
+      "file": "blog/09_descanso.md",
+      "slug": "descansar-tambien-es-informacion",
+      "title": "Descansar también es información: qué observamos cuando un perro logra pausar",
+      "category": "Rutina y bienestar",
+      "image": "/assets/editorial/blog/blog-descanso-perro.webp",
+      "cta": "Conozca nuestro modelo de cuidado",
+      "ctaHref": "/services"
+    },
+    {
+      "file": "blog/10_olfato.md",
+      "slug": "olfato-pausa-y-concentracion",
+      "title": "Olfato, pausa y concentración: enriquecer no es simplemente cansar",
+      "category": "Rutina y bienestar",
+      "image": "/assets/editorial/blog/blog-olfato.webp",
+      "cta": "Vea nuestro día a día en Instagram",
+      "ctaHref": "https://www.instagram.com/nidocaninobogota/"
+    }
+  ],
+  "resources": [
+    {
+      "file": "resources/01_antes_avanzar.md",
+      "slug": "que-conviene-tener-claro-antes-de-avanzar",
+      "title": "Qué conviene tener claro antes de avanzar con Nido Canino",
+      "category": "Preparación",
+      "format": "Checklist",
+      "image": "/assets/editorial/resources/resources-checklist.webp",
+      "cta": "Solicitar cotización",
+      "ctaHref": "/request"
+    },
+    {
+      "file": "resources/02_checklist_convivencia.md",
+      "slug": "checklist-convivencia-canina",
+      "title": "Checklist para solicitar convivencia canina estructurada",
+      "category": "Checklists",
+      "format": "Checklist",
+      "image": "/assets/editorial/resources/resources-checklist.webp",
+      "cta": "Ir al Formulario PRO",
+      "ctaHref": "/admission-pro"
+    },
+    {
+      "file": "resources/03_primer_contacto.md",
+      "slug": "informacion-primer-contacto",
+      "title": "Información que ayuda desde el primer contacto",
+      "category": "Preparación",
+      "format": "Guía rápida",
+      "image": "/assets/editorial/resources/resources-checklist.webp",
+      "cta": "Hable con Nido",
+      "ctaHref": "/hola"
+    },
+    {
+      "file": "resources/04_visita_felina.md",
+      "slug": "como-preparar-visita-felina",
+      "title": "Cómo preparar una visita felina a domicilio",
+      "category": "Checklists",
+      "format": "Checklist",
+      "image": "/assets/editorial/blog/blog-gato-casa.webp",
+      "cta": "Consultar visita felina",
+      "ctaHref": "/hola"
+    },
+    {
+      "file": "resources/05_ruta.md",
+      "slug": "que-ruta-corresponde",
+      "title": "Qué ruta suele corresponder: cotización, Formulario PRO o visita felina",
+      "category": "Ruta correcta",
+      "format": "Comparador",
+      "image": "/assets/editorial/resources/resources-checklist.webp",
+      "cta": "Elegir mi ruta",
+      "ctaHref": "/hola"
+    },
+    {
+      "file": "resources/06_ausencia_gato_checklist.md",
+      "slug": "checklist-ausencia-gato",
+      "title": "Checklist antes de una ausencia si su gato queda en casa",
+      "category": "Checklists",
+      "format": "Checklist",
+      "image": "/assets/editorial/blog/blog-ausencia-gato.webp",
+      "cta": "Consultar cuidado felino",
+      "ctaHref": "/hola"
+    },
+    {
+      "file": "resources/07_estancia.md",
+      "slug": "checklist-antes-de-una-estancia-corta",
+      "title": "Qué dejar listo para una estancia corta",
+      "category": "Checklists",
+      "format": "Checklist",
+      "image": "/assets/editorial/resources/resources-checklist.webp",
+      "cta": "Revisar servicios",
+      "ctaHref": "/services"
+    },
+    {
+      "file": "resources/08_plantilla_rutina.md",
+      "slug": "plantilla-rutina-descanso-alimentacion",
+      "title": "Plantilla de rutina, descanso y alimentación",
+      "category": "Plantillas",
+      "format": "Plantilla",
+      "image": "/assets/editorial/resources/resources-checklist.webp",
+      "cta": "Preparar mi caso",
+      "ctaHref": "/resources/que-conviene-tener-claro-antes-de-avanzar"
+    },
+    {
+      "file": "resources/09_medicacion.md",
+      "slug": "ficha-medicacion-y-salud",
+      "title": "Ficha de medicación y datos de salud para entregar a un cuidador",
+      "category": "Plantillas",
+      "format": "Plantilla",
+      "image": "/assets/editorial/resources/resources-checklist.webp",
+      "cta": "Ver recursos relacionados",
+      "ctaHref": "/resources"
+    },
+    {
+      "file": "resources/10_emergency_kit.md",
+      "slug": "kit-emergencia-mascotas",
+      "title": "Kit de emergencia para mascotas: lista base",
+      "category": "Emergencias",
+      "format": "Checklist",
+      "image": "/assets/editorial/resources/resources-emergency-kit.webp",
+      "cta": "Leer qué hacer durante un temblor",
+      "ctaHref": "/blog/que-hacer-con-su-perro-durante-un-temblor"
+    }
+  ]
+}

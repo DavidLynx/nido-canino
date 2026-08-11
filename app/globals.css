@@ -9,6 +9,7 @@
 @import "../css/motion.css";
 @import "../css/home-evolution.css";
 @import "../css/services-evolution.css";
+@import "../css/editorial.css";
 
 :root {
   --font-main: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
