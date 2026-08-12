@@ -98,7 +98,7 @@
       "title": "Qué conviene tener claro antes de avanzar con Nido Canino",
       "category": "Preparación",
       "format": "Checklist",
-      "image": "/assets/photos/blog/resources-checklist.png",
+      "image": "/assets/photos/recursos/Antes de avanzar con Nido Canino.png",
       "cta": "Solicitar cotización",
       "ctaHref": "/request"
     },
@@ -108,7 +108,7 @@
       "title": "Checklist para solicitar convivencia canina estructurada",
       "category": "Checklists",
       "format": "Checklist",
-      "image": "/assets/photos/blog/resources-checklist.png",
+      "image": "/assets/photos/recursos/Convivencia canina estructurada.png",
       "cta": "Ir al Formulario PRO",
       "ctaHref": "/admission-pro"
     },
@@ -118,7 +118,7 @@
       "title": "Información que ayuda desde el primer contacto",
       "category": "Preparación",
       "format": "Guía rápida",
-      "image": "/assets/photos/blog/resources-checklist.png",
+      "image": "/assets/photos/recursos/Información que ayuda desde el primer contacto.png",
       "cta": "Hable con Nido",
       "ctaHref": "/hola"
     },
@@ -128,7 +128,7 @@
       "title": "Cómo preparar una visita felina a domicilio",
       "category": "Checklists",
       "format": "Checklist",
-      "image": "/assets/photos/blog/blog-gato-casa.png",
+      "image": "/assets/photos/recursos/Visita felina a domicilio.png",
       "cta": "Consultar visita felina",
       "ctaHref": "/hola"
     },
@@ -138,7 +138,7 @@
       "title": "Qué ruta suele corresponder: cotización, Formulario PRO o visita felina",
       "category": "Ruta correcta",
       "format": "Comparador",
-      "image": "/assets/photos/blog/resources-checklist.png",
+      "image": "/assets/photos/recursos/Elegir la ruta correcta.png",
       "cta": "Elegir mi ruta",
       "ctaHref": "/hola"
     },
@@ -148,7 +148,7 @@
       "title": "Checklist antes de una ausencia si su gato queda en casa",
       "category": "Checklists",
       "format": "Checklist",
-      "image": "/assets/photos/blog/blog-ausencia-gato.png",
+      "image": "/assets/photos/recursos/Cómo organizar una ausencia cuando el gato se queda en casa.png",
       "cta": "Consultar cuidado felino",
       "ctaHref": "/hola"
     },
@@ -158,7 +158,7 @@
       "title": "Qué dejar listo para una estancia corta",
       "category": "Checklists",
       "format": "Checklist",
-      "image": "/assets/photos/blog/resources-checklist.png",
+      "image": "/assets/photos/recursos/Qué preparar para una estancia corta o pernocta.png",
       "cta": "Revisar servicios",
       "ctaHref": "/services"
     },
@@ -168,7 +168,7 @@
       "title": "Plantilla de rutina, descanso y alimentación",
       "category": "Plantillas",
       "format": "Plantilla",
-      "image": "/assets/photos/blog/resources-checklist.png",
+      "image": "/assets/photos/recursos/Plantilla para organizar la rutina de su perro.png",
       "cta": "Preparar mi caso",
       "ctaHref": "/resources/que-conviene-tener-claro-antes-de-avanzar"
     },
@@ -178,7 +178,7 @@
       "title": "Ficha de medicación y datos de salud para entregar a un cuidador",
       "category": "Plantillas",
       "format": "Plantilla",
-      "image": "/assets/photos/blog/resources-checklist.png",
+      "image": "/assets/photos/recursos/Qué informar sobre medicación y salud.png",
       "cta": "Ver recursos relacionados",
       "ctaHref": "/resources"
     },
@@ -188,7 +188,7 @@
       "title": "Kit de emergencia para mascotas: lista base",
       "category": "Emergencias",
       "format": "Checklist",
-      "image": "/assets/photos/blog/resources-emergency-kit.png",
+      "image": "/assets/photos/recursos/Kit de emergencia para mascotas.png",
       "cta": "Leer qué hacer durante un temblor",
       "ctaHref": "/blog/que-hacer-con-su-perro-durante-un-temblor"
     }

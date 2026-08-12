@@ -21,8 +21,16 @@ const IMAGE_LAYOUTS: Record<string, EditorialImageLayout> = {
   "/assets/photos/blog/blog-ausencia-gato.png": { fit: "cover", position: "52% 58%" },
   "/assets/photos/blog/blog-descanso-perro.png": { fit: "cover", position: "50% 58%" },
   "/assets/photos/blog/blog-olfato.png": { fit: "cover", position: "48% 62%" },
-  "/assets/photos/blog/resources-checklist.png": { fit: "cover", position: "50% 58%" },
-  "/assets/photos/blog/resources-emergency-kit.png": { fit: "cover", position: "52% 58%" },
+  "/assets/photos/recursos/Antes de avanzar con Nido Canino.png": { fit: "cover", position: "50% 60%" },
+  "/assets/photos/recursos/Convivencia canina estructurada.png": { fit: "cover", position: "52% 56%" },
+  "/assets/photos/recursos/Información que ayuda desde el primer contacto.png": { fit: "cover", position: "52% 58%" },
+  "/assets/photos/recursos/Visita felina a domicilio.png": { fit: "cover", position: "48% 50%" },
+  "/assets/photos/recursos/Elegir la ruta correcta.png": { fit: "cover", position: "50% 58%" },
+  "/assets/photos/recursos/Cómo organizar una ausencia cuando el gato se queda en casa.png": { fit: "cover", position: "48% 52%" },
+  "/assets/photos/recursos/Qué preparar para una estancia corta o pernocta.png": { fit: "cover", position: "52% 52%" },
+  "/assets/photos/recursos/Plantilla para organizar la rutina de su perro.png": { fit: "cover", position: "50% 58%" },
+  "/assets/photos/recursos/Qué informar sobre medicación y salud.png": { fit: "cover", position: "50% 52%" },
+  "/assets/photos/recursos/Kit de emergencia para mascotas.png": { fit: "cover", position: "50% 52%" },
 };
 
 export function getEditorialImageLayout(image: string): EditorialImageLayout {
