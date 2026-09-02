@@ -16,6 +16,7 @@ const server = createServer(async (req, res) => {
   try { body = JSON.parse(Buffer.concat(chunks).toString("utf8")); } catch { res.writeHead(400); res.end(); return; }
   if (req.headers.authorization !== "Bearer TEST-ID.TEST-NOT-A-SECRET") { res.writeHead(401); res.end(); return; }
   if (body.metadata?.form_slug !== "website-intake" || body.consent?.policy_version !== "TEST-POLICY") { res.writeHead(422); res.end(); return; }
+  if (typeof body.answers?.dog_count !== "string" || !["1", "2", "3", "4", "5"].includes(body.answers.dog_count)) { res.writeHead(422); res.end(); return; }
   const id = body.metadata.external_request_id;
   const previous = records.get(id);
   const serialized = JSON.stringify(body);

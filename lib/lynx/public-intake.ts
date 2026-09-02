@@ -28,7 +28,8 @@ export function buildLynxPayload(input: RequestEnvelope, policyVersion: string) 
       concern: a.care_concern || "Solicitud inicial enviada desde nidocanino.org/request",
     },
     context: {}, // No browser-provided identity, and no unsafe name matching.
-    answers: a,
+    // Lynx website-intake defines dog_count as a string select; Nido keeps its numeric model.
+    answers: { ...a, dog_count: String(a.dog_count) },
     consent: { accepted: true, policy_version: policyVersion, accepted_at: input.consent_accepted_at },
   };
 }

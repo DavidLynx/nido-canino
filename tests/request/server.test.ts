@@ -5,7 +5,7 @@ import { buildLynxPayload, submitToLynx } from "@/lib/lynx/public-intake";
 import { getPrivacyPolicy } from "@/lib/lynx/config";
 import { NEEDS } from "@/lib/request/contract";
 import { sendAttempt } from "@/lib/request/client";
-import { envelope, fakeEnv } from "./fixtures";
+import { dog, envelope, fakeEnv } from "./fixtures";
 
 function configure() { Object.entries(fakeEnv).forEach(([key, value]) => vi.stubEnv(key, value!)); }
 function request(body: unknown, headers: Record<string, string> = {}) {
@@ -30,9 +30,57 @@ describe("server-to-server intake", () => {
       attribution: { ...input.attribution, source_self_reported: "Instagram" },
       contact: { full_name: "Tutor de prueba", phone: "3000000000", locality: "Fontibón", zone: "Modelia" },
       request: { intent: NEEDS[1], requested_dates: ["2026-12-01", "2026-12-03"], concern: "Solicitud inicial enviada desde nidocanino.org/request" },
-      context: {}, answers: input.answers,
+      context: {}, answers: { ...input.answers, dog_count: "1" },
       consent: { accepted: true, policy_version: "TEST-POLICY", accepted_at: input.consent_accepted_at },
     });
+  });
+  it.each([1, 2, 3, 4, 5])("serializes internal dog_count=%s as a Lynx string select without changing other data", (count) => {
+    const input = envelope({ dog_count: String(count), ...dog(2), ...dog(3), ...dog(4), ...dog(5) });
+    const before = structuredClone(input);
+    expect(input.answers.dog_count).toBe(count);
+    const payload = buildLynxPayload(input, input.policy_version);
+    expect(payload.answers.dog_count).toBe(String(count));
+    expect(payload.answers).toEqual({ ...input.answers, dog_count: String(count) });
+    for (let n = 1; n <= 5; n++) {
+      for (const [key, value] of Object.entries(dog(n))) {
+        if (n <= count) expect(payload.answers).toHaveProperty(key, value);
+        else expect(payload.answers).not.toHaveProperty(key);
+      }
+    }
+    expect(payload.metadata.external_request_id).toBe(before.external_request_id);
+    expect(payload.metadata.submitted_at).toBe(before.submitted_at);
+    expect(payload.consent.accepted_at).toBe(before.consent_accepted_at);
+    expect(payload.attribution).toEqual({ ...before.attribution, source_self_reported: before.answers.source_self_reported });
+    expect(input).toEqual(before);
+    expect(JSON.stringify(buildLynxPayload(input, input.policy_version))).toBe(JSON.stringify(payload));
+  });
+  it("keeps existing select, consent, weekly and date types unchanged at the boundary", () => {
+    const input = envelope({ dog_count: 3, ...dog(2), ...dog(3), need_type: NEEDS[0], weekly_days_count: 2, weekly_days: ["Lunes", "Viernes"], bite_history: "Sí", bite_context: "Al asustarse" });
+    const { answers } = buildLynxPayload(input, input.policy_version);
+    const selectKeys = ["source_self_reported", "need_type", "dog_relationship", "cat_reaction", "bite_history"];
+    for (let n = 1; n <= 3; n++) selectKeys.push(`dog_${n}_sex`, `dog_${n}_size`, `dog_${n}_neutered`);
+    for (const key of selectKeys) { expect(answers).toHaveProperty(key, expect.any(String)); expect(answers).toHaveProperty(key, input.answers[key]); }
+    expect(answers.privacy_consent).toBe(true);
+    expect(answers.weekly_days).toEqual(["Lunes", "Viernes"]);
+    expect(answers.weekly_days_count).toBe(2);
+    const travel = buildLynxPayload(envelope({ need_type: NEEDS[1], trip_start: "2026-12-01", trip_end: "2026-12-03" }), input.policy_version);
+    const single = buildLynxPayload(envelope({ need_type: NEEDS[2], single_date: "2026-12-04" }), input.policy_version);
+    expect([travel.answers.trip_start, travel.answers.trip_end, single.answers.single_date]).toEqual(["2026-12-01", "2026-12-03", "2026-12-04"]);
+  });
+  it("server retry emits the identical serialized Lynx payload and never a numeric dog select", async () => {
+    const input = envelope({ dog_count: 3, ...dog(2), ...dog(3) });
+    const before = structuredClone(input);
+    const bodies: string[] = [];
+    const fetcher = vi.fn(async (_url: string | URL | Request, init?: RequestInit) => {
+      bodies.push(String(init?.body));
+      const payload = JSON.parse(String(init?.body));
+      if (typeof payload.answers.dog_count !== "string" || !["1", "2", "3", "4", "5"].includes(payload.answers.dog_count)) return new Response(null, { status: 422 });
+      return bodies.length === 1 ? new Response(null, { status: 503 }) : accepted();
+    });
+    expect(await submitToLynx(input, { env: fakeEnv, fetcher })).toMatchObject({ accepted: false, code: "upstream" });
+    expect(await submitToLynx(input, { env: fakeEnv, fetcher })).toMatchObject({ accepted: true });
+    expect(bodies).toHaveLength(2); expect(bodies[1]).toBe(bodies[0]);
+    expect(input).toEqual(before);
   });
   it("weekly, concern, reported source and single date mappings", () => {
     const weekly = buildLynxPayload(envelope({ need_type: NEEDS[0], weekly_days_count: 2, weekly_days: ["Lunes", "Viernes"], care_concern: "Pausas", source_self_reported: "Recomendación", source_detail: "TEST" }), "TEST-POLICY");
