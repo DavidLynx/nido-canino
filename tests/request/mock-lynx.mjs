@@ -1,10 +1,12 @@
 // Local-only mock. Never proxies requests and never logs personal payloads.
 import { createServer } from "node:http";
+import { mockAdmission } from "../admission-pro/mock-handler.mjs";
 
 if (process.env.NIDO_TEST_MOCK !== "1" || process.env.NODE_ENV === "production") throw new Error("This mock requires explicit NIDO_TEST_MOCK=1 outside production.");
 const records = new Map();
 const server = createServer(async (req, res) => {
   if (req.url === "/health") { res.writeHead(200); res.end("local test mock"); return; }
+  if (await mockAdmission(req, res)) return;
   if (req.url !== "/intake" || req.method !== "POST") { res.writeHead(404); res.end(); return; }
   let size = 0; const chunks = [];
   for await (const chunk of req) {
@@ -28,4 +30,4 @@ const server = createServer(async (req, res) => {
   res.writeHead(202, { "Content-Type": "application/json" });
   res.end(JSON.stringify({ accepted: true, request_id: `req-${id}`, submission_id: "test-submission", contact_id: "test-contact", opportunity_id: "test-opportunity" }));
 });
-server.listen(4319, "127.0.0.1");
+server.listen(Number(process.env.NIDO_TEST_MOCK_PORT || 4319), "127.0.0.1");

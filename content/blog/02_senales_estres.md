@@ -10,7 +10,7 @@ imageAlt: "Perro de pelaje café con la mirada desviada y las orejas hacia atrá
 published: "2026-08-11"
 updated: "2026-08-11"
 cta: "Conozca cómo funciona la adaptación"
-ctaHref: "/admission-pro"
+ctaHref: "/request"
 related: ["por-que-algunos-perros-necesitan-grupos-pequenos", "adaptacion-previa-que-observamos", "descansar-tambien-es-informacion"]
 sources:
   - "AAHA — Common Signs of Anxiety/Distress"

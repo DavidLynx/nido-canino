@@ -36,7 +36,7 @@ Suele tener más sentido cuando:
 - existen antecedentes que conviene revisar antes de confirmar cupo;
 - quiere una orientación más precisa.
 
-**Empiece por:** Formulario PRO.
+**Empiece por:** la [solicitud inicial](/request). Después de revisarla, Nido le enviará una invitación al Formulario PRO si corresponde. Si ya tiene esa invitación, use el enlace recibido.
 
 ## Visita felina
 

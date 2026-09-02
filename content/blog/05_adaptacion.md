@@ -9,8 +9,8 @@ image: "/assets/photos/blog/blog-adaptacion.png"
 imageAlt: "Perro explorando con calma un espacio doméstico nuevo"
 published: "2026-08-11"
 updated: "2026-08-11"
-cta: "Ir al Formulario PRO"
-ctaHref: "/admission-pro"
+cta: "Realizar solicitud inicial"
+ctaHref: "/request"
 related: ["senales-tempranas-de-estres-en-perros", "por-que-algunos-perros-necesitan-grupos-pequenos", "descansar-tambien-es-informacion"]
 sources:
   - "AAHA — Behavior management and stress observation"
@@ -97,7 +97,7 @@ Debe dejar una orientación sobre lo observado y sobre la ruta que tiene más se
 > **Idea clave:** la adaptación sirve para reunir información antes de comprometer un servicio. No es una etiqueta sobre el perro.
 
 ### Siguiente paso
-Si está considerando convivencia o estancia, complete el **Formulario PRO** para que podamos revisar su caso.
+Si está considerando convivencia o estancia, complete la **solicitud inicial** para que podamos revisar su caso. El Formulario PRO se habilita después mediante invitación.
 
 ### Fuentes consultadas
 - AAHA, Canine and Feline Behavior Management Guidelines.

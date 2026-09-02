@@ -6,5 +6,5 @@ export default defineConfig({
     "@": fileURLToPath(new URL(".", import.meta.url)),
     "server-only": fileURLToPath(new URL("./tests/request/server-only.ts", import.meta.url)),
   } },
-  test: { include: ["tests/request/**/*.test.{ts,tsx}"], setupFiles: ["./tests/request/setup.ts"], restoreMocks: true },
+  test: { include: ["tests/request/**/*.test.{ts,tsx}", "tests/admission-pro/**/*.test.{ts,tsx}"], setupFiles: ["./tests/request/setup.ts"], restoreMocks: true },
 });

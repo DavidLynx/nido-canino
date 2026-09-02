@@ -9,15 +9,15 @@ image: "/assets/photos/recursos/Convivencia canina estructurada.png"
 imageAlt: "Cuatro perros descansando por separado en un espacio doméstico amplio"
 published: "2026-08-11"
 updated: "2026-08-11"
-cta: "Ir al Formulario PRO"
-ctaHref: "/admission-pro"
+cta: "Realizar solicitud inicial"
+ctaHref: "/request"
 related: ["que-conviene-tener-claro-antes-de-avanzar", "plantilla-rutina-descanso-alimentacion"]
 sources: []
 ---
 
 # Checklist para solicitar convivencia canina estructurada
 
-Use esta lista antes de completar el Formulario PRO.
+Use esta lista para preparar su proceso de ingreso. El Formulario PRO se habilita mediante invitación después de revisar la solicitud inicial.
 
 ## Perfil general
 
@@ -76,4 +76,4 @@ Use esta lista antes de completar el Formulario PRO.
 > **No omita información por miedo a que “no lo reciban”.** La información real permite decidir mejor y preparar una experiencia más segura.
 
 ### Siguiente paso
-Complete el **Formulario PRO** con la información más precisa que tenga.
+Comience por la **solicitud inicial**. Si ya recibió una invitación al Formulario PRO, use ese enlace para completar la información pendiente.

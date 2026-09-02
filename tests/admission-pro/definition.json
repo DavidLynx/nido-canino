@@ -1,0 +1,1594 @@
+{
+  "title": "Formulario de ingreso PRO",
+  "description": "Un solo formulario por proceso, con datos comunes y fichas de los perros seleccionados por Nido. Diligenciarlo no garantiza ingreso. Acceso sólo mediante invitación.",
+  "steps": [
+    {
+      "id": "tutor",
+      "title": "Datos del tutor",
+      "fields": [
+        {
+          "id": "tutor_name",
+          "type": "short_text",
+          "label": "Nombre completo",
+          "required": true,
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "tutor_phone",
+          "type": "phone",
+          "label": "Celular / WhatsApp",
+          "required": true,
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "tutor_email",
+          "type": "email",
+          "label": "Correo electrónico",
+          "required": false,
+          "help": "No se pidió correo en la solicitud inicial. Si ya consta en el contacto vinculado, se podrá precargar."
+        },
+        {
+          "id": "tutor_zone",
+          "type": "short_text",
+          "label": "Barrio / zona de residencia",
+          "required": true,
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "tutor_locality",
+          "type": "short_text",
+          "label": "Localidad",
+          "required": true,
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "required_schedule",
+          "type": "short_text",
+          "label": "Horario en el que requeriría el servicio",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "dog_1",
+      "title": "Perro 1: cuidado y convivencia",
+      "description": "Sólo se incluye si este perro fue autorizado en la invitación.",
+      "fields": [
+        {
+          "id": "dog_1_name",
+          "type": "short_text",
+          "label": "Nombre del perro",
+          "required": true,
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_1_age",
+          "type": "short_text",
+          "label": "Edad",
+          "required": true,
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_1_breed",
+          "type": "short_text",
+          "label": "Raza o tipo",
+          "required": true,
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_1_sex",
+          "type": "select",
+          "label": "Sexo",
+          "required": true,
+          "options": [
+            "Macho",
+            "Hembra",
+            "No sabe"
+          ],
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_1_neutered",
+          "type": "select",
+          "label": "¿Está esterilizado?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "Parcial",
+            "No sabe"
+          ],
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_1_size",
+          "type": "select",
+          "label": "Tamaño",
+          "required": true,
+          "options": [
+            "Pequeño",
+            "Mediano",
+            "Grande",
+            "No sabe"
+          ],
+          "help": "Dato precargado del perro seleccionado; no equivale a peso."
+        },
+        {
+          "id": "dog_1_weight",
+          "type": "short_text",
+          "label": "Peso aproximado",
+          "required": false
+        },
+        {
+          "id": "dog_1_time_with_family",
+          "type": "short_text",
+          "label": "Tiempo con la familia",
+          "required": false
+        },
+        {
+          "id": "dog_1_vaccines_up_to_date",
+          "type": "select",
+          "label": "¿Tiene vacunas al día?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "En proceso"
+          ]
+        },
+        {
+          "id": "dog_1_deworming_current",
+          "type": "select",
+          "label": "¿Tiene desparasitación vigente?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "No sabe"
+          ]
+        },
+        {
+          "id": "dog_1_flea_control",
+          "type": "select",
+          "label": "¿Tiene control antipulgas vigente?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "No sabe"
+          ]
+        },
+        {
+          "id": "dog_1_health_condition",
+          "type": "long_text",
+          "label": "¿Tiene enfermedad, tratamiento, dolor o limitación física relevante?",
+          "required": true
+        },
+        {
+          "id": "dog_1_takes_medication",
+          "type": "select",
+          "label": "¿Toma medicamentos actualmente?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_1_medications",
+          "type": "long_text",
+          "label": "Medicamentos actuales, dosis y horarios",
+          "required": true,
+          "condition": {
+            "fieldId": "dog_1_takes_medication",
+            "operator": "equals",
+            "value": "Sí"
+          }
+        },
+        {
+          "id": "dog_1_stable_with_dogs",
+          "type": "select",
+          "label": "¿Ha convivido con otros perros de forma estable?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "Muy poco"
+          ]
+        },
+        {
+          "id": "dog_1_unknown_people",
+          "type": "select",
+          "label": "¿Tolera personas desconocidas?",
+          "required": true,
+          "options": [
+            "Sí",
+            "A veces",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_1_handling_basic",
+          "type": "select",
+          "label": "¿Tolera manipulación básica?",
+          "required": true,
+          "options": [
+            "Sí",
+            "A veces",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_1_previous_daycare",
+          "type": "select",
+          "label": "¿Ha asistido antes a guardería, hotel o paseo grupal?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_1_separation_anxiety",
+          "type": "select",
+          "label": "¿Presenta ansiedad al separarse del tutor?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "No sabe"
+          ]
+        },
+        {
+          "id": "dog_1_bite_attempt",
+          "type": "select",
+          "label": "¿Ha mordido o intentado morder?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_1_reactivity",
+          "type": "multiselect",
+          "label": "¿Presenta reactividad con perros o personas?",
+          "required": false,
+          "options": [
+            "Con perros",
+            "Con personas",
+            "No presenta",
+            "No sabe"
+          ],
+          "help": "Seleccione No presenta o No sabe sin combinarlos con otras opciones."
+        },
+        {
+          "id": "dog_1_resource_guarding",
+          "type": "multiselect",
+          "label": "¿Protege comida, cama, juguetes o tutor?",
+          "required": false,
+          "options": [
+            "Comida",
+            "Juguetes",
+            "Cama",
+            "Tutor",
+            "No"
+          ],
+          "help": "Seleccione No sin combinarlo con los recursos protegidos."
+        },
+        {
+          "id": "dog_1_home_behavior",
+          "type": "long_text",
+          "label": "¿Cómo se comporta dentro de casa?",
+          "required": true
+        },
+        {
+          "id": "dog_1_outdoor_behavior",
+          "type": "long_text",
+          "label": "¿Cómo se comporta en calle, parque o con estímulos nuevos?",
+          "required": true
+        },
+        {
+          "id": "dog_1_important_episodes",
+          "type": "long_text",
+          "label": "Explique episodios importantes de agresión, pelea, pánico, huida o destrucción",
+          "required": false
+        },
+        {
+          "id": "dog_1_walks_per_day",
+          "type": "short_text",
+          "label": "Cantidad y duración de paseos diarios",
+          "required": true
+        },
+        {
+          "id": "dog_1_time_alone",
+          "type": "short_text",
+          "label": "Tiempo que permanece solo",
+          "required": true
+        },
+        {
+          "id": "dog_1_food_type",
+          "type": "select",
+          "label": "Tipo de alimentación",
+          "required": true,
+          "options": [
+            "Concentrado",
+            "BARF",
+            "Casera",
+            "Mixta"
+          ]
+        },
+        {
+          "id": "dog_1_needs_management",
+          "type": "select",
+          "label": "Manejo de necesidades",
+          "required": true,
+          "options": [
+            "Paseo",
+            "Tapete",
+            "Pañal",
+            "Mixto"
+          ]
+        },
+        {
+          "id": "dog_1_attachment_objects",
+          "type": "short_text",
+          "label": "Objetos de apego",
+          "required": false
+        },
+        {
+          "id": "dog_1_commands_known",
+          "type": "long_text",
+          "label": "Comandos básicos que conoce",
+          "required": false
+        },
+        {
+          "id": "dog_1_known_triggers",
+          "type": "long_text",
+          "label": "Detonantes conocidos o situaciones que lo desregulan",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "dog_2",
+      "title": "Perro 2: cuidado y convivencia",
+      "description": "Sólo se incluye si este perro fue autorizado en la invitación.",
+      "fields": [
+        {
+          "id": "dog_2_name",
+          "type": "short_text",
+          "label": "Nombre del perro",
+          "required": true,
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_2_age",
+          "type": "short_text",
+          "label": "Edad",
+          "required": true,
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_2_breed",
+          "type": "short_text",
+          "label": "Raza o tipo",
+          "required": true,
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_2_sex",
+          "type": "select",
+          "label": "Sexo",
+          "required": true,
+          "options": [
+            "Macho",
+            "Hembra",
+            "No sabe"
+          ],
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_2_neutered",
+          "type": "select",
+          "label": "¿Está esterilizado?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "Parcial",
+            "No sabe"
+          ],
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_2_size",
+          "type": "select",
+          "label": "Tamaño",
+          "required": true,
+          "options": [
+            "Pequeño",
+            "Mediano",
+            "Grande",
+            "No sabe"
+          ],
+          "help": "Dato precargado del perro seleccionado; no equivale a peso."
+        },
+        {
+          "id": "dog_2_weight",
+          "type": "short_text",
+          "label": "Peso aproximado",
+          "required": false
+        },
+        {
+          "id": "dog_2_time_with_family",
+          "type": "short_text",
+          "label": "Tiempo con la familia",
+          "required": false
+        },
+        {
+          "id": "dog_2_vaccines_up_to_date",
+          "type": "select",
+          "label": "¿Tiene vacunas al día?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "En proceso"
+          ]
+        },
+        {
+          "id": "dog_2_deworming_current",
+          "type": "select",
+          "label": "¿Tiene desparasitación vigente?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "No sabe"
+          ]
+        },
+        {
+          "id": "dog_2_flea_control",
+          "type": "select",
+          "label": "¿Tiene control antipulgas vigente?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "No sabe"
+          ]
+        },
+        {
+          "id": "dog_2_health_condition",
+          "type": "long_text",
+          "label": "¿Tiene enfermedad, tratamiento, dolor o limitación física relevante?",
+          "required": true
+        },
+        {
+          "id": "dog_2_takes_medication",
+          "type": "select",
+          "label": "¿Toma medicamentos actualmente?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_2_medications",
+          "type": "long_text",
+          "label": "Medicamentos actuales, dosis y horarios",
+          "required": true,
+          "condition": {
+            "fieldId": "dog_2_takes_medication",
+            "operator": "equals",
+            "value": "Sí"
+          }
+        },
+        {
+          "id": "dog_2_stable_with_dogs",
+          "type": "select",
+          "label": "¿Ha convivido con otros perros de forma estable?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "Muy poco"
+          ]
+        },
+        {
+          "id": "dog_2_unknown_people",
+          "type": "select",
+          "label": "¿Tolera personas desconocidas?",
+          "required": true,
+          "options": [
+            "Sí",
+            "A veces",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_2_handling_basic",
+          "type": "select",
+          "label": "¿Tolera manipulación básica?",
+          "required": true,
+          "options": [
+            "Sí",
+            "A veces",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_2_previous_daycare",
+          "type": "select",
+          "label": "¿Ha asistido antes a guardería, hotel o paseo grupal?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_2_separation_anxiety",
+          "type": "select",
+          "label": "¿Presenta ansiedad al separarse del tutor?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "No sabe"
+          ]
+        },
+        {
+          "id": "dog_2_bite_attempt",
+          "type": "select",
+          "label": "¿Ha mordido o intentado morder?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_2_reactivity",
+          "type": "multiselect",
+          "label": "¿Presenta reactividad con perros o personas?",
+          "required": false,
+          "options": [
+            "Con perros",
+            "Con personas",
+            "No presenta",
+            "No sabe"
+          ],
+          "help": "Seleccione No presenta o No sabe sin combinarlos con otras opciones."
+        },
+        {
+          "id": "dog_2_resource_guarding",
+          "type": "multiselect",
+          "label": "¿Protege comida, cama, juguetes o tutor?",
+          "required": false,
+          "options": [
+            "Comida",
+            "Juguetes",
+            "Cama",
+            "Tutor",
+            "No"
+          ],
+          "help": "Seleccione No sin combinarlo con los recursos protegidos."
+        },
+        {
+          "id": "dog_2_home_behavior",
+          "type": "long_text",
+          "label": "¿Cómo se comporta dentro de casa?",
+          "required": true
+        },
+        {
+          "id": "dog_2_outdoor_behavior",
+          "type": "long_text",
+          "label": "¿Cómo se comporta en calle, parque o con estímulos nuevos?",
+          "required": true
+        },
+        {
+          "id": "dog_2_important_episodes",
+          "type": "long_text",
+          "label": "Explique episodios importantes de agresión, pelea, pánico, huida o destrucción",
+          "required": false
+        },
+        {
+          "id": "dog_2_walks_per_day",
+          "type": "short_text",
+          "label": "Cantidad y duración de paseos diarios",
+          "required": true
+        },
+        {
+          "id": "dog_2_time_alone",
+          "type": "short_text",
+          "label": "Tiempo que permanece solo",
+          "required": true
+        },
+        {
+          "id": "dog_2_food_type",
+          "type": "select",
+          "label": "Tipo de alimentación",
+          "required": true,
+          "options": [
+            "Concentrado",
+            "BARF",
+            "Casera",
+            "Mixta"
+          ]
+        },
+        {
+          "id": "dog_2_needs_management",
+          "type": "select",
+          "label": "Manejo de necesidades",
+          "required": true,
+          "options": [
+            "Paseo",
+            "Tapete",
+            "Pañal",
+            "Mixto"
+          ]
+        },
+        {
+          "id": "dog_2_attachment_objects",
+          "type": "short_text",
+          "label": "Objetos de apego",
+          "required": false
+        },
+        {
+          "id": "dog_2_commands_known",
+          "type": "long_text",
+          "label": "Comandos básicos que conoce",
+          "required": false
+        },
+        {
+          "id": "dog_2_known_triggers",
+          "type": "long_text",
+          "label": "Detonantes conocidos o situaciones que lo desregulan",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "dog_3",
+      "title": "Perro 3: cuidado y convivencia",
+      "description": "Sólo se incluye si este perro fue autorizado en la invitación.",
+      "fields": [
+        {
+          "id": "dog_3_name",
+          "type": "short_text",
+          "label": "Nombre del perro",
+          "required": true,
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_3_age",
+          "type": "short_text",
+          "label": "Edad",
+          "required": true,
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_3_breed",
+          "type": "short_text",
+          "label": "Raza o tipo",
+          "required": true,
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_3_sex",
+          "type": "select",
+          "label": "Sexo",
+          "required": true,
+          "options": [
+            "Macho",
+            "Hembra",
+            "No sabe"
+          ],
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_3_neutered",
+          "type": "select",
+          "label": "¿Está esterilizado?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "Parcial",
+            "No sabe"
+          ],
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_3_size",
+          "type": "select",
+          "label": "Tamaño",
+          "required": true,
+          "options": [
+            "Pequeño",
+            "Mediano",
+            "Grande",
+            "No sabe"
+          ],
+          "help": "Dato precargado del perro seleccionado; no equivale a peso."
+        },
+        {
+          "id": "dog_3_weight",
+          "type": "short_text",
+          "label": "Peso aproximado",
+          "required": false
+        },
+        {
+          "id": "dog_3_time_with_family",
+          "type": "short_text",
+          "label": "Tiempo con la familia",
+          "required": false
+        },
+        {
+          "id": "dog_3_vaccines_up_to_date",
+          "type": "select",
+          "label": "¿Tiene vacunas al día?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "En proceso"
+          ]
+        },
+        {
+          "id": "dog_3_deworming_current",
+          "type": "select",
+          "label": "¿Tiene desparasitación vigente?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "No sabe"
+          ]
+        },
+        {
+          "id": "dog_3_flea_control",
+          "type": "select",
+          "label": "¿Tiene control antipulgas vigente?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "No sabe"
+          ]
+        },
+        {
+          "id": "dog_3_health_condition",
+          "type": "long_text",
+          "label": "¿Tiene enfermedad, tratamiento, dolor o limitación física relevante?",
+          "required": true
+        },
+        {
+          "id": "dog_3_takes_medication",
+          "type": "select",
+          "label": "¿Toma medicamentos actualmente?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_3_medications",
+          "type": "long_text",
+          "label": "Medicamentos actuales, dosis y horarios",
+          "required": true,
+          "condition": {
+            "fieldId": "dog_3_takes_medication",
+            "operator": "equals",
+            "value": "Sí"
+          }
+        },
+        {
+          "id": "dog_3_stable_with_dogs",
+          "type": "select",
+          "label": "¿Ha convivido con otros perros de forma estable?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "Muy poco"
+          ]
+        },
+        {
+          "id": "dog_3_unknown_people",
+          "type": "select",
+          "label": "¿Tolera personas desconocidas?",
+          "required": true,
+          "options": [
+            "Sí",
+            "A veces",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_3_handling_basic",
+          "type": "select",
+          "label": "¿Tolera manipulación básica?",
+          "required": true,
+          "options": [
+            "Sí",
+            "A veces",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_3_previous_daycare",
+          "type": "select",
+          "label": "¿Ha asistido antes a guardería, hotel o paseo grupal?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_3_separation_anxiety",
+          "type": "select",
+          "label": "¿Presenta ansiedad al separarse del tutor?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "No sabe"
+          ]
+        },
+        {
+          "id": "dog_3_bite_attempt",
+          "type": "select",
+          "label": "¿Ha mordido o intentado morder?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_3_reactivity",
+          "type": "multiselect",
+          "label": "¿Presenta reactividad con perros o personas?",
+          "required": false,
+          "options": [
+            "Con perros",
+            "Con personas",
+            "No presenta",
+            "No sabe"
+          ],
+          "help": "Seleccione No presenta o No sabe sin combinarlos con otras opciones."
+        },
+        {
+          "id": "dog_3_resource_guarding",
+          "type": "multiselect",
+          "label": "¿Protege comida, cama, juguetes o tutor?",
+          "required": false,
+          "options": [
+            "Comida",
+            "Juguetes",
+            "Cama",
+            "Tutor",
+            "No"
+          ],
+          "help": "Seleccione No sin combinarlo con los recursos protegidos."
+        },
+        {
+          "id": "dog_3_home_behavior",
+          "type": "long_text",
+          "label": "¿Cómo se comporta dentro de casa?",
+          "required": true
+        },
+        {
+          "id": "dog_3_outdoor_behavior",
+          "type": "long_text",
+          "label": "¿Cómo se comporta en calle, parque o con estímulos nuevos?",
+          "required": true
+        },
+        {
+          "id": "dog_3_important_episodes",
+          "type": "long_text",
+          "label": "Explique episodios importantes de agresión, pelea, pánico, huida o destrucción",
+          "required": false
+        },
+        {
+          "id": "dog_3_walks_per_day",
+          "type": "short_text",
+          "label": "Cantidad y duración de paseos diarios",
+          "required": true
+        },
+        {
+          "id": "dog_3_time_alone",
+          "type": "short_text",
+          "label": "Tiempo que permanece solo",
+          "required": true
+        },
+        {
+          "id": "dog_3_food_type",
+          "type": "select",
+          "label": "Tipo de alimentación",
+          "required": true,
+          "options": [
+            "Concentrado",
+            "BARF",
+            "Casera",
+            "Mixta"
+          ]
+        },
+        {
+          "id": "dog_3_needs_management",
+          "type": "select",
+          "label": "Manejo de necesidades",
+          "required": true,
+          "options": [
+            "Paseo",
+            "Tapete",
+            "Pañal",
+            "Mixto"
+          ]
+        },
+        {
+          "id": "dog_3_attachment_objects",
+          "type": "short_text",
+          "label": "Objetos de apego",
+          "required": false
+        },
+        {
+          "id": "dog_3_commands_known",
+          "type": "long_text",
+          "label": "Comandos básicos que conoce",
+          "required": false
+        },
+        {
+          "id": "dog_3_known_triggers",
+          "type": "long_text",
+          "label": "Detonantes conocidos o situaciones que lo desregulan",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "dog_4",
+      "title": "Perro 4: cuidado y convivencia",
+      "description": "Sólo se incluye si este perro fue autorizado en la invitación.",
+      "fields": [
+        {
+          "id": "dog_4_name",
+          "type": "short_text",
+          "label": "Nombre del perro",
+          "required": true,
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_4_age",
+          "type": "short_text",
+          "label": "Edad",
+          "required": true,
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_4_breed",
+          "type": "short_text",
+          "label": "Raza o tipo",
+          "required": true,
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_4_sex",
+          "type": "select",
+          "label": "Sexo",
+          "required": true,
+          "options": [
+            "Macho",
+            "Hembra",
+            "No sabe"
+          ],
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_4_neutered",
+          "type": "select",
+          "label": "¿Está esterilizado?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "Parcial",
+            "No sabe"
+          ],
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_4_size",
+          "type": "select",
+          "label": "Tamaño",
+          "required": true,
+          "options": [
+            "Pequeño",
+            "Mediano",
+            "Grande",
+            "No sabe"
+          ],
+          "help": "Dato precargado del perro seleccionado; no equivale a peso."
+        },
+        {
+          "id": "dog_4_weight",
+          "type": "short_text",
+          "label": "Peso aproximado",
+          "required": false
+        },
+        {
+          "id": "dog_4_time_with_family",
+          "type": "short_text",
+          "label": "Tiempo con la familia",
+          "required": false
+        },
+        {
+          "id": "dog_4_vaccines_up_to_date",
+          "type": "select",
+          "label": "¿Tiene vacunas al día?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "En proceso"
+          ]
+        },
+        {
+          "id": "dog_4_deworming_current",
+          "type": "select",
+          "label": "¿Tiene desparasitación vigente?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "No sabe"
+          ]
+        },
+        {
+          "id": "dog_4_flea_control",
+          "type": "select",
+          "label": "¿Tiene control antipulgas vigente?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "No sabe"
+          ]
+        },
+        {
+          "id": "dog_4_health_condition",
+          "type": "long_text",
+          "label": "¿Tiene enfermedad, tratamiento, dolor o limitación física relevante?",
+          "required": true
+        },
+        {
+          "id": "dog_4_takes_medication",
+          "type": "select",
+          "label": "¿Toma medicamentos actualmente?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_4_medications",
+          "type": "long_text",
+          "label": "Medicamentos actuales, dosis y horarios",
+          "required": true,
+          "condition": {
+            "fieldId": "dog_4_takes_medication",
+            "operator": "equals",
+            "value": "Sí"
+          }
+        },
+        {
+          "id": "dog_4_stable_with_dogs",
+          "type": "select",
+          "label": "¿Ha convivido con otros perros de forma estable?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "Muy poco"
+          ]
+        },
+        {
+          "id": "dog_4_unknown_people",
+          "type": "select",
+          "label": "¿Tolera personas desconocidas?",
+          "required": true,
+          "options": [
+            "Sí",
+            "A veces",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_4_handling_basic",
+          "type": "select",
+          "label": "¿Tolera manipulación básica?",
+          "required": true,
+          "options": [
+            "Sí",
+            "A veces",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_4_previous_daycare",
+          "type": "select",
+          "label": "¿Ha asistido antes a guardería, hotel o paseo grupal?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_4_separation_anxiety",
+          "type": "select",
+          "label": "¿Presenta ansiedad al separarse del tutor?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "No sabe"
+          ]
+        },
+        {
+          "id": "dog_4_bite_attempt",
+          "type": "select",
+          "label": "¿Ha mordido o intentado morder?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_4_reactivity",
+          "type": "multiselect",
+          "label": "¿Presenta reactividad con perros o personas?",
+          "required": false,
+          "options": [
+            "Con perros",
+            "Con personas",
+            "No presenta",
+            "No sabe"
+          ],
+          "help": "Seleccione No presenta o No sabe sin combinarlos con otras opciones."
+        },
+        {
+          "id": "dog_4_resource_guarding",
+          "type": "multiselect",
+          "label": "¿Protege comida, cama, juguetes o tutor?",
+          "required": false,
+          "options": [
+            "Comida",
+            "Juguetes",
+            "Cama",
+            "Tutor",
+            "No"
+          ],
+          "help": "Seleccione No sin combinarlo con los recursos protegidos."
+        },
+        {
+          "id": "dog_4_home_behavior",
+          "type": "long_text",
+          "label": "¿Cómo se comporta dentro de casa?",
+          "required": true
+        },
+        {
+          "id": "dog_4_outdoor_behavior",
+          "type": "long_text",
+          "label": "¿Cómo se comporta en calle, parque o con estímulos nuevos?",
+          "required": true
+        },
+        {
+          "id": "dog_4_important_episodes",
+          "type": "long_text",
+          "label": "Explique episodios importantes de agresión, pelea, pánico, huida o destrucción",
+          "required": false
+        },
+        {
+          "id": "dog_4_walks_per_day",
+          "type": "short_text",
+          "label": "Cantidad y duración de paseos diarios",
+          "required": true
+        },
+        {
+          "id": "dog_4_time_alone",
+          "type": "short_text",
+          "label": "Tiempo que permanece solo",
+          "required": true
+        },
+        {
+          "id": "dog_4_food_type",
+          "type": "select",
+          "label": "Tipo de alimentación",
+          "required": true,
+          "options": [
+            "Concentrado",
+            "BARF",
+            "Casera",
+            "Mixta"
+          ]
+        },
+        {
+          "id": "dog_4_needs_management",
+          "type": "select",
+          "label": "Manejo de necesidades",
+          "required": true,
+          "options": [
+            "Paseo",
+            "Tapete",
+            "Pañal",
+            "Mixto"
+          ]
+        },
+        {
+          "id": "dog_4_attachment_objects",
+          "type": "short_text",
+          "label": "Objetos de apego",
+          "required": false
+        },
+        {
+          "id": "dog_4_commands_known",
+          "type": "long_text",
+          "label": "Comandos básicos que conoce",
+          "required": false
+        },
+        {
+          "id": "dog_4_known_triggers",
+          "type": "long_text",
+          "label": "Detonantes conocidos o situaciones que lo desregulan",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "dog_5",
+      "title": "Perro 5: cuidado y convivencia",
+      "description": "Sólo se incluye si este perro fue autorizado en la invitación.",
+      "fields": [
+        {
+          "id": "dog_5_name",
+          "type": "short_text",
+          "label": "Nombre del perro",
+          "required": true,
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_5_age",
+          "type": "short_text",
+          "label": "Edad",
+          "required": true,
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_5_breed",
+          "type": "short_text",
+          "label": "Raza o tipo",
+          "required": true,
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_5_sex",
+          "type": "select",
+          "label": "Sexo",
+          "required": true,
+          "options": [
+            "Macho",
+            "Hembra",
+            "No sabe"
+          ],
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_5_neutered",
+          "type": "select",
+          "label": "¿Está esterilizado?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "Parcial",
+            "No sabe"
+          ],
+          "help": "Dato precargado de la solicitud inicial; revise y corrija sólo si es necesario."
+        },
+        {
+          "id": "dog_5_size",
+          "type": "select",
+          "label": "Tamaño",
+          "required": true,
+          "options": [
+            "Pequeño",
+            "Mediano",
+            "Grande",
+            "No sabe"
+          ],
+          "help": "Dato precargado del perro seleccionado; no equivale a peso."
+        },
+        {
+          "id": "dog_5_weight",
+          "type": "short_text",
+          "label": "Peso aproximado",
+          "required": false
+        },
+        {
+          "id": "dog_5_time_with_family",
+          "type": "short_text",
+          "label": "Tiempo con la familia",
+          "required": false
+        },
+        {
+          "id": "dog_5_vaccines_up_to_date",
+          "type": "select",
+          "label": "¿Tiene vacunas al día?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "En proceso"
+          ]
+        },
+        {
+          "id": "dog_5_deworming_current",
+          "type": "select",
+          "label": "¿Tiene desparasitación vigente?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "No sabe"
+          ]
+        },
+        {
+          "id": "dog_5_flea_control",
+          "type": "select",
+          "label": "¿Tiene control antipulgas vigente?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "No sabe"
+          ]
+        },
+        {
+          "id": "dog_5_health_condition",
+          "type": "long_text",
+          "label": "¿Tiene enfermedad, tratamiento, dolor o limitación física relevante?",
+          "required": true
+        },
+        {
+          "id": "dog_5_takes_medication",
+          "type": "select",
+          "label": "¿Toma medicamentos actualmente?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_5_medications",
+          "type": "long_text",
+          "label": "Medicamentos actuales, dosis y horarios",
+          "required": true,
+          "condition": {
+            "fieldId": "dog_5_takes_medication",
+            "operator": "equals",
+            "value": "Sí"
+          }
+        },
+        {
+          "id": "dog_5_stable_with_dogs",
+          "type": "select",
+          "label": "¿Ha convivido con otros perros de forma estable?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "Muy poco"
+          ]
+        },
+        {
+          "id": "dog_5_unknown_people",
+          "type": "select",
+          "label": "¿Tolera personas desconocidas?",
+          "required": true,
+          "options": [
+            "Sí",
+            "A veces",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_5_handling_basic",
+          "type": "select",
+          "label": "¿Tolera manipulación básica?",
+          "required": true,
+          "options": [
+            "Sí",
+            "A veces",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_5_previous_daycare",
+          "type": "select",
+          "label": "¿Ha asistido antes a guardería, hotel o paseo grupal?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_5_separation_anxiety",
+          "type": "select",
+          "label": "¿Presenta ansiedad al separarse del tutor?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No",
+            "No sabe"
+          ]
+        },
+        {
+          "id": "dog_5_bite_attempt",
+          "type": "select",
+          "label": "¿Ha mordido o intentado morder?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": "dog_5_reactivity",
+          "type": "multiselect",
+          "label": "¿Presenta reactividad con perros o personas?",
+          "required": false,
+          "options": [
+            "Con perros",
+            "Con personas",
+            "No presenta",
+            "No sabe"
+          ],
+          "help": "Seleccione No presenta o No sabe sin combinarlos con otras opciones."
+        },
+        {
+          "id": "dog_5_resource_guarding",
+          "type": "multiselect",
+          "label": "¿Protege comida, cama, juguetes o tutor?",
+          "required": false,
+          "options": [
+            "Comida",
+            "Juguetes",
+            "Cama",
+            "Tutor",
+            "No"
+          ],
+          "help": "Seleccione No sin combinarlo con los recursos protegidos."
+        },
+        {
+          "id": "dog_5_home_behavior",
+          "type": "long_text",
+          "label": "¿Cómo se comporta dentro de casa?",
+          "required": true
+        },
+        {
+          "id": "dog_5_outdoor_behavior",
+          "type": "long_text",
+          "label": "¿Cómo se comporta en calle, parque o con estímulos nuevos?",
+          "required": true
+        },
+        {
+          "id": "dog_5_important_episodes",
+          "type": "long_text",
+          "label": "Explique episodios importantes de agresión, pelea, pánico, huida o destrucción",
+          "required": false
+        },
+        {
+          "id": "dog_5_walks_per_day",
+          "type": "short_text",
+          "label": "Cantidad y duración de paseos diarios",
+          "required": true
+        },
+        {
+          "id": "dog_5_time_alone",
+          "type": "short_text",
+          "label": "Tiempo que permanece solo",
+          "required": true
+        },
+        {
+          "id": "dog_5_food_type",
+          "type": "select",
+          "label": "Tipo de alimentación",
+          "required": true,
+          "options": [
+            "Concentrado",
+            "BARF",
+            "Casera",
+            "Mixta"
+          ]
+        },
+        {
+          "id": "dog_5_needs_management",
+          "type": "select",
+          "label": "Manejo de necesidades",
+          "required": true,
+          "options": [
+            "Paseo",
+            "Tapete",
+            "Pañal",
+            "Mixto"
+          ]
+        },
+        {
+          "id": "dog_5_attachment_objects",
+          "type": "short_text",
+          "label": "Objetos de apego",
+          "required": false
+        },
+        {
+          "id": "dog_5_commands_known",
+          "type": "long_text",
+          "label": "Comandos básicos que conoce",
+          "required": false
+        },
+        {
+          "id": "dog_5_known_triggers",
+          "type": "long_text",
+          "label": "Detonantes conocidos o situaciones que lo desregulan",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "closing",
+      "title": "Compatibilidad y cierre",
+      "fields": [
+        {
+          "id": "understands_model",
+          "type": "select",
+          "label": "¿Comprende que Nido Canino trabaja con grupos pequeños, estables y compatibles?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": "understands_no_guarantee",
+          "type": "select",
+          "label": "¿Comprende que diligenciar el formulario no garantiza ingreso automático?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": "accepts_evaluation",
+          "type": "select",
+          "label": "¿Está dispuesto a asistir a entrevista o evaluación si se requiere?",
+          "required": true,
+          "options": [
+            "Sí",
+            "No"
+          ]
+        }
+      ]
+    }
+  ]
+}
