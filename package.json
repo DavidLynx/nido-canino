@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit --incremental false",
+    "test:request": "vitest run",
+    "test:request:e2e": "playwright test",
+    "test:request:mock": "node tests/request/mock-lynx.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.112.2",
@@ -20,16 +24,22 @@
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
+    "server-only": "^0.0.1",
     "unified": "^11.0.5",
-    "unist-util-visit": "^5.1.0"
+    "unist-util-visit": "^5.1.0",
+    "zod": "^4.5.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@testing-library/react": "^16.3.3",
     "@types/node": "^24.0.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "eslint": "9.39.5",
     "eslint-config-next": "16.3.0",
-    "typescript": "5.9.3"
+    "jsdom": "^30.0.1",
+    "typescript": "5.9.3",
+    "vitest": "^4.1.11"
   },
   "packageManager": "pnpm@11.13.0"
 }

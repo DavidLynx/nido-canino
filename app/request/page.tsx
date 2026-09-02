@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import { LegacyRoute } from "@/components/legacy-route";
+import { RequestForm } from "@/components/request/request-form";
+import { getPrivacyPolicy } from "@/lib/lynx/config";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Solicitar servicio",
@@ -8,5 +11,5 @@ export const metadata: Metadata = {
 };
 
 export default function RequestPage() {
-  return <LegacyRoute source="request.html" />;
+  return <RequestForm privacyPolicy={getPrivacyPolicy()} />;
 }

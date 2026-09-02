@@ -1,0 +1,70 @@
+.page { padding: clamp(2rem, 5vw, 4rem) 0 4rem; background: radial-gradient(ellipse at 5% 0%, var(--accent-soft), transparent 50%), var(--bg-main); }
+.shell { width: min(calc(100% - 2rem), 920px); margin-inline: auto; min-width: 0; }
+.intro { max-width: 690px; margin-bottom: 1.75rem; }
+.intro h1 { margin: 1rem 0; font-size: clamp(2.1rem, 5vw, 3.6rem); }
+.intro p { color: var(--text-soft); line-height: 1.7; }
+.intro .meta { margin-top: 1rem; color: var(--accent); font-size: .875rem; }
+.feline { padding: 1rem 1.25rem; border: 1px solid var(--border-strong); border-radius: var(--radius-md); margin-bottom: 2rem; }
+.feline summary { cursor: pointer; font-weight: 600; }
+.feline p { margin: 1rem 0; max-width: 70ch; color: var(--text-soft); }
+.feline a, .consent a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.progress { margin-bottom: 1.5rem; }
+.progress ol { list-style: none; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .7rem; padding: 0; }
+.progress li { display: grid; gap: .5rem; align-content: start; color: var(--text-muted); }
+.progress li span { display: grid; place-items: center; width: 2rem; height: 2rem; border: 1px solid var(--border-strong); border-radius: 50%; }
+.progress .active span { background: var(--accent); color: #171512; border-color: var(--accent); }
+.progress button { display: grid; align-content: start; gap: .5rem; min-width: 44px; min-height: 44px; padding: .25rem 0; background: transparent; border: 0; color: inherit; text-align: left; cursor: pointer; }
+.progress button:disabled { opacity: .55; cursor: not-allowed; }
+.progress button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.progress .active small { color: var(--text-main); }
+.progress small { font-size: .75rem; line-height: 1.4; }
+.progress progress { margin-top: 1rem; width: 100%; height: 5px; accent-color: var(--accent); display: block; }
+.panel { background: var(--bg-card); border: 1px solid var(--border-strong); border-radius: var(--radius-xl); padding: clamp(1.2rem, 4vw, 2.5rem); box-shadow: var(--shadow-md); min-width: 0; }
+.panel > p, .panel > h2 { margin-top: 1rem; }
+.panel p { line-height: 1.6; }
+.sectionHeading { margin-bottom: 1.6rem; }
+.sectionHeading > span { color: var(--accent); font-size: .8rem; font-weight: 600; }
+.sectionHeading h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: .5rem 0 .75rem; scroll-margin-top: 140px; }
+.sectionHeading p, .help { color: var(--text-soft); font-size: .85rem; }
+.fields { min-width: 0; padding: 0; margin: 0; border: 0; display: grid; gap: 1.4rem; }
+.fields:disabled { opacity: .75; }
+.grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.field { display: grid; align-content: start; min-width: 0; gap: .5rem; }
+.field label { color: var(--text-main); line-height: 1.5; }
+.field label span { color: var(--text-soft); font-weight: 400; }
+.field input, .field textarea, .field select { min-width: 0; max-width: 100%; width: 100%; font-size: 1rem; }
+.field select { text-overflow: ellipsis; padding-right: 2rem; appearance: auto; -webkit-appearance: auto; }
+.field textarea { min-height: 100px; }
+.field [aria-invalid="true"] { border-color: var(--danger); }
+.days { display: flex; flex-wrap: wrap; gap: .75rem; border: 0; min-width: 0; padding: 0; }
+.days legend { padding-bottom: .75rem; font-weight: 600; font-size: .875rem; }
+.days label { display: flex; align-items: center; gap: .5rem; border: 1px solid var(--border-strong); padding: .65rem .85rem; border-radius: var(--radius-sm); }
+.days input[type="checkbox"], .consent input[type="checkbox"] { width: 1.15rem; height: 1.15rem; flex-shrink: 0; accent-color: var(--accent); padding: 0; appearance: auto; -webkit-appearance: auto; border-radius: 3px; }
+.dog { border-top: 1px solid var(--border-strong); padding-top: 1.3rem; }
+.dog h3 { margin-bottom: 1.25rem; color: var(--accent); }
+.consent { display: flex; align-items: flex-start; gap: .8rem; line-height: 1.65; }
+.consent input { margin-top: .2rem; }
+.review { padding: 1.2rem; background: var(--bg-soft); border-radius: var(--radius-md); overflow-wrap: anywhere; }
+.review h3 { margin-bottom: .75rem; }
+.review p { font-size: .9rem; color: var(--text-soft); margin-top: .5rem; }
+.notice { background: var(--bg-soft); border: 1px solid var(--warning); border-radius: var(--radius-md); padding: 1rem; margin: 1rem 0; }
+.notice p + p { margin-top: .65rem; }
+.reference { overflow-wrap: anywhere; font-size: .8rem; color: var(--text-soft); }
+.actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: .75rem; margin: 1.75rem 0 1.25rem; }
+.actions :global(.btn) { min-height: 48px; white-space: normal; text-align: center; }
+.actions button:disabled { opacity: .55; cursor: not-allowed; }
+.actions { align-items: flex-start; }
+.editAction { display: grid; gap: .5rem; flex: 1 1 240px; max-width: 340px; }
+.fieldError { color: var(--danger); font-size: .875rem; }
+.panel :focus-visible, .feline :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.panel h2:focus, .panel[tabindex]:focus { outline: none; }
+@media (max-width: 600px) {
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .progress small { display: none; }
+  .progress li { justify-items: center; }
+  .progress button { justify-items: center; }
+  .panel { border-radius: var(--radius-lg); }
+  .actions > * { flex: 1 1 100%; }
+  .editAction { max-width: none; order: 2; }
+  .actions > button:first-child:not(:only-child) { order: 2; }
+}
