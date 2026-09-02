@@ -9,16 +9,38 @@ import { policy } from "./fixtures";
 afterEach(() => { cleanup(); vi.useRealTimers(); });
 function fill(name: string, value: string) { fireEvent.change(document.getElementById(name)!, { target: { value } }); }
 function next() { fireEvent.click(screen.getByRole("button", { name: "Continuar" })); }
-function completeToReview() {
+function completeToReview(consent = true) {
   fill("full_name", "Tutor prueba"); fill("phone", "3000000000"); fill("locality", "Fontibón"); fill("zone", "Modelia"); next();
   fill("source_self_reported", "Instagram"); next(); fill("need_type", NEEDS[4]); next();
   fill("dog_1_name", "Perro prueba"); fill("dog_1_age", "3 años"); fill("dog_1_breed_or_type", "Mestizo");
   fill("dog_1_sex", "Macho"); fill("dog_1_size", "Mediano"); fill("dog_1_neutered", "Sí"); next();
   fill("dog_relationship", DOG_RELATIONSHIPS[0]); fill("cat_reaction", CAT_REACTIONS[0]); fill("bite_history", "No"); fill("special_health_need", "No"); next();
-  fireEvent.click(screen.getByRole("checkbox"));
+  if (consent) fireEvent.click(screen.getByRole("checkbox"));
 }
 
 describe("request UI", () => {
+  it("links the approved consent to the local policy without losing the form and requires explicit acceptance", async () => {
+    vi.stubEnv("NIDO_PRIVACY_POLICY_VERSION", "NIDO-PDP-1.0-2026-09-02");
+    vi.stubEnv("NIDO_PRIVACY_POLICY_URL", "https://nidocanino.org/privacidad");
+    const fetcher = vi.fn(async () => Response.json({ accepted: true, request_id: "req-test" }, { status: 202 }));
+    vi.stubGlobal("fetch", fetcher);
+    render(<RequestPage />); completeToReview(false);
+    const checkbox = screen.getByRole("checkbox") as HTMLInputElement;
+    expect(checkbox.checked).toBe(false); expect(checkbox.required).toBe(true);
+    const link = screen.getByRole("link", { name: "Política de Tratamiento de Datos Personales y Privacidad" });
+    expect(link.getAttribute("href")).toBe("/privacidad");
+    expect(link.getAttribute("target")).toBe("_blank");
+    expect(link.getAttribute("rel")).toBe("noopener noreferrer");
+    expect(checkbox.closest("label")!.textContent).toBe("He leído la Política de Tratamiento de Datos Personales y Privacidad de Nido Canino y autorizo el tratamiento de los datos suministrados para gestionar mi solicitud, evaluar la prestación de los servicios, comunicarse conmigo y administrar la relación de servicio.");
+    fireEvent.click(screen.getByRole("button", { name: "Enviar solicitud" })); expect(fetcher).not.toHaveBeenCalled();
+    fireEvent.click(checkbox); fireEvent.click(screen.getByRole("button", { name: "Enviar solicitud" }));
+    await screen.findByRole("link", { name: "Continuar por WhatsApp ↗" });
+    const calls = fetcher.mock.calls as unknown as [string, RequestInit][];
+    const sent = JSON.parse(String(calls[0][1].body));
+    expect(sent.policy_version).toBe("NIDO-PDP-1.0-2026-09-02");
+    expect(sent.answers.privacy_consent).toBe(true);
+    expect(Number.isNaN(Date.parse(sent.consent_accepted_at))).toBe(false);
+  });
   it("/request renders the native React form with no policy default", () => {
     vi.stubEnv("NIDO_PRIVACY_POLICY_VERSION", "");
     render(<RequestPage />);

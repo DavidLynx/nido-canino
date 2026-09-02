@@ -30,28 +30,69 @@ WhatsApp click event. The shared global site's social links are not the submissi
 | --- | --- |
 | `LYNX_NIDO_AUTHORIZATION` | Full existing `Bearer <integration-key-id>.<integration-secret>` value, entered privately by the owner |
 | `LYNX_PUBLIC_INTAKE_URL` | Optional override; default `https://lynx-business-os.vercel.app/api/v1/public-intake/nido-website` |
-| `NIDO_PRIVACY_POLICY_VERSION` | Actual approved, identifiable policy version; no default |
-| `NIDO_PRIVACY_POLICY_URL` | HTTPS URL of that published policy; no default |
+| `NIDO_PRIVACY_POLICY_VERSION` | Required: `NIDO-PDP-1.0-2026-09-02`; no server default |
+| `NIDO_PRIVACY_POLICY_URL` | Required: `https://nidocanino.org/privacidad`; no server default |
 
 Do not add a real credential to this document, source, tests, logs, client props or a
 `NEXT_PUBLIC_*` variable. `.env.local` is ignored by Git; the checked-in `.env.example`
 only contains blanks/placeholders. Existing public Supabase variables are unchanged.
 
-### GO-LIVE BLOCKER: privacy
+### Privacy policy in the project
 
-Repository inspection found no identifiable/versioned privacy policy. The current footer's
-terms link is `#`, not a policy. No legal text or legal version was invented here.
+`app/privacidad/page.tsx` publishes the React route `/privacidad` within the project, using
+the existing Header/Footer layout. No production deployment was performed in this change.
+The document is **Política de Tratamiento de Datos Personales y Privacidad**, code
+`NIDO-PDP`, version **1.0**, effective **2 September 2026**, technical identifier
+`NIDO-PDP-1.0-2026-09-02`. Expected production URL: `https://nidocanino.org/privacidad`.
 
-The owner must provide/publish an approved policy and configure its real version and URL.
-Without either, the UI disables canine submission and the backend fails closed. Without
+The responsible person approved by the owner is **Alba Lilian Deaza Alfonso**, a natural
+person operating under the commercial name Nido Canino, domiciled in Bogotá D.C., Colombia.
+Approved contact: Calle 23D No. 72B-20, Bogotá D.C.; +57 312 461 1816;
+`bienestar@nidocanino.org`. No personal identification number, corporate NIT or company
+registration is published or invented.
+
+The policy covers the supplied Colombian scope, data categories, service purposes,
+processors, authorization, sensitive data, minors, rights, consultations and complaints,
+security, retention, changes and validity. Legal procedure checks used the official
+[Ley 1581 de 2012](https://www.cancilleria.gov.co/sites/default/files/Normograma/docs/ley_1581_2012.htm)
+and [Decreto 1074 de 2015, capítulo 25](https://www.cancilleria.gov.co/sites/default/files/Normograma/docs/decreto_1074_2015_pr025.htm).
+
+### Operational privacy channel
+
+**`bienestar@nidocanino.org` is the approved operational privacy contact for go-live.**
+This mailbox must remain operational and monitored.
+
+### GO-LIVE BLOCKERS: publication and configuration
+
+- Publish and verify `/privacidad` on the production domain through the owner's authorized
+  release process. This change does not deploy.
+- Privately configure the three required production variables: `LYNX_NIDO_AUTHORIZATION`,
+  `NIDO_PRIVACY_POLICY_VERSION` and `NIDO_PRIVACY_POLICY_URL`, using the values above.
+  `LYNX_PUBLIC_INTAKE_URL` is optional because a production endpoint default already exists.
+- Verify that runtime version/URL match the actual policy shown before enabling traffic.
+  Future policy revisions must update the document and runtime configuration together;
+  this change adds no hardcoded policy version to the server and no new configuration gate.
+- Confirm the operational procedures, authorization evidence, processor safeguards and
+  retention practices with the responsible person. The page itself does not implement them.
+
+Without either policy variable, the UI disables canine submission and the backend fails closed. Without
 authorization, the backend fails closed without calling Lynx. `TEST-POLICY` is allowed
 only for tests/development and explicitly rejected in production. This test fixture is
 not a legal document or legal default.
 
-The UI displays the configured policy link; its version is included in the browser
-envelope only to bind the consent to the displayed policy. The server compares this value
+The `/request` authorization uses the approved short copy and links directly to `/privacidad`
+in a separate tab (`noopener noreferrer`) to preserve the form. Its checkbox remains required,
+initially unchecked, and records the actual acceptance time. The policy URL and version
+continue to be loaded and validated from environment configuration by `getPrivacyPolicy`;
+the server passes them to the form. The document link is the requested local route, not an
+environment-dependent navigation destination. Its configured version is included in the browser
+envelope to bind the consent to the displayed policy. The server compares this value
 against current configuration and constructs `consent.policy_version` from that config.
 A changed policy yields a safe conflict, not a silent consent-version replacement.
+
+The footer now includes “Privacidad y tratamiento de datos” → `/privacidad`.
+**Separate legal-content debt:** “Términos y condiciones” still points to `#`; it has been
+preserved, and no terms page or commercial conditions were created in this slice.
 
 ## Answers and validation
 
@@ -114,11 +155,14 @@ An immutable envelope is created before the first request and retained in compon
 memory. Rapid double clicks are guarded with a ref. Server timeout is 12 seconds; browser
 timeout 18 seconds. There is no automatic retry and no new ID for a network retry.
 
-After ambiguous errors (network, timeout, 5xx, 409), the submitted fields are locked and
-retry resends the identical body/ID, including consent and submit timestamps. This avoids
-turning an accepted-but-unacknowledged request into a second lead. A validation rejection
-allows review: unchanged answers retain the ID, changed answers become a new logical
-attempt. After success, only explicit “Crear una nueva solicitud” resets state for a new ID.
+Every error offers “Intentar nuevamente” and “Editar solicitud”. Retry keeps the fields
+locked and resends the identical body/ID, including consent and submit timestamps. Editing
+abandons the client attempt, retains entered data, unlocks step navigation and requires
+fresh authorization. The next send always has a new ID and timestamps, even if the answers
+are unchanged. Ambiguous outcomes show a warning about creating a new request; editing
+does not cancel anything the receiver may already have stored. A 429 countdown blocks sending,
+not editing. Authorization/configuration unavailability remains explained during editing.
+After success, “Crear una nueva solicitud” resets all form values for another request.
 
 No PII is put in localStorage/sessionStorage. Limitation: a reload/tab close loses draft and
 attempt correlation. The UI warns against reloading while waiting. Cross-device recovery
@@ -129,7 +173,7 @@ or durable receipt recovery is a later slice, not a duplicate local CRM.
 | 202 + `accepted: true` + valid `request_id` | 202, success; offer WhatsApp link |
 | 400 / 422 | 422 validation, review/retry |
 | 401 / 403 | 503 authorization unavailable; no internals shown |
-| 409 | 409 conflict, retry same reference |
+| 409 | 409 conflict, retry same reference or explicitly edit as a new request |
 | 429 | 429, bounded Retry-After (1–300 seconds), disabled retry until elapsed |
 | 5xx / unexpected HTTP | 502 upstream failure |
 | Timeout | 504, retained envelope |
@@ -226,10 +270,17 @@ not commit, push, deploy, configure credentials, or modify external services.
 
 ## Verification performed in this repository
 
-- 45 focal tests: schema, conditional projection, route construction, error isolation,
-  idempotency, privacy config, client secret boundary and feline isolation.
-- 6 Chromium E2E cases against a local receiver: 390 / 768 / 1024 / 1280 px, 429 retry,
-  and a real 12-second server timeout followed by an identical-body retry.
-- Visual review of mobile and desktop captures; no horizontal overflow across form steps.
+Privacy-policy slice:
+
+- 68 focal tests: existing request schema, mapping, error/retry and client boundaries,
+  plus policy rendering, responsible person/contact, version/date, statutory deadlines,
+  contents anchors, footer, required unchecked consent and runtime policy configuration.
+- `/privacidad` checked in Chromium against the local production build at 360 / 390 /
+  768 / 1280 px: HTTP 200, 16 sections, footer link and no horizontal overflow.
+- Visual review of mobile and desktop captures; no production traffic or submission.
 - TypeScript, ESLint, production build and whitespace diff checks.
 - No test calls the productive Lynx endpoint or writes to Nido Supabase.
+
+The prior error-recovery slice passed 7 local-mock E2E cases, including full-envelope
+retry after 429/timeout and editing with a new ID and conditional dog pruning. That E2E
+suite was not rerun as part of this privacy-only change; request focal regressions were.

@@ -195,7 +195,7 @@ export function RequestForm({ privacyPolicy }: { privacyPolicy: { version: strin
           </li>)}</ol>
           <progress max={6} value={step + 1} aria-label={`Paso ${step + 1} de 6`} />
         </nav>
-        {!privacyPolicy ? <p className={styles.notice} role="status">El envío está temporalmente deshabilitado mientras completamos la información de privacidad. Puede explorar el formulario, pero no se enviarán datos.</p> : null}
+        {!privacyPolicy ? <p className={styles.notice} role="status">El envío está temporalmente deshabilitado mientras completamos la configuración del consentimiento. Puede consultar la política y explorar el formulario, pero no se enviarán datos.</p> : null}
         <form className={styles.panel} ref={formRef} onSubmit={submit} noValidate aria-busy={busy}>
           {editing && !locked ? <div className={styles.notice} role="status">
             <p>Conservamos sus datos. Puede volver a cualquier paso. Al enviar, se creará una nueva solicitud; confirme nuevamente la autorización.</p>
@@ -270,7 +270,7 @@ export function RequestForm({ privacyPolicy }: { privacyPolicy: { version: strin
               <label className={styles.consent}>
                 <input name="privacy_consent" type="checkbox" required disabled={!privacyPolicy} checked={draft.privacy_consent === true}
                   onChange={(event) => { acceptedAt.current = event.target.checked ? new Date().toISOString() : null; setDraft((current) => ({ ...current, privacy_consent: event.target.checked })); }} />
-                <span>Autorizo el tratamiento de mis datos para atender esta solicitud conforme a la {privacyPolicy ? <a href={privacyPolicy.url} target="_blank" rel="noopener noreferrer">política de privacidad</a> : "política de privacidad (pendiente de publicación)"}.</span>
+                <span>He leído la <a href="/privacidad" target="_blank" rel="noopener noreferrer">Política de Tratamiento de Datos Personales y Privacidad</a> de Nido Canino y autorizo el tratamiento de los datos suministrados para gestionar mi solicitud, evaluar la prestación de los servicios, comunicarse conmigo y administrar la relación de servicio.</span>
               </label>
               {errors.privacy_consent ? <p className={styles.fieldError}>{errors.privacy_consent}</p> : null}
             </> : null}

@@ -11,6 +11,7 @@ export function Footer() {
       <div className="container footer-content">
         <p>Nido Canino · Cuidado estructurado y bienestar animal en Bogotá</p>
         <Link href="#">Términos y condiciones</Link>
+        <Link href="/privacidad">Privacidad y tratamiento de datos</Link>
         <div className="footer-social" aria-label="Redes sociales de Nido Canino">
           <span className="footer-social-title">Síganos en redes sociales</span>
           <div className="footer-social-list">
