@@ -1,4 +1,4 @@
-import { contactName, ATTRIBUTION_KEYS, RETRY_MESSAGE, type Answers, type Attribution, type RequestEnvelope } from "./contract";
+import { ATTRIBUTION_KEYS, RETRY_MESSAGE, type Answers, type Attribution, type RequestEnvelope } from "./contract";
 
 /** No storage of personal data: the immutable attempt lives only in this form's memory. */
 export function createAttempt(answers: Answers, attribution: Attribution, policyVersion: string, acceptedAt: string): RequestEnvelope {
@@ -45,7 +45,7 @@ export function whatsappUrl(attempt: RequestEnvelope): string {
   const dates = a.trip_start ? `${a.trip_start} al ${a.trip_end}` : a.single_date;
   const message = [
     "Hola, envié una solicitud desde la página de Nido Canino.",
-    `Nombre: ${contactName(a)}`, `Perro(s): ${dogs}`, `Necesidad: ${a.need_type}`,
+    `Nombre: ${a.full_name}`, `Perro(s): ${dogs}`, `Necesidad: ${a.need_type}`,
     dates ? `Fechas: ${dates}` : "", `Referencia: ${attempt.external_request_id}`,
     "Quisiera continuar por este medio.",
   ].filter(Boolean).join("\n");

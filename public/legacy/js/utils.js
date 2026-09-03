@@ -58,7 +58,7 @@ window.Utils = {
 
         navLinks.forEach((link) => {
             const href = link.getAttribute("href");
-            if (href === currentPage) {
+            if (href === currentPage || (href === "/#top" && currentPage === "index.html")) {
                 link.classList.add("active");
             } else {
                 link.classList.remove("active");

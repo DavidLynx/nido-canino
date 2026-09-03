@@ -1,0 +1,54 @@
+Inventario local de revisión — 2026-09-02
+Repositorio: D:/Proyectos Web/nido-canino-app/nido-canino-app
+49 archivos; M = modificado sin stage; ?? = nuevo sin stage.
+Sin commit, push ni deploy. Incluye este inventario.
+
+ M admission-pro.html
+ M app/blog/[slug]/page.tsx
+ M app/layout.tsx
+ M app/privacidad/page.tsx
+ M app/resources/[slug]/page.tsx
+ M auth.html
+ M blog.html
+ M components/admission-pro/admission-form.tsx
+ M components/header.tsx
+ M components/request/request-form.tsx
+?? docs/form-refinement-files.txt
+?? docs/form-refinement.md
+ M gallery.html
+ M index.html
+ M js/utils.js
+ M legacy-content/admission-pro.html
+ M legacy-content/auth.html
+ M legacy-content/blog.html
+ M legacy-content/gallery.html
+ M legacy-content/index.html
+ M legacy-content/pets.html
+ M legacy-content/profile.html
+ M legacy-content/request.html
+ M legacy-content/requests.html
+ M legacy-content/resources.html
+ M legacy-content/services.html
+ M lib/lynx/public-intake.ts
+ M lib/request/client.ts
+ M lib/request/contract.ts
+ M pets.html
+ M profile.html
+ M public/legacy/js/utils.js
+ M request.html
+ M requests.html
+ M resources.html
+ M services.html
+ M tests/admission-pro/contract.test.ts
+ M tests/admission-pro/definition.json
+ M tests/admission-pro/e2e/admission-pro.spec.ts
+ M tests/admission-pro/fixtures.ts
+ M tests/admission-pro/form.test.tsx
+ M tests/admission-pro/mock-handler.mjs
+ M tests/request/contract.test.ts
+ M tests/request/e2e/request.spec.ts
+ M tests/request/fixtures.ts
+ M tests/request/mock-lynx.mjs
+?? tests/request/refinement.test.ts
+ M tests/request/server.test.ts
+ M tests/request/ui.test.tsx

@@ -47,7 +47,7 @@ describe("Formulario 01 contract", () => {
   });
   it("consent must be literal true and text is bounded", () => {
     expect(answersSchema.safeParse(validDraft({ privacy_consent: "true" })).success).toBe(false);
-    expect(answersSchema.safeParse(validDraft({ full_name: "x".repeat(121) })).success).toBe(false);
+    expect(answersSchema.safeParse(validDraft({ first_name: "x".repeat(81) })).success).toBe(false);
     expect(answersSchema.safeParse(validDraft({ phone: "invalid" })).success).toBe(false);
   });
   it("rejects feline envelope and untrusted user identity/payload", () => {

@@ -5,7 +5,8 @@ async function next(page: Page) {
   await page.getByRole("button", { name: "Continuar", exact: true }).click();
 }
 async function complete(page: Page, name = "TEST ACCEPTED", dogs = 1) {
-  await page.locator("#full_name").fill(name); await page.locator("#phone").fill("3000000000");
+  await page.locator("#first_name").fill("TEST"); await page.locator("#last_name").fill(name.slice(5));
+  await page.locator("#email").fill("tutor@example.test"); await page.locator("#alternate_phone").fill("3110000000"); await page.locator("#phone").fill("3000000000");
   await page.locator("#locality").fill("Fontibón"); await page.locator("#zone").fill("Modelia"); await next(page);
   await page.locator("#source_self_reported").selectOption("Instagram"); await next(page);
   await page.locator("#need_type").selectOption("Aún no estoy seguro"); await next(page);
@@ -24,6 +25,25 @@ test.beforeEach(async ({ page, baseURL }) => {
   // Browser network is local-only. The Nido server's configured receiver is the local mock.
   await page.route("**/*", (route) => new URL(route.request().url()).origin === new URL(baseURL!).origin ? route.continue() : route.abort());
 });
+
+for (const width of [390, 1280]) {
+  test(`Inicio returns to the real home top from another page and the same home at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/services");
+    const home = page.getByRole("navigation", { name: "Navegación principal" }).getByRole("link", { name: "Inicio", exact: true });
+    await expect(home).toHaveAttribute("href", "/#top");
+    await home.click(); await expect(page).toHaveURL(/\/#top$/);
+    await expect(page.locator("#top")).toHaveCount(1);
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThan(5);
+    await page.evaluate(() => window.scrollTo({ top: 1400, behavior: "instant" }));
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(500);
+    await home.click();
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThan(5);
+    const hero = page.locator("main section").first();
+    await expect(hero.getByRole("link", { name: /Evaluar (comportamiento|compatibilidad)/ })).toHaveCount(0);
+    await expect(hero.getByRole("link", { name: /Solicitar/ })).toBeVisible();
+  });
+}
 
 for (const width of [390, 768, 1024, 1280]) {
   test(`renders and submits without horizontal overflow at ${width}px`, async ({ page }, info) => {
@@ -95,8 +115,8 @@ test("mobile error editing preserves data, prunes removed dogs and submits with 
   await page.locator("#dog_count").selectOption("1");
   await expect(page.locator("#dog_3_name")).toHaveCount(0);
   await page.getByRole("button", { name: /^Ir al paso 1:/ }).click();
-  await expect(page.locator("#full_name")).toHaveValue("TEST ERROR");
-  await page.locator("#full_name").fill("TEST ACCEPTED");
+  await expect(page.locator("#last_name")).toHaveValue("ERROR");
+  await page.locator("#last_name").fill("ACCEPTED");
   await page.getByRole("button", { name: /^Ir al paso 6:/ }).click();
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   await page.screenshot({ path: info.outputPath("editing-390.png"), fullPage: true });
@@ -109,7 +129,7 @@ test("mobile error editing preserves data, prunes removed dogs and submits with 
   expect(edited.submitted_at).not.toBe(original.submitted_at);
   expect(edited.consent_accepted_at).not.toBe(original.consent_accepted_at);
   expect(edited.attribution).toEqual(original.attribution);
-  expect(edited.answers.full_name).toBe("TEST ACCEPTED");
+  expect(edited.answers.last_name).toBe("ACCEPTED");
   expect(edited.answers.care_concern).toBe(original.answers.care_concern);
   expect(edited.answers.dog_count).toBe(1);
   expect(edited.answers).not.toHaveProperty("dog_2_name");

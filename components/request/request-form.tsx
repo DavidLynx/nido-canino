@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   answersSchema, fieldErrors, SOURCES, DETAIL_SOURCES, NEEDS, DAYS,
   SEXES, SIZES, NEUTERED, DOG_RELATIONSHIPS, CAT_REACTIONS,
+  contactName, CHANNEL_LABELS, ALTERNATE_PHONE_HELP,
   type Draft, type RequestEnvelope,
 } from "@/lib/request/contract";
 import { captureAttribution, createAttempt, sendAttempt, whatsappUrl, type RequestResult } from "@/lib/request/client";
@@ -23,7 +24,7 @@ const ERRORS: Record<string, string> = {
 };
 
 function fieldStep(name: string) {
-  if (["full_name", "phone", "locality", "zone"].includes(name)) return 0;
+  if (["first_name", "last_name", "email", "phone", "alternate_phone", "preferred_channel", "locality", "zone"].includes(name)) return 0;
   if (name.startsWith("source_")) return 1;
   if (["need_type", "trip_start", "trip_end", "single_date", "weekly_days_count", "weekly_days"].includes(name)) return 2;
   if (name === "dog_count" || /^dog_\d+_/.test(name)) return 3;
@@ -35,8 +36,9 @@ type FieldProps = {
   name: string; label: string; draft: Draft; change: (name: string, value: string) => void;
   options?: readonly string[]; type?: string; optional?: boolean; help?: string; error?: string;
   maxLength?: number; min?: string; autoComplete?: string;
+  optionLabels?: Record<string, string>;
 };
-function Field({ name, label, draft, change, options, type = "text", optional, help, error, maxLength = 120, min, autoComplete }: FieldProps) {
+function Field({ name, label, draft, change, options, optionLabels, type = "text", optional, help, error, maxLength = 120, min, autoComplete }: FieldProps) {
   const props = {
     id: name, name, value: String(draft[name] ?? ""), required: !optional,
     "aria-invalid": !!error, "aria-describedby": help || error ? `${name}-help` : undefined,
@@ -44,7 +46,7 @@ function Field({ name, label, draft, change, options, type = "text", optional, h
   };
   return <div className={styles.field}>
     <label htmlFor={name}>{label}{optional ? <span> · Opcional</span> : null}</label>
-    {options ? <select {...props}><option value="">Seleccione</option>{options.map((value) => <option key={value}>{value}</option>)}</select>
+    {options ? <select {...props}><option value="">Seleccione</option>{options.map((value) => <option key={value} value={value}>{optionLabels?.[value] ?? value}</option>)}</select>
       : type === "textarea" ? <textarea {...props} maxLength={maxLength} rows={3} />
         : <input {...props} type={type} maxLength={maxLength} min={min} autoComplete={autoComplete} />}
     {help || error ? <p id={`${name}-help`} className={error ? styles.fieldError : styles.help}>{error || help}</p> : null}
@@ -180,7 +182,7 @@ export function RequestForm({ privacyPolicy }: { privacyPolicy: { version: strin
 
       {result?.accepted && attempt ? <div className={styles.panel} ref={resultRef} tabIndex={-1} role="status">
         <span className="badge">Solicitud recibida</span>
-        <h2>Gracias, {attempt.answers.full_name}.</h2>
+        <h2>Gracias, {contactName(attempt.answers)}.</h2>
         <p>Recibimos su solicitud correctamente. Ahora puede continuar por WhatsApp para conversar con nosotros.</p>
         <p>No es una confirmación de reserva ni de admisión.</p>
         <p className={styles.reference}>Código de solicitud: {attempt.external_request_id}</p>
@@ -210,8 +212,12 @@ export function RequestForm({ privacyPolicy }: { privacyPolicy: { version: strin
           <fieldset className={styles.fields} disabled={busy || locked}>
             <legend className="sr-only">{STEPS[step]}</legend>
             {step === 0 ? <div className={styles.grid}>
-              {field("full_name", "Nombre completo", { autoComplete: "name" })}
+              {field("first_name", "Nombre(s)", { autoComplete: "given-name", maxLength: 80 })}
+              {field("last_name", "Apellido(s)", { autoComplete: "family-name", maxLength: 80 })}
+              {field("email", "Correo electrónico", { type: "email", autoComplete: "email", maxLength: 254 })}
               {field("phone", "Celular / WhatsApp", { type: "tel", autoComplete: "tel", maxLength: 40 })}
+              {field("alternate_phone", "Teléfono alterno / de emergencia", { type: "tel", autoComplete: "off", maxLength: 40, help: ALTERNATE_PHONE_HELP })}
+              {field("preferred_channel", "Canal preferido de comunicación", { optional: true, options: Object.keys(CHANNEL_LABELS), optionLabels: CHANNEL_LABELS })}
               {field("locality", "Localidad", { help: "Por ejemplo: Fontibón o Engativá.", maxLength: 100 })}
               {field("zone", "Barrio / zona", { help: "No necesitamos su dirección exacta." })}
             </div> : null}
@@ -262,7 +268,7 @@ export function RequestForm({ privacyPolicy }: { privacyPolicy: { version: strin
               {field("care_concern", "¿Hay algo que le preocupe especialmente al dejarlo al cuidado de otra persona?", { type: "textarea", optional: true, maxLength: 1000 })}
               <div className={styles.review}>
                 <h3>Antes de enviar</h3>
-                <p>{String(draft.full_name || "")} · {String(draft.phone || "")}</p>
+                <p>{String(draft.first_name || "")} {String(draft.last_name || "")} · {String(draft.phone || "")}</p>
                 <p>{String(draft.need_type || "")}</p>
                 <p>Perro(s): {Array.from({ length: Number(draft.dog_count) }, (_, i) => String(draft[`dog_${i + 1}_name`] || "")).join(", ")}</p>
                 <p>Primero registraremos su solicitud. Después podrá continuar por WhatsApp.</p>

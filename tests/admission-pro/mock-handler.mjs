@@ -35,6 +35,8 @@ export async function mockAdmission(req, res) {
     if (field.type === "multiselect") {
       if (!Array.isArray(value) || value.some(item => !field.options.includes(item))) invalid = true;
       else if (value.length > 1 && ((field.id.endsWith("_reactivity") && value.some(item => ["No presenta", "No sabe"].includes(item))) || (field.id.endsWith("_resource_guarding") && value.includes("No")))) invalid = true;
+    } else if (field.type === "number") {
+      if (typeof value !== "number" || !Number.isFinite(value)) invalid = true;
     } else {
       if (typeof value !== "string" || (field.required && !value.trim()) || value.length > 5000) invalid = true;
       if (field.type === "select" && !field.options.includes(value)) invalid = true;

@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const primaryLinks = [
-  { href: "/", label: "Inicio" },
+  { href: "/#top", label: "Inicio" },
   { href: "/services", label: "Servicios" },
   { href: "/gallery", label: "Galería" },
 ] as const;
@@ -39,7 +39,7 @@ export function Header() {
   }, []);
 
   const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
+    href === "/#top" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <header className="site-header">
@@ -56,16 +56,18 @@ export function Header() {
         </Link>
 
         <nav className="nav-links" aria-label="Navegación principal">
-          {primaryLinks.map((link) => (
-            <Link
+          {primaryLinks.map((link) => {
+            // Native anchors scroll again even when /#top is already the current URL.
+            const NavLink = link.href === "/#top" ? "a" : Link;
+            return <NavLink
               className={isActive(link.href) ? "active" : undefined}
               href={link.href}
               key={link.href}
               onClick={() => setIsOpen(false)}
             >
               {link.label}
-            </Link>
-          ))}
+            </NavLink>;
+          })}
 
           <span id="authSlot" aria-live="polite" />
 

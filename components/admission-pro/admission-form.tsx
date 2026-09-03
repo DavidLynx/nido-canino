@@ -42,6 +42,7 @@ function Field({ field, value, onChange, error }: { field: ProField; value: ProA
     </select> : field.type === "long_text" ? <textarea {...common} required={field.required} placeholder={field.placeholder} maxLength={5000} rows={3} value={String(value ?? "")} onChange={event => onChange(event.target.value)} />
       : <input {...common} required={field.required} placeholder={field.placeholder} maxLength={/^dog_[1-5]_(name|age|breed|sex|size|neutered)$/.test(field.id) ? 160 : 5000}
         type={field.type === "email" ? "email" : field.type === "phone" ? "tel" : field.type === "number" ? "number" : "text"}
+        step={field.type === "number" ? "any" : undefined}
         value={String(value ?? "")} onChange={event => onChange(field.type === "number" && event.target.value !== "" ? Number(event.target.value) : event.target.value)} />}
     {help}
   </div>;

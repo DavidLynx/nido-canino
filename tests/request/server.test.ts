@@ -26,9 +26,9 @@ describe("server-to-server intake", () => {
     expect((init.headers as Record<string, string>).Authorization).toBe(fakeEnv.LYNX_NIDO_AUTHORIZATION);
     expect(init.redirect).toBe("error");
     expect(JSON.parse(init.body as string)).toEqual({
-      metadata: { schema_version: 1, external_request_id: input.external_request_id, submitted_at: input.submitted_at, form_slug: "website-intake", form_version: 1 },
+      metadata: { schema_version: 1, external_request_id: input.external_request_id, submitted_at: input.submitted_at, form_slug: "website-intake" },
       attribution: { ...input.attribution, source_self_reported: "Instagram" },
-      contact: { full_name: "Tutor de prueba", phone: "3000000000", locality: "Fontibón", zone: "Modelia" },
+      contact: { full_name: "Tutor de prueba", first_name: "Tutor", last_name: "de prueba", email: "tutor@example.test", alternate_phone: "3110000000", phone: "3000000000", locality: "Fontibón", zone: "Modelia" },
       request: { intent: NEEDS[1], requested_dates: ["2026-12-01", "2026-12-03"], concern: "Solicitud inicial enviada desde nidocanino.org/request" },
       context: {}, answers: { ...input.answers, dog_count: "1" },
       consent: { accepted: true, policy_version: "TEST-POLICY", accepted_at: input.consent_accepted_at },

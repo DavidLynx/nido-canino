@@ -6,6 +6,32 @@ import { conditionMet, effectiveAnswers, pendingSchema, submitInputSchema, valid
 import { completed, pending, token } from "./fixtures";
 
 describe("Lynx Admission PRO c50c2f2 projected contract", () => {
+  it("still accepts an older invitation's text controls from its own snapshot", () => {
+    const value = pending(["dog_1", "dog_3"]);
+    for (const field of value.structure.steps.flatMap(step => step.fields)) {
+      if (field.id === "required_schedule" || /_(weight|time_alone|time_with_family|walks_per_day)$/.test(field.id)) {
+        field.type = "short_text"; delete field.options;
+      }
+    }
+    expect(pendingSchema.safeParse(value).success).toBe(true);
+    const answers = completed(value);
+    answers.required_schedule = "Horario histórico narrativo"; answers.dog_3_weight = "Aproximadamente 12 kg";
+    expect(validateAnswers(value.structure, answers).errors).toEqual({});
+    expect(value.form_version).toBe(1);
+  });
+  it.each([1, 2, 3, 4, 5])("validates structured dog %i fields without coercing unknown weight", dog => {
+    const value = pending([`dog_${dog}`]);
+    const answers = completed(value);
+    const weight = `dog_${dog}_weight`;
+    expect(answers).not.toHaveProperty(weight);
+    expect(validateAnswers(value.structure, { ...answers, [weight]: 12.5 }).errors).toEqual({});
+    expect(validateAnswers(value.structure, { ...answers, [weight]: "12.5" }).errors).toHaveProperty(weight);
+    for (const suffix of ["time_alone", "walks_per_day", "time_with_family"]) {
+      const key = `dog_${dog}_${suffix}`;
+      expect(validateAnswers(value.structure, { ...answers, [key]: "Unknown option" }).errors).toHaveProperty(key);
+    }
+    expect(validateAnswers(value.structure, { ...answers, required_schedule: "Free text" }).errors).toHaveProperty("required_schedule");
+  });
   it("suppresses invitation URL logging in Next development without changing other routes", () => {
     const incoming = nextConfig.logging && nextConfig.logging.incomingRequests;
     if (!incoming || typeof incoming === "boolean") throw new Error("Scoped logging exclusions expected");
@@ -22,9 +48,9 @@ describe("Lynx Admission PRO c50c2f2 projected contract", () => {
     for (const id of Object.keys(answers).filter(id => id.startsWith("dog_"))) expect(selected).toContain(id.slice(0, 5));
   });
   it("covers the 169 real fields and exactly the types published in the fixture", () => {
-    const fields = definition.steps.flatMap(step => step.fields);
+    const fields = definition.steps.map(step => step.fields).flat();
     expect(fields).toHaveLength(169);
-    expect([...new Set(fields.map(field => field.type))].sort()).toEqual(["email", "long_text", "multiselect", "phone", "select", "short_text"]);
+    expect([...new Set(fields.map(field => field.type))].sort()).toEqual(["email", "long_text", "multiselect", "number", "phone", "select", "short_text"]);
   });
   it("fails closed for unselected steps, fields, prefill, duplicates and unsupported types", () => {
     const unsafe = [

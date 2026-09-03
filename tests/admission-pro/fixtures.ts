@@ -1,7 +1,7 @@
 import definition from "./definition.json";
 import { pendingSchema, conditionMet, type ProPending, type ProAnswers } from "@/lib/admission-pro/contract";
 
-// Synthetic data only. Definition snapshot: Lynx c50c2f2; never imported by application code.
+// Synthetic data only. Definition snapshot: coordinated Nido form refinement; never imported by application code.
 export const token = `lxpro_${"t".repeat(43)}`;
 export const accepted = { accepted: true, request_id: "11111111-1111-4111-8111-111111111111", submission_id: "22222222-2222-4222-8222-222222222222", contact_id: "33333333-3333-4333-8333-333333333333", opportunity_id: "44444444-4444-4444-8444-444444444444", pets: [{ source_dog_key: "dog_1", pet_id: "55555555-5555-4555-8555-555555555555" }] };
 export function pending(selected: string[] = ["dog_1"]): ProPending {

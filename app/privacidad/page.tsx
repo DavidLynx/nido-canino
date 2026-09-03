@@ -71,6 +71,7 @@ export default function PrivacyPage() {
         <ul>
           <li><strong>Identificación y contacto:</strong> nombre, teléfono, correo electrónico, dirección, localidad o zona e identificación cuando sea necesaria para contratar o cumplir obligaciones legales. No se solicita un documento de identidad en todos los casos.</li>
           <li><strong>Datos contractuales y administrativos:</strong> solicitudes, reservas, servicios contratados, comunicaciones, soportes e información necesaria para ejecutar la relación comercial.</li>
+          <li><strong>Contacto alterno o de emergencia:</strong> el tutor puede aportar el teléfono de una persona de confianza, con autorización de esa persona para compartirlo. Lo utilizaremos si no logramos comunicarnos con el tutor.</li>
           <li><strong>Información de mascotas:</strong> nombre, especie, edad, raza o tipo, sexo, esterilización, tamaño o peso cuando corresponda, comportamiento, compatibilidad, rutinas, alimentación, necesidades de cuidado, medicamentos, condiciones o antecedentes veterinarios y documentos sanitarios o veterinarios cuando sean necesarios.</li>
           <li><strong>Datos digitales:</strong> información proporcionada mediante formularios, fecha y hora, página de origen, parámetros UTM o campaña, página de referencia (referrer) y datos técnicos razonablemente necesarios para seguridad, funcionamiento y atribución de solicitudes.</li>
         </ul>

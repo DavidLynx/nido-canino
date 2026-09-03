@@ -1,4 +1,5 @@
-import { envelopeSchema, fieldErrors, RETRY_MESSAGE } from "@/lib/request/contract";
+import { fieldErrors, RETRY_MESSAGE } from "@/lib/request/contract";
+import { parseIntakeEnvelope } from "@/lib/request/intake-rollout";
 import { submitToLynx } from "@/lib/lynx/public-intake";
 
 export const runtime = "nodejs";
@@ -41,7 +42,7 @@ export async function POST(request: Request) {
     raw = JSON.parse(Buffer.concat(chunks).toString("utf8"));
   } catch { return fail("validation", 400); }
 
-  const parsed = envelopeSchema.safeParse(raw);
+  const parsed = parseIntakeEnvelope(raw);
   if (!parsed.success) return json({ accepted: false, code: "validation", message: RETRY_MESSAGE, field_errors: fieldErrors(parsed.error) }, 422);
 
   const result = await submitToLynx(parsed.data);

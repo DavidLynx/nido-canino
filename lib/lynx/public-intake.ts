@@ -1,24 +1,31 @@
 import "server-only";
 
-import { NEEDS, type RequestEnvelope } from "../request/contract";
+import { contactName, NEEDS, type RequestEnvelope } from "../request/contract";
+import { isLegacyEnvelope, NIDO_LEGACY_INTAKE_VERSION, type IntakeEnvelope } from "../request/intake-rollout";
 import { getIntakeConfig } from "./config";
 
 export const LYNX_TIMEOUT_MS = 12_000;
 export type IntakeFailure = "configuration" | "policy_changed" | "validation" | "authorization" | "conflict" | "rate_limit" | "upstream" | "timeout" | "network" | "invalid_response";
 export type IntakeResult = { accepted: true; request_id: string } | { accepted: false; code: IntakeFailure; status: number; retry_after?: number };
 
-export function buildLynxPayload(input: RequestEnvelope, policyVersion: string) {
+export function buildLynxPayload(input: IntakeEnvelope, policyVersion: string) {
   const a = input.answers;
   return {
     metadata: {
       schema_version: 1, external_request_id: input.external_request_id,
-      submitted_at: input.submitted_at, form_slug: "website-intake", form_version: 1,
+      submitted_at: input.submitted_at, form_slug: "website-intake",
+      ...(isLegacyEnvelope(input) ? { form_version: NIDO_LEGACY_INTAKE_VERSION } : {}),
     },
     attribution: {
       ...input.attribution, source_self_reported: a.source_self_reported,
       ...(a.source_detail ? { source_detail: a.source_detail } : {}),
     },
-    contact: { full_name: a.full_name, phone: a.phone, locality: a.locality, zone: a.zone },
+    contact: isLegacyEnvelope(input)
+      ? { full_name: input.answers.full_name, phone: a.phone, locality: a.locality, zone: a.zone }
+      : { full_name: contactName(input.answers as RequestEnvelope["answers"]), first_name: a.first_name, last_name: a.last_name,
+      email: a.email, phone: a.phone, alternate_phone: a.alternate_phone,
+      ...(a.preferred_channel ? { preferred_channel: a.preferred_channel } : {}),
+      locality: a.locality, zone: a.zone },
     request: {
       // The supplied contract does not specify an intent enum: retain the exact need label.
       intent: a.need_type,
@@ -41,7 +48,7 @@ function retryAfter(value: string | null) {
 }
 
 /** No automatic retries, no logging, no persistence, and no upstream response passthrough. */
-export async function submitToLynx(input: RequestEnvelope, options: {
+export async function submitToLynx(input: IntakeEnvelope, options: {
   env?: NodeJS.ProcessEnv; fetcher?: typeof fetch; timeoutMs?: number;
 } = {}): Promise<IntakeResult> {
   const config = getIntakeConfig(options.env);

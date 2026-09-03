@@ -81,7 +81,7 @@ export default async function BlogArticlePage({ params }: BlogArticleProps) {
           <div className="container article-hero__grid">
             <div className="article-hero__copy">
               <nav className="editorial-breadcrumb" aria-label="Migas de pan">
-                <Link href="/">Inicio</Link><span aria-hidden="true">/</span><Link href="/blog">Blog</Link>
+                <Link href="/#top">Inicio</Link><span aria-hidden="true">/</span><Link href="/blog">Blog</Link>
               </nav>
               <span className="editorial-kicker">{entry.category}</span>
               <h1>{entry.title}</h1>

@@ -61,7 +61,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
           <div className="container resource-page-hero__grid">
             <div className="resource-page-hero__copy">
               <nav className="editorial-breadcrumb" aria-label="Migas de pan">
-                <Link href="/">Inicio</Link><span aria-hidden="true">/</span><Link href="/resources">Recursos</Link>
+                <Link href="/#top">Inicio</Link><span aria-hidden="true">/</span><Link href="/resources">Recursos</Link>
               </nav>
               <div className="resource-page-hero__meta">
                 <span>{entry.format}</span><span>{entry.category}</span>

@@ -11,7 +11,7 @@ export function dog(n: number): Draft {
 }
 export function validDraft(extra: Draft = {}): Draft {
   return {
-    full_name: "Tutor de prueba", phone: "3000000000", locality: "Fontibón", zone: "Modelia",
+    first_name: "Tutor", last_name: "de prueba", email: "tutor@example.test", alternate_phone: "3110000000", phone: "3000000000", locality: "Fontibón", zone: "Modelia",
     source_self_reported: "Instagram", need_type: NEEDS[4], dog_count: 1, ...dog(1),
     dog_relationship: DOG_RELATIONSHIPS[0], cat_reaction: CAT_REACTIONS[0], bite_history: "No",
     special_health_need: "No", privacy_consent: true, ...extra,

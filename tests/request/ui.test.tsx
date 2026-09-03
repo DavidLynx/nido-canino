@@ -10,7 +10,7 @@ afterEach(() => { cleanup(); vi.useRealTimers(); });
 function fill(name: string, value: string) { fireEvent.change(document.getElementById(name)!, { target: { value } }); }
 function next() { fireEvent.click(screen.getByRole("button", { name: "Continuar" })); }
 function completeToReview(consent = true) {
-  fill("full_name", "Tutor prueba"); fill("phone", "3000000000"); fill("locality", "Fontibón"); fill("zone", "Modelia"); next();
+  fill("first_name", "Tutor"); fill("last_name", "prueba"); fill("email", "tutor@example.test"); fill("alternate_phone", "3110000000"); fill("phone", "3000000000"); fill("locality", "Fontibón"); fill("zone", "Modelia"); next();
   fill("source_self_reported", "Instagram"); next(); fill("need_type", NEEDS[4]); next();
   fill("dog_1_name", "Perro prueba"); fill("dog_1_age", "3 años"); fill("dog_1_breed_or_type", "Mestizo");
   fill("dog_1_sex", "Macho"); fill("dog_1_size", "Mediano"); fill("dog_1_neutered", "Sí"); next();
@@ -50,7 +50,7 @@ describe("request UI", () => {
   });
   it("shows 1, then 3, then 1 dogs; only six required basics per visible dog", () => {
     render(<RequestForm privacyPolicy={policy} />);
-    fill("full_name", "Prueba"); fill("phone", "3000000000"); fill("locality", "Fontibón"); fill("zone", "Modelia"); next();
+    fill("first_name", "Prueba"); fill("last_name", "Apellido"); fill("email", "tutor@example.test"); fill("alternate_phone", "3110000000"); fill("phone", "3000000000"); fill("locality", "Fontibón"); fill("zone", "Modelia"); next();
     fill("source_self_reported", "Google"); next(); fill("need_type", NEEDS[4]); next();
     expect(screen.getAllByRole("region", { name: /Perro \d/ })).toHaveLength(1);
     fill("dog_count", "3"); expect(screen.getAllByRole("region", { name: /Perro \d/ })).toHaveLength(3);
@@ -65,7 +65,7 @@ describe("request UI", () => {
     const link = await screen.findByRole("link", { name: "Continuar por WhatsApp ↗" });
     expect(decodeURIComponent(link.getAttribute("href")!)).toContain("nido-request-");
     fireEvent.click(screen.getByRole("button", { name: "Crear una nueva solicitud" }));
-    expect((document.getElementById("full_name") as HTMLInputElement).value).toBe("");
+    expect((document.getElementById("first_name") as HTMLInputElement).value).toBe("");
     expect(screen.queryByRole("link", { name: "Continuar por WhatsApp ↗" })).toBeNull();
   });
   it.each([500, 409, 429, 504])("error %s retains data and does not enable canine WhatsApp", async (status) => {
@@ -110,8 +110,8 @@ describe("request UI", () => {
     expect((screen.getByRole("checkbox") as HTMLInputElement).checked).toBe(false);
     if (["authorization", "configuration"].includes(String(code))) expect(screen.getByRole("status").textContent).toContain("no está disponible temporalmente");
     fireEvent.click(screen.getByRole("button", { name: /^Ir al paso 1:/ }));
-    expect((document.getElementById("full_name") as HTMLInputElement).value).toBe("Tutor prueba");
-    fill("full_name", "Tutor corregido"); next();
+    expect((document.getElementById("first_name") as HTMLInputElement).value).toBe("Tutor");
+    fill("first_name", "Tutor corregido"); next();
     expect((document.getElementById("source_self_reported") as HTMLSelectElement).value).toBe("Instagram");
     fireEvent.click(screen.getByRole("button", { name: /^Ir al paso 4:/ }));
     expect((document.getElementById("dog_1_name") as HTMLInputElement).value).toBe("Perro prueba");
@@ -129,7 +129,7 @@ describe("request UI", () => {
     fireEvent.click(screen.getByRole("button", { name: "Editar solicitud" }));
     vi.setSystemTime(new Date("2026-09-02T10:05:00Z"));
     if (changed) {
-      fireEvent.click(screen.getByRole("button", { name: /^Ir al paso 1:/ })); fill("full_name", "Tutor corregido");
+      fireEvent.click(screen.getByRole("button", { name: /^Ir al paso 1:/ })); fill("first_name", "Tutor corregido");
       fireEvent.click(screen.getByRole("button", { name: /^Ir al paso 6:/ }));
     }
     fireEvent.click(screen.getByRole("checkbox"));
@@ -139,7 +139,7 @@ describe("request UI", () => {
     expect(bodies[1].submitted_at).not.toBe(bodies[0].submitted_at);
     expect(bodies[1].consent_accepted_at).not.toBe(bodies[0].consent_accepted_at);
     expect(bodies[1].attribution).toEqual(bodies[0].attribution);
-    expect(bodies[1].answers).toEqual({ ...bodies[0].answers, full_name: changed ? "Tutor corregido" : "Tutor prueba" });
+    expect(bodies[1].answers).toEqual({ ...bodies[0].answers, first_name: changed ? "Tutor corregido" : "Tutor" });
     fireEvent.click(screen.getByRole("button", { name: "Intentar nuevamente" })); await screen.findByRole("alert");
     expect(bodies).toHaveLength(3); expect(bodies[2]).toEqual(bodies[1]);
   });

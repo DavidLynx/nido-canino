@@ -20,6 +20,12 @@ async function complete(page: Page, selected: string[], medication = false, capt
   const resolution = pending(selected); const answers = completed(resolution);
   for (const step of resolution.structure.steps) {
     await fillStep(page, answers);
+    if (step.id === "tutor") await expect(page.locator("#required_schedule")).toHaveJSProperty("tagName", "SELECT");
+    if (step.id.startsWith("dog_")) {
+      for (const suffix of ["time_alone", "time_with_family", "walks_per_day"]) await expect(page.locator(`#${step.id}_${suffix}`)).toHaveJSProperty("tagName", "SELECT");
+      await expect(page.locator(`#${step.id}_weight`)).toHaveAttribute("type", "number");
+      await page.locator(`#${step.id}_weight`).fill("12.5");
+    }
     if (step.id === "dog_1" && medication) {
       const detail = page.locator("#dog_1_medications"); await expect(detail).toHaveCount(0);
       await page.locator("#dog_1_takes_medication").selectOption("Sí");
@@ -78,6 +84,7 @@ for (const item of [{ scenario: "o", dogs: ["dog_1"], width: 1280, transport: "h
     await expect(page.getByRole("heading", { name: "Formulario PRO recibido", exact: true })).toBeVisible();
     await expect(page.getByRole("link", { name: "Continuar por WhatsApp", exact: true })).toHaveAttribute("href", /^https:\/\/wa.me\//);
     const sent = JSON.parse(requests[1].body); expect(Object.keys(sent).sort()).toEqual(["answers", "form_version", "token"]);
+    for (const dog of item.dogs) expect(sent.answers[`${dog}_weight`]).toBe(12.5);
     expect(sent.token).toBe(token); expect(sent.form_version).toBe(1); expect(sent.answers).not.toHaveProperty("dog_1_medications");
     for (const [key, value] of Object.entries(pending(item.dogs).prefill)) expect(sent.answers[key]).toBe(value);
     for (let i = 1; i <= 5; i++) expect(Object.hasOwn(sent.answers, `dog_${i}_name`)).toBe(item.dogs.includes(`dog_${i}`));

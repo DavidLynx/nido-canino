@@ -1,0 +1,67 @@
+Inventario coordinado de refinamiento + puente temporal — 2026-09-02
+Repositorio: D:/Proyectos Web/nido-canino-app/nido-canino-app
+62 archivos: 47 modificados sin stage; 15 nuevos sin stage. Incluye este inventario.
+Sin commit, push, deploy ni publicación productiva. Cambios previos preservados.
+
+ M admission-pro.html
+ M app/api/request/route.ts
+ M app/blog/[slug]/page.tsx
+ M app/layout.tsx
+ M app/privacidad/page.tsx
+ M app/resources/[slug]/page.tsx
+ M auth.html
+ M blog.html
+ M components/admission-pro/admission-form.tsx
+ M components/header.tsx
+ M components/request/request-form.tsx
+ M gallery.html
+ M index.html
+ M js/utils.js
+ M legacy-content/admission-pro.html
+ M legacy-content/auth.html
+ M legacy-content/blog.html
+ M legacy-content/gallery.html
+ M legacy-content/index.html
+ M legacy-content/pets.html
+ M legacy-content/profile.html
+ M legacy-content/request.html
+ M legacy-content/requests.html
+ M legacy-content/resources.html
+ M legacy-content/services.html
+ M lib/lynx/public-intake.ts
+ M lib/request/client.ts
+ M lib/request/contract.ts
+ M pets.html
+ M profile.html
+ M public/legacy/js/utils.js
+ M request.html
+ M requests.html
+ M resources.html
+ M services.html
+ M tests/admission-pro/contract.test.ts
+ M tests/admission-pro/definition.json
+ M tests/admission-pro/e2e/admission-pro.spec.ts
+ M tests/admission-pro/fixtures.ts
+ M tests/admission-pro/form.test.tsx
+ M tests/admission-pro/mock-handler.mjs
+ M tests/request/contract.test.ts
+ M tests/request/e2e/request.spec.ts
+ M tests/request/fixtures.ts
+ M tests/request/mock-lynx.mjs
+ M tests/request/server.test.ts
+ M tests/request/ui.test.tsx
+?? docs/bridge-rollout-files.txt
+?? docs/form-refinement-files.txt
+?? docs/form-refinement.md
+?? docs/zero-downtime-rollout.md
+?? lib/request/intake-rollout.ts
+?? lib/request/legacy-contract.ts
+?? tests/admission-pro/legacy-definition.json
+?? tests/request/e2e/rollout.spec.ts
+?? tests/request/intake-rollout.test.ts
+?? tests/request/legacy-fixture/browser.ts
+?? tests/request/legacy-fixture/client.ts
+?? tests/request/legacy-fixture/contract.ts
+?? tests/request/legacy-fixture/fixture.ts
+?? tests/request/legacy-fixture/payload.ts
+?? tests/request/refinement.test.ts

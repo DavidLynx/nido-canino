@@ -1,3 +1,4 @@
+// Frozen /request contract from 76884aa. Temporary bridge; do not backport refined fields.
 import { z } from "zod";
 
 export const RETRY_MESSAGE = "No pudimos registrar su solicitud en este momento. Sus datos siguen en pantalla. Puede intentar nuevamente.";
@@ -14,13 +15,8 @@ export const CAT_REACTIONS = ["Convive con gatos o los ignora con tranquilidad",
 export const DOG_PARTS = ["name", "age", "breed_or_type", "sex", "size", "neutered"] as const;
 export type AnswerValue = string | number | boolean | string[];
 export type Draft = Record<string, AnswerValue>;
-export const CHANNEL_LABELS: Record<string, string> = { whatsapp: "WhatsApp", phone: "Llamada telefónica", email: "Correo electrónico" };
-export const ALTERNATE_PHONE_HELP = "Puede ser de un familiar, pareja u otra persona de confianza. Lo utilizaremos si no logramos comunicarnos con usted. Asegúrese de contar con autorización para compartir este número.";
-export const contactName = (answers: Pick<Answers, "first_name" | "last_name">) => `${answers.first_name} ${answers.last_name}`;
-export const phoneDigits = (value: string) => value.replace(/\D/g, "");
 
 const text = (max: number) => z.string().trim().min(1, "Complete este campo.").max(max, `Use máximo ${max} caracteres.`);
-const phone = text(40).refine((v) => /^[+\d\s().-]+$/.test(v) && phoneDigits(v).length >= 7 && phoneDigits(v).length <= 15, "Indique un teléfono válido (7–15 dígitos).");
 const date = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Indique una fecha válida.").refine((v) => {
   const parsed = new Date(`${v}T00:00:00Z`);
   return Number.isFinite(parsed.getTime()) && parsed.toISOString().slice(0, 10) === v;
@@ -33,7 +29,7 @@ const integerChoice = (max: number) => z.union([z.number(), z.string().regex(/^[
 export function effectiveAnswers(input: unknown): unknown {
   if (!input || typeof input !== "object" || Array.isArray(input)) return input;
   const raw = input as Record<string, unknown>;
-  const keys = ["first_name", "last_name", "email", "phone", "alternate_phone", "preferred_channel", "locality", "zone", "source_self_reported", "need_type", "dog_count", "dog_relationship", "cat_reaction", "bite_history", "special_health_need", "care_concern", "privacy_consent"];
+  const keys = ["full_name", "phone", "locality", "zone", "source_self_reported", "need_type", "dog_count", "dog_relationship", "cat_reaction", "bite_history", "special_health_need", "care_concern", "privacy_consent"];
   if (DETAIL_SOURCES.includes(String(raw.source_self_reported))) keys.push("source_detail");
   if (raw.need_type === NEEDS[0]) keys.push("weekly_days_count", "weekly_days");
   if (raw.need_type === NEEDS[1]) keys.push("trip_start", "trip_end");
@@ -58,10 +54,8 @@ for (let n = 1; n <= 5; n++) {
 
 export const answersSchema = z.preprocess(effectiveAnswers, z.object({
   ...dogShape,
-  first_name: text(80), last_name: text(80),
-  email: z.string().trim().toLowerCase().email("Indique un correo electrónico válido.").max(254),
-  phone, alternate_phone: phone,
-  preferred_channel: z.enum(["", "whatsapp", "phone", "email"]).optional(),
+  full_name: text(120),
+  phone: text(40).refine((v) => /^[+\d\s().-]+$/.test(v) && v.replace(/\D/g, "").length >= 7 && v.replace(/\D/g, "").length <= 15, "Indique un celular válido (7–15 dígitos)."),
   locality: text(100), zone: text(120),
   source_self_reported: z.enum(SOURCES), source_detail: optionalText(300),
   need_type: z.enum(NEEDS),
@@ -74,8 +68,6 @@ export const answersSchema = z.preprocess(effectiveAnswers, z.object({
   special_health_need: text(1500), care_concern: optionalText(1000),
   privacy_consent: z.literal(true, { error: "Debe autorizar el tratamiento de sus datos para enviar." }),
 }).superRefine((data, ctx) => {
-  if (contactName(data).length > 160) ctx.addIssue({ code: "custom", path: ["last_name"], message: "El nombre y los apellidos juntos deben tener máximo 160 caracteres." });
-  if (phoneDigits(data.phone) === phoneDigits(data.alternate_phone)) ctx.addIssue({ code: "custom", path: ["alternate_phone"], message: "Indique un teléfono diferente al principal." });
   const requireField = (key: string) => {
     if (!(data as Record<string, unknown>)[key]) ctx.addIssue({ code: "custom", path: [key], message: "Complete este campo." });
   };
@@ -93,7 +85,7 @@ export const answersSchema = z.preprocess(effectiveAnswers, z.object({
 }).transform((data) => Object.fromEntries(Object.entries(data).filter(([, value]) => value !== undefined && value !== "")) as Answers));
 
 export type Answers = Draft & {
-  first_name: string; last_name: string; email: string; phone: string; alternate_phone: string; preferred_channel?: string; locality: string; zone: string;
+  full_name: string; phone: string; locality: string; zone: string;
   source_self_reported: string; source_detail?: string; need_type: string;
   dog_count: number; weekly_days_count?: number; weekly_days?: string[];
   trip_start?: string; trip_end?: string; single_date?: string;
